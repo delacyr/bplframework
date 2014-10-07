@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="br.facom.ufms.bpl.framework.ui.category"
+            name="BPL Framework">
+      </category>
+      <wizard
+            category="br.facom.ufms.bpl.framework.ui.category"
+            class="br.facom.ufms.bpl.framework.ui.wizards.NewBPLProject"
+            icon="icons/BPLProject.ico"
+            id="br.facom.ufms.bpl.framework.ui.NewProject"
+            name="BPL Framework Project"
+            project="true">
+      </wizard>
+      <wizard
+            category="br.facom.ufms.bpl.framework.ui.category"
+            class="org.eclipse.bpmn2.modeler.ui.wizards.BPMN2DiagramWizard"
+            icon="icons/Bpmn2ModelFile.gif"
+            id="br.facom.ufms.bpl.framework.ui.NewBusinessProcess"
+            name="Business Process Diagram">
+      </wizard>
+      <wizard
+            canFinishEarly="false"
+            category="br.facom.ufms.bpl.framework.ui.category"
+            class="br.facom.ufms.bpl.framework.ui.wizards.Bpmn2ModelWizard"
+            hasPages="true"
+            icon="icons/Bpmn2ModelFile.gif"
+            id="br.facom.ufms.bpl.framework.ui.wizard"
+            name="Business Process"
+            project="false">
+         <description>
+            description body text
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+      <wizard
+            canFinishEarly="false"
+            category="br.facom.ufms.bpl.framework.ui.category"
+            class="de.ovgu.featureide.fm.ui.wizards.NewFeatureModelWizard"
+            hasPages="true"
+            icon="icons/NewFeatureProjectIcon.png"
+            id="br.facom.ufms.bpl.framework.ui.NewFeatureModel"
+            name="Feature Model"
+            project="false">
+      </wizard>
+   </extension>
+
+</plugin>
