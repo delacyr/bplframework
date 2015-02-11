@@ -19,9 +19,6 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.bpmn2.wizardCategory"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="org.eclipse.bpmn2.presentation.Bpmn2ModelWizardID"
             name="%_UI_Bpmn2ModelWizard_label"

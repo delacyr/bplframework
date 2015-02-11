@@ -48,14 +48,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#isVarPoint <em>Var Point</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getVarPointType <em>Var Point Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#isVariant <em>Variant</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getVariantType <em>Variant Type</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getVariabilityType <em>Variability Type</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getFeatureId <em>Feature Id</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getSequential <em>Sequential</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataStoreReferenceImpl#getDataStoreRef <em>Data Store Ref</em>}</li>
  * </ul>
  * </p>
@@ -154,44 +151,24 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
     protected boolean variant = VARIANT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The default value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected static final String VARIANT_TYPE_EDEFAULT = null;
+    protected static final String FEATURE_TYPE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The cached value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected String variantType = VARIANT_TYPE_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected static final String VARIABILITY_TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected String variabilityType = VARIABILITY_TYPE_EDEFAULT;
+    protected String featureType = FEATURE_TYPE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getFeatureId() <em>Feature Id</em>}' attribute.
@@ -212,26 +189,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
      * @ordered
      */
     protected String featureId = FEATURE_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getIoSpecification() <em>Io Specification</em>}' containment reference.
@@ -262,26 +219,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
      * @ordered
      */
     protected EList<DataOutputAssociation> dataOutputAssociations;
-
-    /**
-     * The default value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected static final String SEQUENTIAL_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected String sequential = SEQUENTIAL_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getDataStoreRef() <em>Data Store Ref</em>}' reference.
@@ -531,8 +468,8 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getVariantType() {
-        return variantType;
+    public String getFeatureType() {
+        return featureType;
     }
 
     /**
@@ -540,35 +477,12 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVariantType(String newVariantType) {
-        String oldVariantType = variantType;
-        variantType = newVariantType;
+    public void setFeatureType(String newFeatureType) {
+        String oldFeatureType = featureType;
+        featureType = newFeatureType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE, oldVariantType, variantType));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getVariabilityType() {
-        return variabilityType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setVariabilityType(String newVariabilityType) {
-        String oldVariabilityType = variabilityType;
-        variabilityType = newVariabilityType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE, oldVariabilityType,
-                    variabilityType));
+                    Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE, oldFeatureType, featureType));
     }
 
     /**
@@ -591,28 +505,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID, oldFeatureId, featureId));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.DATA_STORE_REFERENCE__TYPE, oldType, type));
     }
 
     /**
@@ -703,28 +595,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getSequential() {
-        return sequential;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSequential(String newSequential) {
-        String oldSequential = sequential;
-        sequential = newSequential;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL, oldSequential, sequential));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public DataStore getDataStoreRef() {
         if (dataStoreRef != null && dataStoreRef.eIsProxy()) {
             InternalEObject oldDataStoreRef = (InternalEObject) dataStoreRef;
@@ -807,22 +677,16 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
             return getVarPointType();
         case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT:
             return isVariant();
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE:
-            return getVariantType();
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE:
-            return getVariabilityType();
+        case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE:
+            return getFeatureType();
         case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID:
             return getFeatureId();
-        case Bpmn2Package.DATA_STORE_REFERENCE__TYPE:
-            return getType();
         case Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION:
             return getIoSpecification();
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS:
             return getDataInputAssociations();
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             return getDataOutputAssociations();
-        case Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL:
-            return getSequential();
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_STORE_REF:
             if (resolve)
                 return getDataStoreRef();
@@ -858,17 +722,11 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
         case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT:
             setVariant((Boolean) newValue);
             return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE:
-            setVariantType((String) newValue);
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE:
-            setVariabilityType((String) newValue);
+        case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE:
+            setFeatureType((String) newValue);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID:
             setFeatureId((String) newValue);
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__TYPE:
-            setType((String) newValue);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION:
             setIoSpecification((InputOutputSpecification) newValue);
@@ -882,9 +740,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
             getDataOutputAssociations().clear();
             getDataOutputAssociations().addAll(
                     (Collection<? extends DataOutputAssociation>) newValue);
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL:
-            setSequential((String) newValue);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_STORE_REF:
             setDataStoreRef((DataStore) newValue);
@@ -919,17 +774,11 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
         case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT:
             setVariant(VARIANT_EDEFAULT);
             return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE:
-            setVariantType(VARIANT_TYPE_EDEFAULT);
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE:
-            setVariabilityType(VARIABILITY_TYPE_EDEFAULT);
+        case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE:
+            setFeatureType(FEATURE_TYPE_EDEFAULT);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID:
             setFeatureId(FEATURE_ID_EDEFAULT);
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__TYPE:
-            setType(TYPE_EDEFAULT);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION:
             setIoSpecification((InputOutputSpecification) null);
@@ -939,9 +788,6 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             getDataOutputAssociations().clear();
-            return;
-        case Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL:
-            setSequential(SEQUENTIAL_EDEFAULT);
             return;
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_STORE_REF:
             setDataStoreRef((DataStore) null);
@@ -971,26 +817,18 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
                     : !VAR_POINT_TYPE_EDEFAULT.equals(varPointType);
         case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT:
             return variant != VARIANT_EDEFAULT;
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE:
-            return VARIANT_TYPE_EDEFAULT == null ? variantType != null : !VARIANT_TYPE_EDEFAULT
-                    .equals(variantType);
-        case Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE:
-            return VARIABILITY_TYPE_EDEFAULT == null ? variabilityType != null
-                    : !VARIABILITY_TYPE_EDEFAULT.equals(variabilityType);
+        case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE:
+            return FEATURE_TYPE_EDEFAULT == null ? featureType != null : !FEATURE_TYPE_EDEFAULT
+                    .equals(featureType);
         case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID:
             return FEATURE_ID_EDEFAULT == null ? featureId != null : !FEATURE_ID_EDEFAULT
                     .equals(featureId);
-        case Bpmn2Package.DATA_STORE_REFERENCE__TYPE:
-            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         case Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION:
             return ioSpecification != null;
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS:
             return dataInputAssociations != null && !dataInputAssociations.isEmpty();
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             return dataOutputAssociations != null && !dataOutputAssociations.isEmpty();
-        case Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL:
-            return SEQUENTIAL_EDEFAULT == null ? sequential != null : !SEQUENTIAL_EDEFAULT
-                    .equals(sequential);
         case Bpmn2Package.DATA_STORE_REFERENCE__DATA_STORE_REF:
             return dataStoreRef != null;
         }
@@ -1018,22 +856,16 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__VAR_POINT_TYPE;
             case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT;
-            case Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE:
-                return Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE;
-            case Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE:
-                return Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE;
+            case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE:
+                return Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE;
             case Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID;
-            case Bpmn2Package.DATA_STORE_REFERENCE__TYPE:
-                return Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE;
             case Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION;
             case Bpmn2Package.DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS;
             case Bpmn2Package.DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
-            case Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL:
-                return Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL;
             default:
                 return -1;
             }
@@ -1062,22 +894,16 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
                 return Bpmn2Package.DATA_STORE_REFERENCE__VAR_POINT_TYPE;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
                 return Bpmn2Package.DATA_STORE_REFERENCE__VARIANT;
-            case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE:
-                return Bpmn2Package.DATA_STORE_REFERENCE__VARIANT_TYPE;
-            case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE:
-                return Bpmn2Package.DATA_STORE_REFERENCE__VARIABILITY_TYPE;
+            case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
+                return Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_TYPE;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
                 return Bpmn2Package.DATA_STORE_REFERENCE__FEATURE_ID;
-            case Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE:
-                return Bpmn2Package.DATA_STORE_REFERENCE__TYPE;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION:
                 return Bpmn2Package.DATA_STORE_REFERENCE__IO_SPECIFICATION;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS:
                 return Bpmn2Package.DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
                 return Bpmn2Package.DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS;
-            case Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL:
-                return Bpmn2Package.DATA_STORE_REFERENCE__SEQUENTIAL;
             default:
                 return -1;
             }
@@ -1102,16 +928,10 @@ public class DataStoreReferenceImpl extends FlowElementImpl implements DataStore
         result.append(varPointType);
         result.append(", variant: ");
         result.append(variant);
-        result.append(", variantType: ");
-        result.append(variantType);
-        result.append(", variabilityType: ");
-        result.append(variabilityType);
+        result.append(", featureType: ");
+        result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
-        result.append(", type: ");
-        result.append(type);
-        result.append(", sequential: ");
-        result.append(sequential);
         result.append(')');
         return result.toString();
     }

@@ -55,6 +55,7 @@ import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.ReconnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.mm.algorithms.Ellipse;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.styles.Color;
@@ -100,6 +101,7 @@ public class SequenceFlowFeatureContainer extends BaseElementConnectionFeatureCo
 	public IUpdateFeature getUpdateFeature(IFeatureProvider fp) {
 		MultiUpdateFeature multiUpdate = new MultiUpdateFeature(fp);
 		multiUpdate.addUpdateFeature(new UpdateDefaultSequenceFlowFeature(fp));
+		//multiUpdate.addUpdateFeature(new UpdateVariabilitySequenceFlowFeature(fp));
 		multiUpdate.addUpdateFeature(new UpdateConditionalSequenceFlowFeature(fp));
 		multiUpdate.addUpdateFeature(new UpdateLabelFeature(fp));
 		return multiUpdate;
@@ -134,14 +136,15 @@ public class SequenceFlowFeatureContainer extends BaseElementConnectionFeatureCo
 			Polyline connectionLine = super.createConnectionLine(connection);
 			
 			SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(connection, SequenceFlow.class);
+			
 			if (flow.getSourceRef() instanceof Activity && flow.getTargetRef() instanceof Activity){
 				Activity activityS = (Activity)flow.getSourceRef();
 				Activity activityT = (Activity)flow.getTargetRef();
-				// VRBPMNcoment: Set a Line Style in case of source is a Variant and target is a VarPoint.
-				// VRBPMNcode: 2014-09-07
+				// BPMN*coment: Set a Line Style in case of source is a Variant and target is a VarPoint.
+				// BPMN*code: 2014-09-07
 				if (activityS.isVariant() && activityT.isVarPoint()){
-					flow = setlabel (flow, activityT);
 					connectionLine.setLineStyle(LineStyle.DOT);
+					
 				}else
 					connectionLine.setLineStyle(LineStyle.SOLID);
 			}else
@@ -159,32 +162,35 @@ public class SequenceFlowFeatureContainer extends BaseElementConnectionFeatureCo
 			
 			return connectionLine;
 		}
-		// VRBPMNcoment
-		// VRBPMNcode 2014-10-01
-		private SequenceFlow setlabel(SequenceFlow flow, Activity target) {
-			switch (target.getVarPointType()){
-				case ("##abstract"):
-					flow.setName("<<implementation>>");
-				break;
-				case ("##null"):
-					flow.setName("<<extension>>");
-				break;
-				case ("##combined"):
-					if (!target.getType().equals("##OR") && !target.getType().equals("##XOR"))
-						flow.setName("<<implementation>>");
-				case ("##alternative"):
-					flow.setName("<<inheritance>>");
-				break;
+		// BPMN*coment
+		// BPMN*code 2014-10-01
+		private String setLabel(SequenceFlow businessObject) {
+			if (businessObject.getTargetRef() instanceof Activity){
+				Activity target = (Activity)businessObject.getTargetRef();
+				if (businessObject.getSourceRef() instanceof Activity){
+					Activity source = (Activity)businessObject.getSourceRef();
+					if (source.isVariant()){
+						if (target.getVarPointType() != null){
+							if (target.getVarPointType().equals("##OR"))
+								return "<<or>>";
+							else if (target.getVarPointType().equals("##XOR"))
+								return "<<xor>>";
+						}
+					}
+				}
 			}
-				
-			return flow;
+			return businessObject.getName();
 		}
 
 		@Override
 		protected void decorateConnection(IAddConnectionContext context, Connection connection, SequenceFlow businessObject) {
+			businessObject.setName(setLabel(businessObject));
+			//setVariabilitySequenceFlow(connection);
 			setDefaultSequenceFlow(connection);
 			setConditionalSequenceFlow(connection);
 		}
+
+		
 	}
 
 	public static class CreateSequenceFlowFeature extends AbstractCreateFlowFeature<SequenceFlow, FlowNode, FlowNode> {
@@ -295,7 +301,32 @@ public class SequenceFlowFeatureContainer extends BaseElementConnectionFeatureCo
 				Boolean.toString(isDefault));
 
 	}
-	
+	/*private static void setVariabilitySequenceFlow(Connection connection) {
+		SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(connection, SequenceFlow.class);
+		if ((flow.getSourceRef() instanceof Activity) && (flow.getTargetRef() instanceof Activity)){
+			Activity task = (Activity)flow.getSourceRef();
+			if (task.isVariant()){
+				IPeService peService = Graphiti.getPeService();
+				IGaService gaService = Graphiti.getGaService();
+				
+				
+				//Tuple<ConnectionDecorator, ConnectionDecorator> decorators = getConnectionDecorators(connection);
+				ConnectionDecorator startDecorator = peService.createConnectionDecorator(connection, false, 0, true);
+				Ellipse circle = gaService.createEllipse(startDecorator);
+				gaService.setSize(circle, 10, 10);
+				StyleUtil.applyStyle(circle, flow);
+				if (task.getFeatureType() == null){
+					peService.deletePictogramElement(startDecorator);
+				}else if (task.getFeatureType()=="##mandatory"){
+					circle.setBackground(manageColor(startDecorator, IColorConstant.BLACK));
+				}else if (task.getFeatureType()=="##optional"){
+					circle.setBackground(manageColor(startDecorator, IColorConstant.WHITE));
+				}
+			}
+		}
+		
+
+	}*/
 	public static class UpdateDefaultSequenceFlowFeature extends AbstractUpdateFeature {
 
 		public UpdateDefaultSequenceFlowFeature(IFeatureProvider fp) {
@@ -333,6 +364,55 @@ public class SequenceFlowFeatureContainer extends BaseElementConnectionFeatureCo
 		}
 	}
 
+	/*public static class UpdateVariabilitySequenceFlowFeature extends AbstractUpdateFeature {
+
+		public UpdateVariabilitySequenceFlowFeature(IFeatureProvider fp) {
+			super(fp);
+		}
+
+		@Override
+		public boolean canUpdate(IUpdateContext context) {
+			SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(context.getPictogramElement(),
+					SequenceFlow.class);
+			boolean canUpdate = flow != null;
+			return canUpdate;
+		}
+
+		@Override
+		public IReason updateNeeded(IUpdateContext context) {
+
+			SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(context.getPictogramElement(),
+					SequenceFlow.class);
+			if (flow.getSourceRef() instanceof Activity){
+				Activity task  = (Activity) flow.getSourceRef();
+				System.out.println(task.getFeatureType() +" = "+flow.getSourceType());
+				if ((task.getFeatureType() == null ) && (flow.getSourceType()!=null)){
+					System.out.println(task);
+					System.out.println(flow);
+					
+					return Reason.createTrueReason();
+				}
+				if ((task.getFeatureType() != null ) && !(task.getFeatureType().equals(flow.getSourceType()))){
+					System.out.println(task);
+					System.out.println(flow);
+					
+					return Reason.createTrueReason();
+				}
+			}
+			return Reason.createFalseReason();
+		}
+
+		@Override
+		public boolean update(IUpdateContext context) {
+			Connection connection = (Connection) context.getPictogramElement();
+			SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(connection, SequenceFlow.class);
+			if (flow.getSourceRef() instanceof Activity)
+				flow.setSourceType((String)((Activity)flow.getSourceRef()).getFeatureType());
+			setVariabilitySequenceFlow(connection);
+			return true;
+		}
+	}
+*/
 	private static void setConditionalSequenceFlow(Connection connection) {
 		IPeService peService = Graphiti.getPeService();
 		SequenceFlow flow = BusinessObjectUtil.getFirstElementOfType(connection, SequenceFlow.class);

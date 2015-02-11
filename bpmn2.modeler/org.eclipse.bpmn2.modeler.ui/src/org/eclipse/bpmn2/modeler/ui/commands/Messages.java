@@ -12,7 +12,7 @@ public class Messages extends NLS {
 	public static String CreateDiagramCommand_Invalid_Empty;
 	public static String CreateDiagramCommand_Process;
 	
-	public static String CreateDiagramCommand_VrProcess; //VRBPMNcode
+	public static String CreateDiagramCommand_VrProcess; //BPMN*code
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

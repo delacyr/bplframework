@@ -36,8 +36,8 @@ public abstract class AbstractReconnectFlowFeature extends ReconnectBaseElementF
 		if (super.canReconnect(context)) {
 			BaseElement targetElement = BusinessObjectUtil.getFirstElementOfType(context.getTargetPictogramElement(), BaseElement.class);
 			if (targetElement instanceof Activity){
-				// VRBPMNcoment: If the element target is a Variant and isn't a VarPoint, the reconnection can not be allowed
-				// VRBPMNcode: 2014-09-15
+				// BPMN*coment: If the element target is a Variant and isn't a VarPoint, the reconnection can not be allowed
+				// BPMN*code: 2014-09-15
 				Activity activity = BusinessObjectUtil.getFirstElementOfType(context.getTargetPictogramElement(), Activity.class);
 				if ((activity.isVariant()) && (!activity.isVarPoint()))
 					return false;

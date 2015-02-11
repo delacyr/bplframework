@@ -313,7 +313,7 @@ public class BPMN2Editor extends DiagramEditor implements IPreferenceChangeListe
 		PropertiesCompositeFactory.register(ScriptTask.class, ScriptTaskDetailComposite.class);
 		PropertiesCompositeFactory.register(SubProcess.class, ActivityDetailComposite.class);
 		PropertiesCompositeFactory.register(Task.class, TaskDetailComposite.class);
-		//VRBPMNcode
+		//BPMN*code
 		PropertiesCompositeFactory.register(VariabilitySpecification.class, ActivityDetailComposite.class);
 		PropertiesCompositeFactory.register(VariabilitySpecification.class, VrSpecificationDetailComposite.class);
 	}

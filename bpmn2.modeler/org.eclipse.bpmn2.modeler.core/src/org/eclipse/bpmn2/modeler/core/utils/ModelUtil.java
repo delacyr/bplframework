@@ -362,7 +362,7 @@ public class ModelUtil {
 			if (feature==null)
 				feature = getAnyAttribute(element,"name"); //$NON-NLS-1$
 			if (feature!=null && element.eGet(feature) instanceof String)
-				return (String) element.eGet(feature);
+				return (String) element.eGet(feature) ; //+ "bbbb";
 		}
 		return null;
 	}
@@ -548,7 +548,7 @@ public class ModelUtil {
 		PROCESS("Process"), //$NON-NLS-1$
 		CHOREOGRAPHY("Choreography"), //$NON-NLS-1$
 		COLLABORATION("Collaboration"), //$NON-NLS-1$
-		VRPROCESS("VrProcess"), //$NON-NLS-1$
+		VRPROCESS("VrProcess"), //$NON-NLS-1$		//BPMN*code
 		CONVERSATION("Conversation"); //$NON-NLS-1$
 
 		String value;
@@ -629,7 +629,7 @@ public class ModelUtil {
 					return Bpmn2DiagramType.CHOREOGRAPHY;
 				else if (be instanceof Collaboration)
 					return Bpmn2DiagramType.COLLABORATION;
-				else if (be instanceof VrProcess)			//VRBPMNcode
+				else if (be instanceof VrProcess)			//BPMN*code
 					return Bpmn2DiagramType.VRPROCESS;
 				else
 					// everything else (like SubProcess, etc.) belongs to a Process diagram
@@ -657,7 +657,7 @@ public class ModelUtil {
 						re instanceof Collaboration ||
 						re instanceof Choreography ||
 						re instanceof SubChoreography ||
-						re instanceof VrProcess 					//VRBPMNcode
+						re instanceof VrProcess 					//BPMN*code
 				) {
 					return re;
 				}
@@ -675,7 +675,7 @@ public class ModelUtil {
 		else if (type == Bpmn2DiagramType.COLLABORATION) {
 			return Messages.ModelUtil_Collaboration_Diagram;
 		}
-		else if (type == Bpmn2DiagramType.VRPROCESS) {		//VRBPMNcode
+		else if (type == Bpmn2DiagramType.VRPROCESS) {		//BPMN*code
 			return Messages.ModelUtil_VrProcess_Diagram;
 		}
 		else if (type == Bpmn2DiagramType.PROCESS) {
@@ -1598,7 +1598,7 @@ public class ModelUtil {
 			else if (type == Bpmn2DiagramType.COLLABORATION) {
 				objName = Messages.ModelUtil_Collaboration_Diagram;
 			}
-			else if (type == Bpmn2DiagramType.VRPROCESS) {		//VRBPMNcode
+			else if (type == Bpmn2DiagramType.VRPROCESS) {		//BPMN*code
 				return Messages.ModelUtil_VrProcess_Diagram;
 			}
 			else if (type == Bpmn2DiagramType.PROCESS) {

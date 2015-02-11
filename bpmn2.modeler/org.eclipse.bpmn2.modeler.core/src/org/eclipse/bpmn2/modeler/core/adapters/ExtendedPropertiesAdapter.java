@@ -273,7 +273,7 @@ public class ExtendedPropertiesAdapter<T extends EObject> extends AdapterImpl {
 				name = "Collaboration"; //$NON-NLS-1$
 				break;
 			case VRPROCESS:
-				name = "VrProcess"; //$NON-NLS-1$
+				name = "VrProcess"; //$NON-NLS-1$	//BPMN*code
 				break;
 			}
 		}

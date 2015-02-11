@@ -67,6 +67,7 @@ public class SequenceFlowItemProvider extends FlowElementItemProvider implements
             addIsImmediatePropertyDescriptor(object);
             addSourceRefPropertyDescriptor(object);
             addTargetRefPropertyDescriptor(object);
+            addSourceTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -120,6 +121,23 @@ public class SequenceFlowItemProvider extends FlowElementItemProvider implements
                         "_UI_SequenceFlow_targetRef_feature", "_UI_SequenceFlow_type"),
                 Bpmn2Package.Literals.SEQUENCE_FLOW__TARGET_REF, true, false, true, null, null,
                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Source Type feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSourceTypePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_SequenceFlow_sourceType_feature"),
+                getString("_UI_PropertyDescriptor_description",
+                        "_UI_SequenceFlow_sourceType_feature", "_UI_SequenceFlow_type"),
+                Bpmn2Package.Literals.SEQUENCE_FLOW__SOURCE_TYPE, true, false, false,
+                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -195,6 +213,7 @@ public class SequenceFlowItemProvider extends FlowElementItemProvider implements
 
         switch (notification.getFeatureID(SequenceFlow.class)) {
         case Bpmn2Package.SEQUENCE_FLOW__IS_IMMEDIATE:
+        case Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

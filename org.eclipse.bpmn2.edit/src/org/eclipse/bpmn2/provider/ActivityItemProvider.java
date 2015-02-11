@@ -72,11 +72,8 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             addVarPointPropertyDescriptor(object);
             addVarPointTypePropertyDescriptor(object);
             addVariantPropertyDescriptor(object);
-            addVariantTypePropertyDescriptor(object);
-            addVariabilityTypePropertyDescriptor(object);
-            addSequentialPropertyDescriptor(object);
+            addFeatureTypePropertyDescriptor(object);
             addFeatureIdPropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -215,51 +212,18 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
     }
 
     /**
-     * This adds a property descriptor for the Variant Type feature.
+     * This adds a property descriptor for the Feature Type feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addVariantTypePropertyDescriptor(Object object) {
+    protected void addFeatureTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(
                 ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
                 getResourceLocator(),
-                getString("_UI_Activity_variantType_feature"),
-                getString("_UI_PropertyDescriptor_description", "_UI_Activity_variantType_feature",
-                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__VARIANT_TYPE, true,
-                false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Variability Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addVariabilityTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(),
-                getString("_UI_Activity_variabilityType_feature"),
-                getString("_UI_PropertyDescriptor_description",
-                        "_UI_Activity_variabilityType_feature", "_UI_Activity_type"),
-                Bpmn2Package.Literals.ACTIVITY__VARIABILITY_TYPE, true, false, false,
-                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Sequential feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSequentialPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(),
-                getString("_UI_Activity_sequential_feature"),
-                getString("_UI_PropertyDescriptor_description", "_UI_Activity_sequential_feature",
-                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__SEQUENTIAL, true,
+                getString("_UI_Activity_featureType_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_featureType_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__FEATURE_TYPE, true,
                 false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
@@ -277,22 +241,6 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
                 getString("_UI_PropertyDescriptor_description", "_UI_Activity_featureId_feature",
                         "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__FEATURE_ID, true,
                 false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(),
-                getString("_UI_Activity_type_feature"),
-                getString("_UI_PropertyDescriptor_description", "_UI_Activity_type_feature",
-                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__TYPE, true, false,
-                false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -362,11 +310,8 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__VAR_POINT:
         case Bpmn2Package.ACTIVITY__VAR_POINT_TYPE:
         case Bpmn2Package.ACTIVITY__VARIANT:
-        case Bpmn2Package.ACTIVITY__VARIANT_TYPE:
-        case Bpmn2Package.ACTIVITY__VARIABILITY_TYPE:
-        case Bpmn2Package.ACTIVITY__SEQUENTIAL:
+        case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
-        case Bpmn2Package.ACTIVITY__TYPE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

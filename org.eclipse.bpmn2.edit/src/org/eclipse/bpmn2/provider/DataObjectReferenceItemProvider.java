@@ -68,11 +68,8 @@ public class DataObjectReferenceItemProvider extends FlowElementItemProvider imp
             addVarPointPropertyDescriptor(object);
             addVarPointTypePropertyDescriptor(object);
             addVariantPropertyDescriptor(object);
-            addVariantTypePropertyDescriptor(object);
-            addVariabilityTypePropertyDescriptor(object);
+            addFeatureTypePropertyDescriptor(object);
             addFeatureIdPropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
-            addSequentialPropertyDescriptor(object);
             addDataObjectRefPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -149,39 +146,20 @@ public class DataObjectReferenceItemProvider extends FlowElementItemProvider imp
     }
 
     /**
-     * This adds a property descriptor for the Variant Type feature.
+     * This adds a property descriptor for the Feature Type feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addVariantTypePropertyDescriptor(Object object) {
+    protected void addFeatureTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(
                 ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
                 getResourceLocator(),
-                getString("_UI_ItemAwareElement_variantType_feature"),
+                getString("_UI_ItemAwareElement_featureType_feature"),
                 getString("_UI_PropertyDescriptor_description",
-                        "_UI_ItemAwareElement_variantType_feature", "_UI_ItemAwareElement_type"),
-                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__VARIANT_TYPE, true, false, false,
+                        "_UI_ItemAwareElement_featureType_feature", "_UI_ItemAwareElement_type"),
+                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__FEATURE_TYPE, true, false, false,
                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Variability Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addVariabilityTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(
-                        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                        getResourceLocator(),
-                        getString("_UI_ItemAwareElement_variabilityType_feature"),
-                        getString("_UI_PropertyDescriptor_description",
-                                "_UI_ItemAwareElement_variabilityType_feature",
-                                "_UI_ItemAwareElement_type"),
-                        Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE, true, false,
-                        false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -198,40 +176,6 @@ public class DataObjectReferenceItemProvider extends FlowElementItemProvider imp
                 getString("_UI_PropertyDescriptor_description",
                         "_UI_ItemAwareElement_featureId_feature", "_UI_ItemAwareElement_type"),
                 Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__FEATURE_ID, true, false, false,
-                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(),
-                getString("_UI_ItemAwareElement_type_feature"),
-                getString("_UI_PropertyDescriptor_description",
-                        "_UI_ItemAwareElement_type_feature", "_UI_ItemAwareElement_type"),
-                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__TYPE, true, false, false,
-                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Sequential feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSequentialPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(),
-                getString("_UI_ItemAwareElement_sequential_feature"),
-                getString("_UI_PropertyDescriptor_description",
-                        "_UI_ItemAwareElement_sequential_feature", "_UI_ItemAwareElement_type"),
-                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__SEQUENTIAL, true, false, false,
                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
@@ -333,11 +277,8 @@ public class DataObjectReferenceItemProvider extends FlowElementItemProvider imp
         case Bpmn2Package.DATA_OBJECT_REFERENCE__VAR_POINT:
         case Bpmn2Package.DATA_OBJECT_REFERENCE__VAR_POINT_TYPE:
         case Bpmn2Package.DATA_OBJECT_REFERENCE__VARIANT:
-        case Bpmn2Package.DATA_OBJECT_REFERENCE__VARIANT_TYPE:
-        case Bpmn2Package.DATA_OBJECT_REFERENCE__VARIABILITY_TYPE:
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__FEATURE_TYPE:
         case Bpmn2Package.DATA_OBJECT_REFERENCE__FEATURE_ID:
-        case Bpmn2Package.DATA_OBJECT_REFERENCE__TYPE:
-        case Bpmn2Package.DATA_OBJECT_REFERENCE__SEQUENTIAL:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

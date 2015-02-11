@@ -8,12 +8,11 @@
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
  *
- * @author Innar Made
+ * @author Marcelo Figueiredo Terenciani
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.ui.property.tasks;
 
-import org.eclipse.bpmn2.ItemAwareElement;
-import org.eclipse.bpmn2.SubProcess;
+
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.DefaultPropertySection;
 import org.eclipse.emf.ecore.EObject;

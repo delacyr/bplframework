@@ -150,7 +150,7 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 		case CHOREOGRAPHY:
 			descriptionType = Messages.BPMN2DiagramWizardPage2_Choreography_Diagram;
 			break;
-		case VRPROCESS:
+		case VRPROCESS:	//BPMN*code
 			descriptionType = Messages.BPMN2DiagramWizardPage2_VrProcess_Diagram;
 			break;
 		default:
@@ -173,7 +173,7 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 		case CHOREOGRAPHY:
 			fileType = "choreography"; //$NON-NLS-1$
 			break;
-		case VRPROCESS:
+		case VRPROCESS:		//BPMN*code
 			fileType = "vrProcess"; //$NON-NLS-1$
 			break;
 		default:

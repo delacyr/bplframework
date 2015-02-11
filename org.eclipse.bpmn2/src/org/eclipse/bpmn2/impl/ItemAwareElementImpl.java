@@ -46,14 +46,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#isVarPoint <em>Var Point</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getVarPointType <em>Var Point Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#isVariant <em>Variant</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getVariantType <em>Variant Type</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getVariabilityType <em>Variability Type</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getFeatureId <em>Feature Id</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getSequential <em>Sequential</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,44 +148,24 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
     protected boolean variant = VARIANT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The default value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected static final String VARIANT_TYPE_EDEFAULT = null;
+    protected static final String FEATURE_TYPE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The cached value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected String variantType = VARIANT_TYPE_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected static final String VARIABILITY_TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected String variabilityType = VARIABILITY_TYPE_EDEFAULT;
+    protected String featureType = FEATURE_TYPE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getFeatureId() <em>Feature Id</em>}' attribute.
@@ -209,26 +186,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * @ordered
      */
     protected String featureId = FEATURE_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getIoSpecification() <em>Io Specification</em>}' containment reference.
@@ -259,26 +216,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * @ordered
      */
     protected EList<DataOutputAssociation> dataOutputAssociations;
-
-    /**
-     * The default value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected static final String SEQUENTIAL_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected String sequential = SEQUENTIAL_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -517,8 +454,8 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getVariantType() {
-        return variantType;
+    public String getFeatureType() {
+        return featureType;
     }
 
     /**
@@ -526,35 +463,12 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVariantType(String newVariantType) {
-        String oldVariantType = variantType;
-        variantType = newVariantType;
+    public void setFeatureType(String newFeatureType) {
+        String oldFeatureType = featureType;
+        featureType = newFeatureType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE, oldVariantType, variantType));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getVariabilityType() {
-        return variabilityType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setVariabilityType(String newVariabilityType) {
-        String oldVariabilityType = variabilityType;
-        variabilityType = newVariabilityType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE, oldVariabilityType,
-                    variabilityType));
+                    Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE, oldFeatureType, featureType));
     }
 
     /**
@@ -577,28 +491,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID, oldFeatureId, featureId));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE, oldType, type));
     }
 
     /**
@@ -689,28 +581,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getSequential() {
-        return sequential;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSequential(String newSequential) {
-        String oldSequential = sequential;
-        sequential = newSequential;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL, oldSequential, sequential));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -751,22 +621,16 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             return getVarPointType();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
             return isVariant();
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE:
-            return getVariantType();
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE:
-            return getVariabilityType();
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
+            return getFeatureType();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
             return getFeatureId();
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE:
-            return getType();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION:
             return getIoSpecification();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS:
             return getDataInputAssociations();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             return getDataOutputAssociations();
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL:
-            return getSequential();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -798,17 +662,11 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
             setVariant((Boolean) newValue);
             return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE:
-            setVariantType((String) newValue);
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE:
-            setVariabilityType((String) newValue);
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
+            setFeatureType((String) newValue);
             return;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
             setFeatureId((String) newValue);
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE:
-            setType((String) newValue);
             return;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION:
             setIoSpecification((InputOutputSpecification) newValue);
@@ -822,9 +680,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             getDataOutputAssociations().clear();
             getDataOutputAssociations().addAll(
                     (Collection<? extends DataOutputAssociation>) newValue);
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL:
-            setSequential((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -856,17 +711,11 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
             setVariant(VARIANT_EDEFAULT);
             return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE:
-            setVariantType(VARIANT_TYPE_EDEFAULT);
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE:
-            setVariabilityType(VARIABILITY_TYPE_EDEFAULT);
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
+            setFeatureType(FEATURE_TYPE_EDEFAULT);
             return;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
             setFeatureId(FEATURE_ID_EDEFAULT);
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE:
-            setType(TYPE_EDEFAULT);
             return;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION:
             setIoSpecification((InputOutputSpecification) null);
@@ -876,9 +725,6 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             return;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             getDataOutputAssociations().clear();
-            return;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL:
-            setSequential(SEQUENTIAL_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -905,26 +751,18 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
                     : !VAR_POINT_TYPE_EDEFAULT.equals(varPointType);
         case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
             return variant != VARIANT_EDEFAULT;
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT_TYPE:
-            return VARIANT_TYPE_EDEFAULT == null ? variantType != null : !VARIANT_TYPE_EDEFAULT
-                    .equals(variantType);
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIABILITY_TYPE:
-            return VARIABILITY_TYPE_EDEFAULT == null ? variabilityType != null
-                    : !VARIABILITY_TYPE_EDEFAULT.equals(variabilityType);
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
+            return FEATURE_TYPE_EDEFAULT == null ? featureType != null : !FEATURE_TYPE_EDEFAULT
+                    .equals(featureType);
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
             return FEATURE_ID_EDEFAULT == null ? featureId != null : !FEATURE_ID_EDEFAULT
                     .equals(featureId);
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__TYPE:
-            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         case Bpmn2Package.ITEM_AWARE_ELEMENT__IO_SPECIFICATION:
             return ioSpecification != null;
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS:
             return dataInputAssociations != null && !dataInputAssociations.isEmpty();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             return dataOutputAssociations != null && !dataOutputAssociations.isEmpty();
-        case Bpmn2Package.ITEM_AWARE_ELEMENT__SEQUENTIAL:
-            return SEQUENTIAL_EDEFAULT == null ? sequential != null : !SEQUENTIAL_EDEFAULT
-                    .equals(sequential);
         }
         return super.eIsSet(featureID);
     }
@@ -946,16 +784,10 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         result.append(varPointType);
         result.append(", variant: ");
         result.append(variant);
-        result.append(", variantType: ");
-        result.append(variantType);
-        result.append(", variabilityType: ");
-        result.append(variabilityType);
+        result.append(", featureType: ");
+        result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
-        result.append(", type: ");
-        result.append(type);
-        result.append(", sequential: ");
-        result.append(sequential);
         result.append(')');
         return result.toString();
     }

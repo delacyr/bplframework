@@ -23,9 +23,6 @@ public class Messages extends NLS {
 	public static String TaskFeatureContainer_Name;
 	public static String UserTaskFeatureContainer_Description;
 	public static String UserTaskFeatureContainer_Name;
-	//VrBPMN code
-	public static String VrTaskFeatureContainer_Description;
-	public static String VrTaskFeatureContainer_Name;
 	
 	static {
 		// initialize resource bundle

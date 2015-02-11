@@ -65,8 +65,16 @@ public class Messages extends NLS {
 	public static String MultiInstanceLoopCharacteristicsDetailComposite_Sequential_Label;
 	public static String MultiInstanceLoopCharacteristicsDetailComposite_Throw_Behavior_Label;
 	public static String ScriptTaskDetailComposite_Script_Label;
-	//VRBPMNcode
-	public static String IoVariabilityDetailComposite_VarPoint_Label;
+	//BPMN*code
+	public static String VrSpecificationDetailComposite_Feature_Type_Label;
+	public static String VrSpecificationDetailComposite_Optional;
+	public static String VrSpecificationDetailComposite_Mandatory;
+	public static String VrSpecificationDetailComposite_None;
+	public static String VrSpecificationDetailComposite_Has_Variant;
+	public static String VrSpecificationDetailComposite_Remove_Output_Association;
+	public static String VrSpecificationDetailComposite_Remove_Input_Association;
+
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

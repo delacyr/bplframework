@@ -60,7 +60,7 @@ public class DefaultBpmn2RuntimeExtension implements IBpmn2RuntimeExtension {
 			type = "/choreography"; //$NON-NLS-1$
 			break;
 		case VRPROCESS:
-			type = "/vrProcess";
+			type = "/vrProcess";		//BPMN*code
 			break;
 		default:
 			type = "/ext"; //$NON-NLS-1$

@@ -147,7 +147,7 @@ public interface IConstants {
 	public final String ICON_FOLDER = "16/folder.png"; //$NON-NLS-1$
 	public final String ICON_FOLDER_DISABLED = "16/folder_disabled.png"; //$NON-NLS-1$
 	
-	//VRBPMNcode
+	//BPMN*code
 	public final String IMAGE_VRPROCESS = "wizards/vrprocess.png"; //$NON-NLS-1$
 	public final String IMAGE_VRPROCESS_PUSHED = "wizards/vrprocess-pushed.png"; //$NON-NLS-1$
 	public final String ICON_VRPROCESS = "16/VrProcess.png"; //$NON-NLS-1$

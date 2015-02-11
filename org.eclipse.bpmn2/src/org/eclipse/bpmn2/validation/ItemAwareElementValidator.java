@@ -33,6 +33,8 @@ public interface ItemAwareElementValidator {
 
     boolean validateVariant(boolean value);
 
+    boolean validateFeatureType(String value);
+
     boolean validateVariantType(String value);
 
     boolean validateVariabilityType(String value);

@@ -21,7 +21,7 @@ public class Messages extends NLS {
 	public static String ModelUtil_Unknown_Reference_Object_Type;
 	public static String ModelUtil_Unnamed_Object;
 	
-	public static String ModelUtil_VrProcess_Diagram;	//VRBPMNcode
+	public static String ModelUtil_VrProcess_Diagram;	//BPMN*code
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

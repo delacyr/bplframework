@@ -79,7 +79,7 @@ public class ObjectDescriptor<T extends EObject> {
 			// to use the "name" attribute if there is one;
 			// if not, use the "id" attribute;
 			// fallback is to use the feature's toString()
-			String text = ModelUtil.toDisplayName(object.eClass().getName());
+			String text = ModelUtil.toDisplayName(object.eClass().getName()) ;
 			Object value = null;
 			EStructuralFeature f = null;
 			f = object.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
@@ -100,7 +100,7 @@ public class ObjectDescriptor<T extends EObject> {
 				value = NLS.bind(Messages.ObjectDescriptor_Unnamed, text);
 			return (String)value;
 		}
-		return name;
+		return name ;
 	}
 
 	protected IItemPropertyDescriptor getPropertyDescriptor(EStructuralFeature feature) {

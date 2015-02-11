@@ -26,6 +26,7 @@ package org.eclipse.bpmn2;
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#isIsImmediate <em>Is Immediate</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getTargetRef <em>Target Ref</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getSourceType <em>Source Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -145,5 +146,32 @@ public interface SequenceFlow extends FlowElement {
      * @generated
      */
     void setTargetRef(FlowNode value);
+
+    /**
+     * Returns the value of the '<em><b>Source Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Source Type</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Source Type</em>' attribute.
+     * @see #setSourceType(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getSequenceFlow_SourceType()
+     * @model ordered="false"
+     *        extendedMetaData="kind='attribute' name='sourceType'"
+     * @generated
+     */
+    String getSourceType();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.SequenceFlow#getSourceType <em>Source Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Source Type</em>' attribute.
+     * @see #getSourceType()
+     * @generated
+     */
+    void setSourceType(String value);
 
 } // SequenceFlow

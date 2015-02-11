@@ -21,8 +21,8 @@ public class Messages extends NLS {
 	public static String ModelHandler_Process;
 	public static String ModelHandler_Process_Diagram;
 	
-	public static String ModelHandler_VrProcess; 			//VRBPMNcode
-	public static String ModelHandler_VrProcess_Diagram;	//VRBPMNcode
+	public static String ModelHandler_VrProcess; 			//BPMN*code
+	public static String ModelHandler_VrProcess_Diagram;	//BPMN*code
 
 	static {
 		// initialize resource bundle

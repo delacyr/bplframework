@@ -2618,7 +2618,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActivity_VariantType() {
+    public EAttribute getActivity_FeatureType() {
         return (EAttribute) getActivity().getEStructuralFeatures().get(15);
     }
 
@@ -2627,35 +2627,8 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActivity_VariabilityType() {
-        return (EAttribute) getActivity().getEStructuralFeatures().get(16);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getActivity_Sequential() {
-        return (EAttribute) getActivity().getEStructuralFeatures().get(17);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getActivity_FeatureId() {
-        return (EAttribute) getActivity().getEStructuralFeatures().get(18);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getActivity_Type() {
-        return (EAttribute) getActivity().getEStructuralFeatures().get(19);
+        return (EAttribute) getActivity().getEStructuralFeatures().get(16);
     }
 
     /**
@@ -5462,7 +5435,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getItemAwareElement_VariantType() {
+    public EAttribute getItemAwareElement_FeatureType() {
         return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(6);
     }
 
@@ -5471,7 +5444,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getItemAwareElement_VariabilityType() {
+    public EAttribute getItemAwareElement_FeatureId() {
         return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(7);
     }
 
@@ -5480,26 +5453,8 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getItemAwareElement_FeatureId() {
-        return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getItemAwareElement_Type() {
-        return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getItemAwareElement_IoSpecification() {
-        return (EReference) getItemAwareElement().getEStructuralFeatures().get(10);
+        return (EReference) getItemAwareElement().getEStructuralFeatures().get(8);
     }
 
     /**
@@ -5508,7 +5463,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * @generated
      */
     public EReference getItemAwareElement_DataInputAssociations() {
-        return (EReference) getItemAwareElement().getEStructuralFeatures().get(11);
+        return (EReference) getItemAwareElement().getEStructuralFeatures().get(9);
     }
 
     /**
@@ -5517,16 +5472,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * @generated
      */
     public EReference getItemAwareElement_DataOutputAssociations() {
-        return (EReference) getItemAwareElement().getEStructuralFeatures().get(12);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getItemAwareElement_Sequential() {
-        return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(13);
+        return (EReference) getItemAwareElement().getEStructuralFeatures().get(10);
     }
 
     /**
@@ -6886,6 +6832,15 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      */
     public EReference getSequenceFlow_TargetRef() {
         return (EReference) getSequenceFlow().getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSequenceFlow_SourceType() {
+        return (EAttribute) getSequenceFlow().getEStructuralFeatures().get(4);
     }
 
     /**

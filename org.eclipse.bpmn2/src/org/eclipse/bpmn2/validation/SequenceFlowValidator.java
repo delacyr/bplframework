@@ -23,4 +23,6 @@ public interface SequenceFlowValidator {
     boolean validateSourceRef(FlowNode value);
 
     boolean validateTargetRef(FlowNode value);
+
+    boolean validateSourceType(String value);
 }

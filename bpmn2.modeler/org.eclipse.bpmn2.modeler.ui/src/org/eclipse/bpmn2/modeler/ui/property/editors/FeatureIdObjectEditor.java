@@ -1,38 +1,29 @@
-/*******************************************************************************
- * Copyright (c) 2011, 2012, 2013 Red Hat, Inc.
- * All rights reserved.
- * This program is made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html
+/******************************************************************************* 
+ * Copyright (c) 2011, 2012 Red Hat, Inc. 
+ *  All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
  * 
- * Contributors:
- * 	Red Hat, Inc. - initial API and Variant
- * 
- * @author
- * 	Marcelo F. Terenciani 2014-09-18 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ *
+ * @author Marcelo Figueiredo Terenciani
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.ui.property.editors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.Map;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.modeler.core.di.DIUtils;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ComboObjectEditor;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
-import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -40,14 +31,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
@@ -55,7 +42,11 @@ import org.eclipse.swt.widgets.Shell;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
-
+/*
+import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
+*/
 public class FeatureIdObjectEditor extends ComboObjectEditor {
 
 
@@ -138,19 +129,19 @@ public class FeatureIdObjectEditor extends ComboObjectEditor {
 		String pathString =  object.eResource().getURI().toPlatformString(true);
 		IFile bpmnfile = ResourcesPlugin.getWorkspace().getRoot().getFile(org.eclipse.core.runtime.Path.fromOSString(pathString));
 		IProject project = bpmnfile.getProject();
-	
+
 		FeatureModel featureModel = new FeatureModel();
 		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
-			
 		try {
 			new XmlFeatureModelReader(featureModel).readFromFile(file);
 			for (String f : featureModel.getFeatureNames()) {
 				choices.put(f, ModelUtil.createStringWrapper(f));
 			}
-		} catch (FileNotFoundException | UnsupportedModelException e) {
-			MessageDialog.openError(null,"Error","Não é possivel encontrar o Feature Model, verifique a existência do arquivo "+name+".xml"+" na pasta /FeatureModel");
+		} catch (FileNotFoundException f ) {
+			
+		} catch (UnsupportedModelException e){
+			
 		}
-		
 		Hashtable<String, Object> otherChoices = ModelUtil.getChoiceOfValues(object, feature);
 		if (otherChoices!=null)
 			choices.putAll(otherChoices);

@@ -46,7 +46,7 @@ public class CreateDiagramCommand extends AbstractHandler {
 	public final static String ID_CREATE_CHOREOGRAPHY = "org.eclipse.bpmn2.modeler.command.createChoreography"; //$NON-NLS-1$
 	public final static String ID_CREATE_COLLABORATION = "org.eclipse.bpmn2.modeler.command.createCollaboration"; //$NON-NLS-1$
 	
-	//VRBPMNcode
+	//BPMN*code
 	public final static String ID_CREATE_VRPROCESS = "org.eclipse.bpmn2.modeler.command.createVrProcess"; //$NON-NLS-1$	
 
 
@@ -74,7 +74,7 @@ public class CreateDiagramCommand extends AbstractHandler {
 		else if (ID_CREATE_COLLABORATION.equals(id)) {
 			dlg = new NewDiagramNameDialog(editor, Messages.CreateDiagramCommand_Collaboration);
 		}
-		else if (ID_CREATE_VRPROCESS.equals(id)) {				//VRBPMNcode
+		else if (ID_CREATE_VRPROCESS.equals(id)) {				//BPMN*code
 			dlg = new NewDiagramNameDialog(editor, Messages.CreateDiagramCommand_VrProcess);
 		}
 		if (dlg!=null) {
@@ -95,7 +95,7 @@ public class CreateDiagramCommand extends AbstractHandler {
 						else if (ID_CREATE_COLLABORATION.equals(id)) {
 							clazz = Collaboration.class;
 						}
-						else if (ID_CREATE_VRPROCESS.equals(id)) {				//VRBPMNcode
+						else if (ID_CREATE_VRPROCESS.equals(id)) {				//BPMN*code
 							clazz = VrProcess.class;
 						}
 						RootElement bpmnElement = Bpmn2ModelerFactory.create(clazz);
@@ -145,7 +145,7 @@ public class CreateDiagramCommand extends AbstractHandler {
 							else if (re instanceof Choreography) {
 								name = ((Choreography)re).getName();
 							}
-							else if (re instanceof VrProcess) {
+							else if (re instanceof VrProcess) {	//BPMN*code
 								name = ((VrProcess)re).getName();
 							}
 							if (newText.equals(name))

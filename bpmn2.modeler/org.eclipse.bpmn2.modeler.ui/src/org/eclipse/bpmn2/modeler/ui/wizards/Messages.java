@@ -36,8 +36,8 @@ public class Messages extends NLS {
 	public static String BPMN2DiagramWizardPage2_Title;
 	public static String FileService_Save_Error;
 	
-	public static String BPMN2DiagramWizardPage1_VrProcess_Diagram_Description;		//VRBPMNcode
-	public static String BPMN2DiagramWizardPage2_VrProcess_Diagram;					//VRBPMNcode
+	public static String BPMN2DiagramWizardPage1_VrProcess_Diagram_Description;		//BPMN*code
+	public static String BPMN2DiagramWizardPage2_VrProcess_Diagram;					//BPMN*code
 
 	static {
 		// initialize resource bundle

@@ -171,11 +171,8 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute varPoint : EBoolean
     Attribute varPointType : EString
     Attribute variant : EBoolean
-    Attribute variantType : EString
-    Attribute variabilityType : EString
-    Attribute sequential : EString
+    Attribute featureType : EString
     Attribute featureId : EString
-    Attribute type : EString
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>
@@ -534,14 +531,11 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute varPoint : EBoolean
     Attribute varPointType : EString
     Attribute variant : EBoolean
-    Attribute variantType : EString
-    Attribute variabilityType : EString
+    Attribute featureType : EString
     Attribute featureId : EString
-    Attribute type : EString
     Reference ioSpecification : InputOutputSpecification
     Reference dataInputAssociations : DataInputAssociation<<0..*>>
     Reference dataOutputAssociations : DataOutputAssociation<<0..*>>
-    Attribute sequential : EString
 
   Class ItemDefinition -> RootElement
     Attribute isCollection : EBoolean
@@ -713,6 +707,7 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute isImmediate : EBoolean
     Reference sourceRef : FlowNode<<1..1>>
     Reference targetRef : FlowNode<<1..1>>
+    Attribute sourceType : EString
 
   Class ServiceTask -> Task
     Attribute implementation : EString

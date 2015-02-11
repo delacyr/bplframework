@@ -134,7 +134,6 @@ public class BooleanObjectEditor extends ObjectEditor {
 			button.dispose();
 			button = null;
 		}
-		System.out.println("Dispose");
 	}
 	
 	public Control getControl() {

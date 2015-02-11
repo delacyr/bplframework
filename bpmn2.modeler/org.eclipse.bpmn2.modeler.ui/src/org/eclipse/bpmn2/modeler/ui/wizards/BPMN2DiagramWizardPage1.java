@@ -95,7 +95,7 @@ public class BPMN2DiagramWizardPage1 extends WizardPage implements IConstants {
 		choreographyLabel.setLayoutData(data);
 		choreographyLabel.setText(Messages.BPMN2DiagramWizardPage1_Choreography_Diagram_Description);
 		
-//VRBPMNcode
+//BPMN*code
 		final Button vrprocessButton = new Button(container, SWT.RADIO | SWT.PUSH);
 		vrprocessButton.setLayoutData(new GridData(SWT.FILL,SWT.CENTER,false,false,1,1));
 		vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));
@@ -113,7 +113,7 @@ public class BPMN2DiagramWizardPage1 extends WizardPage implements IConstants {
 					processButton.setImage(Activator.getDefault().getImage(IMAGE_PROCESS_PUSHED));
 					collaborationButton.setImage(Activator.getDefault().getImage(IMAGE_COLLABORATION));
 					choreographyButton.setImage(Activator.getDefault().getImage(IMAGE_CHOREOGRAPHY));
-					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//VRBPMNcode
+					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//BPMN*code
 					
 				}
 				else if (e.widget == collaborationButton) {
@@ -121,14 +121,14 @@ public class BPMN2DiagramWizardPage1 extends WizardPage implements IConstants {
 					processButton.setImage(Activator.getDefault().getImage(IMAGE_PROCESS));
 					collaborationButton.setImage(Activator.getDefault().getImage(IMAGE_COLLABORATION_PUSHED));
 					choreographyButton.setImage(Activator.getDefault().getImage(IMAGE_CHOREOGRAPHY));
-					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//VRBPMNcode
+					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//BPMN*code
 				}
-				else if (e.widget == vrprocessButton) {												//VRBPMNcode
+				else if (e.widget == vrprocessButton) {												//BPMN*code
 					diagramType = Bpmn2DiagramType.VRPROCESS;
 					processButton.setImage(Activator.getDefault().getImage(IMAGE_PROCESS));
 					collaborationButton.setImage(Activator.getDefault().getImage(IMAGE_COLLABORATION));
 					choreographyButton.setImage(Activator.getDefault().getImage(IMAGE_CHOREOGRAPHY));
-					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS_PUSHED));		//VRBPMNcode
+					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS_PUSHED));	//BPMN*code
 					
 				}
 				else if (e.widget == choreographyButton) {
@@ -136,14 +136,14 @@ public class BPMN2DiagramWizardPage1 extends WizardPage implements IConstants {
 					processButton.setImage(Activator.getDefault().getImage(IMAGE_PROCESS));
 					collaborationButton.setImage(Activator.getDefault().getImage(IMAGE_COLLABORATION));
 					choreographyButton.setImage(Activator.getDefault().getImage(IMAGE_CHOREOGRAPHY_PUSHED));
-					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//VRBPMNcode
+					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//BPMN*code
 				}
 				else {
 					diagramType = Bpmn2DiagramType.NONE;
 					processButton.setImage(Activator.getDefault().getImage(IMAGE_PROCESS));
 					collaborationButton.setImage(Activator.getDefault().getImage(IMAGE_COLLABORATION));
 					choreographyButton.setImage(Activator.getDefault().getImage(IMAGE_CHOREOGRAPHY));
-					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//VRBPMNcode
+					vrprocessButton.setImage(Activator.getDefault().getImage(IMAGE_VRPROCESS));		//BPMN*code
 				}
 				setPageComplete(canFlipToNextPage());
 			}
@@ -151,7 +151,7 @@ public class BPMN2DiagramWizardPage1 extends WizardPage implements IConstants {
 		processButton.addSelectionListener(buttonListener);
 		collaborationButton.addSelectionListener(buttonListener);
 		choreographyButton.addSelectionListener(buttonListener);
-		vrprocessButton.addSelectionListener(buttonListener);			//VRBPMNcode
+		vrprocessButton.addSelectionListener(buttonListener);			//BPMN*code
 		
 		
 		setControl(container);

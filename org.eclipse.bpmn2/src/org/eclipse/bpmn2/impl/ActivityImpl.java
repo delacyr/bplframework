@@ -60,11 +60,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isVarPoint <em>Var Point</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getVarPointType <em>Var Point Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isVariant <em>Variant</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getVariantType <em>Variant Type</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getVariabilityType <em>Variability Type</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSequential <em>Sequential</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureId <em>Feature Id</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -282,64 +279,24 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
     protected boolean variant = VARIANT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The default value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected static final String VARIANT_TYPE_EDEFAULT = null;
+    protected static final String FEATURE_TYPE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getVariantType() <em>Variant Type</em>}' attribute.
+     * The cached value of the '{@link #getFeatureType() <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getVariantType()
+     * @see #getFeatureType()
      * @generated
      * @ordered
      */
-    protected String variantType = VARIANT_TYPE_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected static final String VARIABILITY_TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getVariabilityType() <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVariabilityType()
-     * @generated
-     * @ordered
-     */
-    protected String variabilityType = VARIABILITY_TYPE_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected static final String SEQUENTIAL_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSequential() <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSequential()
-     * @generated
-     * @ordered
-     */
-    protected String sequential = SEQUENTIAL_EDEFAULT;
+    protected String featureType = FEATURE_TYPE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getFeatureId() <em>Feature Id</em>}' attribute.
@@ -360,26 +317,6 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected String featureId = FEATURE_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -790,8 +727,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getVariantType() {
-        return variantType;
+    public String getFeatureType() {
+        return featureType;
     }
 
     /**
@@ -799,56 +736,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVariantType(String newVariantType) {
-        String oldVariantType = variantType;
-        variantType = newVariantType;
+    public void setFeatureType(String newFeatureType) {
+        String oldFeatureType = featureType;
+        featureType = newFeatureType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ACTIVITY__VARIANT_TYPE, oldVariantType, variantType));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getVariabilityType() {
-        return variabilityType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setVariabilityType(String newVariabilityType) {
-        String oldVariabilityType = variabilityType;
-        variabilityType = newVariabilityType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ACTIVITY__VARIABILITY_TYPE, oldVariabilityType, variabilityType));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getSequential() {
-        return sequential;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSequential(String newSequential) {
-        String oldSequential = sequential;
-        sequential = newSequential;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET,
-                    Bpmn2Package.ACTIVITY__SEQUENTIAL, oldSequential, sequential));
+                    Bpmn2Package.ACTIVITY__FEATURE_TYPE, oldFeatureType, featureType));
     }
 
     /**
@@ -871,28 +764,6 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     Bpmn2Package.ACTIVITY__FEATURE_ID, oldFeatureId, featureId));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__TYPE,
-                    oldType, type));
     }
 
     /**
@@ -979,16 +850,10 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getVarPointType();
         case Bpmn2Package.ACTIVITY__VARIANT:
             return isVariant();
-        case Bpmn2Package.ACTIVITY__VARIANT_TYPE:
-            return getVariantType();
-        case Bpmn2Package.ACTIVITY__VARIABILITY_TYPE:
-            return getVariabilityType();
-        case Bpmn2Package.ACTIVITY__SEQUENTIAL:
-            return getSequential();
+        case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
+            return getFeatureType();
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             return getFeatureId();
-        case Bpmn2Package.ACTIVITY__TYPE:
-            return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1054,20 +919,11 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__VARIANT:
             setVariant((Boolean) newValue);
             return;
-        case Bpmn2Package.ACTIVITY__VARIANT_TYPE:
-            setVariantType((String) newValue);
-            return;
-        case Bpmn2Package.ACTIVITY__VARIABILITY_TYPE:
-            setVariabilityType((String) newValue);
-            return;
-        case Bpmn2Package.ACTIVITY__SEQUENTIAL:
-            setSequential((String) newValue);
+        case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
+            setFeatureType((String) newValue);
             return;
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             setFeatureId((String) newValue);
-            return;
-        case Bpmn2Package.ACTIVITY__TYPE:
-            setType((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -1126,20 +982,11 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__VARIANT:
             setVariant(VARIANT_EDEFAULT);
             return;
-        case Bpmn2Package.ACTIVITY__VARIANT_TYPE:
-            setVariantType(VARIANT_TYPE_EDEFAULT);
-            return;
-        case Bpmn2Package.ACTIVITY__VARIABILITY_TYPE:
-            setVariabilityType(VARIABILITY_TYPE_EDEFAULT);
-            return;
-        case Bpmn2Package.ACTIVITY__SEQUENTIAL:
-            setSequential(SEQUENTIAL_EDEFAULT);
+        case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
+            setFeatureType(FEATURE_TYPE_EDEFAULT);
             return;
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             setFeatureId(FEATURE_ID_EDEFAULT);
-            return;
-        case Bpmn2Package.ACTIVITY__TYPE:
-            setType(TYPE_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -1184,20 +1031,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
                     : !VAR_POINT_TYPE_EDEFAULT.equals(varPointType);
         case Bpmn2Package.ACTIVITY__VARIANT:
             return variant != VARIANT_EDEFAULT;
-        case Bpmn2Package.ACTIVITY__VARIANT_TYPE:
-            return VARIANT_TYPE_EDEFAULT == null ? variantType != null : !VARIANT_TYPE_EDEFAULT
-                    .equals(variantType);
-        case Bpmn2Package.ACTIVITY__VARIABILITY_TYPE:
-            return VARIABILITY_TYPE_EDEFAULT == null ? variabilityType != null
-                    : !VARIABILITY_TYPE_EDEFAULT.equals(variabilityType);
-        case Bpmn2Package.ACTIVITY__SEQUENTIAL:
-            return SEQUENTIAL_EDEFAULT == null ? sequential != null : !SEQUENTIAL_EDEFAULT
-                    .equals(sequential);
+        case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
+            return FEATURE_TYPE_EDEFAULT == null ? featureType != null : !FEATURE_TYPE_EDEFAULT
+                    .equals(featureType);
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             return FEATURE_ID_EDEFAULT == null ? featureId != null : !FEATURE_ID_EDEFAULT
                     .equals(featureId);
-        case Bpmn2Package.ACTIVITY__TYPE:
-            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         }
         return super.eIsSet(featureID);
     }
@@ -1225,16 +1064,10 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(varPointType);
         result.append(", variant: ");
         result.append(variant);
-        result.append(", variantType: ");
-        result.append(variantType);
-        result.append(", variabilityType: ");
-        result.append(variabilityType);
-        result.append(", sequential: ");
-        result.append(sequential);
+        result.append(", featureType: ");
+        result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
-        result.append(", type: ");
-        result.append(type);
         result.append(')');
         return result.toString();
     }

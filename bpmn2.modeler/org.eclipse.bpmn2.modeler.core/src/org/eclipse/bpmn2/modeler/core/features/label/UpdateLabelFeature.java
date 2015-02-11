@@ -83,7 +83,7 @@ public class UpdateLabelFeature extends AbstractUpdateFeature {
 		Shape textShape = getChildElementOfType(pe, TEXT_ELEMENT, Boolean.toString(true), Shape.class);
 		if (textShape!=null) {
 			AbstractText text = (AbstractText) textShape.getGraphicsAlgorithm();
-			String name = ModelUtil.getName(element);
+			String name = ModelUtil.getName(element) ;
 			if (name == null) {
 				name = ""; //$NON-NLS-1$
 			}

@@ -73,8 +73,8 @@ public abstract class AbstractCreateFlowFeature<
 				AnchorContainer targetContainer = context.getTargetAnchor().getParent();
 				
 				if ((target instanceof Activity)){
-					// VRBPMNcoment: A Variant can not be target if not to VarPoint too
-					// VRBPMNcode 2014-09-10
+					// BPMN*coment: A Variant can not be target if not to VarPoint too
+					// BPMN*code 2014-09-10
 					Activity activityT = (Activity)target;
 					if ((activityT.isVariant()) && (!activityT.isVarPoint())){
 						return false;
@@ -84,16 +84,16 @@ public abstract class AbstractCreateFlowFeature<
 					}
 				}
 				else if ((target instanceof ItemAwareElement)){
-					// VRBPMNcoment: A Variant can not be target if not to VarPoint too
-					// VRBPMNcode 2014-09-10
+					// BPMN*coment: A Variant can not be target if not to VarPoint too
+					// BPMN*code 2014-09-10
 					ItemAwareElement dataT = (ItemAwareElement)target;
 					if (dataT.isVariant() && !dataT.isVarPoint())
 						return false;
 					if (source instanceof ItemAwareElement){
 						ItemAwareElement dataS = (ItemAwareElement)source;
-						// VRBPMNcoment: if the source is a Variant and the target is a VarPoint, the connection is allowed
-						// VRBPMNcode 2014-09-10
-						if (dataS.isVariant() && dataT.isVarPoint()){ 	//VRBPMNcode 2014-09-10
+						// BPMN*coment: if the source is a Variant and the target is a VarPoint, the connection is allowed
+						// BPMN*code 2014-09-10
+						if (dataS.isVariant() && dataT.isVarPoint()){ 	//BPMN*code 2014-09-10
 							return true;
 						}
 					}

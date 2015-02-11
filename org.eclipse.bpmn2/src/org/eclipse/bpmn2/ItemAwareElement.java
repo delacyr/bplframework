@@ -30,14 +30,11 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#isVarPoint <em>Var Point</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getVarPointType <em>Var Point Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#isVariant <em>Variant</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getVariantType <em>Variant Type</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getVariabilityType <em>Variability Type</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getFeatureId <em>Feature Id</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataOutputAssociations <em>Data Output Associations</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getSequential <em>Sequential</em>}</li>
  * </ul>
  * </p>
  *
@@ -211,58 +208,31 @@ public interface ItemAwareElement extends BaseElement {
     void setVariant(boolean value);
 
     /**
-     * Returns the value of the '<em><b>Variant Type</b></em>' attribute.
+     * Returns the value of the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Variant Type</em>' attribute isn't clear,
+     * If the meaning of the '<em>Feature Type</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Variant Type</em>' attribute.
-     * @see #setVariantType(String)
-     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_VariantType()
+     * @return the value of the '<em>Feature Type</em>' attribute.
+     * @see #setFeatureType(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_FeatureType()
      * @model ordered="false"
-     *        extendedMetaData="kind='attribute' name='variantType'"
+     *        extendedMetaData="kind='attribute' name='featureType'"
      * @generated
      */
-    String getVariantType();
+    String getFeatureType();
 
     /**
-     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#getVariantType <em>Variant Type</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#getFeatureType <em>Feature Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Variant Type</em>' attribute.
-     * @see #getVariantType()
+     * @param value the new value of the '<em>Feature Type</em>' attribute.
+     * @see #getFeatureType()
      * @generated
      */
-    void setVariantType(String value);
-
-    /**
-     * Returns the value of the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Variability Type</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Variability Type</em>' attribute.
-     * @see #setVariabilityType(String)
-     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_VariabilityType()
-     * @model ordered="false"
-     *        extendedMetaData="kind='attribute' name='variabilityType'"
-     * @generated
-     */
-    String getVariabilityType();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#getVariabilityType <em>Variability Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Variability Type</em>' attribute.
-     * @see #getVariabilityType()
-     * @generated
-     */
-    void setVariabilityType(String value);
+    void setFeatureType(String value);
 
     /**
      * Returns the value of the '<em><b>Feature Id</b></em>' attribute.
@@ -290,33 +260,6 @@ public interface ItemAwareElement extends BaseElement {
      * @generated
      */
     void setFeatureId(String value);
-
-    /**
-     * Returns the value of the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Type</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Type</em>' attribute.
-     * @see #setType(String)
-     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_Type()
-     * @model ordered="false"
-     *        extendedMetaData="kind='attribute' name='type'"
-     * @generated
-     */
-    String getType();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#getType <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type</em>' attribute.
-     * @see #getType()
-     * @generated
-     */
-    void setType(String value);
 
     /**
      * Returns the value of the '<em><b>Io Specification</b></em>' containment reference.
@@ -378,32 +321,5 @@ public interface ItemAwareElement extends BaseElement {
      * @generated
      */
     List<DataOutputAssociation> getDataOutputAssociations();
-
-    /**
-     * Returns the value of the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Sequential</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Sequential</em>' attribute.
-     * @see #setSequential(String)
-     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_Sequential()
-     * @model ordered="false"
-     *        extendedMetaData="kind='attribute' name='sequential'"
-     * @generated
-     */
-    String getSequential();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#getSequential <em>Sequential</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Sequential</em>' attribute.
-     * @see #getSequential()
-     * @generated
-     */
-    void setSequential(String value);
 
 } // ItemAwareElement

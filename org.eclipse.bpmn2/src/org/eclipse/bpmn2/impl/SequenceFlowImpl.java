@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#isIsImmediate <em>Is Immediate</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getTargetRef <em>Target Ref</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getSourceType <em>Source Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,6 +91,26 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
      * @ordered
      */
     protected FlowNode targetRef;
+
+    /**
+     * The default value of the '{@link #getSourceType() <em>Source Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSourceType()
+     * @generated
+     * @ordered
+     */
+    protected static final String SOURCE_TYPE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSourceType() <em>Source Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSourceType()
+     * @generated
+     * @ordered
+     */
+    protected String sourceType = SOURCE_TYPE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -292,6 +313,28 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getSourceType() {
+        return sourceType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSourceType(String newSourceType) {
+        String oldSourceType = sourceType;
+        sourceType = newSourceType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE, oldSourceType, sourceType));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -345,6 +388,8 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
             return getSourceRef();
         case Bpmn2Package.SEQUENCE_FLOW__TARGET_REF:
             return getTargetRef();
+        case Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE:
+            return getSourceType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -368,6 +413,9 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
             return;
         case Bpmn2Package.SEQUENCE_FLOW__TARGET_REF:
             setTargetRef((FlowNode) newValue);
+            return;
+        case Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE:
+            setSourceType((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -393,6 +441,9 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
         case Bpmn2Package.SEQUENCE_FLOW__TARGET_REF:
             setTargetRef((FlowNode) null);
             return;
+        case Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE:
+            setSourceType(SOURCE_TYPE_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -413,6 +464,9 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
             return sourceRef != null;
         case Bpmn2Package.SEQUENCE_FLOW__TARGET_REF:
             return targetRef != null;
+        case Bpmn2Package.SEQUENCE_FLOW__SOURCE_TYPE:
+            return SOURCE_TYPE_EDEFAULT == null ? sourceType != null : !SOURCE_TYPE_EDEFAULT
+                    .equals(sourceType);
         }
         return super.eIsSet(featureID);
     }
@@ -430,6 +484,8 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (isImmediate: ");
         result.append(isImmediate);
+        result.append(", sourceType: ");
+        result.append(sourceType);
         result.append(')');
         return result.toString();
     }

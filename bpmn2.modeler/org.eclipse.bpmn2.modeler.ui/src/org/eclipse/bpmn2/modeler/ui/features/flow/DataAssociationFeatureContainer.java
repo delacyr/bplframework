@@ -28,6 +28,7 @@ import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataObject;
 import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
 import org.eclipse.bpmn2.ItemAwareElement;
@@ -51,6 +52,7 @@ import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -139,9 +141,9 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 		// and the other must be either an Activity or a Catch or Throw Event
 		// depending on whether it's the target or the source.
 		
-		// VRBPMNcoment: When source is a Variant and target is a VarPoint 
+		// BPMN*coment: When source is a Variant and target is a VarPoint 
 		// the connection is allowed in a VariabilityProcessDiagram
-		// VRBPMNcode: 2014-09-11
+		// BPMN*code: 2014-09-11
 		if ((source instanceof ItemAwareElement) && (target instanceof ItemAwareElement) ){
 			pass = false;
 			if ((source instanceof DataInput) && (target instanceof DataInput)){
@@ -256,8 +258,8 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 			objectFeature = Bpmn2Package.eINSTANCE.getThrowEvent_DataInputs();
 			targetFeature = Bpmn2Package.eINSTANCE.getThrowEvent_DataInputAssociation();
 		}
-		// VRBPMNcoment: Condition for connection of Data Type elements
-		// VRBPMNcode: 2014-09-12
+		// BPMN*coment: Condition for connection of Data Type elements
+		// BPMN*code: 2014-09-12
 		else if (target instanceof ItemAwareElement){												
 			object = ((ItemAwareElement)target).getIoSpecification();								
 			objectFeature = Bpmn2Package.eINSTANCE.getInputOutputSpecification_DataInputs();		
@@ -332,8 +334,8 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 			objectFeature = Bpmn2Package.eINSTANCE.getCatchEvent_DataOutputs();
 			sourceFeature = Bpmn2Package.eINSTANCE.getCatchEvent_DataOutputAssociation();
 		}
-		// VRBPMNcoment: Condition for connection of Data Type elements
-		// VRBPMNcode: 2014-09-12
+		// BPMN*coment: Condition for connection of Data Type elements
+		// BPMN*code: 2014-09-12
 		else if (source instanceof ItemAwareElement){												
 			object = ((ItemAwareElement)source).getIoSpecification();								
 			objectFeature = Bpmn2Package.eINSTANCE.getInputOutputSpecification_DataOutputs();		
@@ -424,9 +426,9 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				List<DataOutputAssociation> doa = null;
 				if (element.eContainer() instanceof InputOutputSpecification) {
 					InputOutputSpecification ioSpec = (InputOutputSpecification)element.eContainer();
-					// VRBPMNcoment: Condition for when a DataOutput is instance of DataObject
-					// VRBPMNcode: 2014-09-12
-					if (ioSpec.eContainer() instanceof DataObject){						
+					// BPMN*coment: Condition for when a DataOutput is instance of DataObject
+					// BPMN*code: 2014-09-12
+					if (ioSpec.eContainer() instanceof ItemAwareElement){						
 						ItemAwareElement itemAE = (ItemAwareElement)ioSpec.eContainer();
 						doa = itemAE.getDataOutputAssociations();
 					}else{
@@ -455,8 +457,8 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				List<DataInputAssociation> dia = null;
 				if (element.eContainer() instanceof InputOutputSpecification) {
 					InputOutputSpecification ioSpec = (InputOutputSpecification)element.eContainer();
-					// VRBPMNcoment: Condition add for when a DataOutput is instance of DataObject
-					// VRBPMNcode: 2014-09-12
+					// BPMN*coment: Condition add for when a DataOutput is instance of DataObject
+					// BPMN*code: 2014-09-12
 					if (ioSpec.eContainer() instanceof DataObject){
 						ItemAwareElement itemAE = (ItemAwareElement)ioSpec.eContainer();
 						dia = itemAE.getDataInputAssociations();
@@ -506,8 +508,8 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 			BaseElement source = getSourceBo(context);
 			if (source instanceof Activity || source instanceof CatchEvent)
 				return true;
-			// VRBPMNcoment: Condition for when a DataOutput is a Variant
-			// VRBPMNcode: 2014-09-11
+			// BPMN*coment: Condition for when a DataOutput is a Variant
+			// BPMN*code: 2014-09-11
 			if (source instanceof ItemAwareElement) {							
 				if (source instanceof DataOutput){								
 					if (!((ItemAwareElement) source).isVariant())				
@@ -628,9 +630,9 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 					}
 					dataOutputAssoc = selectOutput(source, event.getDataOutputs(), event.getDataOutputAssociation(), outputSet);
 				}
-				// VRBPMNcoment: if the source is a DataObject, create an ioSpecification if it doesn't have one yet
+				// BPMN*coment: if the source is a DataObject, create an ioSpecification if it doesn't have one yet
 				// this only occurs in the variability elements
-				// VRBPMNcode: 2014-09-12
+				// BPMN*code: 2014-09-12
 				else if (source instanceof ItemAwareElement){
 					ItemAwareElement dataObject = (ItemAwareElement) source;
 					ioSpec = dataObject.getIoSpecification();
@@ -686,9 +688,9 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 					dataInputAssoc = selectInput(target, event.getDataInputs(), event.getDataInputAssociation(), inputSet);
 				}
 				else if (target instanceof ItemAwareElement) {
-					// VRBPMNcoment: if the source is a DataObject, create an ioSpecification if it doesn't have one yet
+					// BPMN*coment: if the source is a DataObject, create an ioSpecification if it doesn't have one yet
 					// this only occurs in the variability elements
-					// VRBPMNcode: 2014-09-12
+					// BPMN*code: 2014-09-12
 					ItemAwareElement activity = (ItemAwareElement) target;
 					ioSpec = activity.getIoSpecification();
 					if (ioSpec==null) {
@@ -801,10 +803,10 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 
 			if (targetDecorator==null) {
 				ItemAwareElement target = (ItemAwareElement)businessObject.getTargetRef();
-				// VRBPMNcoment: Condition for decorate a DataAssociation when target is VarPoint
+				// BPMN*coment: Condition for decorate a DataAssociation when target is VarPoint
 				// in this case, the arrowhead is completely filled
-				// VRBPMNcode: 2014-09-12
-				if ((target.isVarPoint()) && (!(businessObject.getSourceRef() instanceof Activity)) ){
+				// BPMN*code: 2014-09-12
+				if ((target.isVarPoint()) && (isItemAE(businessObject)) ){
 					targetDecorator = peService.createConnectionDecorator(connection, false, 1.0, true);
 					Polyline arrowhead = gaService.createPolygon(targetDecorator, new int[] { -l, w, 0, 0, -l, -w, -l, w });
 					StyleUtil.applyStyle(arrowhead, businessObject);
@@ -819,28 +821,48 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 			// update the property value in the Connection PictogramElement
 			peService.setPropertyValue(connection, ASSOCIATION_DIRECTION, newDirection);
 			DataAssociation data = BusinessObjectUtil.getFirstElementOfType(connection, DataAssociation.class);
-			data.setName(setlabel(data.getTargetRef()));
+			data.setName(setlabel(data));
 			
 		}
 
 	}
-	private static String setlabel(ItemAwareElement target) {
-		String name="";
-		switch (target.getVarPointType()){
-			case ("##abstract"):
-				name ="<<implementation>>";
-			break;
-			case ("##null"):
-				name="<<extension>>";
-			break;
-			case ("##combined"):
-				if (!target.getType().equals("##OR") && !target.getType().equals("##XOR"))
-					name ="<<implementation>>";
-			case ("##alternative"):
-				name ="<<inheritance>>";
-			break;
+	//BPMN*code
+	public static Boolean isItemAE(EObject be){
+		Definitions definitions = ModelUtil.getDefinitions(be);
+		TreeIterator<EObject> iter = definitions.eAllContents();
+		while (iter.hasNext()) {
+			EObject obj = iter.next();
+			if (obj instanceof Activity){
+				Activity item = (Activity)obj;
+				List<DataOutputAssociation> dataoutput = item.getDataOutputAssociations();
+				for (DataOutputAssociation data: dataoutput){
+					if (data == be){
+						return false;
+					}
+				}
+			}
 		}
+		
+		return true;
+	}
+	//BPMN*code
+	private static String setlabel(DataAssociation businessObject) {
+		String name="";
+		if (businessObject.getTargetRef() instanceof ItemAwareElement){
+			ItemAwareElement target = (ItemAwareElement)businessObject.getTargetRef();
+			if (isItemAE(businessObject)){
 			
+				if (target.getVarPointType() != null){
+					if (target.getVarPointType().equals("##OR"))
+						return "<<or>>";
+					else if (target.getVarPointType().equals("##XOR"))
+						return "<<xor>>";
+				}
+				
+			}
+			
+		}
+		
 		return name;
 	}
 	public static class UpdateDataAssociationFeature extends AbstractUpdateFeature {

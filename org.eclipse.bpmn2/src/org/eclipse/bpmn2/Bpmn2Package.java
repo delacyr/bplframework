@@ -1892,31 +1892,13 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__VARIANT = FLOW_NODE_FEATURE_COUNT + 14;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY__VARIANT_TYPE = FLOW_NODE_FEATURE_COUNT + 15;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVITY__VARIABILITY_TYPE = FLOW_NODE_FEATURE_COUNT + 16;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVITY__SEQUENTIAL = FLOW_NODE_FEATURE_COUNT + 17;
+    int ACTIVITY__FEATURE_TYPE = FLOW_NODE_FEATURE_COUNT + 15;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -1925,16 +1907,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTIVITY__FEATURE_ID = FLOW_NODE_FEATURE_COUNT + 18;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVITY__TYPE = FLOW_NODE_FEATURE_COUNT + 19;
+    int ACTIVITY__FEATURE_ID = FLOW_NODE_FEATURE_COUNT + 16;
 
     /**
      * The number of structural features of the '<em>Activity</em>' class.
@@ -1943,7 +1916,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 20;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 17;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2199,31 +2172,13 @@ public interface Bpmn2Package extends EPackage {
     int SUB_PROCESS__VARIANT = ACTIVITY__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUB_PROCESS__VARIANT_TYPE = ACTIVITY__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUB_PROCESS__VARIABILITY_TYPE = ACTIVITY__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUB_PROCESS__SEQUENTIAL = ACTIVITY__SEQUENTIAL;
+    int SUB_PROCESS__FEATURE_TYPE = ACTIVITY__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -2233,15 +2188,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__FEATURE_ID = ACTIVITY__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUB_PROCESS__TYPE = ACTIVITY__TYPE;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2542,31 +2488,13 @@ public interface Bpmn2Package extends EPackage {
     int AD_HOC_SUB_PROCESS__VARIANT = SUB_PROCESS__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AD_HOC_SUB_PROCESS__VARIANT_TYPE = SUB_PROCESS__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int AD_HOC_SUB_PROCESS__VARIABILITY_TYPE = SUB_PROCESS__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int AD_HOC_SUB_PROCESS__SEQUENTIAL = SUB_PROCESS__SEQUENTIAL;
+    int AD_HOC_SUB_PROCESS__FEATURE_TYPE = SUB_PROCESS__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -2576,15 +2504,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__FEATURE_ID = SUB_PROCESS__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int AD_HOC_SUB_PROCESS__TYPE = SUB_PROCESS__TYPE;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -3801,31 +3720,13 @@ public interface Bpmn2Package extends EPackage {
     int TASK__VARIANT = ACTIVITY__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TASK__VARIANT_TYPE = ACTIVITY__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TASK__VARIABILITY_TYPE = ACTIVITY__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TASK__SEQUENTIAL = ACTIVITY__SEQUENTIAL;
+    int TASK__FEATURE_TYPE = ACTIVITY__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -3835,15 +3736,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int TASK__FEATURE_ID = ACTIVITY__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TASK__TYPE = ACTIVITY__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4126,31 +4018,13 @@ public interface Bpmn2Package extends EPackage {
     int BUSINESS_RULE_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BUSINESS_RULE_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BUSINESS_RULE_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BUSINESS_RULE_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int BUSINESS_RULE_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -4160,15 +4034,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BUSINESS_RULE_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4460,31 +4325,13 @@ public interface Bpmn2Package extends EPackage {
     int CALL_ACTIVITY__VARIANT = ACTIVITY__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CALL_ACTIVITY__VARIANT_TYPE = ACTIVITY__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CALL_ACTIVITY__VARIABILITY_TYPE = ACTIVITY__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CALL_ACTIVITY__SEQUENTIAL = ACTIVITY__SEQUENTIAL;
+    int CALL_ACTIVITY__FEATURE_TYPE = ACTIVITY__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -4494,15 +4341,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__FEATURE_ID = ACTIVITY__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CALL_ACTIVITY__TYPE = ACTIVITY__TYPE;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -7566,22 +7404,13 @@ public interface Bpmn2Package extends EPackage {
     int ITEM_AWARE_ELEMENT__VARIANT = BASE_ELEMENT_FEATURE_COUNT + 5;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT__VARIANT_TYPE = BASE_ELEMENT_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ITEM_AWARE_ELEMENT__VARIABILITY_TYPE = BASE_ELEMENT_FEATURE_COUNT + 7;
+    int ITEM_AWARE_ELEMENT__FEATURE_TYPE = BASE_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -7590,16 +7419,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT__FEATURE_ID = BASE_ELEMENT_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ITEM_AWARE_ELEMENT__TYPE = BASE_ELEMENT_FEATURE_COUNT + 9;
+    int ITEM_AWARE_ELEMENT__FEATURE_ID = BASE_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -7608,7 +7428,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT__IO_SPECIFICATION = BASE_ELEMENT_FEATURE_COUNT + 10;
+    int ITEM_AWARE_ELEMENT__IO_SPECIFICATION = BASE_ELEMENT_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Data Input Associations</b></em>' containment reference list.
@@ -7617,7 +7437,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS = BASE_ELEMENT_FEATURE_COUNT + 11;
+    int ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS = BASE_ELEMENT_FEATURE_COUNT + 9;
 
     /**
      * The feature id for the '<em><b>Data Output Associations</b></em>' containment reference list.
@@ -7626,16 +7446,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS = BASE_ELEMENT_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ITEM_AWARE_ELEMENT__SEQUENTIAL = BASE_ELEMENT_FEATURE_COUNT + 13;
+    int ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS = BASE_ELEMENT_FEATURE_COUNT + 10;
 
     /**
      * The number of structural features of the '<em>Item Aware Element</em>' class.
@@ -7644,7 +7455,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 14;
+    int ITEM_AWARE_ELEMENT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 11;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataInputImpl <em>Data Input</em>}' class.
@@ -7756,22 +7567,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_INPUT__VARIANT = ITEM_AWARE_ELEMENT__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_INPUT__VARIANT_TYPE = ITEM_AWARE_ELEMENT__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_INPUT__VARIABILITY_TYPE = ITEM_AWARE_ELEMENT__VARIABILITY_TYPE;
+    int DATA_INPUT__FEATURE_TYPE = ITEM_AWARE_ELEMENT__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -7781,15 +7583,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_INPUT__FEATURE_ID = ITEM_AWARE_ELEMENT__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_INPUT__TYPE = ITEM_AWARE_ELEMENT__TYPE;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -7817,15 +7610,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_INPUT__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_INPUT__SEQUENTIAL = ITEM_AWARE_ELEMENT__SEQUENTIAL;
 
     /**
      * The feature id for the '<em><b>Input Set With Optional</b></em>' reference list.
@@ -8136,22 +7920,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_OBJECT__VARIANT = FLOW_ELEMENT_FEATURE_COUNT + 5;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__VARIANT_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT__VARIABILITY_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 7;
+    int DATA_OBJECT__FEATURE_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -8160,16 +7935,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT__TYPE = FLOW_ELEMENT_FEATURE_COUNT + 9;
+    int DATA_OBJECT__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -8178,7 +7944,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 10;
+    int DATA_OBJECT__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Data Input Associations</b></em>' containment reference list.
@@ -8187,7 +7953,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_OBJECT__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 9;
 
     /**
      * The feature id for the '<em><b>Data Output Associations</b></em>' containment reference list.
@@ -8196,16 +7962,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT__SEQUENTIAL = FLOW_ELEMENT_FEATURE_COUNT + 13;
+    int DATA_OBJECT__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
      * The feature id for the '<em><b>Is Collection</b></em>' attribute.
@@ -8214,7 +7971,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__IS_COLLECTION = FLOW_ELEMENT_FEATURE_COUNT + 14;
+    int DATA_OBJECT__IS_COLLECTION = FLOW_ELEMENT_FEATURE_COUNT + 11;
 
     /**
      * The number of structural features of the '<em>Data Object</em>' class.
@@ -8223,7 +7980,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 15;
+    int DATA_OBJECT_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl <em>Data Object Reference</em>}' class.
@@ -8371,22 +8128,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_OBJECT_REFERENCE__VARIANT = FLOW_ELEMENT_FEATURE_COUNT + 5;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__VARIANT_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT_REFERENCE__VARIABILITY_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 7;
+    int DATA_OBJECT_REFERENCE__FEATURE_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -8395,16 +8143,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT_REFERENCE__TYPE = FLOW_ELEMENT_FEATURE_COUNT + 9;
+    int DATA_OBJECT_REFERENCE__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -8413,7 +8152,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 10;
+    int DATA_OBJECT_REFERENCE__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Data Input Associations</b></em>' containment reference list.
@@ -8422,7 +8161,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_OBJECT_REFERENCE__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 9;
 
     /**
      * The feature id for the '<em><b>Data Output Associations</b></em>' containment reference list.
@@ -8431,16 +8170,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OBJECT_REFERENCE__SEQUENTIAL = FLOW_ELEMENT_FEATURE_COUNT + 13;
+    int DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
      * The feature id for the '<em><b>Data Object Ref</b></em>' reference.
@@ -8449,7 +8179,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__DATA_OBJECT_REF = FLOW_ELEMENT_FEATURE_COUNT + 14;
+    int DATA_OBJECT_REFERENCE__DATA_OBJECT_REF = FLOW_ELEMENT_FEATURE_COUNT + 11;
 
     /**
      * The number of structural features of the '<em>Data Object Reference</em>' class.
@@ -8458,7 +8188,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 15;
+    int DATA_OBJECT_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataOutputImpl <em>Data Output</em>}' class.
@@ -8570,22 +8300,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_OUTPUT__VARIANT = ITEM_AWARE_ELEMENT__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_OUTPUT__VARIANT_TYPE = ITEM_AWARE_ELEMENT__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OUTPUT__VARIABILITY_TYPE = ITEM_AWARE_ELEMENT__VARIABILITY_TYPE;
+    int DATA_OUTPUT__FEATURE_TYPE = ITEM_AWARE_ELEMENT__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -8595,15 +8316,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_OUTPUT__FEATURE_ID = ITEM_AWARE_ELEMENT__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OUTPUT__TYPE = ITEM_AWARE_ELEMENT__TYPE;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -8631,15 +8343,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_OUTPUT__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_OUTPUT__SEQUENTIAL = ITEM_AWARE_ELEMENT__SEQUENTIAL;
 
     /**
      * The feature id for the '<em><b>Output Set With Optional</b></em>' reference list.
@@ -8987,22 +8690,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_STORE__VARIANT = ITEM_AWARE_ELEMENT__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_STORE__VARIANT_TYPE = ITEM_AWARE_ELEMENT__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE__VARIABILITY_TYPE = ITEM_AWARE_ELEMENT__VARIABILITY_TYPE;
+    int DATA_STORE__FEATURE_TYPE = ITEM_AWARE_ELEMENT__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -9012,15 +8706,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_STORE__FEATURE_ID = ITEM_AWARE_ELEMENT__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE__TYPE = ITEM_AWARE_ELEMENT__TYPE;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -9048,15 +8733,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_STORE__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE__SEQUENTIAL = ITEM_AWARE_ELEMENT__SEQUENTIAL;
 
     /**
      * The feature id for the '<em><b>Capacity</b></em>' attribute.
@@ -9240,22 +8916,13 @@ public interface Bpmn2Package extends EPackage {
     int DATA_STORE_REFERENCE__VARIANT = FLOW_ELEMENT_FEATURE_COUNT + 5;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__VARIANT_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE_REFERENCE__VARIABILITY_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 7;
+    int DATA_STORE_REFERENCE__FEATURE_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -9264,16 +8931,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE_REFERENCE__TYPE = FLOW_ELEMENT_FEATURE_COUNT + 9;
+    int DATA_STORE_REFERENCE__FEATURE_ID = FLOW_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -9282,7 +8940,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 10;
+    int DATA_STORE_REFERENCE__IO_SPECIFICATION = FLOW_ELEMENT_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Data Input Associations</b></em>' containment reference list.
@@ -9291,7 +8949,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_STORE_REFERENCE__DATA_INPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 9;
 
     /**
      * The feature id for the '<em><b>Data Output Associations</b></em>' containment reference list.
@@ -9300,16 +8958,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_STORE_REFERENCE__SEQUENTIAL = FLOW_ELEMENT_FEATURE_COUNT + 13;
+    int DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
      * The feature id for the '<em><b>Data Store Ref</b></em>' reference.
@@ -9318,7 +8967,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__DATA_STORE_REF = FLOW_ELEMENT_FEATURE_COUNT + 14;
+    int DATA_STORE_REFERENCE__DATA_STORE_REF = FLOW_ELEMENT_FEATURE_COUNT + 11;
 
     /**
      * The number of structural features of the '<em>Data Store Reference</em>' class.
@@ -9327,7 +8976,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 15;
+    int DATA_STORE_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DefinitionsImpl <em>Definitions</em>}' class.
@@ -14361,31 +14010,13 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MANUAL_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANUAL_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANUAL_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int MANUAL_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -14395,15 +14026,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int MANUAL_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANUAL_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -16241,22 +15863,13 @@ public interface Bpmn2Package extends EPackage {
     int PROPERTY__VARIANT = ITEM_AWARE_ELEMENT__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY__VARIANT_TYPE = ITEM_AWARE_ELEMENT__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__VARIABILITY_TYPE = ITEM_AWARE_ELEMENT__VARIABILITY_TYPE;
+    int PROPERTY__FEATURE_TYPE = ITEM_AWARE_ELEMENT__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -16266,15 +15879,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int PROPERTY__FEATURE_ID = ITEM_AWARE_ELEMENT__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__TYPE = ITEM_AWARE_ELEMENT__TYPE;
 
     /**
      * The feature id for the '<em><b>Io Specification</b></em>' containment reference.
@@ -16302,15 +15906,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int PROPERTY__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__SEQUENTIAL = ITEM_AWARE_ELEMENT__SEQUENTIAL;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -16584,31 +16179,13 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RECEIVE_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RECEIVE_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RECEIVE_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int RECEIVE_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -16618,15 +16195,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int RECEIVE_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RECEIVE_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -17437,31 +17005,13 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SCRIPT_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCRIPT_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCRIPT_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int SCRIPT_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -17471,15 +17021,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SCRIPT_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCRIPT_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -17780,31 +17321,13 @@ public interface Bpmn2Package extends EPackage {
     int SEND_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SEND_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SEND_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SEND_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int SEND_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -17814,15 +17337,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SEND_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -18006,13 +17520,22 @@ public interface Bpmn2Package extends EPackage {
     int SEQUENCE_FLOW__TARGET_REF = FLOW_ELEMENT_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Source Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEQUENCE_FLOW__SOURCE_TYPE = FLOW_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Sequence Flow</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SEQUENCE_FLOW_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 4;
+    int SEQUENCE_FLOW_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.ServiceTaskImpl <em>Service Task</em>}' class.
@@ -18268,31 +17791,13 @@ public interface Bpmn2Package extends EPackage {
     int SERVICE_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SERVICE_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SERVICE_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SERVICE_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int SERVICE_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -18302,15 +17807,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SERVICE_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -19628,31 +19124,13 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__VARIANT = SUB_PROCESS__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TRANSACTION__VARIANT_TYPE = SUB_PROCESS__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TRANSACTION__VARIABILITY_TYPE = SUB_PROCESS__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TRANSACTION__SEQUENTIAL = SUB_PROCESS__SEQUENTIAL;
+    int TRANSACTION__FEATURE_TYPE = SUB_PROCESS__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -19662,15 +19140,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int TRANSACTION__FEATURE_ID = SUB_PROCESS__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TRANSACTION__TYPE = SUB_PROCESS__TYPE;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -19989,31 +19458,13 @@ public interface Bpmn2Package extends EPackage {
     int USER_TASK__VARIANT = TASK__VARIANT;
 
     /**
-     * The feature id for the '<em><b>Variant Type</b></em>' attribute.
+     * The feature id for the '<em><b>Feature Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int USER_TASK__VARIANT_TYPE = TASK__VARIANT_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Variability Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int USER_TASK__VARIABILITY_TYPE = TASK__VARIABILITY_TYPE;
-
-    /**
-     * The feature id for the '<em><b>Sequential</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int USER_TASK__SEQUENTIAL = TASK__SEQUENTIAL;
+    int USER_TASK__FEATURE_TYPE = TASK__FEATURE_TYPE;
 
     /**
      * The feature id for the '<em><b>Feature Id</b></em>' attribute.
@@ -20023,15 +19474,6 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int USER_TASK__FEATURE_ID = TASK__FEATURE_ID;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int USER_TASK__TYPE = TASK__TYPE;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -22175,37 +21617,15 @@ public interface Bpmn2Package extends EPackage {
     EAttribute getActivity_Variant();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getVariantType <em>Variant Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getFeatureType <em>Feature Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Variant Type</em>'.
-     * @see org.eclipse.bpmn2.Activity#getVariantType()
+     * @return the meta object for the attribute '<em>Feature Type</em>'.
+     * @see org.eclipse.bpmn2.Activity#getFeatureType()
      * @see #getActivity()
      * @generated
      */
-    EAttribute getActivity_VariantType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getVariabilityType <em>Variability Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Variability Type</em>'.
-     * @see org.eclipse.bpmn2.Activity#getVariabilityType()
-     * @see #getActivity()
-     * @generated
-     */
-    EAttribute getActivity_VariabilityType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getSequential <em>Sequential</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Sequential</em>'.
-     * @see org.eclipse.bpmn2.Activity#getSequential()
-     * @see #getActivity()
-     * @generated
-     */
-    EAttribute getActivity_Sequential();
+    EAttribute getActivity_FeatureType();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getFeatureId <em>Feature Id</em>}'.
@@ -22217,17 +21637,6 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getActivity_FeatureId();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.eclipse.bpmn2.Activity#getType()
-     * @see #getActivity()
-     * @generated
-     */
-    EAttribute getActivity_Type();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.AdHocSubProcess <em>Ad Hoc Sub Process</em>}'.
@@ -25148,26 +24557,15 @@ public interface Bpmn2Package extends EPackage {
     EAttribute getItemAwareElement_Variant();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getVariantType <em>Variant Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getFeatureType <em>Feature Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Variant Type</em>'.
-     * @see org.eclipse.bpmn2.ItemAwareElement#getVariantType()
+     * @return the meta object for the attribute '<em>Feature Type</em>'.
+     * @see org.eclipse.bpmn2.ItemAwareElement#getFeatureType()
      * @see #getItemAwareElement()
      * @generated
      */
-    EAttribute getItemAwareElement_VariantType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getVariabilityType <em>Variability Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Variability Type</em>'.
-     * @see org.eclipse.bpmn2.ItemAwareElement#getVariabilityType()
-     * @see #getItemAwareElement()
-     * @generated
-     */
-    EAttribute getItemAwareElement_VariabilityType();
+    EAttribute getItemAwareElement_FeatureType();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getFeatureId <em>Feature Id</em>}'.
@@ -25179,17 +24577,6 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getItemAwareElement_FeatureId();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.eclipse.bpmn2.ItemAwareElement#getType()
-     * @see #getItemAwareElement()
-     * @generated
-     */
-    EAttribute getItemAwareElement_Type();
 
     /**
      * Returns the meta object for the containment reference '{@link org.eclipse.bpmn2.ItemAwareElement#getIoSpecification <em>Io Specification</em>}'.
@@ -25223,17 +24610,6 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EReference getItemAwareElement_DataOutputAssociations();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#getSequential <em>Sequential</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Sequential</em>'.
-     * @see org.eclipse.bpmn2.ItemAwareElement#getSequential()
-     * @see #getItemAwareElement()
-     * @generated
-     */
-    EAttribute getItemAwareElement_Sequential();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.ItemDefinition <em>Item Definition</em>}'.
@@ -26683,6 +26059,17 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EReference getSequenceFlow_TargetRef();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.SequenceFlow#getSourceType <em>Source Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Source Type</em>'.
+     * @see org.eclipse.bpmn2.SequenceFlow#getSourceType()
+     * @see #getSequenceFlow()
+     * @generated
+     */
+    EAttribute getSequenceFlow_SourceType();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.ServiceTask <em>Service Task</em>}'.
@@ -28687,28 +28074,12 @@ public interface Bpmn2Package extends EPackage {
         EAttribute ACTIVITY__VARIANT = eINSTANCE.getActivity_Variant();
 
         /**
-         * The meta object literal for the '<em><b>Variant Type</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Feature Type</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ACTIVITY__VARIANT_TYPE = eINSTANCE.getActivity_VariantType();
-
-        /**
-         * The meta object literal for the '<em><b>Variability Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVITY__VARIABILITY_TYPE = eINSTANCE.getActivity_VariabilityType();
-
-        /**
-         * The meta object literal for the '<em><b>Sequential</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVITY__SEQUENTIAL = eINSTANCE.getActivity_Sequential();
+        EAttribute ACTIVITY__FEATURE_TYPE = eINSTANCE.getActivity_FeatureType();
 
         /**
          * The meta object literal for the '<em><b>Feature Id</b></em>' attribute feature.
@@ -28717,14 +28088,6 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ACTIVITY__FEATURE_ID = eINSTANCE.getActivity_FeatureId();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVITY__TYPE = eINSTANCE.getActivity_Type();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl <em>Ad Hoc Sub Process</em>}' class.
@@ -31157,21 +30520,12 @@ public interface Bpmn2Package extends EPackage {
         EAttribute ITEM_AWARE_ELEMENT__VARIANT = eINSTANCE.getItemAwareElement_Variant();
 
         /**
-         * The meta object literal for the '<em><b>Variant Type</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Feature Type</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ITEM_AWARE_ELEMENT__VARIANT_TYPE = eINSTANCE.getItemAwareElement_VariantType();
-
-        /**
-         * The meta object literal for the '<em><b>Variability Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ITEM_AWARE_ELEMENT__VARIABILITY_TYPE = eINSTANCE
-                .getItemAwareElement_VariabilityType();
+        EAttribute ITEM_AWARE_ELEMENT__FEATURE_TYPE = eINSTANCE.getItemAwareElement_FeatureType();
 
         /**
          * The meta object literal for the '<em><b>Feature Id</b></em>' attribute feature.
@@ -31180,14 +30534,6 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ITEM_AWARE_ELEMENT__FEATURE_ID = eINSTANCE.getItemAwareElement_FeatureId();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ITEM_AWARE_ELEMENT__TYPE = eINSTANCE.getItemAwareElement_Type();
 
         /**
          * The meta object literal for the '<em><b>Io Specification</b></em>' containment reference feature.
@@ -31215,14 +30561,6 @@ public interface Bpmn2Package extends EPackage {
          */
         EReference ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS = eINSTANCE
                 .getItemAwareElement_DataOutputAssociations();
-
-        /**
-         * The meta object literal for the '<em><b>Sequential</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ITEM_AWARE_ELEMENT__SEQUENTIAL = eINSTANCE.getItemAwareElement_Sequential();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl <em>Item Definition</em>}' class.
@@ -32405,6 +31743,14 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EReference SEQUENCE_FLOW__TARGET_REF = eINSTANCE.getSequenceFlow_TargetRef();
+
+        /**
+         * The meta object literal for the '<em><b>Source Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SEQUENCE_FLOW__SOURCE_TYPE = eINSTANCE.getSequenceFlow_SourceType();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.ServiceTaskImpl <em>Service Task</em>}' class.

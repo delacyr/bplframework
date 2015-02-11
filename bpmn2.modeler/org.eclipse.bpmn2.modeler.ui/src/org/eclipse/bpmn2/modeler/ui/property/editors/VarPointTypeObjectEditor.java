@@ -1,15 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2011, 2012, 2013 Red Hat, Inc.
- * All rights reserved.
- * This program is made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html
+/******************************************************************************* 
+ * Copyright (c) 2011, 2012 Red Hat, Inc. 
+ *  All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
  * 
- * Contributors:
- * 	Red Hat, Inc. - initial API and VarPoint
- * 
- * @author
- * 	Marcelo F. Terenciani 2014-09-18 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ *
+ * @author Marcelo Figueiredo Terenciani
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.ui.property.editors;
 
@@ -37,21 +36,12 @@ import org.eclipse.swt.widgets.Shell;
 
 public class VarPointTypeObjectEditor extends ComboObjectEditor {
 
-	public static String ABSTRACT_LABEL = Messages.VarPointTypeObjectEditor_Abstract_Label;
-	public static String ABSTRACT_VALUE = "##abstract"; //$NON-NLS-1$
-	public static String ALTERNATIVE_LABEL = Messages.VarPointTypeObjectEditor_Alternative_Label;
-	public static String ALTERNATIVE_VALUE = "##alternative"; //$NON-NLS-1$
-	public static String COMBINED_LABEL = Messages.VarPointTypeObjectEditor_Combined_Label;
-	public static String COMBINED_VALUE = "##combined"; //$NON-NLS-1$
-	public static String NULL_LABEL = Messages.VarPointTypeObjectEditor_Null_Label;
-	public static String NULL_VALUE = "##null"; //$NON-NLS-1$
-	public static String OPTIONAL_LABEL = Messages.VarPointTypeObjectEditor_Optional_Label;
-	public static String OPTIONAL_VALUE = "##optional"; //$NON-NLS-1$
-	public static String VARPOINT_LABEL = Messages.VarPointTypeObjectEditor_Var_Point_Label;
-	public static String VARPOINT_VALUE = "##varpoint"; //$NON-NLS-1$
-	public static String NONE_LABEL = ""; //$NON-NLS-1$
-	
-
+	public static String AND_LABEL = Messages.TypeObjectEditor_And_Label;
+	public static String AND_VALUE = "##AND"; //$NON-NLS-1$
+	public static String OR_LABEL = Messages.TypeObjectEditor_Or_Label;
+	public static String OR_VALUE = "##OR"; //$NON-NLS-1$
+	public static String XOR_LABEL = Messages.TypeObjectEditor_Xor_Label;
+	public static String XOR_VALUE = "##XOR"; //$NON-NLS-1$
 	
 	public VarPointTypeObjectEditor(AbstractDetailComposite parent, EObject object, EStructuralFeature feature) {
 		super(parent, object, feature);
@@ -72,26 +62,16 @@ public class VarPointTypeObjectEditor extends ComboObjectEditor {
 	
 	public Object getValue() {
 		Object value = object.eGet(feature);
-		if (ABSTRACT_VALUE.equals(value)) {
-			value = ABSTRACT_LABEL;
+		if (AND_VALUE.equals(value)) {
+			value = AND_LABEL;
 		}
-		else if (ALTERNATIVE_VALUE.equals(value)) {
-			value = ALTERNATIVE_LABEL;
+		else if (OR_VALUE.equals(value)) {
+			value = OR_LABEL;
 		}
-		else if (COMBINED_VALUE.equals(value)) {
-			value = COMBINED_LABEL;
+		else if (XOR_VALUE.equals(value)) {
+			value = XOR_LABEL;
 		}
-		else if (NULL_VALUE.equals(value)) {
-			value = NULL_LABEL;
-		}
-		else if (OPTIONAL_VALUE.equals(value)) {
-			value = OPTIONAL_LABEL;
-		}
-		else if (VARPOINT_VALUE.equals(value)) {
-			value = VARPOINT_LABEL;
-		}
-		if (value == null)
-			value = NONE_LABEL;
+		
 		return value;
 	}
 	
@@ -125,7 +105,7 @@ public class VarPointTypeObjectEditor extends ComboObjectEditor {
 							TreeIterator<EObject> iter = definitions.eAllContents();
 							while (iter.hasNext()) {
 								EObject o = iter.next();
-								EStructuralFeature f = o.eClass().getEStructuralFeature("varPointType"); //$NON-NLS-1$
+								EStructuralFeature f = o.eClass().getEStructuralFeature("type"); //$NON-NLS-1$
 								if (f!=null) {
 									String varPoint = (String)o.eGet(f);
 									if (oldValue.equals(varPoint)) {
@@ -145,12 +125,9 @@ public class VarPointTypeObjectEditor extends ComboObjectEditor {
 	
 	protected Hashtable<String,Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
 		Hashtable<String, Object> choices = new Hashtable<String, Object>();
-		choices.put(ABSTRACT_LABEL, ModelUtil.createStringWrapper(ABSTRACT_VALUE));
-		choices.put(ALTERNATIVE_LABEL, ModelUtil.createStringWrapper(ALTERNATIVE_VALUE));
-		choices.put(COMBINED_LABEL, ModelUtil.createStringWrapper(COMBINED_VALUE));
-		choices.put(NULL_LABEL, ModelUtil.createStringWrapper(NULL_VALUE));
-		choices.put(OPTIONAL_LABEL, ModelUtil.createStringWrapper(OPTIONAL_VALUE));
-		choices.put(VARPOINT_LABEL, ModelUtil.createStringWrapper(VARPOINT_VALUE));
+		choices.put(AND_LABEL, ModelUtil.createStringWrapper(AND_VALUE));
+		choices.put(OR_LABEL, ModelUtil.createStringWrapper(OR_VALUE));
+		choices.put(XOR_LABEL, ModelUtil.createStringWrapper(XOR_VALUE));
 		Hashtable<String, Object> otherChoices = ModelUtil.getChoiceOfValues(object, feature);
 		if (otherChoices!=null)
 			choices.putAll(otherChoices);
@@ -160,7 +137,7 @@ public class VarPointTypeObjectEditor extends ComboObjectEditor {
 			TreeIterator<EObject> iter = definitions.eAllContents();
 			while (iter.hasNext()) {
 				EObject o = iter.next();
-				EStructuralFeature f = o.eClass().getEStructuralFeature("varPointType"); //$NON-NLS-1$
+				EStructuralFeature f = o.eClass().getEStructuralFeature("type"); //$NON-NLS-1$
 				if (f!=null) {
 					String varPoint = (String)o.eGet(f);
 					if (varPoint!=null && !varPoint.isEmpty() &&
@@ -181,7 +158,6 @@ public class VarPointTypeObjectEditor extends ComboObjectEditor {
 			super.notifyChanged(notification);
 		}
 		else if (object == notification.getNotifier()) {
-			// TODO: Verificação no xml do featuremodel se existe a tag
 			if (notification.getFeature() instanceof EStructuralFeature) {
 				EStructuralFeature f = (EStructuralFeature)notification.getFeature();
 				if (f!=null && (f.getName().equals(feature.getName()) ||

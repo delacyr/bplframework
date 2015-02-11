@@ -8,6 +8,35 @@
 			class="org.eclipse.bpmn2.modeler.ui.wizards.BPMN2DiagramWizard" icon="icons/bpmn2_editor_16.png"
 			id="org.eclipse.bpmn2.modeler.ui.diagram" name="%wizard.name">
 		</wizard>
+  <wizard
+        category="org.eclipse.bpmn2.modeler.ui.bpl.category"
+        class="org.eclipse.bpmn2.modeler.ui.wizards.NewBPLProject"
+        icon="icons/bpl/BPLProject.ico"
+        id="br.facom.ufms.bpl.framework.ui.NewProject"
+        name="BPL Framework Project"
+        project="true">
+  </wizard>
+  <wizard
+        category="org.eclipse.bpmn2.modeler.ui.bpl.category"
+        class="org.eclipse.bpmn2.modeler.ui.wizards.BPMN2DiagramWizard"
+        icon="icons/bpl/Bpmn2ModelFile.gif"
+        id="br.facom.ufms.bpl.framework.ui.NewBusinessProcess"
+        name="Business Process Diagram">
+  </wizard>
+  <wizard
+        canFinishEarly="false"
+        category="org.eclipse.bpmn2.modeler.ui.bpl.category"
+        class="de.ovgu.featureide.fm.ui.wizards.NewFeatureModelWizard"
+        hasPages="true"
+        icon="icons/bpl/NewFeatureProjectIcon.png"
+        id="br.facom.ufms.bpl.framework.ui.NewFeatureModel"
+        name="Feature Model"
+        project="false">
+  </wizard>
+  <category
+        id="org.eclipse.bpmn2.modeler.ui.bpl.category"
+        name="BPL-Framework">
+  </category>
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors">
@@ -1365,9 +1394,6 @@
            object="DataObjectReference">
      </enable>
      <enable
-           object="DataObject">
-     </enable>
-     <enable
            object="Group">
      </enable>
      <enable
@@ -1464,6 +1490,9 @@
      </enable>
      <enable
            object="VariabilitySpecification">
+     </enable>
+     <enable
+           object="DataObject">
      </enable>
   </modelEnablement>
 

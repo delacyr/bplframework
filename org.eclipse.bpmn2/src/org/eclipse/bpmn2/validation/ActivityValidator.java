@@ -59,6 +59,8 @@ public interface ActivityValidator {
 
     boolean validateVariant(boolean value);
 
+    boolean validateFeatureType(String value);
+
     boolean validateVariantType(String value);
 
     boolean validateVariabilityType(String value);

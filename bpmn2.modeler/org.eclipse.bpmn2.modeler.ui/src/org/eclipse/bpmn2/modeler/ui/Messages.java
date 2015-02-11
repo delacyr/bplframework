@@ -247,7 +247,7 @@ public class Messages extends NLS {
 	public static String UI_Any_structureRef_description;
 	public static String UI_Any_dataState_description;
 	
-	//VrBPMNcode
+	//BPMN*code
 	public static String UI_VrProcess_long_description;
 
 	

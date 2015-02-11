@@ -629,8 +629,8 @@ public class BPMN2ValidationConstraints extends AbstractModelConstraint {
 			}
 			if (needIncoming) {
 				if ((fn.getIncoming() == null || fn.getIncoming().size() < 1)) {
-					// VRBPMNcomment: if a Activity is a Variant, this not have incoming
-					// VRBPMNcode: 2014-09-25
+					// BPMN*comment: if a Activity is a Variant, this not have incoming
+					// BPMN*code: 2014-09-25
 					if (fn instanceof Activity){
 						Activity activity = (Activity)fn;
 						if (!activity.isVariant())

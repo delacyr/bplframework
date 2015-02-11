@@ -135,7 +135,7 @@ public class ModelHandler {
 		case CHOREOGRAPHY:
 			diagram = createChoreographyDiagram(Messages.ModelHandler_Default);
 			break;
-		case VRPROCESS:
+		case VRPROCESS: //BPMN*code
 			diagram = createVrProcessDiagram(Messages.ModelHandler_Default);
 			break;
 		}
@@ -997,7 +997,7 @@ public class ModelHandler {
 			String id = ModelUtil.setID(newObject,resource);
 		}
 	}
-	//VRBPMNcode
+	//BPMN*code
 	public BPMNDiagram createVrProcessDiagram(final String name) {
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(resource);
 		final BPMNDiagram bpmnDiagram = BpmnDiFactory.eINSTANCE.createBPMNDiagram();
@@ -1095,6 +1095,7 @@ public class ModelHandler {
 		}
 		return bpmnDiagram;
 	}
+	//BPMN*code
 	public VrProcess createVrProcess() {
 		VrProcess vrprocess = create(VrProcess.class);
 		getDefinitions().getRootElements().add(vrprocess);
