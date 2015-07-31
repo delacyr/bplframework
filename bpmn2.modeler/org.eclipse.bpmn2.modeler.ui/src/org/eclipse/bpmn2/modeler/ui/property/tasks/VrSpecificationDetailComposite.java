@@ -102,7 +102,11 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 		}
 		return propertiesProvider;
 	}
-
+	@Override
+	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
+		redrawParent();
+	}
 	@Override
 	public void cleanBindings() {
 		super.cleanBindings();
@@ -483,18 +487,18 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 			@Override
 			protected void doExecute() {
 				String str;
-				if (businessObject instanceof Activity || businessObject instanceof ItemAwareElement){
-					Activity task = (Activity)businessObject;
-					EStructuralFeature name = businessObject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
-					EStructuralFeature feature = businessObject.eClass().getEStructuralFeature("featureType");
-					EStructuralFeature featureId = businessObject.eClass().getEStructuralFeature("featureId");
-					if (feature!=null) {
-						str = (String)businessObject.eGet(feature);
-						str = getName((String)businessObject.eGet(name), (String)businessObject.eGet(feature), (String)businessObject.eGet(featureId));
-						if (!str.equals((String)businessObject.eGet(name)))
-							businessObject.eSet(name, str);
-					}
+				
+				EStructuralFeature name = businessObject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+				EStructuralFeature feature = businessObject.eClass().getEStructuralFeature("featureType");
+				EStructuralFeature featureId = businessObject.eClass().getEStructuralFeature("featureId");
+				if (feature!=null) {
+					str = (String)businessObject.eGet(feature);
+					str = getName((String)businessObject.eGet(name), (String)businessObject.eGet(feature), (String)businessObject.eGet(featureId));
+					if (!str.equals((String)businessObject.eGet(name)))
+						businessObject.eSet(name, str);
 				}
+				
+				
 			}
 		});
 	}
@@ -524,7 +528,7 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 				str=str + " <<optional>>";
 		}
 		if (aux && featureId != null){
-			str = str + " feature {"+featureId+"}";
+			str = str + " {feature = "+featureId+"}";
 		}
 		return str;
 		

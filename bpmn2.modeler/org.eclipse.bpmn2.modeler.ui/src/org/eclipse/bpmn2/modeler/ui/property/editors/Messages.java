@@ -26,15 +26,10 @@ public class Messages extends NLS {
 	public static String ServiceImplementationObjectEditor_Invalid_URI;
 	public static String ServiceImplementationObjectEditor_Unspecified_Label;
 	public static String ServiceImplementationObjectEditor_Web_Service_Label;
-	
+
 	// VRBPMNcoment: Statics Strings that store the label values
 	// VRBPMNcode 2014-09-18
-	public static String VarPointTypeObjectEditor_Abstract_Label;
-	public static String VarPointTypeObjectEditor_Alternative_Label;
-	public static String VarPointTypeObjectEditor_Combined_Label;
-	public static String VarPointTypeObjectEditor_Null_Label;
-	public static String VarPointTypeObjectEditor_Optional_Label;
-	public static String VarPointTypeObjectEditor_Var_Point_Label;
+
 	public static String VarPointTypeObjectEditor_Create_New_Title;
 	public static String VarPointTypeObjectEditor_Dialog_Cancelled;
 	public static String VarPointTypeObjectEditor_Edit_Title;
@@ -42,10 +37,7 @@ public class Messages extends NLS {
 	public static String VarPointTypeObjectEditor_Invalid_Duplicate;
 	public static String VarPointTypeObjectEditor_Invalid_Empty;
 	public static String VarPointTypeObjectEditor_Invalid_URI;
-	
-	public static String VariantTypeObjectEditor_Default_Label;
-	public static String VariantTypeObjectEditor_Variable_Label;
-	public static String VariantTypeObjectEditor_Variant_Label;
+
 	public static String VariantTypeObjectEditor_Create_New_Title;
 	public static String VariantTypeObjectEditor_Dialog_Cancelled;
 	public static String VariantTypeObjectEditor_Edit_Title;
@@ -53,7 +45,7 @@ public class Messages extends NLS {
 	public static String VariantTypeObjectEditor_Invalid_Duplicate;
 	public static String VariantTypeObjectEditor_Invalid_Empty;
 	public static String VariantTypeObjectEditor_Invalid_URI;
-	
+
 	public static String TypeObjectEditor_And_Label;
 	public static String TypeObjectEditor_Or_Label;
 	public static String TypeObjectEditor_Xor_Label;

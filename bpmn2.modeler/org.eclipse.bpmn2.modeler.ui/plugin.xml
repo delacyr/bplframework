@@ -13,15 +13,15 @@
         class="org.eclipse.bpmn2.modeler.ui.wizards.NewBPLProject"
         icon="icons/bpl/BPLProject.ico"
         id="br.facom.ufms.bpl.framework.ui.NewProject"
-        name="BPL Framework Project"
+        name="BPL-Framework Project"
         project="true">
   </wizard>
   <wizard
         category="org.eclipse.bpmn2.modeler.ui.bpl.category"
         class="org.eclipse.bpmn2.modeler.ui.wizards.BPMN2DiagramWizard"
-        icon="icons/bpl/Bpmn2ModelFile.gif"
+        icon="icons/bpmn2_editor_16.png"
         id="br.facom.ufms.bpl.framework.ui.NewBusinessProcess"
-        name="Business Process Diagram">
+        name="BPL-Framework Diagrams">
   </wizard>
   <wizard
         canFinishEarly="false"

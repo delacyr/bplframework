@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'>
+    <update id='org.eclipse.bpmn2.editor' range='[0.0.0,1.0.0.201503241411)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.pluginName' value='BPMN2 Editor'/>
+      <property name='df_LT.providerName' value='Eclipse Modeling Project'/>
+      <property name='org.eclipse.equinox.p2.name' value='%pluginName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      <property name='maven-groupId' value='org.eclipse.bpmn2'/>
+      <property name='maven-artifactId' value='org.eclipse.bpmn2.editor'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='6'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'/>
+      <provided namespace='java.package' name='org.eclipse.bpmn2.presentation' version='1.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.bpmn2.presentation.actions' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='6'>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='[3.4.0,4.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='[3.4.0,4.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.bpmn2.edit' range='1.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='[2.4.0,3.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='[2.4.0,3.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='[3.4.0,4.0.0)'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.bpmn2.editor;singleton:=true&#xA;Bundle-Version: 1.0.0.201503241411&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

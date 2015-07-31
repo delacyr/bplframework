@@ -28,8 +28,9 @@
 		</license>
 	</licenses>
 
+	
 	<properties>
-		<tycho-version>0.16.0</tycho-version>
+		<tycho-version>0.22.0</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
 	</properties>
 
@@ -128,8 +129,8 @@
 		</repository>
 
 		<repository>
-			<id>eclipse-bpmn2</id>
-			<url>http://download.eclipse.org/modeling/mdt/bpmn2/updates/milestones/S20130822/</url>
+			<id>feature-ide</id>
+			<url>http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/deploy/</url>
 			<layout>p2</layout>
 			<snapshots>
 				<enabled>true</enabled>
@@ -138,7 +139,23 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
-
+		<repository>
+			<id>eclipse-bpmn2</id>
+			<!--  <url>http://download.eclipse.org/modeling/mdt/bpmn2/updates/milestones/S20130822/</url>
+			-->
+			<!-- <url>http://dl.bintray.com/terenciani/bplframework</url> -->
+			<url>http://dl.bintray.com/ledes/bpl-framework</url>
+			<layout>p2</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		
+		
+		
 		<repository>
 			<id>eclipse-bpel</id>
 			<url>http://download.eclipse.org/bpel/site/1.0.2</url>
@@ -284,7 +301,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<!--
 			<plugin>
 				<groupId>org.eclipse.cbi.maven.plugins</groupId>
 				<artifactId>eclipse-jarsigner-plugin</artifactId>
@@ -298,7 +315,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			-->
 			<plugin>
 				<groupId>org.eclipse.tycho.extras</groupId>
 				<artifactId>tycho-pack200b-plugin</artifactId>
@@ -411,4 +428,5 @@
 	</build>
 
 
+	
 </project>

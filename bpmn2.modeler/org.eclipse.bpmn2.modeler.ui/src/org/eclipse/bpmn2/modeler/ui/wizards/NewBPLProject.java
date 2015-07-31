@@ -45,7 +45,7 @@ public class NewBPLProject extends Wizard implements INewWizard {
 	         firstFolder.create(true, true, progressMonitor);
 	         IFolder secondFolder = project.getFolder("BusinessProcessDiagram");
 	         secondFolder.create(true, true, progressMonitor);
-	         IFolder thirdFolder = project.getFolder("VariabilityProcessDiagram");
+	         IFolder thirdFolder = project.getFolder("BusinessProcessModelTemplate");
 	         thirdFolder.create(true, true, progressMonitor);
 	               
 	    } catch (CoreException e) {

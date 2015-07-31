@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='2'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'>
+    <properties size='5'>
+      <property name='artifact.size' value='168524'/>
+      <property name='download.size' value='168524'/>
+      <property name='maven-groupId' value='org.eclipse.bpmn2'/>
+      <property name='maven-artifactId' value='org.eclipse.bpmn2.editor'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201503241411'>
+    <processing size='1'>
+      <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
+    </processing>
+    <properties size='8'>
+      <property name='artifact.size' value='168524'/>
+      <property name='download.size' value='24112'/>
+      <property name='format' value='packed'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+      <property name='maven-artifactId' value='org.eclipse.bpmn2.editor'/>
+      <property name='maven-extension' value='jar.pack.gz'/>
+      <property name='maven-groupId' value='org.eclipse.bpmn2'/>
+      <property name='maven-classifier' value='pack200'/>
+    </properties>
+  </artifact>
+</artifacts>
