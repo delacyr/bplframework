@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='1'>
-  <unit id='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201503241411'>
-    <update id='org.eclipse.bpmn2.tools.ecoremerger' range='[0.0.0,1.0.0.201503241411)' severity='0'/>
+  <unit id='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201509132214'>
+    <update id='org.eclipse.bpmn2.tools.ecoremerger' range='[0.0.0,1.0.0.201509132214)' severity='0'/>
     <properties size='4'>
       <property name='org.eclipse.equinox.p2.name' value='EMFEcoreGenerator'/>
       <property name='maven-groupId' value='org.eclipse.bpmn2'/>
@@ -9,8 +9,8 @@
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>
     </properties>
     <provides size='7'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201503241411'/>
-      <provided namespace='osgi.bundle' name='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201503241411'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201509132214'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201509132214'/>
       <provided namespace='java.package' name='org.eclipse.bpmn2.tools.ecoremerger' version='0.0.0'/>
       <provided namespace='java.package' name='org.eclipse.bpmn2.tools.ecoremerger.exceptions' version='0.0.0'/>
       <provided namespace='java.package' name='org.eclipse.bpmn2.tools.ecoremerger.exceptions.impl' version='0.0.0'/>
@@ -27,13 +27,13 @@
       <required namespace='osgi.bundle' name='org.junit4' range='4.8.1'/>
     </requires>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201503241411'/>
+      <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.tools.ecoremerger' version='1.0.0.201509132214'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-SymbolicName: org.eclipse.bpmn2.tools.ecoremerger;singleton:=true&#xA;Bundle-Version: 1.0.0.201503241411&#xA;
+          Bundle-SymbolicName: org.eclipse.bpmn2.tools.ecoremerger;singleton:=true&#xA;Bundle-Version: 1.0.0.201509132214&#xA;
         </instruction>
       </instructions>
     </touchpointData>

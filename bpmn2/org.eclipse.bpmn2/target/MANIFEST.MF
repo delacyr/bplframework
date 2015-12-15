@@ -8,7 +8,7 @@ Export-Package: org.eclipse.bpmn2;version="1.0.0",org.eclipse.bpmn2.di
  ersion="1.0.0",org.eclipse.dd.di;version="1.0.0",org.eclipse.dd.di.im
  pl;version="1.0.0",org.eclipse.dd.di.util;version="1.0.0"
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201503241411
+Bundle-Version: 1.0.0.201509132214
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)

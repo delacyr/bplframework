@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.bpmn2.feature"
       label="%featureName"
-      version="1.0.0.201503241411"
+      version="1.0.0.201509132214"
       provider-name="%providerName">
 
    <description>
@@ -34,21 +34,21 @@
          id="org.eclipse.bpmn2"
          download-size="729"
          install-size="2301"
-         version="1.0.0.201503241411"
+         version="1.0.0.201509132214"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.bpmn2.edit"
          download-size="754"
          install-size="1403"
-         version="1.0.0.201503241411"
+         version="1.0.0.201509132214"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.bpmn2.editor"
          download-size="164"
          install-size="332"
-         version="1.0.0.201503241411"
+         version="1.0.0.201509132214"
          unpack="false"/>
 
 </feature>

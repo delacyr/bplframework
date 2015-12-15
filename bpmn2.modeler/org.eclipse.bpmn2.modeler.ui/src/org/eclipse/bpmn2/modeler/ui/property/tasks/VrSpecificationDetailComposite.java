@@ -131,7 +131,7 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 			
 		} catch (FileNotFoundException f ) {
 			pass=true;
-			MessageDialog.openError(null,"Error","Não é possivel encontrar o Feature Model, verifique a existência do arquivo "+name+".xml"+" na pasta /FeatureModel");
+			MessageDialog.openError(null,"Error","Nï¿½o ï¿½ possivel encontrar o Feature Model, verifique a existï¿½ncia do arquivo "+name+".xml"+" na pasta /FeatureModel");
 			
 		} catch (UnsupportedModelException e){
 			pass=true;
@@ -429,14 +429,14 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 						}
 					}
 					ItemAwareElement itemAE = (ItemAwareElement)businessObject;
-					// Se o elemento possui Data input association ele não pode se tornar uma variant 
-					// (uma variant deve estar conectada à um varPoint)
+					// Se o elemento possui Data input association ele nï¿½o pode se tornar uma variant 
+					// (uma variant deve estar conectada ï¿½ um varPoint)
 					if (itemAE.getDataInputAssociations().size() > 0){
 						MessageDialog.openError(null,"Error",Messages.VrSpecificationDetailComposite_Remove_Input_Association); 
 						return false;
 					}
-					// Se o elemento possui Data out association ele não pode se tornar uma variant 
-					// (uma variant deve estar conectada à um varPoint)
+					// Se o elemento possui Data out association ele nï¿½o pode se tornar uma variant 
+					// (uma variant deve estar conectada ï¿½ um varPoint)
 					if (itemAE.getDataOutputAssociations().size() > 0){
 						MessageDialog.openError(null,"Error",Messages.VrSpecificationDetailComposite_Remove_Output_Association);
 						return false;

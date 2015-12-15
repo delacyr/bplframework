@@ -5,7 +5,7 @@ Export-Package: org.eclipse.bpmn2.tools.ecoremerger,org.eclipse.bpmn2.
  tools.ecoremerger.exceptions,org.eclipse.bpmn2.tools.ecoremerger.exce
  ptions.impl,org.eclipse.bpmn2.tools.ecoremerger.exceptions.util
 Bundle-Name: EMFEcoreGenerator
-Bundle-Version: 1.0.0.201503241411
+Bundle-Version: 1.0.0.201509132214
 Require-Bundle: org.eclipse.emf,org.eclipse.jface,org.eclipse.ui,org.e
  clipse.core.runtime,org.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi,o
  rg.junit4;bundle-version="4.8.1"

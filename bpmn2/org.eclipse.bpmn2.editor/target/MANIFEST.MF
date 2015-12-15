@@ -14,7 +14,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.bpmn2.presentation;version="1.0.0",org.ecl
  ipse.bpmn2.presentation.actions;version="1.0.0"
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201503241411
+Bundle-Version: 1.0.0.201509132214
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.bpmn2.presentation.Bpmn2EditorPlugin$Imp
