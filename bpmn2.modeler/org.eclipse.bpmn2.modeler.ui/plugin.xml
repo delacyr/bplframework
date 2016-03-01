@@ -33,6 +33,16 @@
         name="Feature Model"
         project="false">
   </wizard>
+    <wizard
+          canFinishEarly="false"
+          category="org.eclipse.bpmn2.modeler.ui.bpl.category"
+          class="org.eclipse.bpmn2.modeler.ui.wizards.InstantiationWizard"
+          hasPages="true"
+          icon="icons/bpmn2_editor_16.png"
+          id="br.facom.ufms.bpl.framework.ui.Instatiation"
+          name="BPL Instantiation"
+          project="false">
+  </wizard>
   <category
         id="org.eclipse.bpmn2.modeler.ui.bpl.category"
         name="BPL-Framework">

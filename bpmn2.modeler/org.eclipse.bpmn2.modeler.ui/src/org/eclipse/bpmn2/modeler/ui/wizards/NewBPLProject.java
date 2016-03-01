@@ -37,9 +37,7 @@ public class NewBPLProject extends Wizard implements INewWizard {
 	    IProject project = root.getProject(_page.getProjectName());
 	    try {
 	        project.create(progressMonitor);
-	        project.open(progressMonitor);
-	        
-	    
+	        project.open(progressMonitor);	        
 	         
 	         IFolder firstFolder = project.getFolder("FeatureModel");
 	         firstFolder.create(true, true, progressMonitor);
