@@ -1,7 +1,5 @@
 package org.eclipse.bpmn2.modeler.ui.wizards;
 
-import javax.annotation.CheckForNull;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -26,7 +24,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class InstantiationWizardPage1 extends WizardPage{
-	@CheckForNull
+
 	private TreeViewer viewer;
 
 	IProject project;

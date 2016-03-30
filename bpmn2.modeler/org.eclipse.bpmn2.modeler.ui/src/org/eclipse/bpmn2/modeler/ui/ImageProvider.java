@@ -148,6 +148,10 @@ public class ImageProvider extends AbstractImageProvider {
 	public static final String IMG_16_EXPAND = PREFIX + "expand" + dot16; //$NON-NLS-1$
 	public static final String IMG_16_COLLAPSE = PREFIX + "collapse" + dot16; //$NON-NLS-1$
 	public static final String IMG_16_CONFIGURE = PREFIX + "configure" + dot16; //$NON-NLS-1$
+	
+	public static final String IMG_16_SELECT = PREFIX + "info_icon" + dot16; //BPL Instantiation
+	public static final String IMG_16_CHECKED = PREFIX + "checkbox_checked" + dot16; //BPL Instantiation
+	public static final String IMG_16_UNCHECKED = PREFIX + "checkbox_unchecked" + dot16; //BPL Instantiation
 
 	public static final String IMG_16_ADD_PARTICIPANT = PREFIX + "addparticipant" + dot16; //$NON-NLS-1$
 	public static final String IMG_16_ADD_MESSAGE = PREFIX + "addmessage" + dot16; //$NON-NLS-1$
@@ -233,6 +237,10 @@ public class ImageProvider extends AbstractImageProvider {
 		addImageFilePath(IMG_16_PULLUP, ICONS_16 + "pullup.png"); //$NON-NLS-1$
 
 		addImageFilePath(IMG_16_MORPH, ICONS_16 + "morph.png"); //$NON-NLS-1$
+		
+		addImageFilePath(IMG_16_SELECT, ICONS_16 + "info_icon.png");
+		addImageFilePath(IMG_16_CHECKED, ICONS_16 + "checkbox_checked.png");
+		addImageFilePath(IMG_16_UNCHECKED, ICONS_16 + "checkbox_unchecked.png");
 	}
 
 }

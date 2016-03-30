@@ -20,10 +20,8 @@ import org.eclipse.bpmn2.modeler.core.features.MultiUpdateFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.MoveActivityFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityCompensateMarkerFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityLoopAndMultiInstanceMarkerFeature;
-import org.eclipse.bpmn2.modeler.ui.features.activity.task.CustomConnectionFeatureContainer.CreateCustomConnectionFeature;
 import org.eclipse.bpmn2.modeler.ui.features.event.AppendEventFeature;
 import org.eclipse.bpmn2.modeler.ui.features.gateway.AppendGatewayFeature;
-import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IMoveShapeFeature;
@@ -33,6 +31,8 @@ import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 
 public abstract class AbstractActivityFeatureContainer extends BaseElementFeatureContainer {
+	
+	public static boolean check = false;
 
 	@Override
 	public IUpdateFeature getUpdateFeature(IFeatureProvider fp) {
@@ -70,10 +70,24 @@ public abstract class AbstractActivityFeatureContainer extends BaseElementFeatur
 		return new DeleteActivityFeature(fp);
 	}
 
+//	@Override
+//	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
+//		ICustomFeature[] superFeatures = super.getCustomFeatures(fp);
+//		ICustomFeature[] thisFeatures = new ICustomFeature[4 + superFeatures.length];
+//		int i;
+//		for (i=0; i<superFeatures.length; ++i)
+//			thisFeatures[i] = superFeatures[i];
+//		thisFeatures[i++] = new AppendActivityFeature(fp);
+//		thisFeatures[i++] = new AppendGatewayFeature(fp);
+//		thisFeatures[i++] = new AppendEventFeature(fp);
+//		thisFeatures[i++] = new MorphActivityFeature(fp);
+//		return thisFeatures;
+//	}
+	
 	@Override
 	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
 		ICustomFeature[] superFeatures = super.getCustomFeatures(fp);
-		ICustomFeature[] thisFeatures = new ICustomFeature[4 + superFeatures.length];
+		ICustomFeature[] thisFeatures = new ICustomFeature[6 + superFeatures.length];
 		int i;
 		for (i=0; i<superFeatures.length; ++i)
 			thisFeatures[i] = superFeatures[i];
@@ -81,6 +95,8 @@ public abstract class AbstractActivityFeatureContainer extends BaseElementFeatur
 		thisFeatures[i++] = new AppendGatewayFeature(fp);
 		thisFeatures[i++] = new AppendEventFeature(fp);
 		thisFeatures[i++] = new MorphActivityFeature(fp);
+		thisFeatures[i++] = new AppendCheckedFeature(fp);
+		thisFeatures[i++] = new AppendUncheckedFeature(fp);
 		return thisFeatures;
 	}
 }

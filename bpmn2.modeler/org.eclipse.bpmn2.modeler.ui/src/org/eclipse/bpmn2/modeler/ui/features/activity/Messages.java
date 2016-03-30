@@ -8,6 +8,10 @@ public class Messages extends NLS {
 	public static String AppendActivityFeature_Name;
 	public static String MorphActivityFeature_Description;
 	public static String MorphActivityFeature_Name;
+	public static String AppendCheckedFeature_Description;
+	public static String AppendCheckedFeature_Name;
+	public static String AppendUncheckedFeature_Name;
+	public static String AppendUncheckedFeature_Description;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
