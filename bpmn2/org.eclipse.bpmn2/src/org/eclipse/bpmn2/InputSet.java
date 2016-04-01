@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.InputSet#getDataInputRefs <em>Data Input Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InputSet#getOptionalInputRefs <em>Optional Input Refs</em>}</li>
@@ -30,7 +31,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.InputSet#getOutputSetRefs <em>Output Set Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InputSet#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getInputSet()
  * @model extendedMetaData="name='tInputSet' kind='elementOnly'"

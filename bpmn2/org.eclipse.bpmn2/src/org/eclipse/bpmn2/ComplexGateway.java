@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ComplexGateway#getActivationCondition <em>Activation Condition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ComplexGateway#getDefault <em>Default</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getComplexGateway()
  * @model extendedMetaData="name='tComplexGateway' kind='elementOnly'"

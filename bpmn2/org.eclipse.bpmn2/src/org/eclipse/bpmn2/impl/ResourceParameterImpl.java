@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceParameterImpl#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceParameterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceParameterImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

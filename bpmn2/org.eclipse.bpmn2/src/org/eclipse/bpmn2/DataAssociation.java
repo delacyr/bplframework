@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.DataAssociation#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DataAssociation#getTargetRef <em>Target Ref</em>}</li>
@@ -30,7 +31,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.DataAssociation#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DataAssociation#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDataAssociation()
  * @model extendedMetaData="name='tDataAssociation' kind='elementOnly'"

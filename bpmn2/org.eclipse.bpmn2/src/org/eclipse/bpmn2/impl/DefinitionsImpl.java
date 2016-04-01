@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.DefinitionsImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DefinitionsImpl#getExtensions <em>Extensions</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DefinitionsImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DefinitionsImpl#getTypeLanguage <em>Type Language</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

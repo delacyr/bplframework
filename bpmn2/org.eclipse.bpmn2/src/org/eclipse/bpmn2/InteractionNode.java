@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.InteractionNode#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InteractionNode#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getInteractionNode()
  * @model extendedMetaData="abstract='true'"

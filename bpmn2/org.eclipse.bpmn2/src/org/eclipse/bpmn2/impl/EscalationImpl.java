@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.EscalationImpl#getEscalationCode <em>Escalation Code</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.EscalationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.EscalationImpl#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

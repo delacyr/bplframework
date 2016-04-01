@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ErrorImpl#getErrorCode <em>Error Code</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ErrorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ErrorImpl#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

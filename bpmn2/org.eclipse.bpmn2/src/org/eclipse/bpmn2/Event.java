@@ -23,10 +23,10 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Event#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getEvent()
  * @model abstract="true"

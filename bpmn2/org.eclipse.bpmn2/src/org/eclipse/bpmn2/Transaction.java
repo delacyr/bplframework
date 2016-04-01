@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Transaction#getProtocol <em>Protocol</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Transaction#getMethod <em>Method</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getTransaction()
  * @model extendedMetaData="name='tTransaction' kind='elementOnly'"

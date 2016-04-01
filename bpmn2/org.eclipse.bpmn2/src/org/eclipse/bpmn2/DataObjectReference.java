@@ -21,10 +21,10 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.DataObjectReference#getDataObjectRef <em>Data Object Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDataObjectReference()
  * @model extendedMetaData="name='tDataObjectReference' kind='elementOnly'"

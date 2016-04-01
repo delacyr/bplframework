@@ -23,13 +23,13 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CallableElement#getSupportedInterfaceRefs <em>Supported Interface Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CallableElement#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CallableElement#getIoBinding <em>Io Binding</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CallableElement#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCallableElement()
  * @model extendedMetaData="name='tCallableElement' kind='elementOnly' abstract='true'"

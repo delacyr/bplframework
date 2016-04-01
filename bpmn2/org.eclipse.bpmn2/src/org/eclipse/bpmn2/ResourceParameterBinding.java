@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ResourceParameterBinding#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ResourceParameterBinding#getParameterRef <em>Parameter Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getResourceParameterBinding()
  * @model extendedMetaData="name='tResourceParameterBinding' kind='elementOnly'"

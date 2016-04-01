@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ComplexBehaviorDefinition#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ComplexBehaviorDefinition#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getComplexBehaviorDefinition()
  * @model extendedMetaData="name='tComplexBehaviorDefinition' kind='elementOnly'"

@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ConversationLinkImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ConversationLinkImpl#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ConversationLinkImpl#getTargetRef <em>Target Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

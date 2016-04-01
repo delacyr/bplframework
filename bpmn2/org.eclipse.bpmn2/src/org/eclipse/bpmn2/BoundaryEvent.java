@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.BoundaryEvent#getAttachedToRef <em>Attached To Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.BoundaryEvent#isCancelActivity <em>Cancel Activity</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getBoundaryEvent()
  * @model extendedMetaData="name='tBoundaryEvent' kind='elementOnly'"

@@ -23,13 +23,13 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.InputOutputSpecification#getDataInputs <em>Data Inputs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InputOutputSpecification#getDataOutputs <em>Data Outputs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InputOutputSpecification#getInputSets <em>Input Sets</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.InputOutputSpecification#getOutputSets <em>Output Sets</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getInputOutputSpecification()
  * @model extendedMetaData="name='tInputOutputSpecification' kind='elementOnly'"

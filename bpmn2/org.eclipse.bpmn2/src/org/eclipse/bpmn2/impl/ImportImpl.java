@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ImportImpl#getImportType <em>Import Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ImportImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ImportImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

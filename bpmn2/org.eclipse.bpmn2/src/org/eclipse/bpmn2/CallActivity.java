@@ -21,10 +21,10 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CallActivity#getCalledElementRef <em>Called Element Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCallActivity()
  * @model extendedMetaData="name='tCallActivity' kind='elementOnly'"

@@ -37,13 +37,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceRoleImpl#getResourceRef <em>Resource Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceRoleImpl#getResourceParameterBindings <em>Resource Parameter Bindings</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceRoleImpl#getResourceAssignmentExpression <em>Resource Assignment Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceRoleImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

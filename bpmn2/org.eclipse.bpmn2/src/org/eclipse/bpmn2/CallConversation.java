@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CallConversation#getParticipantAssociations <em>Participant Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CallConversation#getCalledCollaborationRef <em>Called Collaboration Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCallConversation()
  * @model extendedMetaData="name='tCallConversation' kind='elementOnly'"

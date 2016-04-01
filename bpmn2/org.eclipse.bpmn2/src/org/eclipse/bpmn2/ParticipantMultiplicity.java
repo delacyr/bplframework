@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ParticipantMultiplicity#getMaximum <em>Maximum</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ParticipantMultiplicity#getMinimum <em>Minimum</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getParticipantMultiplicity()
  * @model extendedMetaData="name='tParticipantMultiplicity' kind='elementOnly'"

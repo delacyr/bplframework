@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataState <em>Data State</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getItemSubjectRef <em>Item Subject Ref</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

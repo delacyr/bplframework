@@ -36,12 +36,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.CorrelationPropertyImpl#getCorrelationPropertyRetrievalExpression <em>Correlation Property Retrieval Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CorrelationPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CorrelationPropertyImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

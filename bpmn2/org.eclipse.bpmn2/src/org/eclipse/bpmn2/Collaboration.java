@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Collaboration#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Collaboration#getMessageFlows <em>Message Flows</em>}</li>
@@ -37,7 +38,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Collaboration#isIsClosed <em>Is Closed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Collaboration#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCollaboration()
  * @model extendedMetaData="name='tCollaboration' kind='elementOnly'"

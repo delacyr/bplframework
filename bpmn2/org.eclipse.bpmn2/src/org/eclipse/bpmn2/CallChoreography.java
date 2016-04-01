@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CallChoreography#getParticipantAssociations <em>Participant Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CallChoreography#getCalledChoreographyRef <em>Called Choreography Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCallChoreography()
  * @model extendedMetaData="name='tCallChoreography' kind='elementOnly'"

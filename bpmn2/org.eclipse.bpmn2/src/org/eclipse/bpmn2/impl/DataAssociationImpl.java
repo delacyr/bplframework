@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.DataAssociationImpl#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataAssociationImpl#getTargetRef <em>Target Ref</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DataAssociationImpl#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataAssociationImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

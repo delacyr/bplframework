@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Participant#getInterfaceRefs <em>Interface Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Participant#getEndPointRefs <em>End Point Refs</em>}</li>
@@ -30,7 +31,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Participant#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Participant#getProcessRef <em>Process Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getParticipant()
  * @model extendedMetaData="name='tParticipant' kind='elementOnly'"

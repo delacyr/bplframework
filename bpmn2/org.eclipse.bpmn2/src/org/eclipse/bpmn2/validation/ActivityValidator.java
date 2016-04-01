@@ -71,5 +71,7 @@ public interface ActivityValidator {
 
     boolean validateFeatureId(String value);
 
+    boolean validateCheck(boolean value);
+
     boolean validateType(String value);
 }

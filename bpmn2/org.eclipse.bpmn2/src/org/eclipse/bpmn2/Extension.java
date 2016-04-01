@@ -24,12 +24,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Extension#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Extension#isMustUnderstand <em>Must Understand</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Extension#getXsdDefinition <em>Xsd Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getExtension()
  * @model extendedMetaData="name='tExtension' kind='elementOnly'"

@@ -21,13 +21,13 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ReceiveTask#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ReceiveTask#isInstantiate <em>Instantiate</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ReceiveTask#getMessageRef <em>Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ReceiveTask#getOperationRef <em>Operation Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getReceiveTask()
  * @model extendedMetaData="name='tReceiveTask' kind='elementOnly'"

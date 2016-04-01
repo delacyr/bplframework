@@ -25,6 +25,7 @@ import org.eclipse.bpmn2.di.BPMNDiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Definitions#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Definitions#getExtensions <em>Extensions</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.bpmn2.di.BPMNDiagram;
  *   <li>{@link org.eclipse.bpmn2.Definitions#getTargetNamespace <em>Target Namespace</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Definitions#getTypeLanguage <em>Type Language</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDefinitions()
  * @model extendedMetaData="name='tDefinitions' kind='elementOnly'"

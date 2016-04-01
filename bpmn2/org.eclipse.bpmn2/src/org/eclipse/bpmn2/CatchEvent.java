@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CatchEvent#getDataOutputs <em>Data Outputs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CatchEvent#getDataOutputAssociation <em>Data Output Association</em>}</li>
@@ -31,7 +32,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.CatchEvent#getEventDefinitionRefs <em>Event Definition Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CatchEvent#isParallelMultiple <em>Parallel Multiple</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCatchEvent()
  * @model abstract="true"

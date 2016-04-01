@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceParameterBindingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ResourceParameterBindingImpl#getParameterRef <em>Parameter Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

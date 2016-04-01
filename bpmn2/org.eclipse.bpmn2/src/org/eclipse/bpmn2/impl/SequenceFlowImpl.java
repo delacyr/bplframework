@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getConditionExpression <em>Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#isIsImmediate <em>Is Immediate</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getTargetRef <em>Target Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SequenceFlowImpl#getSourceType <em>Source Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

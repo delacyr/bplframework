@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionImpl#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionImpl#isMustUnderstand <em>Must Understand</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionImpl#getXsdDefinition <em>Xsd Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

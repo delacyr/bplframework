@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.SendTaskImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SendTaskImpl#getMessageRef <em>Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.SendTaskImpl#getOperationRef <em>Operation Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CategoryValue#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CategoryValue#getCategorizedFlowElements <em>Categorized Flow Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCategoryValue()
  * @model extendedMetaData="name='tCategoryValue' kind='elementOnly'"

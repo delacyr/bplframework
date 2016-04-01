@@ -21,12 +21,12 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.SendTask#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SendTask#getMessageRef <em>Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SendTask#getOperationRef <em>Operation Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getSendTask()
  * @model extendedMetaData="name='tSendTask' kind='elementOnly'"

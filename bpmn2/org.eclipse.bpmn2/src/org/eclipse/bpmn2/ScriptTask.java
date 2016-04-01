@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ScriptTask#getScript <em>Script</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ScriptTask#getScriptFormat <em>Script Format</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getScriptTask()
  * @model extendedMetaData="name='tScriptTask' kind='elementOnly'"

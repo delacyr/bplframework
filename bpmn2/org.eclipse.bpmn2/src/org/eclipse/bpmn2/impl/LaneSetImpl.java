@@ -35,11 +35,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.LaneSetImpl#getLanes <em>Lanes</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.LaneSetImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

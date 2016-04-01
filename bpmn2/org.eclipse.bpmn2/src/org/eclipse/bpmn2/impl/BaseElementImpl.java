@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.BaseElementImpl#getExtensionValues <em>Extension Values</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.BaseElementImpl#getDocumentation <em>Documentation</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.BaseElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.BaseElementImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -25,13 +25,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Relationship#getSources <em>Sources</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Relationship#getTargets <em>Targets</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Relationship#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Relationship#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getRelationship()
  * @model extendedMetaData="name='tRelationship' kind='elementOnly'"

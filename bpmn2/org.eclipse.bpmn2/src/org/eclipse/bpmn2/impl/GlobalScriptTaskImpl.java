@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.GlobalScriptTaskImpl#getScript <em>Script</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.GlobalScriptTaskImpl#getScriptLanguage <em>Script Language</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Import#getImportType <em>Import Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Import#getLocation <em>Location</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Import#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getImport()
  * @model extendedMetaData="name='tImport' kind='empty'"

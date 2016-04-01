@@ -23,10 +23,10 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.SubChoreography#getArtifacts <em>Artifacts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getSubChoreography()
  * @model extendedMetaData="name='tSubChoreography' kind='elementOnly'"

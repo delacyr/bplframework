@@ -21,6 +21,7 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getConditionExpression <em>Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#isIsImmediate <em>Is Immediate</em>}</li>
@@ -28,7 +29,6 @@ package org.eclipse.bpmn2;
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getTargetRef <em>Target Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SequenceFlow#getSourceType <em>Source Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getSequenceFlow()
  * @model extendedMetaData="name='tSequenceFlow' kind='elementOnly'"

@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.CategoryValueImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CategoryValueImpl#getCategorizedFlowElements <em>Categorized Flow Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

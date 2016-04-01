@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataState <em>Data State</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getItemSubjectRef <em>Item Subject Ref</em>}</li>
@@ -36,7 +37,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataOutputAssociations <em>Data Output Associations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement()
  * @model

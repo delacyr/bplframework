@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.TextAnnotationImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.TextAnnotationImpl#getTextFormat <em>Text Format</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

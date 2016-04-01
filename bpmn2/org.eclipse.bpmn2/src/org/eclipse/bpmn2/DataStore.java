@@ -21,12 +21,12 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.DataStore#getCapacity <em>Capacity</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DataStore#isIsUnlimited <em>Is Unlimited</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DataStore#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDataStore()
  * @model extendedMetaData="name='tDataStore' kind='elementOnly'"

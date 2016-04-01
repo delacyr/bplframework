@@ -1910,13 +1910,22 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__FEATURE_ID = FLOW_NODE_FEATURE_COUNT + 16;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__CHECK = FLOW_NODE_FEATURE_COUNT + 17;
+
+    /**
      * The number of structural features of the '<em>Activity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 17;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 18;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2188,6 +2197,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__FEATURE_ID = ACTIVITY__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__CHECK = ACTIVITY__CHECK;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2504,6 +2522,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__FEATURE_ID = SUB_PROCESS__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__CHECK = SUB_PROCESS__CHECK;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -3738,6 +3765,15 @@ public interface Bpmn2Package extends EPackage {
     int TASK__FEATURE_ID = ACTIVITY__FEATURE_ID;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__CHECK = ACTIVITY__CHECK;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4034,6 +4070,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__FEATURE_ID = TASK__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__CHECK = TASK__CHECK;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4341,6 +4386,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__FEATURE_ID = ACTIVITY__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__CHECK = ACTIVITY__CHECK;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -14028,6 +14082,15 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__FEATURE_ID = TASK__FEATURE_ID;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__CHECK = TASK__CHECK;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16197,6 +16260,15 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__FEATURE_ID = TASK__FEATURE_ID;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__CHECK = TASK__CHECK;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17023,6 +17095,15 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__FEATURE_ID = TASK__FEATURE_ID;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__CHECK = TASK__CHECK;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17337,6 +17418,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__FEATURE_ID = TASK__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__CHECK = TASK__CHECK;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -17807,6 +17897,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__FEATURE_ID = TASK__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__CHECK = TASK__CHECK;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -19142,6 +19241,15 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__FEATURE_ID = SUB_PROCESS__FEATURE_ID;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__CHECK = SUB_PROCESS__CHECK;
+
+    /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -19474,6 +19582,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int USER_TASK__FEATURE_ID = TASK__FEATURE_ID;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__CHECK = TASK__CHECK;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -21637,6 +21754,17 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getActivity_FeatureId();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#isCheck <em>Check</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Check</em>'.
+     * @see org.eclipse.bpmn2.Activity#isCheck()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_Check();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.AdHocSubProcess <em>Ad Hoc Sub Process</em>}'.
@@ -28088,6 +28216,14 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ACTIVITY__FEATURE_ID = eINSTANCE.getActivity_FeatureId();
+
+        /**
+         * The meta object literal for the '<em><b>Check</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__CHECK = eINSTANCE.getActivity_Check();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl <em>Ad Hoc Sub Process</em>}' class.

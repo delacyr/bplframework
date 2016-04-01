@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageFlowImpl#getMessageRef <em>Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageFlowImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageFlowImpl#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageFlowImpl#getTargetRef <em>Target Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

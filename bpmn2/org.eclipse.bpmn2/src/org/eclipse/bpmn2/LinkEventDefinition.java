@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.LinkEventDefinition#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.LinkEventDefinition#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.LinkEventDefinition#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getLinkEventDefinition()
  * @model extendedMetaData="name='tLinkEventDefinition' kind='elementOnly'"

@@ -33,13 +33,13 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.FormalExpressionImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.FormalExpressionImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.FormalExpressionImpl#getEvaluatesToTypeRef <em>Evaluates To Type Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.FormalExpressionImpl#getLanguage <em>Language</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

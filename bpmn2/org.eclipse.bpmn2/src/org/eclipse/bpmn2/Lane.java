@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Lane#getPartitionElement <em>Partition Element</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Lane#getFlowNodeRefs <em>Flow Node Refs</em>}</li>
@@ -30,7 +31,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Lane#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Lane#getPartitionElementRef <em>Partition Element Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getLane()
  * @model extendedMetaData="name='tLane' kind='elementOnly'"

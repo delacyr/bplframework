@@ -23,13 +23,13 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ResourceRole#getResourceRef <em>Resource Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ResourceRole#getResourceParameterBindings <em>Resource Parameter Bindings</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ResourceRole#getResourceAssignmentExpression <em>Resource Assignment Expression</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ResourceRole#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getResourceRole()
  * @model extendedMetaData="name='tResourceRole' kind='elementOnly'"

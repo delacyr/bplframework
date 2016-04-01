@@ -34,12 +34,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeValueImpl#getValueRef <em>Value Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeValueImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeValueImpl#getExtensionAttributeDefinition <em>Extension Attribute Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

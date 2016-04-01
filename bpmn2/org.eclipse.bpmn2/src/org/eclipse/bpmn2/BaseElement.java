@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.BaseElement#getExtensionValues <em>Extension Values</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.BaseElement#getDocumentation <em>Documentation</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.bpmn2.BaseElement#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.BaseElement#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getBaseElement()
  * @model extendedMetaData="name='tBaseElement' kind='elementOnly' abstract='true'"

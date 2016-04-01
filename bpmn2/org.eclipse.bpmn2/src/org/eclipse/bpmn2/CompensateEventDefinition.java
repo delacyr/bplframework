@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.CompensateEventDefinition#getActivityRef <em>Activity Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.CompensateEventDefinition#isWaitForCompletion <em>Wait For Completion</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCompensateEventDefinition()
  * @model extendedMetaData="name='tCompensateEventDefinition' kind='elementOnly'"

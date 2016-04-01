@@ -21,13 +21,13 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.MessageFlow#getMessageRef <em>Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.MessageFlow#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.MessageFlow#getSourceRef <em>Source Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.MessageFlow#getTargetRef <em>Target Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getMessageFlow()
  * @model extendedMetaData="name='tMessageFlow' kind='elementOnly'"

@@ -21,12 +21,12 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.AdHocSubProcess#getCompletionCondition <em>Completion Condition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.AdHocSubProcess#isCancelRemainingInstances <em>Cancel Remaining Instances</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.AdHocSubProcess#getOrdering <em>Ordering</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getAdHocSubProcess()
  * @model extendedMetaData="name='tAdHocSubProcess' kind='elementOnly'"

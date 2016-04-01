@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageImpl#getItemRef <em>Item Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.MessageImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

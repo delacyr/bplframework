@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.FlowNode#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.FlowNode#getLanes <em>Lanes</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.FlowNode#getOutgoing <em>Outgoing</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getFlowNode()
  * @model abstract="true"

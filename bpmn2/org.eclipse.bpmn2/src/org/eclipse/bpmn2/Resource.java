@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Resource#getResourceParameters <em>Resource Parameters</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Resource#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getResource()
  * @model extendedMetaData="name='tResource' kind='elementOnly'"

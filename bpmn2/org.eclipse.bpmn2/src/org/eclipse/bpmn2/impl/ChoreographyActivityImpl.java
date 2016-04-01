@@ -38,13 +38,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ChoreographyActivityImpl#getParticipantRefs <em>Participant Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ChoreographyActivityImpl#getCorrelationKeys <em>Correlation Keys</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ChoreographyActivityImpl#getInitiatingParticipantRef <em>Initiating Participant Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ChoreographyActivityImpl#getLoopType <em>Loop Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

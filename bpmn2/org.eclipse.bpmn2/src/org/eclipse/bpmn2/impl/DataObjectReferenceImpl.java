@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataState <em>Data State</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getItemSubjectRef <em>Item Subject Ref</em>}</li>
@@ -55,7 +56,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataObjectRef <em>Data Object Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.CatchEventImpl#getDataOutputs <em>Data Outputs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CatchEventImpl#getDataOutputAssociation <em>Data Output Association</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.CatchEventImpl#getEventDefinitionRefs <em>Event Definition Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CatchEventImpl#isParallelMultiple <em>Parallel Multiple</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

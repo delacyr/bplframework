@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Category#getCategoryValue <em>Category Value</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Category#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getCategory()
  * @model extendedMetaData="name='tCategory' kind='elementOnly'"

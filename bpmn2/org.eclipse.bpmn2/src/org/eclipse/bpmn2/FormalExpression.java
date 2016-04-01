@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.FormalExpression#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.FormalExpression#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.FormalExpression#getEvaluatesToTypeRef <em>Evaluates To Type Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.FormalExpression#getLanguage <em>Language</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getFormalExpression()
  * @model extendedMetaData="name='tFormalExpression' kind='mixed'"

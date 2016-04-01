@@ -2636,6 +2636,15 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getActivity_Check() {
+        return (EAttribute) getActivity().getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getAdHocSubProcess() {
         if (adHocSubProcessEClass == null) {
             adHocSubProcessEClass = (EClass) EPackage.Registry.INSTANCE

@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ProcessImpl#getLaneSets <em>Lane Sets</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ProcessImpl#getFlowElements <em>Flow Elements</em>}</li>
@@ -60,7 +61,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ProcessImpl#isIsExecutable <em>Is Executable</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ProcessImpl#getProcessType <em>Process Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

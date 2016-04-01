@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Message#getItemRef <em>Item Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Message#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getMessage()
  * @model extendedMetaData="name='tMessage' kind='elementOnly'"

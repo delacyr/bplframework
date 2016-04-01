@@ -21,10 +21,10 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.GlobalBusinessRuleTask#getImplementation <em>Implementation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getGlobalBusinessRuleTask()
  * @model extendedMetaData="name='tGlobalBusinessRuleTask' kind='elementOnly'"

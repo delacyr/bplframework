@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ServiceTask#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ServiceTask#getOperationRef <em>Operation Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getServiceTask()
  * @model extendedMetaData="name='tServiceTask' kind='elementOnly'"

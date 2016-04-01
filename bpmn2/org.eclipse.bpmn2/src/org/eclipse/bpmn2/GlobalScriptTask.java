@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.GlobalScriptTask#getScript <em>Script</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.GlobalScriptTask#getScriptLanguage <em>Script Language</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getGlobalScriptTask()
  * @model extendedMetaData="name='tGlobalScriptTask' kind='elementOnly'"

@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.VrProcess#getAuditing <em>Auditing</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.VrProcess#getMonitoring <em>Monitoring</em>}</li>
@@ -36,7 +37,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.VrProcess#isIsExecutable <em>Is Executable</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.VrProcess#getProcessType <em>Process Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getVrProcess()
  * @model extendedMetaData="name='tVrProcess' kind='elementOnly'"

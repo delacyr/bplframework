@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.PartnerEntity#getParticipantRef <em>Participant Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.PartnerEntity#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getPartnerEntity()
  * @model extendedMetaData="name='tPartnerEntity' kind='elementOnly'"

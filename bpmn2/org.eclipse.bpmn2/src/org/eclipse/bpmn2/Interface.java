@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Interface#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Interface#getImplementationRef <em>Implementation Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Interface#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getInterface()
  * @model extendedMetaData="name='tInterface' kind='elementOnly'"

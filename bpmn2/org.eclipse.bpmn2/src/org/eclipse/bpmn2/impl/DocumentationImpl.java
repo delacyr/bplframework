@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentationImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentationImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentationImpl#getTextFormat <em>Text Format</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

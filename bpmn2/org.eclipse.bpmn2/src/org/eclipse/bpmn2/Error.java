@@ -21,12 +21,12 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Error#getErrorCode <em>Error Code</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Error#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Error#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getError()
  * @model extendedMetaData="name='tError' kind='elementOnly'"

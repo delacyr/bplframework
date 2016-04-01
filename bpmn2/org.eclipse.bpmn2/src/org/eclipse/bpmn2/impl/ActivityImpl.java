@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getBoundaryEventRefs <em>Boundary Event Refs</em>}</li>
@@ -62,8 +63,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isVariant <em>Variant</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureId <em>Feature Id</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isCheck <em>Check</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -317,6 +318,26 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected String featureId = FEATURE_ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean CHECK_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected boolean check = CHECK_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -771,6 +792,28 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isCheck() {
+        return check;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCheck(boolean newCheck) {
+        boolean oldCheck = check;
+        check = newCheck;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__CHECK,
+                    oldCheck, check));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
@@ -854,6 +897,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getFeatureType();
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             return getFeatureId();
+        case Bpmn2Package.ACTIVITY__CHECK:
+            return isCheck();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -925,6 +970,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             setFeatureId((String) newValue);
             return;
+        case Bpmn2Package.ACTIVITY__CHECK:
+            setCheck((Boolean) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -988,6 +1036,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             setFeatureId(FEATURE_ID_EDEFAULT);
             return;
+        case Bpmn2Package.ACTIVITY__CHECK:
+            setCheck(CHECK_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -1037,6 +1088,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
             return FEATURE_ID_EDEFAULT == null ? featureId != null : !FEATURE_ID_EDEFAULT
                     .equals(featureId);
+        case Bpmn2Package.ACTIVITY__CHECK:
+            return check != CHECK_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -1068,6 +1121,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
+        result.append(", check: ");
+        result.append(check);
         result.append(')');
         return result.toString();
     }

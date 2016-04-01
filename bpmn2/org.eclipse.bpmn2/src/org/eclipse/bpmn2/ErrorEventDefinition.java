@@ -21,10 +21,10 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ErrorEventDefinition#getErrorRef <em>Error Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getErrorEventDefinition()
  * @model extendedMetaData="name='tErrorEventDefinition' kind='elementOnly'"

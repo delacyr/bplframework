@@ -23,11 +23,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.SubProcess#getArtifacts <em>Artifacts</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.SubProcess#isTriggeredByEvent <em>Triggered By Event</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getSubProcess()
  * @model extendedMetaData="name='tSubProcess' kind='elementOnly'"

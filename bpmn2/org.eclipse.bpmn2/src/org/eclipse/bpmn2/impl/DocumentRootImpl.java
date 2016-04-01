@@ -170,6 +170,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -312,7 +313,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentRootImpl#getVrSpecification <em>Vr Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DocumentRootImpl#getVrProcess <em>Vr Process</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

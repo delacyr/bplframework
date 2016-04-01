@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Assignment#getFrom <em>From</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Assignment#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getAssignment()
  * @model extendedMetaData="name='tAssignment' kind='elementOnly'"

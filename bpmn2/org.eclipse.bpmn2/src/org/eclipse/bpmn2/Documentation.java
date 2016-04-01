@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Documentation#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Documentation#getText <em>Text</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Documentation#getTextFormat <em>Text Format</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDocumentation()
  * @model extendedMetaData="name='tDocumentation' kind='mixed'"

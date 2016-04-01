@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl#getCompletionCondition <em>Completion Condition</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl#isCancelRemainingInstances <em>Cancel Remaining Instances</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl#getOrdering <em>Ordering</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

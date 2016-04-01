@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Signal#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Signal#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getSignal()
  * @model extendedMetaData="name='tSignal' kind='elementOnly'"

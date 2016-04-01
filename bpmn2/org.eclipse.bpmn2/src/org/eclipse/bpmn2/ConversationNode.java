@@ -23,13 +23,13 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ConversationNode#getParticipantRefs <em>Participant Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ConversationNode#getMessageFlowRefs <em>Message Flow Refs</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ConversationNode#getCorrelationKeys <em>Correlation Keys</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ConversationNode#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getConversationNode()
  * @model extendedMetaData="name='tConversationNode' kind='elementOnly' abstract='true'"

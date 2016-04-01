@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeDefinitionImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeDefinitionImpl#isIsReference <em>Is Reference</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ExtensionAttributeDefinitionImpl#getExtensionDefinition <em>Extension Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

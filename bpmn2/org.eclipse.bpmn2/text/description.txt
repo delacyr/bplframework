@@ -173,6 +173,7 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute variant : EBoolean
     Attribute featureType : EString
     Attribute featureId : EString
+    Attribute check : EBoolean
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>

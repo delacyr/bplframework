@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.OperationImpl#getInMessageRef <em>In Message Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.OperationImpl#getOutMessageRef <em>Out Message Ref</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.bpmn2.impl.OperationImpl#getImplementationRef <em>Implementation Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.OperationImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

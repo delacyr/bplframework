@@ -24,12 +24,12 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.ExtensionAttributeValue#getValueRef <em>Value Ref</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ExtensionAttributeValue#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ExtensionAttributeValue#getExtensionAttributeDefinition <em>Extension Attribute Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getExtensionAttributeValue()
  * @model extendedMetaData="name='tExtensionElements' kind='elementOnly'"

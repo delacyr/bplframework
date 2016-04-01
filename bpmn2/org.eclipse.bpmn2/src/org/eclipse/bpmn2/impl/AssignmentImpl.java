@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.AssignmentImpl#getFrom <em>From</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.AssignmentImpl#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

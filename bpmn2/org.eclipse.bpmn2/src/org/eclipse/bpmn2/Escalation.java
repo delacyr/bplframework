@@ -21,12 +21,12 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Escalation#getEscalationCode <em>Escalation Code</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Escalation#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Escalation#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getEscalation()
  * @model extendedMetaData="name='tEscalation' kind='elementOnly'"

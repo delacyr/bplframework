@@ -35,12 +35,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.FlowNodeImpl#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.FlowNodeImpl#getLanes <em>Lanes</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.FlowNodeImpl#getOutgoing <em>Outgoing</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.Activity#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getBoundaryEventRefs <em>Boundary Event Refs</em>}</li>
@@ -41,8 +42,8 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Activity#isVariant <em>Variant</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getFeatureId <em>Feature Id</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#isCheck <em>Check</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getActivity()
  * @model extendedMetaData="name='tActivity' kind='elementOnly' abstract='true'"
@@ -463,5 +464,32 @@ public interface Activity extends FlowNode {
      * @generated
      */
     void setFeatureId(String value);
+
+    /**
+     * Returns the value of the '<em><b>Check</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Check</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Check</em>' attribute.
+     * @see #setCheck(boolean)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Check()
+     * @model default="false" ordered="false"
+     * @generated
+     */
+    boolean isCheck();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#isCheck <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Check</em>' attribute.
+     * @see #isCheck()
+     * @generated
+     */
+    void setCheck(boolean value);
 
 } // Activity

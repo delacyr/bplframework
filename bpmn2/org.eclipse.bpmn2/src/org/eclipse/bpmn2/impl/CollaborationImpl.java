@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.CollaborationImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CollaborationImpl#getMessageFlows <em>Message Flows</em>}</li>
@@ -59,7 +60,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.CollaborationImpl#isIsClosed <em>Is Closed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.CollaborationImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

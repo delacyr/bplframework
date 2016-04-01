@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -168,7 +169,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.bpmn2.DocumentRoot#getVrSpecification <em>Vr Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.DocumentRoot#getVrProcess <em>Vr Process</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getDocumentRoot()
  * @model extendedMetaData="name='' kind='mixed'"

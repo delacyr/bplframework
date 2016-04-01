@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl#isIsCollection <em>Is Collection</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl#getImport <em>Import</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl#getItemKind <em>Item Kind</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl#getStructureRef <em>Structure Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

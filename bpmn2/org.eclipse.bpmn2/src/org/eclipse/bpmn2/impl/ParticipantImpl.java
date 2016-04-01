@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.ParticipantImpl#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ParticipantImpl#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ParticipantImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ParticipantImpl#getProcessRef <em>Process Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

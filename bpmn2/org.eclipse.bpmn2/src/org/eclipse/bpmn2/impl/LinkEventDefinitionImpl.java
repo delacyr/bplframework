@@ -34,12 +34,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.impl.LinkEventDefinitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.LinkEventDefinitionImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.LinkEventDefinitionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

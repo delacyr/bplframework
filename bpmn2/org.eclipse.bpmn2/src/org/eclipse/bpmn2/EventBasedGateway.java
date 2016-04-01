@@ -21,11 +21,11 @@ package org.eclipse.bpmn2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.EventBasedGateway#getEventGatewayType <em>Event Gateway Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.EventBasedGateway#isInstantiate <em>Instantiate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getEventBasedGateway()
  * @model extendedMetaData="name='tEventBasedGateway' kind='elementOnly'"
