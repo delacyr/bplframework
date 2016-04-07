@@ -1,17 +1,19 @@
 package org.eclipse.bpmn2.modeler.ui.features.activity;
 
+import java.util.List;
+
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
+import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
-import org.eclipse.graphiti.mm.algorithms.styles.Color;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IPeService;
 import org.eclipse.graphiti.util.IColorConstant;
 
 public class AppendUncheckedFeature extends AbstractCustomFeature{
@@ -51,7 +53,6 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 				Activity activity = (Activity)bo;
 				if (activity.isVariant()){
 					if (!activity.isCheck())
-//					if (AbstractActivityFeatureContainer.check == false)
 						return true;
 					else
 						return false;
@@ -68,32 +69,80 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			PictogramElement pe = pes[0];
-			Object bo = getBusinessObjectForPictogramElement(pe);
-			Activity activity = (Activity)bo;
-			activity.setCheck(true);		
-			}
+			Activity activity = (Activity)getBusinessObjectForPictogramElement(pe);
+			checkVariabilityType(pe);
+		
+			//Setting check attribute to true
+			activity.setCheck(true);
+			IReason ireason = setFillColor(pe);
+			System.out.print(ireason);
+		}
 		
 		
-//		AbstractActivityFeatureContainer.check = true;
-
-		PictogramElement pe[] = context.getPictogramElements();
-		GraphicsAlgorithm ga = pe[0].getGraphicsAlgorithm();
-		ga.setBackground(manageColor(pe[0],IColorConstant.GREEN));
-		ga.setForeground(manageColor(pe[0],IColorConstant.GREEN));
-		Color background = ga.getBackground();
-		
-		
-//		System.out.println("Cor: ");
-//		System.out.print(background);
-//		Color newBg = manageColor(background.getGreen(), background.getBlue(), background.getRed());
-//		ga.setBackground(newBg);
-
 	}
 	
-	private static Color manageColor(PictogramElement element, IColorConstant colorConstant) {
-		IPeService peService = Graphiti.getPeService();
-		Diagram diagram = peService.getDiagramForPictogramElement(element);
-		return Graphiti.getGaService().manageColor(diagram, colorConstant);
+	private IReason setFillColor(PictogramElement pe) {
+		UpdateContext updateContext = new UpdateContext(pe);
+		
+		Activity variant = (Activity)getBusinessObjectForPictogramElement(pe);
+		if (variant!=null) {
+			ShapeStyle ss = new ShapeStyle();
+			if (variant.isCheck()) {
+				ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+				ss.setTextColor(IColorConstant.BLUE);
+			}
+			StyleUtil.applyStyle(pe.getGraphicsAlgorithm(), variant, ss);
+		}
+		return getFeatureProvider().updateIfPossible(updateContext);
 	}
+	
+	private void checkVariabilityType(PictogramElement pe){
+		Object bo = getBusinessObjectForPictogramElement(pe);
+	
+		if (bo instanceof Activity){
+			Activity activity = (Activity)bo;
+			Activity target = null;
+			List<SequenceFlow> sequenceflow = activity.getOutgoing();
+			for (SequenceFlow a : sequenceflow){
+				if (a.getTargetRef() instanceof Activity)
+					target = (Activity)a.getTargetRef();
+					if (target.isVarPoint())
+						switch (target.getVarPointType()) {
+							case "AND":
+								
+							case "OR":
+//								permite selecionar a variante, ao selecionar a variante
+//								percorrer outras variantes
+//								verificar se estão selecionadas
+//								se não tiver nenhuma selecionadas, selecione a variante
+//								se tiver alguma selecionada, selecione a variante e defina a prioridade
+//								verificar para cada variante se existe prioridade igual
+//								se existir prioridade igual 
+//								definir gateway
+								
+								
+								
+							case "XOR":
+//								se varpoint está resolvida
+//									dialogo "Uma variant desse varpoint já foi selecionada";
+//								se varpoint não está resolvida
+//									permite selecionar a variante;
+//									varpoint está resolvida
+								
+								break;
 
+							default:
+								break;
+							} ;
+					
+			}
+			//Para cada sequenceflow de saída verificar se o target é uma activity do tipo varpoint
+			//Se do tipo varpoint 
+				//getIncoming()
+			
+			//Para cada sequenceflow de entrada verificar se o source é uma activity do tipo variant
+			//se do tipo variant
+		}
+
+	}
 }

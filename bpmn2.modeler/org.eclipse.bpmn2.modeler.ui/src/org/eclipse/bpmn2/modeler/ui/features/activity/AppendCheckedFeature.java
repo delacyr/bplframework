@@ -44,12 +44,12 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 			if (bo instanceof Activity) {
 				Activity activity = (Activity)bo;
 				if (activity.isVariant()){
-//					if (AbstractActivityFeatureContainer.check == false)
 					if (!activity.isCheck())
 						return false;
 					else
 						return true;
 				}
+				
 			}
 		}
 		return false;
@@ -59,13 +59,12 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 	public void execute(ICustomContext context) {
 		// TODO Auto-generated method stub
 		//Variant Deselect
-//		AbstractActivityFeatureContainer.check = false;
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			PictogramElement pe = pes[0];
 			Object bo = getBusinessObjectForPictogramElement(pe);
 			Activity activity = (Activity)bo;
-			activity.setCheck(false);		
+			activity.setCheck(false);	
 			}
 		
 

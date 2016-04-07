@@ -31,8 +31,6 @@ import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 
 public abstract class AbstractActivityFeatureContainer extends BaseElementFeatureContainer {
-	
-	public static boolean check = false;
 
 	@Override
 	public IUpdateFeature getUpdateFeature(IFeatureProvider fp) {
