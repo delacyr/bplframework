@@ -15,14 +15,15 @@ import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.jface.dialogs.MessageDialog;
 
 public class AppendUncheckedFeature extends AbstractCustomFeature{
-	
+
 	public AppendUncheckedFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public String getName() {
 		return Messages.AppendUncheckedFeature_Name;
@@ -42,7 +43,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 	public boolean isAvailable(IContext context) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
@@ -71,19 +72,19 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 			PictogramElement pe = pes[0];
 			Activity activity = (Activity)getBusinessObjectForPictogramElement(pe);
 			checkVariabilityType(pe);
-		
-			//Setting check attribute to true
-			activity.setCheck(true);
-			IReason ireason = setFillColor(pe);
-			System.out.print(ireason);
+
+//			Setting check attribute to true
+//			activity.setCheck(true);
+//			IReason ireason = setFillColor(pe);
+//			System.out.print(ireason);
 		}
-		
-		
+
+
 	}
-	
+
 	private IReason setFillColor(PictogramElement pe) {
 		UpdateContext updateContext = new UpdateContext(pe);
-		
+
 		Activity variant = (Activity)getBusinessObjectForPictogramElement(pe);
 		if (variant!=null) {
 			ShapeStyle ss = new ShapeStyle();
@@ -95,10 +96,11 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		}
 		return getFeatureProvider().updateIfPossible(updateContext);
 	}
-	
-	private void checkVariabilityType(PictogramElement pe){
+
+
+	public void checkVariabilityType(PictogramElement pe){
 		Object bo = getBusinessObjectForPictogramElement(pe);
-	
+
 		if (bo instanceof Activity){
 			Activity activity = (Activity)bo;
 			Activity target = null;
@@ -109,7 +111,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 					if (target.isVarPoint())
 						switch (target.getVarPointType()) {
 							case "AND":
-								
+
 							case "OR":
 //								permite selecionar a variante, ao selecionar a variante
 //								percorrer outras variantes
@@ -117,33 +119,35 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 //								se não tiver nenhuma selecionadas, selecione a variante
 //								se tiver alguma selecionada, selecione a variante e defina a prioridade
 //								verificar para cada variante se existe prioridade igual
-//								se existir prioridade igual 
+//								se existir prioridade igual
 //								definir gateway
-								
-								
-								
-							case "XOR":
-//								se varpoint está resolvida
-//									dialogo "Uma variant desse varpoint já foi selecionada";
-//								se varpoint não está resolvida
-//									permite selecionar a variante;
-//									varpoint está resolvida
-//								teste
-								
-								break;
 
-							default:
-								break;
-							} ;
-					
-			}
+
+
+							case "##XOR":
+//								se varpoint está resolvida
+//								dialogo "Uma variant desse varpoint já foi selecionada";
+								if (target.isSolved()){
+									MessageDialog.openWarning(null, "Warning", "A variant was already selected!");
+									System.out.print("A variant was already selected!\n");
+								}
+//								se varpoint não está resolvida
+//								permite selecionar a variante;
+//								varpoint está resolvida
+								else{
+									activity.setCheck(true);
+									target.setSolved(true);
+								}
+
+						}
 			//Para cada sequenceflow de saída verificar se o target é uma activity do tipo varpoint
-			//Se do tipo varpoint 
+			//Se do tipo varpoint
 				//getIncoming()
-			
+
 			//Para cada sequenceflow de entrada verificar se o source é uma activity do tipo variant
 			//se do tipo variant
-		}
+			}
 
+		}
 	}
 }
