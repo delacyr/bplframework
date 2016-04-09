@@ -75,6 +75,9 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             addFeatureTypePropertyDescriptor(object);
             addFeatureIdPropertyDescriptor(object);
             addCheckPropertyDescriptor(object);
+            addSolvedPropertyDescriptor(object);
+            addOrderPropertyDescriptor(object);
+            addGatewayPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -261,6 +264,54 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
     }
 
     /**
+     * This adds a property descriptor for the Solved feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSolvedPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_solved_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_solved_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__SOLVED, true, false,
+                false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Order feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addOrderPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_order_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_order_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__ORDER, true, false,
+                false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Gateway feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGatewayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_gateway_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_gateway_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__GATEWAY, true, false,
+                false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -330,6 +381,9 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__FEATURE_TYPE:
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
         case Bpmn2Package.ACTIVITY__CHECK:
+        case Bpmn2Package.ACTIVITY__SOLVED:
+        case Bpmn2Package.ACTIVITY__ORDER:
+        case Bpmn2Package.ACTIVITY__GATEWAY:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

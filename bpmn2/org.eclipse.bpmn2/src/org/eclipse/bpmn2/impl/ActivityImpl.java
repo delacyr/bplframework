@@ -64,6 +64,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureType <em>Feature Type</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureId <em>Feature Id</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isCheck <em>Check</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isSolved <em>Solved</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getOrder <em>Order</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getGateway <em>Gateway</em>}</li>
  * </ul>
  *
  * @generated
@@ -338,6 +341,66 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected boolean check = CHECK_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SOLVED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected boolean solved = SOLVED_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOrder()
+     * @generated
+     * @ordered
+     */
+    protected static final int ORDER_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOrder()
+     * @generated
+     * @ordered
+     */
+    protected int order = ORDER_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getGateway()
+     * @generated
+     * @ordered
+     */
+    protected static final int GATEWAY_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getGateway()
+     * @generated
+     * @ordered
+     */
+    protected int gateway = GATEWAY_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -814,6 +877,72 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isSolved() {
+        return solved;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSolved(boolean newSolved) {
+        boolean oldSolved = solved;
+        solved = newSolved;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__SOLVED,
+                    oldSolved, solved));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getOrder() {
+        return order;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOrder(int newOrder) {
+        int oldOrder = order;
+        order = newOrder;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__ORDER,
+                    oldOrder, order));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getGateway() {
+        return gateway;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGateway(int newGateway) {
+        int oldGateway = gateway;
+        gateway = newGateway;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__GATEWAY,
+                    oldGateway, gateway));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
@@ -899,6 +1028,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getFeatureId();
         case Bpmn2Package.ACTIVITY__CHECK:
             return isCheck();
+        case Bpmn2Package.ACTIVITY__SOLVED:
+            return isSolved();
+        case Bpmn2Package.ACTIVITY__ORDER:
+            return getOrder();
+        case Bpmn2Package.ACTIVITY__GATEWAY:
+            return getGateway();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -973,6 +1108,15 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__CHECK:
             setCheck((Boolean) newValue);
             return;
+        case Bpmn2Package.ACTIVITY__SOLVED:
+            setSolved((Boolean) newValue);
+            return;
+        case Bpmn2Package.ACTIVITY__ORDER:
+            setOrder((Integer) newValue);
+            return;
+        case Bpmn2Package.ACTIVITY__GATEWAY:
+            setGateway((Integer) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -1039,6 +1183,15 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__CHECK:
             setCheck(CHECK_EDEFAULT);
             return;
+        case Bpmn2Package.ACTIVITY__SOLVED:
+            setSolved(SOLVED_EDEFAULT);
+            return;
+        case Bpmn2Package.ACTIVITY__ORDER:
+            setOrder(ORDER_EDEFAULT);
+            return;
+        case Bpmn2Package.ACTIVITY__GATEWAY:
+            setGateway(GATEWAY_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -1090,6 +1243,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
                     .equals(featureId);
         case Bpmn2Package.ACTIVITY__CHECK:
             return check != CHECK_EDEFAULT;
+        case Bpmn2Package.ACTIVITY__SOLVED:
+            return solved != SOLVED_EDEFAULT;
+        case Bpmn2Package.ACTIVITY__ORDER:
+            return order != ORDER_EDEFAULT;
+        case Bpmn2Package.ACTIVITY__GATEWAY:
+            return gateway != GATEWAY_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -1123,6 +1282,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(featureId);
         result.append(", check: ");
         result.append(check);
+        result.append(", solved: ");
+        result.append(solved);
+        result.append(", order: ");
+        result.append(order);
+        result.append(", gateway: ");
+        result.append(gateway);
         result.append(')');
         return result.toString();
     }

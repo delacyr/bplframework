@@ -1919,13 +1919,40 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__CHECK = FLOW_NODE_FEATURE_COUNT + 17;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__SOLVED = FLOW_NODE_FEATURE_COUNT + 18;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__ORDER = FLOW_NODE_FEATURE_COUNT + 19;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__GATEWAY = FLOW_NODE_FEATURE_COUNT + 20;
+
+    /**
      * The number of structural features of the '<em>Activity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 18;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 21;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2206,6 +2233,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__CHECK = ACTIVITY__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__SOLVED = ACTIVITY__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__ORDER = ACTIVITY__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__GATEWAY = ACTIVITY__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2531,6 +2585,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__CHECK = SUB_PROCESS__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__SOLVED = SUB_PROCESS__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__ORDER = SUB_PROCESS__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__GATEWAY = SUB_PROCESS__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -3774,6 +3855,33 @@ public interface Bpmn2Package extends EPackage {
     int TASK__CHECK = ACTIVITY__CHECK;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__SOLVED = ACTIVITY__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__ORDER = ACTIVITY__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__GATEWAY = ACTIVITY__GATEWAY;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4079,6 +4187,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__CHECK = TASK__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4395,6 +4530,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__CHECK = ACTIVITY__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__SOLVED = ACTIVITY__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__ORDER = ACTIVITY__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__GATEWAY = ACTIVITY__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -14091,6 +14253,33 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__CHECK = TASK__CHECK;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16269,6 +16458,33 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__CHECK = TASK__CHECK;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17104,6 +17320,33 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__CHECK = TASK__CHECK;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17427,6 +17670,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__CHECK = TASK__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -17906,6 +18176,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__CHECK = TASK__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -19250,6 +19547,33 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__CHECK = SUB_PROCESS__CHECK;
 
     /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__SOLVED = SUB_PROCESS__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__ORDER = SUB_PROCESS__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__GATEWAY = SUB_PROCESS__GATEWAY;
+
+    /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -19591,6 +19915,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int USER_TASK__CHECK = TASK__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__SOLVED = TASK__SOLVED;
+
+    /**
+     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__ORDER = TASK__ORDER;
+
+    /**
+     * The feature id for the '<em><b>Gateway</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -21765,6 +22116,39 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getActivity_Check();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#isSolved <em>Solved</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Solved</em>'.
+     * @see org.eclipse.bpmn2.Activity#isSolved()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_Solved();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getOrder <em>Order</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Order</em>'.
+     * @see org.eclipse.bpmn2.Activity#getOrder()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_Order();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Gateway</em>'.
+     * @see org.eclipse.bpmn2.Activity#getGateway()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_Gateway();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.AdHocSubProcess <em>Ad Hoc Sub Process</em>}'.
@@ -28224,6 +28608,30 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ACTIVITY__CHECK = eINSTANCE.getActivity_Check();
+
+        /**
+         * The meta object literal for the '<em><b>Solved</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__SOLVED = eINSTANCE.getActivity_Solved();
+
+        /**
+         * The meta object literal for the '<em><b>Order</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__ORDER = eINSTANCE.getActivity_Order();
+
+        /**
+         * The meta object literal for the '<em><b>Gateway</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__GATEWAY = eINSTANCE.getActivity_Gateway();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl <em>Ad Hoc Sub Process</em>}' class.

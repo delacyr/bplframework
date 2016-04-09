@@ -73,5 +73,11 @@ public interface ActivityValidator {
 
     boolean validateCheck(boolean value);
 
+    boolean validateSolved(boolean value);
+
+    boolean validateOrder(int value);
+
+    boolean validateGateway(int value);
+
     boolean validateType(String value);
 }
