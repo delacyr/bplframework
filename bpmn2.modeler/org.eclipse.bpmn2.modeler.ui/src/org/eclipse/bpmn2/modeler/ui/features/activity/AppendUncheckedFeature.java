@@ -128,6 +128,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 //								se varpoint não está resolvida
 //									permite selecionar a variante;
 //									varpoint está resolvida
+//								teste
 								
 								break;
 
