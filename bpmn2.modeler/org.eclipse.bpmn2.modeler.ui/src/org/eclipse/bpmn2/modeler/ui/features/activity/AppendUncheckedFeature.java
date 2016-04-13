@@ -7,6 +7,9 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
 import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IContext;
@@ -47,16 +50,23 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
-		if (pes != null && pes.length == 1) {
-			PictogramElement pe = pes[0];
-			Object bo = getBusinessObjectForPictogramElement(pe);
-			if (bo instanceof Activity) {
-				Activity activity = (Activity)bo;
-				if (activity.isVariant()){
-					if (!activity.isCheck())
-						return true;
-					else
-						return false;
+		
+		/*Feature exclusiva da instanciação*/
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		IFile file = editor.getModelFile();
+		if (file.getParent().getName().equals("Instantiating")){
+			
+			if (pes != null && pes.length == 1) {
+				PictogramElement pe = pes[0];
+				Object bo = getBusinessObjectForPictogramElement(pe);
+				if (bo instanceof Activity) {
+					Activity activity = (Activity)bo;
+					if (activity.isVariant()){
+						if (!activity.isCheck())
+							return true;
+						else
+							return false;
+					}
 				}
 			}
 		}
@@ -108,11 +118,8 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 			for (SequenceFlow a : sequenceflow){
 				if (a.getTargetRef() instanceof Activity)
 					target = (Activity)a.getTargetRef();
-					if (target.isVarPoint())
-						switch (target.getVarPointType()) {
-							case "AND":
-
-							case "OR":
+					if (target.isVarPoint()){
+						if (target.getVarPointType().equals("##OR")) {
 //								permite selecionar a variante, ao selecionar a variante
 //								percorrer outras variantes
 //								verificar se estão selecionadas
@@ -121,15 +128,13 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 //								verificar para cada variante se existe prioridade igual
 //								se existir prioridade igual
 //								definir gateway
-
-
-
-							case "##XOR":
+								activity.setCheck(true);
+						}
+						if (target.getVarPointType().equals("##XOR")) {
 //								se varpoint está resolvida
 //								dialogo "Uma variant desse varpoint já foi selecionada";
 								if (target.isSolved()){
 									MessageDialog.openWarning(null, "Warning", "A variant was already selected!");
-									System.out.print("A variant was already selected!\n");
 								}
 //								se varpoint não está resolvida
 //								permite selecionar a variante;
@@ -138,8 +143,8 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 									activity.setCheck(true);
 									target.setSolved(true);
 								}
-
 						}
+					}
 			//Para cada sequenceflow de saída verificar se o target é uma activity do tipo varpoint
 			//Se do tipo varpoint
 				//getIncoming()

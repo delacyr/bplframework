@@ -65,7 +65,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getFeatureId <em>Feature Id</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isCheck <em>Check</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isSolved <em>Solved</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getOrder <em>Order</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getGateway <em>Gateway</em>}</li>
  * </ul>
  *
@@ -363,24 +363,24 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
     protected boolean solved = SOLVED_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * The default value of the '{@link #getSeq() <em>Seq</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrder()
+     * @see #getSeq()
      * @generated
      * @ordered
      */
-    protected static final int ORDER_EDEFAULT = 0;
+    protected static final int SEQ_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * The cached value of the '{@link #getSeq() <em>Seq</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrder()
+     * @see #getSeq()
      * @generated
      * @ordered
      */
-    protected int order = ORDER_EDEFAULT;
+    protected int seq = SEQ_EDEFAULT;
 
     /**
      * The default value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
@@ -390,7 +390,7 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @generated
      * @ordered
      */
-    protected static final int GATEWAY_EDEFAULT = 0;
+    protected static final String GATEWAY_EDEFAULT = "";
 
     /**
      * The cached value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
@@ -400,7 +400,7 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @generated
      * @ordered
      */
-    protected int gateway = GATEWAY_EDEFAULT;
+    protected String gateway = GATEWAY_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -899,8 +899,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getOrder() {
-        return order;
+    public int getSeq() {
+        return seq;
     }
 
     /**
@@ -908,12 +908,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOrder(int newOrder) {
-        int oldOrder = order;
-        order = newOrder;
+    public void setSeq(int newSeq) {
+        int oldSeq = seq;
+        seq = newSeq;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__ORDER,
-                    oldOrder, order));
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__SEQ,
+                    oldSeq, seq));
     }
 
     /**
@@ -921,7 +921,7 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getGateway() {
+    public String getGateway() {
         return gateway;
     }
 
@@ -930,8 +930,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setGateway(int newGateway) {
-        int oldGateway = gateway;
+    public void setGateway(String newGateway) {
+        String oldGateway = gateway;
         gateway = newGateway;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__GATEWAY,
@@ -1030,8 +1030,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return isCheck();
         case Bpmn2Package.ACTIVITY__SOLVED:
             return isSolved();
-        case Bpmn2Package.ACTIVITY__ORDER:
-            return getOrder();
+        case Bpmn2Package.ACTIVITY__SEQ:
+            return getSeq();
         case Bpmn2Package.ACTIVITY__GATEWAY:
             return getGateway();
         }
@@ -1111,11 +1111,11 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__SOLVED:
             setSolved((Boolean) newValue);
             return;
-        case Bpmn2Package.ACTIVITY__ORDER:
-            setOrder((Integer) newValue);
+        case Bpmn2Package.ACTIVITY__SEQ:
+            setSeq((Integer) newValue);
             return;
         case Bpmn2Package.ACTIVITY__GATEWAY:
-            setGateway((Integer) newValue);
+            setGateway((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -1186,8 +1186,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__SOLVED:
             setSolved(SOLVED_EDEFAULT);
             return;
-        case Bpmn2Package.ACTIVITY__ORDER:
-            setOrder(ORDER_EDEFAULT);
+        case Bpmn2Package.ACTIVITY__SEQ:
+            setSeq(SEQ_EDEFAULT);
             return;
         case Bpmn2Package.ACTIVITY__GATEWAY:
             setGateway(GATEWAY_EDEFAULT);
@@ -1245,10 +1245,10 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return check != CHECK_EDEFAULT;
         case Bpmn2Package.ACTIVITY__SOLVED:
             return solved != SOLVED_EDEFAULT;
-        case Bpmn2Package.ACTIVITY__ORDER:
-            return order != ORDER_EDEFAULT;
+        case Bpmn2Package.ACTIVITY__SEQ:
+            return seq != SEQ_EDEFAULT;
         case Bpmn2Package.ACTIVITY__GATEWAY:
-            return gateway != GATEWAY_EDEFAULT;
+            return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
         }
         return super.eIsSet(featureID);
     }
@@ -1284,8 +1284,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(check);
         result.append(", solved: ");
         result.append(solved);
-        result.append(", order: ");
-        result.append(order);
+        result.append(", seq: ");
+        result.append(seq);
         result.append(", gateway: ");
         result.append(gateway);
         result.append(')');

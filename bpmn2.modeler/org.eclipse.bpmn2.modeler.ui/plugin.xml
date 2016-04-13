@@ -1534,6 +1534,16 @@
            id="org.eclipse.bpmn2.modeler.command.createVrProcess"
            name="%command.name.2">
      </command>
+     <command
+           defaultHandler="org.eclipse.bpmn2.modeler.ui.commands.Instantiate"
+           id="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
+           name="Instantiate">
+     </command>
+     <command
+           defaultHandler="org.eclipse.bpmn2.modeler.ui.commands.Instantiate"
+           id="referenceToMenuId"
+           name="referenceToMenuId">
+     </command>
   </extension>
 
 	<!-- menu handlers -->
@@ -1594,6 +1604,64 @@
 	       label= "%command.label.1">
 	    </command>
 	</menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="toolbar:org.eclipse.ui.main.toolbar">
+    <toolbar
+          id="org.eclipse.bpmn2.modeler.ui.toolbar1">
+       <command
+             commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
+             icon="icons/16/instantiate.png"
+             label="Instantiate"
+             style="push">
+       </command>
+    </toolbar>
+ </menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="toolbar:org.eclipse.ui.main.toolbar">
+    <toolbar
+          id="referenceToMenuId"
+          label="BPL Instatiation actions">
+       <command
+             commandId="referenceToMenuId"
+             icon="icons/16/info_icon.png"
+             label="BPL Instatiation actions"
+             style="pulldown">
+       </command>
+    </toolbar>
+ </menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="menu:referenceToMenuId">
+    <command
+          commandId="referenceToMenuId"
+          label="Validate"
+          style="push">
+    </command>
+    <command
+          commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
+          label="Instantiate"
+          style="push">
+    </command>
+ </menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+    <menu
+          label="BPL Framework">
+       <command
+             commandId="org.eclipse.bpmn2.modeler.ui.command7"
+             label="Validate"
+             style="push">
+       </command>
+       <command
+             commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
+             label="Instantiate"
+             style="push">
+       </command>
+    </menu>
+ </menuContribution>
 	</extension>
 	
 	<extension point="org.eclipse.ui.bindings">

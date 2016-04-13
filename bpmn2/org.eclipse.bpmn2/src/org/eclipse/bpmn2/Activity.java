@@ -44,7 +44,7 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Activity#getFeatureId <em>Feature Id</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#isCheck <em>Check</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#isSolved <em>Solved</em>}</li>
- *   <li>{@link org.eclipse.bpmn2.Activity#getOrder <em>Order</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}</li>
  * </ul>
  *
@@ -523,35 +523,35 @@ public interface Activity extends FlowNode {
     void setSolved(boolean value);
 
     /**
-     * Returns the value of the '<em><b>Order</b></em>' attribute.
+     * Returns the value of the '<em><b>Seq</b></em>' attribute.
      * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Order</em>' attribute isn't clear,
+     * If the meaning of the '<em>Seq</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Order</em>' attribute.
-     * @see #setOrder(int)
-     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Order()
-     * @model default="0" dataType="org.eclipse.emf.ecore.xml.type.Int" upper="-2"
+     * @return the value of the '<em>Seq</em>' attribute.
+     * @see #setSeq(int)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Seq()
+     * @model default="0" upper="-2"
      * @generated
      */
-    int getOrder();
+    int getSeq();
 
     /**
-     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getOrder <em>Order</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getSeq <em>Seq</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Order</em>' attribute.
-     * @see #getOrder()
+     * @param value the new value of the '<em>Seq</em>' attribute.
+     * @see #getSeq()
      * @generated
      */
-    void setOrder(int value);
+    void setSeq(int value);
 
     /**
      * Returns the value of the '<em><b>Gateway</b></em>' attribute.
-     * The default value is <code>"0"</code>.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Gateway</em>' attribute isn't clear,
@@ -559,12 +559,12 @@ public interface Activity extends FlowNode {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Gateway</em>' attribute.
-     * @see #setGateway(int)
+     * @see #setGateway(String)
      * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Gateway()
-     * @model default="0" dataType="org.eclipse.emf.ecore.xml.type.Int" upper="-2"
+     * @model default="" upper="-2"
      * @generated
      */
-    int getGateway();
+    String getGateway();
 
     /**
      * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}' attribute.
@@ -574,6 +574,6 @@ public interface Activity extends FlowNode {
      * @see #getGateway()
      * @generated
      */
-    void setGateway(int value);
+    void setGateway(String value);
 
 } // Activity

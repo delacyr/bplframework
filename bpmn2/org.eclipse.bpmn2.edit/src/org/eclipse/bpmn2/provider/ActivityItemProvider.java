@@ -76,7 +76,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             addFeatureIdPropertyDescriptor(object);
             addCheckPropertyDescriptor(object);
             addSolvedPropertyDescriptor(object);
-            addOrderPropertyDescriptor(object);
+            addSeqPropertyDescriptor(object);
             addGatewayPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -280,18 +280,18 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
     }
 
     /**
-     * This adds a property descriptor for the Order feature.
+     * This adds a property descriptor for the Seq feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addOrderPropertyDescriptor(Object object) {
+    protected void addSeqPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(
                 ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
                 getResourceLocator(),
-                getString("_UI_Activity_order_feature"),
-                getString("_UI_PropertyDescriptor_description", "_UI_Activity_order_feature",
-                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__ORDER, true, false,
+                getString("_UI_Activity_seq_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_seq_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__SEQ, true, false,
                 false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
     }
 
@@ -308,7 +308,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
                 getString("_UI_Activity_gateway_feature"),
                 getString("_UI_PropertyDescriptor_description", "_UI_Activity_gateway_feature",
                         "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__GATEWAY, true, false,
-                false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+                false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -382,7 +382,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__FEATURE_ID:
         case Bpmn2Package.ACTIVITY__CHECK:
         case Bpmn2Package.ACTIVITY__SOLVED:
-        case Bpmn2Package.ACTIVITY__ORDER:
+        case Bpmn2Package.ACTIVITY__SEQ:
         case Bpmn2Package.ACTIVITY__GATEWAY:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));

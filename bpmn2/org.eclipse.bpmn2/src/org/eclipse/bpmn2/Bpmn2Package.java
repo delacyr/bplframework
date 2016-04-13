@@ -1928,13 +1928,13 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__SOLVED = FLOW_NODE_FEATURE_COUNT + 18;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY__ORDER = FLOW_NODE_FEATURE_COUNT + 19;
+    int ACTIVITY__SEQ = FLOW_NODE_FEATURE_COUNT + 19;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -2244,13 +2244,13 @@ public interface Bpmn2Package extends EPackage {
     int SUB_PROCESS__SOLVED = ACTIVITY__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUB_PROCESS__ORDER = ACTIVITY__ORDER;
+    int SUB_PROCESS__SEQ = ACTIVITY__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -2596,13 +2596,13 @@ public interface Bpmn2Package extends EPackage {
     int AD_HOC_SUB_PROCESS__SOLVED = SUB_PROCESS__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AD_HOC_SUB_PROCESS__ORDER = SUB_PROCESS__ORDER;
+    int AD_HOC_SUB_PROCESS__SEQ = SUB_PROCESS__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -3864,13 +3864,13 @@ public interface Bpmn2Package extends EPackage {
     int TASK__SOLVED = ACTIVITY__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TASK__ORDER = ACTIVITY__ORDER;
+    int TASK__SEQ = ACTIVITY__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -4198,13 +4198,13 @@ public interface Bpmn2Package extends EPackage {
     int BUSINESS_RULE_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BUSINESS_RULE_TASK__ORDER = TASK__ORDER;
+    int BUSINESS_RULE_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -4541,13 +4541,13 @@ public interface Bpmn2Package extends EPackage {
     int CALL_ACTIVITY__SOLVED = ACTIVITY__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CALL_ACTIVITY__ORDER = ACTIVITY__ORDER;
+    int CALL_ACTIVITY__SEQ = ACTIVITY__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -14262,13 +14262,13 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MANUAL_TASK__ORDER = TASK__ORDER;
+    int MANUAL_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -16467,13 +16467,13 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RECEIVE_TASK__ORDER = TASK__ORDER;
+    int RECEIVE_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -17329,13 +17329,13 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SCRIPT_TASK__ORDER = TASK__ORDER;
+    int SCRIPT_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -17681,13 +17681,13 @@ public interface Bpmn2Package extends EPackage {
     int SEND_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SEND_TASK__ORDER = TASK__ORDER;
+    int SEND_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -18187,13 +18187,13 @@ public interface Bpmn2Package extends EPackage {
     int SERVICE_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SERVICE_TASK__ORDER = TASK__ORDER;
+    int SERVICE_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -19556,13 +19556,13 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__SOLVED = SUB_PROCESS__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TRANSACTION__ORDER = SUB_PROCESS__ORDER;
+    int TRANSACTION__SEQ = SUB_PROCESS__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -19926,13 +19926,13 @@ public interface Bpmn2Package extends EPackage {
     int USER_TASK__SOLVED = TASK__SOLVED;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Seq</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int USER_TASK__ORDER = TASK__ORDER;
+    int USER_TASK__SEQ = TASK__SEQ;
 
     /**
      * The feature id for the '<em><b>Gateway</b></em>' attribute.
@@ -22129,15 +22129,15 @@ public interface Bpmn2Package extends EPackage {
     EAttribute getActivity_Solved();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getOrder <em>Order</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getSeq <em>Seq</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Order</em>'.
-     * @see org.eclipse.bpmn2.Activity#getOrder()
+     * @return the meta object for the attribute '<em>Seq</em>'.
+     * @see org.eclipse.bpmn2.Activity#getSeq()
      * @see #getActivity()
      * @generated
      */
-    EAttribute getActivity_Order();
+    EAttribute getActivity_Seq();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}'.
@@ -28618,12 +28618,12 @@ public interface Bpmn2Package extends EPackage {
         EAttribute ACTIVITY__SOLVED = eINSTANCE.getActivity_Solved();
 
         /**
-         * The meta object literal for the '<em><b>Order</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Seq</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ACTIVITY__ORDER = eINSTANCE.getActivity_Order();
+        EAttribute ACTIVITY__SEQ = eINSTANCE.getActivity_Seq();
 
         /**
          * The meta object literal for the '<em><b>Gateway</b></em>' attribute feature.

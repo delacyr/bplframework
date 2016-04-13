@@ -75,6 +75,10 @@ public interface ActivityValidator {
 
     boolean validateSolved(boolean value);
 
+    boolean validateSeq(int value);
+
+    boolean validateGateway(String value);
+
     boolean validateOrder(int value);
 
     boolean validateGateway(int value);

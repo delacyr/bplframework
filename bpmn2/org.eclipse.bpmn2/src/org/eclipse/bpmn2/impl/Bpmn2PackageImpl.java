@@ -2654,7 +2654,7 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActivity_Order() {
+    public EAttribute getActivity_Seq() {
         return (EAttribute) getActivity().getEStructuralFeatures().get(19);
     }
 

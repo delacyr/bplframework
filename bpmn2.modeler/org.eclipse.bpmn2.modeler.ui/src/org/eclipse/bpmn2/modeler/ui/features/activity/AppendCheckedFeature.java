@@ -5,11 +5,14 @@ import java.util.List;
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jface.dialogs.MessageDialog;
 
 public class AppendCheckedFeature extends AbstractCustomFeature{
 
@@ -40,19 +43,26 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 
 	@Override
 	public boolean canExecute(ICustomContext context) {
-		PictogramElement[] pes = context.getPictogramElements();
-		if (pes != null && pes.length == 1) {
-			PictogramElement pe = pes[0];
-			Object bo = getBusinessObjectForPictogramElement(pe);
-			if (bo instanceof Activity) {
-				Activity activity = (Activity)bo;
-				if (activity.isVariant()){
-					if (!activity.isCheck())
-						return false;
-					else
-						return true;
-				}
+		
+		/*Feature exclusiva da instanciação*/
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		IFile file = editor.getModelFile();
+		if (file.getParent().getName().equals("Instantiating")){
 
+			PictogramElement[] pes = context.getPictogramElements();
+			if (pes != null && pes.length == 1) {
+				PictogramElement pe = pes[0];
+				Object bo = getBusinessObjectForPictogramElement(pe);
+				if (bo instanceof Activity) {
+					Activity activity = (Activity)bo;
+					if (activity.isVariant()){
+						if (!activity.isCheck())
+							return false;
+						else
+							return true;
+					}
+	
+				}
 			}
 		}
 		return false;
@@ -80,27 +90,19 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 			for (SequenceFlow a : sequenceflow){
 				if (a.getTargetRef() instanceof Activity)
 					target = (Activity)a.getTargetRef();
-					if (target.isVarPoint())
-						switch (target.getVarPointType()) {
-							case "AND":
-
-							case "OR":
-
-
-
-							case "##XOR":
-//								se varpoint está resolvida
-//								desmarcar variante e varpoint
-								if (target.isSolved()){
-									activity.setCheck(false);
-									target.setSolved(false);
-								}
-								break;
-
-							default:
-								break;
-							} ;
-
+				if (target.isVarPoint()){
+					if (target.getVarPointType().equals("##OR")) {
+							activity.setCheck(false);
+					}
+					if (target.getVarPointType().equals("##XOR")) {
+//						se varpoint está resolvida
+//						desmarcar variante e varpoint
+						if (target.isSolved()){
+							activity.setCheck(false);
+							target.setSolved(false);
+						}
+					}
+				}			
 			}
 			//Para cada sequenceflow de saída verificar se o target é uma activity do tipo varpoint
 			//Se do tipo varpoint

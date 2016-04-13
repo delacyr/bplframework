@@ -175,8 +175,8 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute featureId : EString
     Attribute check : EBoolean
     Attribute solved : EBoolean
-    Attribute order : Int<<0..?>>
-    Attribute gateway : Int<<0..?>>
+    Attribute seq : EInt<<0..?>>
+    Attribute gateway : EString<<0..?>>
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>
