@@ -66,6 +66,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.VrProcessImpl#isIsClosed <em>Is Closed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.VrProcessImpl#isIsExecutable <em>Is Executable</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.VrProcessImpl#getProcessType <em>Process Type</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.VrProcessImpl#getPhase <em>Phase</em>}</li>
  * </ul>
  *
  * @generated
@@ -230,6 +231,26 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
      * @ordered
      */
     protected ProcessType processType = PROCESS_TYPE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getPhase() <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPhase()
+     * @generated
+     * @ordered
+     */
+    protected static final String PHASE_EDEFAULT = "none";
+
+    /**
+     * The cached value of the '{@link #getPhase() <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPhase()
+     * @generated
+     * @ordered
+     */
+    protected String phase = PHASE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -555,6 +576,28 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getPhase() {
+        return phase;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPhase(String newPhase) {
+        String oldPhase = phase;
+        phase = newPhase;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.VR_PROCESS__PHASE,
+                    oldPhase, phase));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -615,6 +658,8 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
             return isIsExecutable();
         case Bpmn2Package.VR_PROCESS__PROCESS_TYPE:
             return getProcessType();
+        case Bpmn2Package.VR_PROCESS__PHASE:
+            return getPhase();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -675,6 +720,9 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
         case Bpmn2Package.VR_PROCESS__PROCESS_TYPE:
             setProcessType((ProcessType) newValue);
             return;
+        case Bpmn2Package.VR_PROCESS__PHASE:
+            setPhase((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -726,6 +774,9 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
         case Bpmn2Package.VR_PROCESS__PROCESS_TYPE:
             setProcessType(PROCESS_TYPE_EDEFAULT);
             return;
+        case Bpmn2Package.VR_PROCESS__PHASE:
+            setPhase(PHASE_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -764,6 +815,8 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
             return isExecutable != IS_EXECUTABLE_EDEFAULT;
         case Bpmn2Package.VR_PROCESS__PROCESS_TYPE:
             return processType != PROCESS_TYPE_EDEFAULT;
+        case Bpmn2Package.VR_PROCESS__PHASE:
+            return PHASE_EDEFAULT == null ? phase != null : !PHASE_EDEFAULT.equals(phase);
         }
         return super.eIsSet(featureID);
     }
@@ -825,6 +878,8 @@ public class VrProcessImpl extends CallableElementImpl implements VrProcess {
         result.append(isExecutable);
         result.append(", processType: ");
         result.append(processType);
+        result.append(", phase: ");
+        result.append(phase);
         result.append(')');
         return result.toString();
     }

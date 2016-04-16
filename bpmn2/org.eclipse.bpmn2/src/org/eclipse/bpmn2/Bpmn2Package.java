@@ -20261,13 +20261,22 @@ public interface Bpmn2Package extends EPackage {
     int VR_PROCESS__PROCESS_TYPE = CALLABLE_ELEMENT_FEATURE_COUNT + 12;
 
     /**
+     * The feature id for the '<em><b>Phase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VR_PROCESS__PHASE = CALLABLE_ELEMENT_FEATURE_COUNT + 13;
+
+    /**
      * The number of structural features of the '<em>Vr Process</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int VR_PROCESS_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 13;
+    int VR_PROCESS_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 14;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}' enum.
@@ -27172,6 +27181,17 @@ public interface Bpmn2Package extends EPackage {
     EAttribute getVrProcess_ProcessType();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.VrProcess#getPhase <em>Phase</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Phase</em>'.
+     * @see org.eclipse.bpmn2.VrProcess#getPhase()
+     * @see #getVrProcess()
+     * @generated
+     */
+    EAttribute getVrProcess_Phase();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -32780,6 +32800,14 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute VR_PROCESS__PROCESS_TYPE = eINSTANCE.getVrProcess_ProcessType();
+
+        /**
+         * The meta object literal for the '<em><b>Phase</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VR_PROCESS__PHASE = eINSTANCE.getVrProcess_Phase();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}' enum.

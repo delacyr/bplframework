@@ -46,4 +46,6 @@ public interface VrProcessValidator {
     boolean validateIsExecutable(boolean value);
 
     boolean validateProcessType(ProcessType value);
+
+    boolean validatePhase(String value);
 }

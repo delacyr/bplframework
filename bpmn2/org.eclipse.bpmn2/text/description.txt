@@ -784,6 +784,7 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute isClosed : EBoolean
     Attribute isExecutable : EBoolean
     Attribute processType : ProcessType
+    Attribute phase : EString
 
   Enum AdHocOrdering
     Literal Parallel = 0

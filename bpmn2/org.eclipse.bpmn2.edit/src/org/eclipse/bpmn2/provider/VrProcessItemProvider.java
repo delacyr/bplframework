@@ -71,6 +71,7 @@ public class VrProcessItemProvider extends CallableElementItemProvider implement
             addIsClosedPropertyDescriptor(object);
             addIsExecutablePropertyDescriptor(object);
             addProcessTypePropertyDescriptor(object);
+            addPhasePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -161,6 +162,22 @@ public class VrProcessItemProvider extends CallableElementItemProvider implement
     }
 
     /**
+     * This adds a property descriptor for the Phase feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPhasePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_VrProcess_phase_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_VrProcess_phase_feature",
+                        "_UI_VrProcess_type"), Bpmn2Package.Literals.VR_PROCESS__PHASE, true,
+                false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -238,6 +255,7 @@ public class VrProcessItemProvider extends CallableElementItemProvider implement
         case Bpmn2Package.VR_PROCESS__IS_CLOSED:
         case Bpmn2Package.VR_PROCESS__IS_EXECUTABLE:
         case Bpmn2Package.VR_PROCESS__PROCESS_TYPE:
+        case Bpmn2Package.VR_PROCESS__PHASE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

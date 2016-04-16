@@ -36,6 +36,7 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.VrProcess#isIsClosed <em>Is Closed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.VrProcess#isIsExecutable <em>Is Executable</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.VrProcess#getProcessType <em>Process Type</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.VrProcess#getPhase <em>Phase</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getVrProcess()
@@ -293,5 +294,33 @@ public interface VrProcess extends CallableElement, FlowElementsContainer {
      * @generated
      */
     void setProcessType(ProcessType value);
+
+    /**
+     * Returns the value of the '<em><b>Phase</b></em>' attribute.
+     * The default value is <code>"none"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Phase</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Phase</em>' attribute.
+     * @see #setPhase(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getVrProcess_Phase()
+     * @model default="none" ordered="false"
+     *        extendedMetaData="kind='attribute' name='varPointType'"
+     * @generated
+     */
+    String getPhase();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.VrProcess#getPhase <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Phase</em>' attribute.
+     * @see #getPhase()
+     * @generated
+     */
+    void setPhase(String value);
 
 } // VrProcess

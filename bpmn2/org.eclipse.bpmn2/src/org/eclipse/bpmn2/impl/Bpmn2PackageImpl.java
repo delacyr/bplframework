@@ -7447,6 +7447,15 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getVrProcess_Phase() {
+        return (EAttribute) getVrProcess().getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getAdHocOrdering() {
         if (adHocOrderingEEnum == null) {
             adHocOrderingEEnum = (EEnum) EPackage.Registry.INSTANCE

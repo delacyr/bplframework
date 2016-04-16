@@ -47,7 +47,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		return true;
 	}
 
-	@Override
+	@Override //BPMN* code
 	public boolean canExecute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
 		
