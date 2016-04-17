@@ -1036,6 +1036,11 @@ public class ExtensionAttributeValueItemProvider extends ItemProviderAdapter imp
 
         newChildDescriptors.add(createChildParameter(
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
+                        Bpmn2Package.Literals.DOCUMENT_ROOT__BASE_ELEMENT,
+                        Bpmn2Factory.eINSTANCE.createInstatiationPhase())));
+
+        newChildDescriptors.add(createChildParameter(
+                Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
                         Bpmn2Package.Literals.DOCUMENT_ROOT__BASE_ELEMENT_WITH_MIXED_CONTENT,
                         Bpmn2Factory.eINSTANCE.createSubProcess())));
 
@@ -1618,6 +1623,11 @@ public class ExtensionAttributeValueItemProvider extends ItemProviderAdapter imp
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
                         Bpmn2Package.Literals.DOCUMENT_ROOT__BASE_ELEMENT_WITH_MIXED_CONTENT,
                         Bpmn2Factory.eINSTANCE.createVrProcess())));
+
+        newChildDescriptors.add(createChildParameter(
+                Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
+                        Bpmn2Package.Literals.DOCUMENT_ROOT__BASE_ELEMENT_WITH_MIXED_CONTENT,
+                        Bpmn2Factory.eINSTANCE.createInstatiationPhase())));
 
         newChildDescriptors.add(createChildParameter(
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
@@ -3271,6 +3281,11 @@ public class ExtensionAttributeValueItemProvider extends ItemProviderAdapter imp
         newChildDescriptors.add(createChildParameter(
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
                         Bpmn2Package.Literals.DOCUMENT_ROOT__SCRIPT,
+                        Bpmn2Factory.eINSTANCE.createInstatiationPhase())));
+
+        newChildDescriptors.add(createChildParameter(
+                Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
+                        Bpmn2Package.Literals.DOCUMENT_ROOT__SCRIPT,
                         BpmnDiFactory.eINSTANCE.createBPMNDiagram())));
 
         newChildDescriptors.add(createChildParameter(
@@ -4037,6 +4052,11 @@ public class ExtensionAttributeValueItemProvider extends ItemProviderAdapter imp
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
                         Bpmn2Package.Literals.DOCUMENT_ROOT__TEXT,
                         Bpmn2Factory.eINSTANCE.createVrProcess())));
+
+        newChildDescriptors.add(createChildParameter(
+                Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(
+                        Bpmn2Package.Literals.DOCUMENT_ROOT__TEXT,
+                        Bpmn2Factory.eINSTANCE.createInstatiationPhase())));
 
         newChildDescriptors.add(createChildParameter(
                 Bpmn2Package.Literals.EXTENSION_ATTRIBUTE_VALUE__VALUE, FeatureMapUtil.createEntry(

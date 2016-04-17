@@ -23,6 +23,7 @@ import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataOutputAssociation;
 import org.eclipse.bpmn2.InputOutputSpecification;
+import org.eclipse.bpmn2.InstatiationPhase;
 import org.eclipse.bpmn2.LoopCharacteristics;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.bpmn2.ResourceRole;
@@ -67,6 +68,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isSolved <em>Solved</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getGateway <em>Gateway</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getInstantiation <em>Instantiation</em>}</li>
  * </ul>
  *
  * @generated
@@ -401,6 +403,16 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected String gateway = GATEWAY_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getInstantiation() <em>Instantiation</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInstantiation()
+     * @generated
+     * @ordered
+     */
+    protected InstatiationPhase instantiation;
 
     /**
      * <!-- begin-user-doc -->
@@ -943,6 +955,57 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
+    public InstatiationPhase getInstantiation() {
+        return instantiation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetInstantiation(InstatiationPhase newInstantiation,
+            NotificationChain msgs) {
+        InstatiationPhase oldInstantiation = instantiation;
+        instantiation = newInstantiation;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ACTIVITY__INSTANTIATION, oldInstantiation, newInstantiation);
+            if (msgs == null)
+                msgs = notification;
+            else
+                msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInstantiation(InstatiationPhase newInstantiation) {
+        if (newInstantiation != instantiation) {
+            NotificationChain msgs = null;
+            if (instantiation != null)
+                msgs = ((InternalEObject) instantiation).eInverseRemove(this,
+                        EOPPOSITE_FEATURE_BASE - Bpmn2Package.ACTIVITY__INSTANTIATION, null, msgs);
+            if (newInstantiation != null)
+                msgs = ((InternalEObject) newInstantiation).eInverseAdd(this,
+                        EOPPOSITE_FEATURE_BASE - Bpmn2Package.ACTIVITY__INSTANTIATION, null, msgs);
+            msgs = basicSetInstantiation(newInstantiation, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ACTIVITY__INSTANTIATION, newInstantiation, newInstantiation));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
@@ -980,6 +1043,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return basicSetLoopCharacteristics(null, msgs);
         case Bpmn2Package.ACTIVITY__VR_SPECIFICATION:
             return basicSetVrSpecification(null, msgs);
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
+            return basicSetInstantiation(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -1034,6 +1099,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getSeq();
         case Bpmn2Package.ACTIVITY__GATEWAY:
             return getGateway();
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
+            return getInstantiation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1117,6 +1184,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__GATEWAY:
             setGateway((String) newValue);
             return;
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
+            setInstantiation((InstatiationPhase) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -1192,6 +1262,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__GATEWAY:
             setGateway(GATEWAY_EDEFAULT);
             return;
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
+            setInstantiation((InstatiationPhase) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -1249,6 +1322,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return seq != SEQ_EDEFAULT;
         case Bpmn2Package.ACTIVITY__GATEWAY:
             return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
+            return instantiation != null;
         }
         return super.eIsSet(featureID);
     }

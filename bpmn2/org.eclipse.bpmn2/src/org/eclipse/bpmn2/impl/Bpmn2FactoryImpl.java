@@ -95,6 +95,7 @@ import org.eclipse.bpmn2.InclusiveGateway;
 import org.eclipse.bpmn2.InputOutputBinding;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
+import org.eclipse.bpmn2.InstatiationPhase;
 import org.eclipse.bpmn2.InteractionNode;
 import org.eclipse.bpmn2.Interface;
 import org.eclipse.bpmn2.IntermediateCatchEvent;
@@ -467,6 +468,8 @@ public class Bpmn2FactoryImpl extends EFactoryImpl implements Bpmn2Factory {
             return createVariabilitySpecification();
         case Bpmn2Package.VR_PROCESS:
             return createVrProcess();
+        case Bpmn2Package.INSTATIATION_PHASE:
+            return createInstatiationPhase();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName()
                     + "' is not a valid classifier");
@@ -1845,6 +1848,16 @@ public class Bpmn2FactoryImpl extends EFactoryImpl implements Bpmn2Factory {
     public VrProcess createVrProcess() {
         VrProcessImpl vrProcess = new VrProcessImpl();
         return vrProcess;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InstatiationPhase createInstatiationPhase() {
+        InstatiationPhaseImpl instatiationPhase = new InstatiationPhaseImpl();
+        return instatiationPhase;
     }
 
     /**

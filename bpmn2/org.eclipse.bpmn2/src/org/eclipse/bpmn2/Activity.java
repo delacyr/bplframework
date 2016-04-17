@@ -46,6 +46,7 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Activity#isSolved <em>Solved</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#getInstantiation <em>Instantiation</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getActivity()
@@ -575,5 +576,32 @@ public interface Activity extends FlowNode {
      * @generated
      */
     void setGateway(String value);
+
+    /**
+     * Returns the value of the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Instantiation</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Instantiation</em>' containment reference.
+     * @see #setInstantiation(InstatiationPhase)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Instantiation()
+     * @model containment="true" ordered="false"
+     *        extendedMetaData="kind='element' name='vrSpecification' namespace='http://www.omg.org/spec/BPMN/20100524/MODEL'"
+     * @generated
+     */
+    InstatiationPhase getInstantiation();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getInstantiation <em>Instantiation</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Instantiation</em>' containment reference.
+     * @see #getInstantiation()
+     * @generated
+     */
+    void setInstantiation(InstatiationPhase value);
 
 } // Activity

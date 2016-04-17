@@ -96,6 +96,7 @@ import org.eclipse.bpmn2.InclusiveGateway;
 import org.eclipse.bpmn2.InputOutputBinding;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
+import org.eclipse.bpmn2.InstatiationPhase;
 import org.eclipse.bpmn2.InteractionNode;
 import org.eclipse.bpmn2.Interface;
 import org.eclipse.bpmn2.IntermediateCatchEvent;
@@ -912,6 +913,11 @@ public class Bpmn2AdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseVrProcess(VrProcess object) {
             return createVrProcessAdapter();
+        }
+
+        @Override
+        public Adapter caseInstatiationPhase(InstatiationPhase object) {
+            return createInstatiationPhaseAdapter();
         }
 
         @Override
@@ -2890,6 +2896,20 @@ public class Bpmn2AdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createVrProcessAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.bpmn2.InstatiationPhase <em>Instatiation Phase</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.bpmn2.InstatiationPhase
+     * @generated
+     */
+    public Adapter createInstatiationPhaseAdapter() {
         return null;
     }
 

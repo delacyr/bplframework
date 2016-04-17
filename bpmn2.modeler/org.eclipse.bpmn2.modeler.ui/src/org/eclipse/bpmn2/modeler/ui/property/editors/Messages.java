@@ -50,6 +50,13 @@ public class Messages extends NLS {
 	public static String TypeObjectEditor_Or_Label;
 	public static String TypeObjectEditor_Xor_Label;
 	public static String TypeObjectEditor_None_Label;
+	
+//	BPMN* 2016-04-16
+	public static String GatewayObjectEditor_And_Label;
+	public static String GatewayObjectEditor_Or_Label;
+	public static String GatewayObjectEditor_Xor_Label;
+	public static String GatewayObjectEditor_None_Label;
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

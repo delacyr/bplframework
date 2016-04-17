@@ -177,6 +177,7 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute solved : EBoolean
     Attribute seq : EInt<<0..?>>
     Attribute gateway : EString<<0..?>>
+    Reference instantiation : InstatiationPhase
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>
@@ -785,6 +786,8 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute isExecutable : EBoolean
     Attribute processType : ProcessType
     Attribute phase : EString
+
+  Class InstatiationPhase -> BaseElement
 
   Enum AdHocOrdering
     Literal Parallel = 0

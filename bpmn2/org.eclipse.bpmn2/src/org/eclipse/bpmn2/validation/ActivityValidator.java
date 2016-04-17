@@ -10,6 +10,7 @@ import org.eclipse.bpmn2.BoundaryEvent;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataOutputAssociation;
 import org.eclipse.bpmn2.InputOutputSpecification;
+import org.eclipse.bpmn2.InstatiationPhase;
 import org.eclipse.bpmn2.LoopCharacteristics;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.bpmn2.ResourceRole;
@@ -78,6 +79,8 @@ public interface ActivityValidator {
     boolean validateSeq(int value);
 
     boolean validateGateway(String value);
+
+    boolean validateInstantiation(InstatiationPhase value);
 
     boolean validateOrder(int value);
 

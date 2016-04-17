@@ -1194,6 +1194,12 @@
         id="org.eclipse.bpmn2.modeler.activity.vr.tab"
         label="%propertyTab.label.61">
   </propertyTab>
+  <propertyTab
+        afterTab="org.eclipse.bpmn2.modeler.activity.vr.tab"
+        class="org.eclipse.bpmn2.modeler.ui.property.tasks.InstantiationPropertySection"
+        id="org.eclipse.bpmn2.modeler.activity.instantiation.tab"
+        label="%propertyTab.label.62">
+  </propertyTab>
   <modelEnablement
         profile="Default Process"
         runtimeId="org.eclipse.bpmn2.modeler.runtime.none"
@@ -1503,6 +1509,9 @@
      </enable>
      <enable
            object="DataObject">
+     </enable>
+     <enable
+           object="InstantiationPhase">
      </enable>
   </modelEnablement>
 

@@ -1946,13 +1946,22 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__GATEWAY = FLOW_NODE_FEATURE_COUNT + 20;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__INSTANTIATION = FLOW_NODE_FEATURE_COUNT + 21;
+
+    /**
      * The number of structural features of the '<em>Activity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 21;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 22;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2260,6 +2269,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__GATEWAY = ACTIVITY__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__INSTANTIATION = ACTIVITY__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2612,6 +2630,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__GATEWAY = SUB_PROCESS__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__INSTANTIATION = SUB_PROCESS__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -3882,6 +3909,15 @@ public interface Bpmn2Package extends EPackage {
     int TASK__GATEWAY = ACTIVITY__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__INSTANTIATION = ACTIVITY__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4214,6 +4250,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4557,6 +4602,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__GATEWAY = ACTIVITY__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__INSTANTIATION = ACTIVITY__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -14280,6 +14334,15 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16485,6 +16548,15 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17347,6 +17419,15 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17697,6 +17778,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -18203,6 +18293,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__GATEWAY = TASK__GATEWAY;
+
+    /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -19574,6 +19673,15 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__GATEWAY = SUB_PROCESS__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__INSTANTIATION = SUB_PROCESS__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -19944,6 +20052,15 @@ public interface Bpmn2Package extends EPackage {
     int USER_TASK__GATEWAY = TASK__GATEWAY;
 
     /**
+     * The feature id for the '<em><b>Instantiation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -20279,6 +20396,70 @@ public interface Bpmn2Package extends EPackage {
     int VR_PROCESS_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 14;
 
     /**
+     * The meta object id for the '{@link org.eclipse.bpmn2.impl.InstatiationPhaseImpl <em>Instatiation Phase</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.bpmn2.impl.InstatiationPhaseImpl
+     * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getInstatiationPhase()
+     * @generated
+     */
+    int INSTATIATION_PHASE = 140;
+
+    /**
+     * The feature id for the '<em><b>Extension Values</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE__EXTENSION_VALUES = BASE_ELEMENT__EXTENSION_VALUES;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE__DOCUMENTATION = BASE_ELEMENT__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Extension Definitions</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE__EXTENSION_DEFINITIONS = BASE_ELEMENT__EXTENSION_DEFINITIONS;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE__ID = BASE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE__ANY_ATTRIBUTE = BASE_ELEMENT__ANY_ATTRIBUTE;
+
+    /**
+     * The number of structural features of the '<em>Instatiation Phase</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTATIATION_PHASE_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -20286,7 +20467,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getAdHocOrdering()
      * @generated
      */
-    int AD_HOC_ORDERING = 140;
+    int AD_HOC_ORDERING = 141;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.AssociationDirection <em>Association Direction</em>}' enum.
@@ -20296,7 +20477,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getAssociationDirection()
      * @generated
      */
-    int ASSOCIATION_DIRECTION = 141;
+    int ASSOCIATION_DIRECTION = 142;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.ChoreographyLoopType <em>Choreography Loop Type</em>}' enum.
@@ -20306,7 +20487,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getChoreographyLoopType()
      * @generated
      */
-    int CHOREOGRAPHY_LOOP_TYPE = 142;
+    int CHOREOGRAPHY_LOOP_TYPE = 143;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.EventBasedGatewayType <em>Event Based Gateway Type</em>}' enum.
@@ -20316,7 +20497,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getEventBasedGatewayType()
      * @generated
      */
-    int EVENT_BASED_GATEWAY_TYPE = 143;
+    int EVENT_BASED_GATEWAY_TYPE = 144;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.GatewayDirection <em>Gateway Direction</em>}' enum.
@@ -20326,7 +20507,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getGatewayDirection()
      * @generated
      */
-    int GATEWAY_DIRECTION = 144;
+    int GATEWAY_DIRECTION = 145;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.ItemKind <em>Item Kind</em>}' enum.
@@ -20336,7 +20517,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getItemKind()
      * @generated
      */
-    int ITEM_KIND = 145;
+    int ITEM_KIND = 146;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.MultiInstanceBehavior <em>Multi Instance Behavior</em>}' enum.
@@ -20346,7 +20527,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getMultiInstanceBehavior()
      * @generated
      */
-    int MULTI_INSTANCE_BEHAVIOR = 146;
+    int MULTI_INSTANCE_BEHAVIOR = 147;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.ProcessType <em>Process Type</em>}' enum.
@@ -20356,7 +20537,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getProcessType()
      * @generated
      */
-    int PROCESS_TYPE = 147;
+    int PROCESS_TYPE = 148;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.RelationshipDirection <em>Relationship Direction</em>}' enum.
@@ -20366,7 +20547,7 @@ public interface Bpmn2Package extends EPackage {
      * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getRelationshipDirection()
      * @generated
      */
-    int RELATIONSHIP_DIRECTION = 148;
+    int RELATIONSHIP_DIRECTION = 149;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.DocumentRoot <em>Document Root</em>}'.
@@ -22158,6 +22339,17 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getActivity_Gateway();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.bpmn2.Activity#getInstantiation <em>Instantiation</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Instantiation</em>'.
+     * @see org.eclipse.bpmn2.Activity#getInstantiation()
+     * @see #getActivity()
+     * @generated
+     */
+    EReference getActivity_Instantiation();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.AdHocSubProcess <em>Ad Hoc Sub Process</em>}'.
@@ -27192,6 +27384,16 @@ public interface Bpmn2Package extends EPackage {
     EAttribute getVrProcess_Phase();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.bpmn2.InstatiationPhase <em>Instatiation Phase</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Instatiation Phase</em>'.
+     * @see org.eclipse.bpmn2.InstatiationPhase
+     * @generated
+     */
+    EClass getInstatiationPhase();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -28652,6 +28854,14 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ACTIVITY__GATEWAY = eINSTANCE.getActivity_Gateway();
+
+        /**
+         * The meta object literal for the '<em><b>Instantiation</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ACTIVITY__INSTANTIATION = eINSTANCE.getActivity_Instantiation();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl <em>Ad Hoc Sub Process</em>}' class.
@@ -32808,6 +33018,16 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute VR_PROCESS__PHASE = eINSTANCE.getVrProcess_Phase();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.bpmn2.impl.InstatiationPhaseImpl <em>Instatiation Phase</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.bpmn2.impl.InstatiationPhaseImpl
+         * @see org.eclipse.bpmn2.impl.Bpmn2PackageImpl#getInstatiationPhase()
+         * @generated
+         */
+        EClass INSTATIATION_PHASE = eINSTANCE.getInstatiationPhase();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.AdHocOrdering <em>Ad Hoc Ordering</em>}' enum.

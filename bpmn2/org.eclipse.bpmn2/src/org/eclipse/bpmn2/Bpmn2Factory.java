@@ -1141,6 +1141,15 @@ public interface Bpmn2Factory extends EFactory {
     VrProcess createVrProcess();
 
     /**
+     * Returns a new object of class '<em>Instatiation Phase</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Instatiation Phase</em>'.
+     * @generated
+     */
+    InstatiationPhase createInstatiationPhase();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

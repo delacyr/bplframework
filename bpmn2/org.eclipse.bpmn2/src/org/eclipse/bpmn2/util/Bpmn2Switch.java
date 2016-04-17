@@ -98,6 +98,7 @@ import org.eclipse.bpmn2.InclusiveGateway;
 import org.eclipse.bpmn2.InputOutputBinding;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
+import org.eclipse.bpmn2.InstatiationPhase;
 import org.eclipse.bpmn2.InteractionNode;
 import org.eclipse.bpmn2.Interface;
 import org.eclipse.bpmn2.IntermediateCatchEvent;
@@ -1923,6 +1924,15 @@ public class Bpmn2Switch<T> {
                 result = caseRootElement(vrProcess);
             if (result == null)
                 result = caseBaseElement(vrProcess);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case Bpmn2Package.INSTATIATION_PHASE: {
+            InstatiationPhase instatiationPhase = (InstatiationPhase) theEObject;
+            T result = caseInstatiationPhase(instatiationPhase);
+            if (result == null)
+                result = caseBaseElement(instatiationPhase);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -4030,6 +4040,21 @@ public class Bpmn2Switch<T> {
      * @generated
      */
     public T caseVrProcess(VrProcess object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Instatiation Phase</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Instatiation Phase</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInstatiationPhase(InstatiationPhase object) {
         return null;
     }
 

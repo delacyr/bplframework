@@ -330,6 +330,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             childrenFeatures.add(Bpmn2Package.Literals.ACTIVITY__RESOURCES);
             childrenFeatures.add(Bpmn2Package.Literals.ACTIVITY__LOOP_CHARACTERISTICS);
             childrenFeatures.add(Bpmn2Package.Literals.ACTIVITY__VR_SPECIFICATION);
+            childrenFeatures.add(Bpmn2Package.Literals.ACTIVITY__INSTANTIATION);
         }
         return childrenFeatures;
     }
@@ -394,6 +395,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__RESOURCES:
         case Bpmn2Package.ACTIVITY__LOOP_CHARACTERISTICS:
         case Bpmn2Package.ACTIVITY__VR_SPECIFICATION:
+        case Bpmn2Package.ACTIVITY__INSTANTIATION:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     true, false));
             return;
@@ -450,6 +452,9 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         newChildDescriptors.add(createChildParameter(
                 Bpmn2Package.Literals.ACTIVITY__VR_SPECIFICATION,
                 Bpmn2Factory.eINSTANCE.createVariabilitySpecification()));
+
+        newChildDescriptors.add(createChildParameter(Bpmn2Package.Literals.ACTIVITY__INSTANTIATION,
+                Bpmn2Factory.eINSTANCE.createInstatiationPhase()));
     }
 
 }

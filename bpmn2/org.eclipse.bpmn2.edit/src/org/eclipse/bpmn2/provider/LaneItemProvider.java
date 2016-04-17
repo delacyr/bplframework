@@ -568,6 +568,9 @@ public class LaneItemProvider extends BaseElementItemProvider implements
         newChildDescriptors.add(createChildParameter(Bpmn2Package.Literals.LANE__PARTITION_ELEMENT,
                 Bpmn2Factory.eINSTANCE.createVrProcess()));
 
+        newChildDescriptors.add(createChildParameter(Bpmn2Package.Literals.LANE__PARTITION_ELEMENT,
+                Bpmn2Factory.eINSTANCE.createInstatiationPhase()));
+
         newChildDescriptors.add(createChildParameter(Bpmn2Package.Literals.LANE__CHILD_LANE_SET,
                 Bpmn2Factory.eINSTANCE.createLaneSet()));
     }

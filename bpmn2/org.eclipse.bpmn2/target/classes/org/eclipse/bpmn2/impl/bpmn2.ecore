@@ -1477,6 +1477,14 @@
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="gateway" upperBound="-2"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instantiation" ordered="false"
+        eType="#//InstatiationPhase" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="vrSpecification"/>
+        <details key="namespace" value="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AdHocOrdering">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -4723,5 +4731,11 @@
         <details key="name" value="varPointType"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstatiationPhase" eSuperTypes="#//BaseElement">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="tVariabilitySpecification"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

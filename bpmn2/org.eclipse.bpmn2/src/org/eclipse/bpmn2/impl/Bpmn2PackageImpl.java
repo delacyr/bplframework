@@ -1038,6 +1038,13 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass instatiationPhaseEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum adHocOrderingEEnum = null;
 
     /**
@@ -2665,6 +2672,15 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      */
     public EAttribute getActivity_Gateway() {
         return (EAttribute) getActivity().getEStructuralFeatures().get(20);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActivity_Instantiation() {
+        return (EReference) getActivity().getEStructuralFeatures().get(21);
     }
 
     /**
@@ -7449,6 +7465,19 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      */
     public EAttribute getVrProcess_Phase() {
         return (EAttribute) getVrProcess().getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInstatiationPhase() {
+        if (instatiationPhaseEClass == null) {
+            instatiationPhaseEClass = (EClass) EPackage.Registry.INSTANCE
+                    .getEPackage(Bpmn2Package.eNS_URI).getEClassifiers().get(149);
+        }
+        return instatiationPhaseEClass;
     }
 
     /**
