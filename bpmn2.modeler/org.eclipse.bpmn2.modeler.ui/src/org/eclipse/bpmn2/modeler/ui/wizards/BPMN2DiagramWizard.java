@@ -14,8 +14,12 @@ package org.eclipse.bpmn2.modeler.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.VrProcess;
+import org.eclipse.bpmn2.di.BPMNDiagram;
+import org.eclipse.bpmn2.di.BPMNPlane;
 import org.eclipse.bpmn2.modeler.help.IHelpContexts;
-import org.eclipse.core.resources.IFolder;
+import org.eclipse.bpmn2.modeler.ui.Bpmn2DiagramEditorInput;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -80,7 +84,16 @@ public class BPMN2DiagramWizard extends Wizard implements INewWizard {
 					IPath path = container.getFullPath().append(fileName);
 					URI uri = URI.createPlatformResourceURI(path.toString(), true);
 					BPMN2DiagramCreator.createDiagram(uri, page1.getDiagramType(), targetNamespace);
-
+//					Bpmn2DiagramEditorInput editorInput = BPMN2DiagramCreator.createDiagram(uri, page1.getDiagramType(), targetNamespace);
+//					BPMNDiagram bpmnDiagram = editorInput.getBpmnDiagram();
+//					BPMNPlane plane = bpmnDiagram.getPlane();
+//					BaseElement be = plane.getBpmnElement();
+//					VrProcess vrProcess = null;
+//					if (be instanceof VrProcess){
+//						vrProcess = (VrProcess)be;
+//						vrProcess.setPhase("creation");
+//					}
+					
 				} catch (CoreException e) {
 					throw new InvocationTargetException(e);
 				} finally {

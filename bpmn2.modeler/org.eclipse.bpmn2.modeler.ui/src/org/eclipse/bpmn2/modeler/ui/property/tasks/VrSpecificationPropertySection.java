@@ -13,8 +13,13 @@
 package org.eclipse.bpmn2.modeler.ui.property.tasks;
 
 
+import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.VrProcess;
+import org.eclipse.bpmn2.di.BPMNDiagram;
+import org.eclipse.bpmn2.di.BPMNPlane;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.DefaultPropertySection;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
@@ -38,10 +43,21 @@ public class VrSpecificationPropertySection extends DefaultPropertySection imple
 	}
 	@Override
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
-		if (super.appliesTo(part, selection)) {
-			EObject object = getBusinessObjectForSelection(selection);
-			return object!=null;
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
+		BPMNPlane plane = bpmnDiagram.getPlane();
+		BaseElement be = plane.getBpmnElement();
+		VrProcess vrProcess = null;
+		if (be instanceof VrProcess){
+			vrProcess = (VrProcess)be;
+			String phase = vrProcess.getPhase();
+			if (!phase.equals("instantiation"))
+				if (super.appliesTo(part, selection)) {
+					EObject object = getBusinessObjectForSelection(selection);
+					return object!=null;
+				}
 		}
+		
 		return false;
 	}
 	@Override

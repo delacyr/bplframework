@@ -42,6 +42,9 @@ public class GatewayObjectEditor extends ComboObjectEditor {
 	public static String OR_VALUE = "##OR"; //$NON-NLS-1$
 	public static String XOR_LABEL = Messages.GatewayObjectEditor_Xor_Label;
 	public static String XOR_VALUE = "##XOR"; //$NON-NLS-1$
+	public static String NONE_LABEL = Messages.GatewayObjectEditor_None_Label;
+	public static String NONE_VALUE = "##NONE"; //$NON-NLS-1$
+	
 	
 	public GatewayObjectEditor(AbstractDetailComposite parent, EObject object, EStructuralFeature feature) {
 		super(parent, object, feature);
@@ -71,56 +74,11 @@ public class GatewayObjectEditor extends ComboObjectEditor {
 		else if (XOR_VALUE.equals(value)) {
 			value = XOR_LABEL;
 		}
+		else if (NONE_VALUE.equals(value)){
+			value = NONE_LABEL;
+		}
 		
 		return value;
-	}
-	
-	protected EObject createObject() throws Exception {
-		Hashtable<String,Object> choices = getChoiceOfValues(object, feature);
-		GatewayEditingDialog dialog = new GatewayEditingDialog(
-				getDiagramEditor().getEditorSite().getShell(), 
-				Messages.VarPointTypeObjectEditor_Create_New_Title, 
-				choices, null);
-		if ( dialog.open() == Window.OK)
-			return ModelUtil.createStringWrapper( dialog.getValue() );
-		throw new OperationCanceledException(Messages.VarPointTypeObjectEditor_Dialog_Cancelled);
-	}
-	
-	protected EObject editObject(EObject value) throws Exception {
-		Hashtable<String,Object> choices = getChoiceOfValues(object, feature);
-		final String oldValue = ModelUtil.getStringWrapperValue(value);
-		GatewayEditingDialog dialog = new GatewayEditingDialog(
-				getDiagramEditor().getEditorSite().getShell(), 
-				Messages.VarPointTypeObjectEditor_Edit_Title, 
-				choices, oldValue);
-		if ( dialog.open() == Window.OK) {
-			final String newValue = dialog.getValue();
-			if (!newValue.equals(value)) {
-				final Definitions definitions = ModelUtil.getDefinitions(object);
-				if (definitions!=null) {
-					TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							TreeIterator<EObject> iter = definitions.eAllContents();
-							while (iter.hasNext()) {
-								EObject o = iter.next();
-								EStructuralFeature f = o.eClass().getEStructuralFeature("type"); //$NON-NLS-1$
-								if (f!=null) {
-									String varPoint = (String)o.eGet(f);
-									if (oldValue.equals(varPoint)) {
-										o.eSet(f, newValue);
-									}
-								}
-							}
-						}
-					});
-				}
-	
-				return ModelUtil.createStringWrapper( dialog.getValue() );
-			}
-		}
-		throw new OperationCanceledException(Messages.VarPointTypeObjectEditor_Dialog_Cancelled);
 	}
 	
 	protected Hashtable<String,Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
@@ -128,6 +86,7 @@ public class GatewayObjectEditor extends ComboObjectEditor {
 		choices.put(AND_LABEL, ModelUtil.createStringWrapper(AND_VALUE));
 		choices.put(OR_LABEL, ModelUtil.createStringWrapper(OR_VALUE));
 		choices.put(XOR_LABEL, ModelUtil.createStringWrapper(XOR_VALUE));
+		choices.put(NONE_LABEL, ModelUtil.createStringWrapper(NONE_VALUE));
 		Hashtable<String, Object> otherChoices = ModelUtil.getChoiceOfValues(object, feature);
 		if (otherChoices!=null)
 			choices.putAll(otherChoices);
@@ -151,48 +110,48 @@ public class GatewayObjectEditor extends ComboObjectEditor {
 		}
 		return choices;
 	}
-	@Override
-	public void notifyChanged(Notification notification) {
-		if (notification.getEventType() == -1) {
-			//updateText();
-			super.notifyChanged(notification);
-		}
-		else if (object == notification.getNotifier()) {
-			if (notification.getFeature() instanceof EStructuralFeature) {
-				EStructuralFeature f = (EStructuralFeature)notification.getFeature();
-				if (f!=null && (f.getName().equals(feature.getName()) ||
-						f.getName().equals("mixed")) ) { // handle the case of FormalExpression.body //$NON-NLS-1$
-					super.notifyChanged(notification);
-				}
-			}
-		}
-	}
+//	@Override
+//	public void notifyChanged(Notification notification) {
+//		if (notification.getEventType() == -1) {
+//			//updateText();
+//			super.notifyChanged(notification);
+//		}
+//		else if (object == notification.getNotifier()) {
+//			if (notification.getFeature() instanceof EStructuralFeature) {
+//				EStructuralFeature f = (EStructuralFeature)notification.getFeature();
+//				if (f!=null && (f.getName().equals(feature.getName()) ||
+//						f.getName().equals("mixed")) ) { // handle the case of FormalExpression.body //$NON-NLS-1$
+//					super.notifyChanged(notification);
+//				}
+//			}
+//		}
+//	}
 	
-	public class GatewayEditingDialog extends InputDialog {
-		public GatewayEditingDialog(Shell shell, String title, final Map<String,Object> choices, final String uriString) {
-			super(
-					shell,
-					title,
-					Messages.VarPointTypeObjectEditor_VarPoint_Title,
-					uriString,
-					new IInputValidator() {
-
-						@Override
-						public String isValid(String newText) {
-							if (newText==null || newText.isEmpty())
-								return Messages.VarPointTypeObjectEditor_Invalid_Empty;
-							if (newText.equals(uriString))
-								return null;
-							if (choices.containsKey(newText) || choices.containsValue(newText))
-								return NLS.bind(Messages.VarPointTypeObjectEditor_Invalid_Duplicate,newText);
-							URI uri = URI.createURI(newText);
-							if (!(uri.hasAuthority() && uri.scheme()!=null)) {
-								return Messages.VarPointTypeObjectEditor_Invalid_URI;
-							}
-							return null;
-						}
-					}
-				);
-		}
-	}
+//	public class GatewayEditingDialog extends InputDialog {
+//		public GatewayEditingDialog(Shell shell, String title, final Map<String,Object> choices, final String uriString) {
+//			super(
+//					shell,
+//					title,
+//					Messages.VarPointTypeObjectEditor_VarPoint_Title,
+//					uriString,
+//					new IInputValidator() {
+//
+//						@Override
+//						public String isValid(String newText) {
+//							if (newText==null || newText.isEmpty())
+//								return Messages.VarPointTypeObjectEditor_Invalid_Empty;
+//							if (newText.equals(uriString))
+//								return null;
+//							if (choices.containsKey(newText) || choices.containsValue(newText))
+//								return NLS.bind(Messages.VarPointTypeObjectEditor_Invalid_Duplicate,newText);
+//							URI uri = URI.createURI(newText);
+//							if (!(uri.hasAuthority() && uri.scheme()!=null)) {
+//								return Messages.VarPointTypeObjectEditor_Invalid_URI;
+//							}
+//							return null;
+//						}
+//					}
+//				);
+//		}
+//	}
 }
