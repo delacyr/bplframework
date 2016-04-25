@@ -1955,13 +1955,40 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__INSTANTIATION = FLOW_NODE_FEATURE_COUNT + 21;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__SHOW_INSTANCE_NAME = FLOW_NODE_FEATURE_COUNT + 22;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__INSTANCE_NAME = FLOW_NODE_FEATURE_COUNT + 23;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__SPECS_NAME = FLOW_NODE_FEATURE_COUNT + 24;
+
+    /**
      * The number of structural features of the '<em>Activity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 22;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 25;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2278,6 +2305,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__INSTANTIATION = ACTIVITY__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__SHOW_INSTANCE_NAME = ACTIVITY__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__INSTANCE_NAME = ACTIVITY__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__SPECS_NAME = ACTIVITY__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2639,6 +2693,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__INSTANTIATION = SUB_PROCESS__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__SHOW_INSTANCE_NAME = SUB_PROCESS__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__INSTANCE_NAME = SUB_PROCESS__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__SPECS_NAME = SUB_PROCESS__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -3918,6 +3999,33 @@ public interface Bpmn2Package extends EPackage {
     int TASK__INSTANTIATION = ACTIVITY__INSTANTIATION;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__SHOW_INSTANCE_NAME = ACTIVITY__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__INSTANCE_NAME = ACTIVITY__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__SPECS_NAME = ACTIVITY__SPECS_NAME;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4259,6 +4367,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4611,6 +4746,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__INSTANTIATION = ACTIVITY__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__SHOW_INSTANCE_NAME = ACTIVITY__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__INSTANCE_NAME = ACTIVITY__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__SPECS_NAME = ACTIVITY__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -14343,6 +14505,33 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16557,6 +16746,33 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17428,6 +17644,33 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__INSTANTIATION = TASK__INSTANTIATION;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17787,6 +18030,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -18302,6 +18572,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -19682,6 +19979,33 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__INSTANTIATION = SUB_PROCESS__INSTANTIATION;
 
     /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__SHOW_INSTANCE_NAME = SUB_PROCESS__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__INSTANCE_NAME = SUB_PROCESS__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__SPECS_NAME = SUB_PROCESS__SPECS_NAME;
+
+    /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -20059,6 +20383,33 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int USER_TASK__INSTANTIATION = TASK__INSTANTIATION;
+
+    /**
+     * The feature id for the '<em><b>Show Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__SHOW_INSTANCE_NAME = TASK__SHOW_INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__INSTANCE_NAME = TASK__INSTANCE_NAME;
+
+    /**
+     * The feature id for the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -22350,6 +22701,39 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EReference getActivity_Instantiation();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getInstanceName <em>Instance Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Instance Name</em>'.
+     * @see org.eclipse.bpmn2.Activity#getInstanceName()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_InstanceName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getSpecsName <em>Specs Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Specs Name</em>'.
+     * @see org.eclipse.bpmn2.Activity#getSpecsName()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_SpecsName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#isShowInstanceName <em>Show Instance Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Show Instance Name</em>'.
+     * @see org.eclipse.bpmn2.Activity#isShowInstanceName()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_ShowInstanceName();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.AdHocSubProcess <em>Ad Hoc Sub Process</em>}'.
@@ -28862,6 +29246,30 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EReference ACTIVITY__INSTANTIATION = eINSTANCE.getActivity_Instantiation();
+
+        /**
+         * The meta object literal for the '<em><b>Instance Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__INSTANCE_NAME = eINSTANCE.getActivity_InstanceName();
+
+        /**
+         * The meta object literal for the '<em><b>Specs Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__SPECS_NAME = eINSTANCE.getActivity_SpecsName();
+
+        /**
+         * The meta object literal for the '<em><b>Show Instance Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__SHOW_INSTANCE_NAME = eINSTANCE.getActivity_ShowInstanceName();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.AdHocSubProcessImpl <em>Ad Hoc Sub Process</em>}' class.

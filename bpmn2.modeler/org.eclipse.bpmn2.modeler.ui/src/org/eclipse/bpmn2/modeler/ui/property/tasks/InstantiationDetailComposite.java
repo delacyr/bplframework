@@ -21,7 +21,11 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractBpmn2PropertySection;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractPropertiesProvider;
-import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.IntObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.BooleanObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextAndButtonObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextObjectEditor;
+import org.eclipse.bpmn2.modeler.core.utils.ErrorUtils;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.ui.property.editors.GatewayObjectEditor;
 import org.eclipse.bpmn2.modeler.ui.property.editors.SequenceObjectEditor;
@@ -30,9 +34,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -44,18 +56,12 @@ import org.eclipse.swt.widgets.Label;
  */
 public class InstantiationDetailComposite extends AbstractDetailComposite {
 
+	protected ObjectEditor showInstanceName;
+//	protected ObjectEditor hideInstanceName;
+	protected TextObjectEditor instanceElementName;
 	protected GatewayObjectEditor gateway;
-	protected IntObjectEditor seq;
 	protected SequenceObjectEditor seqList;
-//	protected ObjectEditor varPoint;
-//	protected ObjectEditor variant;
-//	protected FeatureIdObjectEditor featureIdEditor; 
-//	protected Button noneButton;
-//	protected Button mandatoryButton;
-//	protected Button optionalButton;
-//	public FeatureModel featureModel;
-//	Composite buttonComposite;
-	Label label;
+//	Label label;
 
 	public InstantiationDetailComposite(Composite parent, int style) {
 		
@@ -73,7 +79,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	public AbstractPropertiesProvider getPropertiesProvider(EObject object) {
 		if (propertiesProvider == null) {
 			propertiesProvider = new AbstractPropertiesProvider(object) {
-				String[] properties = new String[] { "gateway", //BPMN* //$NON-NLS-1$
+				String[] properties = new String[] { "instanceName",
+													"showInstanceName",
+													"gateway", //BPMN* //$NON-NLS-1$
 												 "seq", //BPMN*
 				};
 
@@ -85,29 +93,127 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		}
 		return propertiesProvider;
 	}
-//	@Override
-//	public void notifyChanged(Notification notification) {
-//		super.notifyChanged(notification);
-////		redrawParent();
-//	}
+	@Override
+	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
+		redrawParent();
+	}
 	@Override
 	public void cleanBindings() {
 		super.cleanBindings();
+		showInstanceName = null;
+//		hideInstanceName = null;
+		instanceElementName = null;
 		gateway = null;
-		seq = null;
+		seqList = null;
 	}
 
 	public void createBindings(EObject be) {
 		
+		createWidgetsInstanceName(be);
+		createWidgetsShowInstanceName(be);
+//		createWidgetsHideInstanceName(be);		
 		createWidgetsseqList(be);
-		createWidgetsGateway(be);		
+		createWidgetsGateway(be);	
 		
+//		gateway.setVisible(hasSameSequence());
+		
+	}
+
+	private void createWidgetsShowInstanceName(EObject be) {
+		// TODO Auto-generated method stub
+		final EStructuralFeature showInstanceN = getFeature(be, "showInstanceName");
+		showInstanceName = new BooleanObjectEditor(this, be, showInstanceN){
+			@Override
+			protected Control createControl(Composite composite, String label, int style) {
+
+				// create a separate label to the LEFT of the checkbox, otherwise the grid layout will
+				// be off by one column for all other widgets that are created after this one.
+				createLabel(composite, label);
+				
+				button = getToolkit().createButton(composite, "Show/Hide Instance Name", SWT.TOGGLE); //$NON-NLS-1$
+				button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true, false, 2, 1));
+				button.setSelection(getValue());
+				button.addSelectionListener( new SelectionListener() {
+
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						if (!isWidgetUpdating) {
+							boolean checked = button.getSelection();
+							setValue(new Boolean(checked));
+							button.setSelection(getValue());
+							if (checked == true){
+								if (!instanceElementName.getValue().toString().equals("")){
+//									setValue(new Boolean(checked));
+//									button.setSelection(getValue());
+									changeElementName(); //specsName <- Name
+////									changeElementName(2); //Name <- InstanceName
+////									redrawParent();
+								}
+								else{
+									MessageDialog.openWarning(null, "Warning", "An instance element name is required.");
+									button.setSelection(false);
+								}
+							}
+							else
+								changeElementName();
+						}
+					}
+
+					@Override
+					public void widgetDefaultSelected(SelectionEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					
+				});
+				
+				return button;
+			}
+		};
+		showInstanceName.createControl(getAttributesParent(), "");
+	}
+
+//	private void createWidgetsHideInstanceName(EObject be) {
+//		// TODO Auto-generated method stub
+//		EStructuralFeature hideInstanceN = getFeature(be, "hideInstanceName");
+//		hideInstanceName = new BooleanObjectEditor(this, be, hideInstanceN){
+//			protected boolean setValue(final Object result){
+//				hideInstanceName.setVisible(true);
+//				showInstanceName.setVisible(false);
+//				instanceElementName.setVisible(false);
+//				redrawParent();
+//				return true;
+//			}
+//		};
+//		
+//		hideInstanceName.createControl(getAttributesParent(), "Hide Instance Name");
+//	}
+
+	private void createWidgetsInstanceName(EObject be) {
+		// TODO Auto-generated method stub
+		EStructuralFeature instanceN = getFeature(be, "instanceName");
+		instanceElementName = new TextAndButtonObjectEditor(this, be, instanceN ){
+
+			@Override
+			protected void buttonClicked(int buttonId) {
+				// TODO Auto-generated method stub
+				InputDialog dialog = new InputDialog(null, "BPL Instantiation", "Set a Instance Element Name: ", getText(), null);
+				if (dialog.open() == Window.OK){
+					setValue(dialog.getValue());
+				}
+			}
+			
+		};
+		instanceElementName.createControl(getAttributesParent(), "Instance Name");
 	}
 	
 	private void createWidgetsseqList(EObject be) {
 		
 		EStructuralFeature sequence = getFeature(be, "seq");
 		seqList = new SequenceObjectEditor(this, be, sequence){
+			
 			@Override
 			protected Hashtable<String,Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
 				Hashtable<String, Object> choices = new Hashtable<String, Object>();
@@ -147,10 +253,8 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			@Override
 			public void notifyChanged(Notification notification) {
 				super.notifyChanged(notification);
-				redrawParent();	
+				redrawParent();
 			}
-			
-			
 			
 		};
 		seqList.createControl(getAttributesParent(), "Sequence");
@@ -161,9 +265,16 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		EStructuralFeature feature = getFeature(be, "gateway");
 		gateway = new GatewayObjectEditor(this, be, feature){
 			@Override
-			public boolean setValue(Object result) {
+			public void setVisible(boolean visible) {
+//				if (!visible)
+//					setValue(null);
+				super.setVisible(visible);
+			}
+			
+			@Override
+			public void notifyChanged(Notification notification) {
+				super.notifyChanged(notification);
 
-				if (MessageDialog.openConfirm(null, "BPL Instantiation", "This change will affect all variants with same execution sequence. Proceed?")){
 					TransactionalEditingDomain editingDomain = getDiagramEditor().getEditingDomain();
 					editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 						@Override
@@ -182,12 +293,11 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 										for (SequenceFlow b: sequenceFlowIn){
 											if (b.getSourceRef() instanceof Activity){
 												sibling = (Activity)b.getSourceRef();
-												if (sibling.isVariant()){
+												if (sibling.isVariant() && !sibling.getId().equals(variant.getId())){
 													EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
 													int seq = (int)businessObject.eGet(sequence);
 													if (sibling.getSeq() == seq){
 														sibling.setGateway(businessObject.eGet(feature).toString());
-														redrawParent();
 													}
 												}
 												
@@ -197,23 +307,63 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 								}
 							}					
 						}
-					});
-					if (ModelUtil.isStringWrapper(result)) {
-						result = ModelUtil.getStringWrapperValue(result);
-					}
+					});	
+
+			}
+			
+			@Override
+			public boolean setValue(Object result) {
+				
+//				if (result != null)
+					if (MessageDialog.openConfirm(null, "BPL Instantiation", "This change will affect all variants with same execution sequence. Proceed?")){
+						if (ModelUtil.isStringWrapper(result)) {
+							result = ModelUtil.getStringWrapperValue(result);
+						}
 					return super.setValue(result);
 				}
-			return false;
+				return false;
 			}
 		};
 		gateway.createControl(getAttributesParent(), "Gateway");
 	}
 	
-	
+	private boolean hasSameSequence(){
+		Activity variant = null;
+		Activity varpoint = null;
+		Activity sibling = null;
+		if (businessObject instanceof Activity){
+			variant = (Activity)businessObject;
+			List<SequenceFlow> sequenceFlowOut = variant.getOutgoing();
+			SequenceFlow a = sequenceFlowOut.get(0);
+			if (a.getTargetRef() instanceof Activity){
+				varpoint = (Activity)a.getTargetRef();
+				if (varpoint.isVarPoint()){
+					List<SequenceFlow> sequenceFlowIn = varpoint.getIncoming();
+					for (SequenceFlow b: sequenceFlowIn){
+						if (b.getSourceRef() instanceof Activity){
+							sibling = (Activity)b.getSourceRef();
+							if (sibling.isVariant() && !sibling.getId().equals(variant.getId())){
+								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
+								int seq = (int)businessObject.eGet(sequence);
+								if (sibling.getSeq() == seq){
+									System.out.println(sibling.getName()+" has Same Sequence "+variant.getName());
+									return true;
+								}
+								System.out.println(sibling.getName()+"Diff Sequence"+variant.getName());
+							}
+							
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 
 	private void redrawParent() {
+//		changeElementName();
 		updateName();
-//		gateway.setVisible((Boolean)varPoint.getValue());
+//		gateway.setVisible(hasSameSequence());
 //		if (!(Boolean)variant.getValue()){
 //			featureIdEditor.setVisible((Boolean)varPoint.getValue());
 //			buttonComposite.setVisible((Boolean)varPoint.getValue());
@@ -246,28 +396,65 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 			@Override
 			protected void doExecute() {
-				String str,str2;
+				String str,str2,specName;
 				int seq;
 				
 				EStructuralFeature name = businessObject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+				EStructuralFeature specsName = businessObject.eClass().getEStructuralFeature("specsName");
 				EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
+				EStructuralFeature showInstanceName = businessObject.eClass().getEStructuralFeature("showInstanceName");
 				seq = (int)businessObject.eGet(sequence);
-				if (name!=null && seq>0){
-					str = businessObject.eGet(name).toString();
-					str2 = getName((String)businessObject.eGet(name), businessObject.eGet(sequence).toString());
-					if (!str.equals(str2)){
-						businessObject.eSet(name, str2);
+				specName = (String)businessObject.eGet(specsName);
+				if ((Boolean)businessObject.eGet(showInstanceName) == false){
+					if (name!=null && seq>0){
+						str = businessObject.eGet(name).toString();
+						str2 = getName((String)businessObject.eGet(name), businessObject.eGet(sequence).toString());
+						if ((str!=null) && (str2!=null) && !str.equals(str2)){
+							businessObject.eSet(name, str2);
+						}	
 					}
-						
 				}
-				
-				
+					else{
+						if (specName!=null){
+							str2 = getName((String)businessObject.eGet(specsName), businessObject.eGet(sequence).toString());
+							if ((str2!=null) && !specName.equals(str2))
+								businessObject.eSet(specsName, str2);
+						}	
+					}		
 			}
 		});
 	}
+	
+	public void changeElementName(){
+		TransactionalEditingDomain editingDomain = getDiagramEditor().getEditingDomain();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				String str,specName,instName;
+				
+				EStructuralFeature name = businessObject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+				EStructuralFeature instanceName = businessObject.eClass().getEStructuralFeature("instanceName");
+				EStructuralFeature specsName = businessObject.eClass().getEStructuralFeature("specsName");
+
+					str = (String)businessObject.eGet(name);
+					instName = (String)businessObject.eGet(instanceName);
+					specName = (String)businessObject.eGet(specsName);
+					
+					if ((Boolean)showInstanceName.getValue() == true){ //Mostrar instanceName
+							businessObject.eSet(specsName, str); //specsName <- Name
+							businessObject.eSet(name, instName); //Name <- instanceName
+					}
+					else{
+						if (specName!=null)
+							businessObject.eSet(name, specName);
+					}
+					
+			}
+		});
+	}
+	
 	public String getName(String name, String sequence){
 		String str = null;
-//		boolean aux=false;
 		
 		int indice = name.indexOf(", seq = ");
 		if (indice > 0)
@@ -277,28 +464,10 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			if (indice2 > 0)
 				str= name.substring(0,indice2);
 			else{
-				MessageDialog.openWarning(null, "Warning", "This variant do not have a defined feature ID.");
+//				MessageDialog.openWarning(null, "Warning", "This variant do not have a defined feature ID.");
 				return null;
 			}
 		}
-			
-		
-//		if ((Boolean)varPoint.getValue()){
-//			str=str+" <<varpoint>>";
-//			aux = true;
-//		}
-//		else if ((Boolean)variant.getValue()){
-//			str=str+" <<variant>>";
-//			aux = true;
-//		}
-//		if (featureType != null){
-//			if (featureType.equals("##mandatory"))
-//				str=str + " <<mandatory>>";
-//			if (featureType.equals("##optional"))
-//				str=str + " <<optional>>";
-//		}
-
-		
 		if (sequence != null){
 			str = str + ", seq = " + sequence + "}";
 		}

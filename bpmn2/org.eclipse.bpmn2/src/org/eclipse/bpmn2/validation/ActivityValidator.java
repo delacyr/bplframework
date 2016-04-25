@@ -82,6 +82,14 @@ public interface ActivityValidator {
 
     boolean validateInstantiation(InstatiationPhase value);
 
+    boolean validateInstanceName(String value);
+
+    boolean validateSpecsName(String value);
+
+    boolean validateHideInstanceName(boolean value);
+
+    boolean validateShowInstanceName(boolean value);
+
     boolean validateOrder(int value);
 
     boolean validateGateway(int value);

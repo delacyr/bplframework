@@ -178,6 +178,9 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute seq : EInt<<0..?>>
     Attribute gateway : EString<<0..?>>
     Reference instantiation : InstatiationPhase
+    Attribute showInstanceName : EBoolean
+    Attribute instanceName : EString
+    Attribute specsName : EString
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>

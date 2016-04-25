@@ -78,6 +78,9 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             addSolvedPropertyDescriptor(object);
             addSeqPropertyDescriptor(object);
             addGatewayPropertyDescriptor(object);
+            addShowInstanceNamePropertyDescriptor(object);
+            addInstanceNamePropertyDescriptor(object);
+            addSpecsNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -312,6 +315,56 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
     }
 
     /**
+     * This adds a property descriptor for the Instance Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInstanceNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_instanceName_feature"),
+                getString("_UI_PropertyDescriptor_description",
+                        "_UI_Activity_instanceName_feature", "_UI_Activity_type"),
+                Bpmn2Package.Literals.ACTIVITY__INSTANCE_NAME, true, false, false,
+                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Specs Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSpecsNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_specsName_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_specsName_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__SPECS_NAME, true,
+                false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Show Instance Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addShowInstanceNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_showInstanceName_feature"),
+                getString("_UI_PropertyDescriptor_description",
+                        "_UI_Activity_showInstanceName_feature", "_UI_Activity_type"),
+                Bpmn2Package.Literals.ACTIVITY__SHOW_INSTANCE_NAME, true, false, false,
+                ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -385,6 +438,9 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__SOLVED:
         case Bpmn2Package.ACTIVITY__SEQ:
         case Bpmn2Package.ACTIVITY__GATEWAY:
+        case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
+        case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
+        case Bpmn2Package.ACTIVITY__SPECS_NAME:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

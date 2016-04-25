@@ -69,6 +69,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getGateway <em>Gateway</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getInstantiation <em>Instantiation</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isShowInstanceName <em>Show Instance Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getInstanceName <em>Instance Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSpecsName <em>Specs Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -413,6 +416,66 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected InstatiationPhase instantiation;
+
+    /**
+     * The default value of the '{@link #isShowInstanceName() <em>Show Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isShowInstanceName()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SHOW_INSTANCE_NAME_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isShowInstanceName() <em>Show Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isShowInstanceName()
+     * @generated
+     * @ordered
+     */
+    protected boolean showInstanceName = SHOW_INSTANCE_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getInstanceName() <em>Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInstanceName()
+     * @generated
+     * @ordered
+     */
+    protected static final String INSTANCE_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getInstanceName() <em>Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInstanceName()
+     * @generated
+     * @ordered
+     */
+    protected String instanceName = INSTANCE_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getSpecsName() <em>Specs Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSpecsName()
+     * @generated
+     * @ordered
+     */
+    protected static final String SPECS_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSpecsName() <em>Specs Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSpecsName()
+     * @generated
+     * @ordered
+     */
+    protected String specsName = SPECS_NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -1006,6 +1069,73 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getInstanceName() {
+        return instanceName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInstanceName(String newInstanceName) {
+        String oldInstanceName = instanceName;
+        instanceName = newInstanceName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ACTIVITY__INSTANCE_NAME, oldInstanceName, instanceName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSpecsName() {
+        return specsName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSpecsName(String newSpecsName) {
+        String oldSpecsName = specsName;
+        specsName = newSpecsName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ACTIVITY__SPECS_NAME, oldSpecsName, specsName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isShowInstanceName() {
+        return showInstanceName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setShowInstanceName(boolean newShowInstanceName) {
+        boolean oldShowInstanceName = showInstanceName;
+        showInstanceName = newShowInstanceName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME, oldShowInstanceName,
+                    showInstanceName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
@@ -1101,6 +1231,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getGateway();
         case Bpmn2Package.ACTIVITY__INSTANTIATION:
             return getInstantiation();
+        case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
+            return isShowInstanceName();
+        case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
+            return getInstanceName();
+        case Bpmn2Package.ACTIVITY__SPECS_NAME:
+            return getSpecsName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1187,6 +1323,15 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__INSTANTIATION:
             setInstantiation((InstatiationPhase) newValue);
             return;
+        case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
+            setShowInstanceName((Boolean) newValue);
+            return;
+        case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
+            setInstanceName((String) newValue);
+            return;
+        case Bpmn2Package.ACTIVITY__SPECS_NAME:
+            setSpecsName((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -1265,6 +1410,15 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__INSTANTIATION:
             setInstantiation((InstatiationPhase) null);
             return;
+        case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
+            setShowInstanceName(SHOW_INSTANCE_NAME_EDEFAULT);
+            return;
+        case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
+            setInstanceName(INSTANCE_NAME_EDEFAULT);
+            return;
+        case Bpmn2Package.ACTIVITY__SPECS_NAME:
+            setSpecsName(SPECS_NAME_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -1324,6 +1478,14 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
         case Bpmn2Package.ACTIVITY__INSTANTIATION:
             return instantiation != null;
+        case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
+            return showInstanceName != SHOW_INSTANCE_NAME_EDEFAULT;
+        case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
+            return INSTANCE_NAME_EDEFAULT == null ? instanceName != null : !INSTANCE_NAME_EDEFAULT
+                    .equals(instanceName);
+        case Bpmn2Package.ACTIVITY__SPECS_NAME:
+            return SPECS_NAME_EDEFAULT == null ? specsName != null : !SPECS_NAME_EDEFAULT
+                    .equals(specsName);
         }
         return super.eIsSet(featureID);
     }
@@ -1363,6 +1525,12 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(seq);
         result.append(", gateway: ");
         result.append(gateway);
+        result.append(", showInstanceName: ");
+        result.append(showInstanceName);
+        result.append(", instanceName: ");
+        result.append(instanceName);
+        result.append(", specsName: ");
+        result.append(specsName);
         result.append(')');
         return result.toString();
     }

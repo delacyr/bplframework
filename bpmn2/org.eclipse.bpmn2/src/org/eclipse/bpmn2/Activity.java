@@ -47,6 +47,9 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Activity#getSeq <em>Seq</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getGateway <em>Gateway</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getInstantiation <em>Instantiation</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#isShowInstanceName <em>Show Instance Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#getInstanceName <em>Instance Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#getSpecsName <em>Specs Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getActivity()
@@ -603,5 +606,84 @@ public interface Activity extends FlowNode {
      * @generated
      */
     void setInstantiation(InstatiationPhase value);
+
+    /**
+     * Returns the value of the '<em><b>Instance Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Instance Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Instance Name</em>' attribute.
+     * @see #setInstanceName(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_InstanceName()
+     * @model
+     * @generated
+     */
+    String getInstanceName();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getInstanceName <em>Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Instance Name</em>' attribute.
+     * @see #getInstanceName()
+     * @generated
+     */
+    void setInstanceName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Specs Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Specs Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Specs Name</em>' attribute.
+     * @see #setSpecsName(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_SpecsName()
+     * @model
+     * @generated
+     */
+    String getSpecsName();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getSpecsName <em>Specs Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Specs Name</em>' attribute.
+     * @see #getSpecsName()
+     * @generated
+     */
+    void setSpecsName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Show Instance Name</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Show Instance Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Show Instance Name</em>' attribute.
+     * @see #setShowInstanceName(boolean)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_ShowInstanceName()
+     * @model default="false" ordered="false"
+     * @generated
+     */
+    boolean isShowInstanceName();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#isShowInstanceName <em>Show Instance Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Show Instance Name</em>' attribute.
+     * @see #isShowInstanceName()
+     * @generated
+     */
+    void setShowInstanceName(boolean value);
 
 } // Activity
