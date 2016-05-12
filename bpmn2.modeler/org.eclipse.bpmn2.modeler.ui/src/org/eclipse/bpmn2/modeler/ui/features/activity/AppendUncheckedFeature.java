@@ -3,9 +3,11 @@ package org.eclipse.bpmn2.modeler.ui.features.activity;
 import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
+import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
@@ -20,8 +22,10 @@ import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 public class AppendUncheckedFeature extends AbstractCustomFeature{
@@ -84,42 +88,23 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			PictogramElement pe = pes[0];
-			Activity activity = (Activity)getBusinessObjectForPictogramElement(pe);
 			checkVariabilityType(pe);
-
-//			Setting check attribute to true
-//			activity.setCheck(true);
-			setFillColor(pe);
-//			System.out.print(ireason);
-			
-//			//The pictogram element that is being updated
-//			updatePictogramElement(((Shape) pe)); 
-//			//My Root container
-//			ContainerShape container = ((Shape) pe).getContainer().getContainer().getContainer();
-//			//Just increase the 'Y' co-ordinate of the graphical algorithm so that layout is called
-//			container.getGraphicsAlgorithm().setY(container.getGraphicsAlgorithm().getY()+1);
-//			//Call Layout
-//			layoutPictogramElement(container);
+			setFillColor((ContainerShape)pe,pe);
 		}
-
-
 	}
 	
-
-	private IReason setFillColor(PictogramElement pe) {
-		UpdateContext updateContext = new UpdateContext(pe);
+	private void setFillColor(ContainerShape containerShape, PictogramElement pe) {
+		Shape shape = containerShape.getChildren().get(0);
 
 		Activity variant = (Activity)getBusinessObjectForPictogramElement(pe);
-		if (variant!=null) {
+		BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
+		if (variant!=null && variant.isCheck()) {
 			ShapeStyle ss = new ShapeStyle();
-			if (variant.isCheck()) {
-				ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
-				ss.setTextColor(IColorConstant.BLUE);
-			}
-			StyleUtil.applyStyle(pe.getGraphicsAlgorithm(), variant, ss);
-
+			ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+//			ss.setTextColor(IColorConstant.BLUE);
+			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 		}
-		return getFeatureProvider().updateIfPossible(updateContext);
+		
 	}
 
 
