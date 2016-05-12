@@ -13,6 +13,7 @@
 package org.eclipse.bpmn2.modeler.ui.property.tasks;
 
 
+import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.DefaultPropertySection;
 import org.eclipse.emf.ecore.EObject;
@@ -40,7 +41,13 @@ public class InstantiationPropertySection extends DefaultPropertySection impleme
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
 		if (super.appliesTo(part, selection)) {
 			EObject object = getBusinessObjectForSelection(selection);
-			return object!=null;
+//			Activity element = null;
+//			if (object instanceof Activity){
+//				element = (Activity)object;
+//				if (element.isVariant() && element.isCheck())
+					return object!=null;
+//			}
+			
 		}
 		return false;
 	}

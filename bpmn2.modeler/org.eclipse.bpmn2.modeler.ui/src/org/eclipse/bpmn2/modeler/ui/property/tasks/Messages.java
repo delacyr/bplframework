@@ -73,7 +73,11 @@ public class Messages extends NLS {
 	public static String VrSpecificationDetailComposite_Has_Variant;
 	public static String VrSpecificationDetailComposite_Remove_Output_Association;
 	public static String VrSpecificationDetailComposite_Remove_Input_Association;
-
+	public static String InstantiationDetailComposite_Required_Instance_Name;
+	public static String InstantiationDetailComposite_Instance_Name_Title;
+	public static String InstantiationDetailComposite_Instance_Name_Description;
+	public static String InstantiationDetailComposite_Unchecked_Variant;
+	public static String InstantiationDetailComposite_Gateway_Change;
 	
 	static {
 		// initialize resource bundle

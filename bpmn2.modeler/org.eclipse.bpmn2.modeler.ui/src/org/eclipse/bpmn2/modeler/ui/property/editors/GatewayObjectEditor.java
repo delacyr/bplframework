@@ -135,7 +135,7 @@ public class GatewayObjectEditor extends ComboObjectEditor {
 		choices.put(AND_LABEL, ModelUtil.createStringWrapper(AND_VALUE));
 		choices.put(OR_LABEL, ModelUtil.createStringWrapper(OR_VALUE));
 		choices.put(XOR_LABEL, ModelUtil.createStringWrapper(XOR_VALUE));
-		choices.put(NONE_LABEL, ModelUtil.createStringWrapper(NONE_VALUE));
+//		choices.put(NONE_LABEL, ModelUtil.createStringWrapper(NONE_VALUE));
 		Hashtable<String, Object> otherChoices = ModelUtil.getChoiceOfValues(object, feature);
 		if (otherChoices!=null)
 			choices.putAll(otherChoices);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
 import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
@@ -16,9 +17,12 @@ import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Composite;
 
 public class AppendUncheckedFeature extends AbstractCustomFeature{
 
@@ -85,12 +89,22 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 
 //			Setting check attribute to true
 //			activity.setCheck(true);
-//			IReason ireason = setFillColor(pe);
+			setFillColor(pe);
 //			System.out.print(ireason);
+			
+//			//The pictogram element that is being updated
+//			updatePictogramElement(((Shape) pe)); 
+//			//My Root container
+//			ContainerShape container = ((Shape) pe).getContainer().getContainer().getContainer();
+//			//Just increase the 'Y' co-ordinate of the graphical algorithm so that layout is called
+//			container.getGraphicsAlgorithm().setY(container.getGraphicsAlgorithm().getY()+1);
+//			//Call Layout
+//			layoutPictogramElement(container);
 		}
 
 
 	}
+	
 
 	private IReason setFillColor(PictogramElement pe) {
 		UpdateContext updateContext = new UpdateContext(pe);
@@ -103,6 +117,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 				ss.setTextColor(IColorConstant.BLUE);
 			}
 			StyleUtil.applyStyle(pe.getGraphicsAlgorithm(), variant, ss);
+
 		}
 		return getFeatureProvider().updateIfPossible(updateContext);
 	}

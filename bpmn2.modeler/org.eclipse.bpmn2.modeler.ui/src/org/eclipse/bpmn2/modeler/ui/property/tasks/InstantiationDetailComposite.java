@@ -57,14 +57,11 @@ import org.eclipse.swt.widgets.Control;
 public class InstantiationDetailComposite extends AbstractDetailComposite {
 
 	protected ObjectEditor showInstanceName;
-//	protected ObjectEditor hideInstanceName;
 	protected TextObjectEditor instanceElementName;
 	protected GatewayObjectEditor gateway;
 	protected SequenceObjectEditor seqList;
-//	Label label;
 
 	public InstantiationDetailComposite(Composite parent, int style) {
-		
 		super(parent, style);
 	}
 
@@ -93,16 +90,17 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		}
 		return propertiesProvider;
 	}
+	
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
 		redrawParent();
 	}
+	
 	@Override
 	public void cleanBindings() {
 		super.cleanBindings();
 		showInstanceName = null;
-//		hideInstanceName = null;
 		instanceElementName = null;
 		gateway = null;
 		seqList = null;
@@ -111,19 +109,54 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	public void createBindings(EObject be) {
 		
 		createWidgetsInstanceName(be);
-		createWidgetsShowInstanceName(be);
-//		createWidgetsHideInstanceName(be);		
+		createWidgetsShowInstanceName(be);		
 		createWidgetsseqList(be);
 		createWidgetsGateway(be);	
 		
-//		gateway.setVisible(hasSameSequence());
+		seqList.setVisible((Boolean)isOrVarpoint());
+		gateway.setVisible((Boolean)hasSameSequence());
 		
+	}
+
+	private Boolean isOrVarpoint() {
+		// TODO Auto-generated method stub
+		Activity variant = null;
+		Activity varpoint = null;
+//		Activity sibling = null;
+		if (businessObject instanceof Activity){
+			variant = (Activity)businessObject;
+			List<SequenceFlow> sequenceFlowOut = variant.getOutgoing();
+			SequenceFlow a = sequenceFlowOut.get(0);
+			if (a.getTargetRef() instanceof Activity){
+				varpoint = (Activity)a.getTargetRef();
+				if (varpoint.isVarPoint() && varpoint.getVarPointType().equals("##OR")){
+//					List<SequenceFlow> sequenceFlowIn = varpoint.getIncoming();
+//					for (SequenceFlow b: sequenceFlowIn){
+//						if (b.getSourceRef() instanceof Activity){
+//							sibling = (Activity)b.getSourceRef();
+//							if (sibling.isVariant() && sibling.isCheck() && !sibling.getId().equals(variant.getId())){
+//								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
+//								int seq = (int)businessObject.eGet(sequence);
+//								if (sibling.getSeq() == seq){
+//									System.out.println(sibling.getName()+" has Same Sequence "+variant.getName());
+									return true;
+//								}
+//								System.out.println(sibling.getName()+"Diff Sequence"+variant.getName());
+//							}
+							
+//						}
+//					}
+				}
+			}
+		}
+		return false;
 	}
 
 	private void createWidgetsShowInstanceName(EObject be) {
 		// TODO Auto-generated method stub
 		final EStructuralFeature showInstanceN = getFeature(be, "showInstanceName");
 		showInstanceName = new BooleanObjectEditor(this, be, showInstanceN){
+			
 			@Override
 			protected Control createControl(Composite composite, String label, int style) {
 
@@ -144,14 +177,10 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 							button.setSelection(getValue());
 							if (checked == true){
 								if (!instanceElementName.getValue().toString().equals("")){
-//									setValue(new Boolean(checked));
-//									button.setSelection(getValue());
 									changeElementName(); //specsName <- Name
-////									changeElementName(2); //Name <- InstanceName
-////									redrawParent();
 								}
 								else{
-									MessageDialog.openWarning(null, "Warning", "An instance element name is required.");
+									MessageDialog.openWarning(null, "Warning", Messages.InstantiationDetailComposite_Required_Instance_Name);
 									button.setSelection(false);
 								}
 							}
@@ -163,10 +192,7 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 					@Override
 					public void widgetDefaultSelected(SelectionEvent e) {
 						// TODO Auto-generated method stub
-						
 					}
-
-					
 				});
 				
 				return button;
@@ -174,22 +200,6 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		};
 		showInstanceName.createControl(getAttributesParent(), "");
 	}
-
-//	private void createWidgetsHideInstanceName(EObject be) {
-//		// TODO Auto-generated method stub
-//		EStructuralFeature hideInstanceN = getFeature(be, "hideInstanceName");
-//		hideInstanceName = new BooleanObjectEditor(this, be, hideInstanceN){
-//			protected boolean setValue(final Object result){
-//				hideInstanceName.setVisible(true);
-//				showInstanceName.setVisible(false);
-//				instanceElementName.setVisible(false);
-//				redrawParent();
-//				return true;
-//			}
-//		};
-//		
-//		hideInstanceName.createControl(getAttributesParent(), "Hide Instance Name");
-//	}
 
 	private void createWidgetsInstanceName(EObject be) {
 		// TODO Auto-generated method stub
@@ -199,11 +209,36 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			@Override
 			protected void buttonClicked(int buttonId) {
 				// TODO Auto-generated method stub
-				InputDialog dialog = new InputDialog(null, "BPL Instantiation", "Set a Instance Element Name: ", getText(), null);
-				if (dialog.open() == Window.OK){
-					setValue(dialog.getValue());
+				Activity variant = null;
+				if (businessObject instanceof Activity){
+					variant = (Activity)businessObject;
+					if (variant.isVariant() && variant.isCheck()){
+						InputDialog dialog = new InputDialog(null, Messages.InstantiationDetailComposite_Instance_Name_Title, Messages.InstantiationDetailComposite_Instance_Name_Description, getText(), null);
+							if (dialog.open() == Window.OK){
+								setValue(dialog.getValue());
+							}
+					}
+					else MessageDialog.openWarning(null, "Warning", Messages.InstantiationDetailComposite_Unchecked_Variant);
 				}
 			}
+			
+//			@Override
+//			protected boolean setValue(final Object result) {
+//				Activity variant = null;
+//				if (businessObject instanceof Activity){
+//					variant = (Activity)businessObject;
+//					if (variant.isVariant() && variant.isCheck())
+//						if (super.setValue(result)) {
+//							updateText();
+//							return true;
+//						}
+//					MessageDialog.openWarning(null, "Warning", "Unchecked variant! You must check this variant before continue.");
+//					return false;
+//				}
+//				// revert the change on error
+//				text.setText(getText());
+//				return false;
+//			}
 			
 		};
 		instanceElementName.createControl(getAttributesParent(), "Instance Name");
@@ -256,6 +291,22 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 				redrawParent();
 			}
 			
+			@Override
+			public boolean setValue(Object result) {
+				Activity variant = null;
+				if (businessObject instanceof Activity){
+					variant = (Activity)businessObject;
+					if (variant.isVariant() && variant.isCheck()){
+						if (ModelUtil.isStringWrapper(result)) {
+							result = ModelUtil.getStringWrapperValue(result);
+						}
+						return super.setValue(result);
+					}
+					MessageDialog.openWarning(null, "Warning", Messages.InstantiationDetailComposite_Unchecked_Variant);
+					return false;
+				}
+				return false;
+			}
 		};
 		seqList.createControl(getAttributesParent(), "Sequence");
 		
@@ -315,7 +366,7 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			public boolean setValue(Object result) {
 				
 //				if (result != null)
-					if (MessageDialog.openConfirm(null, "BPL Instantiation", "This change will affect all variants with same execution sequence. Proceed?")){
+					if (MessageDialog.openConfirm(null, Messages.InstantiationDetailComposite_Instance_Name_Title, Messages.InstantiationDetailComposite_Gateway_Change)){
 						if (ModelUtil.isStringWrapper(result)) {
 							result = ModelUtil.getStringWrapperValue(result);
 						}
@@ -337,19 +388,19 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			SequenceFlow a = sequenceFlowOut.get(0);
 			if (a.getTargetRef() instanceof Activity){
 				varpoint = (Activity)a.getTargetRef();
-				if (varpoint.isVarPoint()){
+				if (varpoint.isVarPoint() && varpoint.getVarPointType().equals("##OR")){
 					List<SequenceFlow> sequenceFlowIn = varpoint.getIncoming();
 					for (SequenceFlow b: sequenceFlowIn){
 						if (b.getSourceRef() instanceof Activity){
 							sibling = (Activity)b.getSourceRef();
-							if (sibling.isVariant() && !sibling.getId().equals(variant.getId())){
+							if (sibling.isVariant() && sibling.isCheck() && !sibling.getId().equals(variant.getId())){
 								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
 								int seq = (int)businessObject.eGet(sequence);
 								if (sibling.getSeq() == seq){
-									System.out.println(sibling.getName()+" has Same Sequence "+variant.getName());
+//									System.out.println(sibling.getName()+" has Same Sequence "+variant.getName());
 									return true;
 								}
-								System.out.println(sibling.getName()+"Diff Sequence"+variant.getName());
+//								System.out.println(sibling.getName()+"Diff Sequence"+variant.getName());
 							}
 							
 						}
@@ -363,7 +414,8 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	private void redrawParent() {
 //		changeElementName();
 		updateName();
-//		gateway.setVisible(hasSameSequence());
+		gateway.setVisible((Boolean)hasSameSequence());
+		seqList.setVisible((Boolean)isOrVarpoint());
 //		if (!(Boolean)variant.getValue()){
 //			featureIdEditor.setVisible((Boolean)varPoint.getValue());
 //			buttonComposite.setVisible((Boolean)varPoint.getValue());
