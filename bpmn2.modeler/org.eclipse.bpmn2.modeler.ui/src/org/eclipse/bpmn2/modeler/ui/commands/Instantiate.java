@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.di.BPMNDiagram;
@@ -21,9 +22,11 @@ import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.context.impl.DeleteContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -68,6 +71,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		}
 		else{
 			generateModel(bo);
+			
 		}
 		types.clear();
 			
@@ -417,13 +421,25 @@ public class Instantiate extends AbstractHandler implements IHandler {
 					//check feature type
 //					System.out.println(activity.getFeatureType()+"##OR");
 					//maybe has variants
-					if (checkVariants(activity)){ //buscar por ao menos uma variante selecionada
-						return true;
+//					if (checkVariants(activity)){ //buscar por ao menos uma variante selecionada
+//						return true;
+//					}
+					if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
+						types.add(activity.getName());
+						return false;
 					}
-					types.add(activity.getName());
+					if (numberOfCheckedVariants(activity) > 1){
+						if (checkVariants(activity)){ //se variantes possuem sequencia
+							return true;
+						}
+						else{
+							types.add(activity.getName());
+							return false;
+						}
+					}
+//					types.add(activity.getName());
 //					System.out.println("VarPoint não resolvida!");
-					return false;
-					
+					return true;
 				}
 				if (activity.getVarPointType().equals("##XOR")){ //uma variante
 					//check feature type
@@ -443,6 +459,15 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //					System.out.println(activity.getFeatureType()+"##OR");
 					//maybe has variants
 	//				checkVariants(activity);
+					if (numberOfCheckedVariants(activity) > 1){
+						if (checkVariants(activity)){ //se variantes possuem sequencia
+							return true;
+						}
+						else{
+							types.add(activity.getName());
+							return false;
+						}
+					}
 					return true;
 					
 				}
@@ -459,10 +484,19 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				//check feature type
 //				System.out.println(activity.getFeatureType()+"##OR");
 				//maybe has variants
-				if (checkVariants(activity)){ //buscar por ao menos uma variante selecionada
-					return true;
+				if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
+					types.add(activity.getName());
+					return false;
 				}
-				types.add(activity.getName());
+				if (numberOfCheckedVariants(activity) > 1){
+					if (checkVariants(activity)){ //se variantes possuem sequencia
+						return true;
+					}
+					else{
+						types.add(activity.getName());
+						return false;
+					}
+				}
 //				System.out.println("VarPoint não resolvida!");
 				return false;
 				
@@ -484,15 +518,18 @@ public class Instantiate extends AbstractHandler implements IHandler {
 	private boolean checkVariants(Activity varpoint) {
 		//getting variants
 		List<SequenceFlow> incoming = varpoint.getIncoming();
+		int cont = 0;
 		//for each variant
 		for (SequenceFlow b: incoming){
 			if (b.getSourceRef() instanceof Activity){
 				Activity activity = (Activity)b.getSourceRef();
-				if (activity.isVariant() && activity.isCheck()){
-					return true;
+				if (activity.isVariant() && activity.isCheck() && (activity.getSeq()!=0)){
+					cont++;
 				}
 			}
 		}
+		if (numberOfCheckedVariants(varpoint) == cont)
+			return true;
 		return false;	
 	}
 

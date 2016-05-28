@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
@@ -103,8 +104,12 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 			ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
 //			ss.setTextColor(IColorConstant.BLUE);
 			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+			
+			UpdateContext updateContext = new UpdateContext(shape);
+			IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+			if ( updateFeature.updateNeeded(updateContext).toBoolean() )
+				updateFeature.update(updateContext);
 		}
-		
 	}
 
 
