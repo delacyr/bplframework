@@ -20,6 +20,7 @@ import org.eclipse.bpmn2.di.BPMNPlane;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.DefaultPropertySection;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,20 +44,24 @@ public class VrSpecificationPropertySection extends DefaultPropertySection imple
 	}
 	@Override
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
+//		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+//		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
+//		BPMNPlane plane = bpmnDiagram.getPlane();
+//		BaseElement be = plane.getBpmnElement();
+//		VrProcess vrProcess = null;
+//		if (be instanceof VrProcess){
+//			vrProcess = (VrProcess)be;
+//			String phase = vrProcess.getPhase();
+//			if (!phase.equals("instantiation"))
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
-		BPMNPlane plane = bpmnDiagram.getPlane();
-		BaseElement be = plane.getBpmnElement();
-		VrProcess vrProcess = null;
-		if (be instanceof VrProcess){
-			vrProcess = (VrProcess)be;
-			String phase = vrProcess.getPhase();
-			if (!phase.equals("instantiation"))
+		IFile file = editor.getModelFile();
+		if (file.getParent().getName().equals("BusinessProcessModelTemplate")){
 				if (super.appliesTo(part, selection)) {
 					EObject object = getBusinessObjectForSelection(selection);
 					return object!=null;
 				}
 		}
+//		}
 		
 		return false;
 	}

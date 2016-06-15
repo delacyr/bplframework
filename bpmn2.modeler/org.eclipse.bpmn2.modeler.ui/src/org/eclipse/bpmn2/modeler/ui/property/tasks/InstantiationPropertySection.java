@@ -16,6 +16,8 @@ package org.eclipse.bpmn2.modeler.ui.property.tasks;
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.DefaultPropertySection;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
@@ -39,15 +41,19 @@ public class InstantiationPropertySection extends DefaultPropertySection impleme
 	}
 	@Override
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
-		if (super.appliesTo(part, selection)) {
-			EObject object = getBusinessObjectForSelection(selection);
-//			Activity element = null;
-//			if (object instanceof Activity){
-//				element = (Activity)object;
-//				if (element.isVariant() && element.isCheck())
-					return object!=null;
-//			}
-			
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		IFile file = editor.getModelFile();
+		if (file.getParent().getName().equals("Instantiating")){
+			if (super.appliesTo(part, selection)) {
+				EObject object = getBusinessObjectForSelection(selection);
+	//			Activity element = null;
+	//			if (object instanceof Activity){
+	//				element = (Activity)object;
+	//				if (element.isVariant() && element.isCheck())
+						return object!=null;
+	//			}
+				
+			}
 		}
 		return false;
 	}

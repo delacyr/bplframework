@@ -84,6 +84,10 @@ public class InstantiationWizard extends Wizard implements INewWizard{
 //			   }
 //			});
 			
+			org.eclipse.emf.common.util.URI modelURI;
+			modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_instantiatingFolder.toString(), true);
+			BPMN2Editor.openEditor(modelURI);
+			
 		return true;
 	}
 

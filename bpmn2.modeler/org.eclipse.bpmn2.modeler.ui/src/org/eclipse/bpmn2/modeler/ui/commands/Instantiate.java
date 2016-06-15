@@ -4,35 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.EndEvent;
+import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Gateway;
+import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
+import org.eclipse.bpmn2.modeler.core.di.DIImport;
+import org.eclipse.bpmn2.modeler.core.preferences.Bpmn2Preferences;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
+import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.datatypes.IDimension;
+import org.eclipse.graphiti.datatypes.ILocation;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.context.impl.DeleteContext;
+import org.eclipse.graphiti.features.context.impl.MoveShapeContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
+import org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.ILayoutService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ui.dialogs.ListDialog;
@@ -40,13 +63,13 @@ import org.eclipse.ui.dialogs.ListDialog;
 public class Instantiate extends AbstractHandler implements IHandler {
 
 	List<String> types = new ArrayList<String>();
+	protected Bpmn2Preferences preferences;
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 //		MessageDialog.openInformation(HandlerUtil.getActiveWorkbenchWindow(event).getShell(), "Info", "Info for you");
 		
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-		
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
 		List<EObject> elements = element.eContents();
@@ -70,15 +93,197 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			dialog.open();
 		}
 		else{
+			/*Copia o modelo configurado para a pasta Instantiated*/
+			IProgressMonitor progressMonitor = new NullProgressMonitor();
+			IProject project = editor.getProject();
+			IFolder instantiatedFolder = project.getFolder("Instantiated");
+			try {
+				instantiatedFolder.create(true, true, progressMonitor);
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+			IFile instantiated_file = editor.getModelFile();
+			IPath path_instantiatedFolder = project.getFolder("Instantiated").getFullPath();
+			path_instantiatedFolder = path_instantiatedFolder.append(instantiated_file.getName());
+			
+			try {
+				instantiated_file.copy(path_instantiatedFolder, true, progressMonitor);
+					
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			/*Instanciação do TMPN*/
 			generateModel(bo);
+			
+			boolean pass = false;
+			if (!pass){
+				editor.doSave(progressMonitor);
+				pass = true;
+			}
+			
+			if (pass){
+				/*Copia o modelo instanciado para a pasta de PDOs*/
+				IPath path_BPDFolder = project.getFolder("BusinessProcessDiagram").getFullPath();
+				path_BPDFolder = path_BPDFolder.append(instantiated_file.getName());
+				try {
+					instantiated_file.copy(path_BPDFolder, true, progressMonitor);
+						
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				/*Exclui o modelo temporário da pasta Instantiating*/
+				try {
+					instantiated_file.delete(true, progressMonitor);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				
+				org.eclipse.emf.common.util.URI modelURI;
+				modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_BPDFolder.toString(), true);
+				BPMN2Editor.openEditor(modelURI);
+			}
 			
 		}
 		types.clear();
-			
-//		editor.doSaveAs();
+		
+
+		
+//		List<SequenceFlow> sequenceFlow = null;
+//		ContainerShape oldShape = null;
+//		if (bo instanceof StartEvent){
+//			System.out.println("GM - Start Event");
+//			//getting outgoing elements
+//			sequenceFlow = ((StartEvent) bo).getOutgoing();
+//			//for each outgoing element
+//			for (SequenceFlow a: sequenceFlow){
+//				//if it is activity
+//				if (a.getTargetRef() instanceof Activity){
+//					Activity activity = (Activity)a.getTargetRef();
+//					FlowNode fn = (FlowNode)activity;
+//					oldShape = getContainerShape(fn,diagram);
+//				}
+//			}
+//		}
+//		
+//		CreateContext createContext = prepareCreateContext(oldShape);
+//		
+//		preferences = Bpmn2Preferences.getInstance((EObject)bo);
+//		
+//		final IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+//		// if user made a selection, then create the new shape...
+//		ContainerShape newShape = createNewShape(oldShape, createFeature, createContext);
+//		// ...and connect this shape to the new one with a SequenceFlow...
+//		createNewConnection(oldShape, newShape);
+//
+
 
 		return null;
 	}
+	
+//	private CreateContext prepareCreateContext(ContainerShape container) {
+//		CreateContext cc = new CreateContext();
+//		
+//		cc.setTargetContainer(container);
+//		
+//		// set the IMPORT flag so that the new shape's location is not adjusted during creation
+//		cc.putProperty(DIImport.IMPORT_PROPERTY, Boolean.TRUE);
+//		return cc;
+//	}
+	
+//	protected ContainerShape createNewShape(ContainerShape oldShape, ICreateFeature createFeature, CreateContext createContext) {
+//		ILayoutService layoutService = Graphiti.getLayoutService();
+//		boolean horz = preferences.isHorizontalDefault();
+//
+//		ILocation loc = layoutService.getLocationRelativeToDiagram(oldShape);
+//		int x = loc.getX();
+//		int y = loc.getY();
+//		int xOffset = 0;
+//		int yOffset = 0;
+//		GraphicsAlgorithm ga = oldShape.getGraphicsAlgorithm();
+//		int width = ga.getWidth();
+//		int height = ga.getHeight();
+//		
+//		FlowElement newObject;
+//		ContainerShape newShape;
+//		createContext.setX(0);
+//		createContext.setY(0);
+//		Object[] created = createFeature.create(createContext);
+//		
+//		newObject = (FlowElement) created[0];
+//		newShape = (ContainerShape) created[1];
+//		
+//		ContainerShape containerShape = oldShape.getContainer();
+//		if (containerShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
+//			// we are adding a new shape to a container (e.g a SubProcess)
+//			// so we need to adjust the location to be relative to the
+//			// container instead of the diagram
+//			loc = layoutService.getLocationRelativeToDiagram(containerShape);
+//			xOffset = loc.getX();
+//			yOffset = loc.getY();
+//		}
+//		
+//		BaseElement oldObject = BusinessObjectUtil.getFirstElementOfType(oldShape, BaseElement.class);
+//		if (oldObject instanceof Lane) {
+//			((Lane)oldObject).getFlowNodeRefs().add((FlowNode)newObject);
+//		}
+//		
+//		// move the new shape so that it does not collide with an existing shape
+//		MoveShapeContext moveContext = new MoveShapeContext(newShape);//new AreaContext(), newObject);
+//		DefaultMoveShapeFeature moveFeature = (DefaultMoveShapeFeature)getFeatureProvider().getMoveShapeFeature(moveContext);
+//		IDimension size = GraphicsUtil.calculateSize(newShape);
+//		int wOffset = 50;
+//		int hOffset = 50;
+//		int w = size.getWidth();
+//		int h = size.getHeight();
+//		if (horz) {
+//			x += width + wOffset + w/2;
+//			y += height/2 - h/2;
+//			boolean done = false;
+//			while (!done) {
+//				done = true;
+//				List<Shape> shapes = getFlowElementChildren(containerShape);
+//				for (Shape s : shapes) {
+//					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
+//						y += 100;
+//						done = false;
+//						break;
+//					}
+//				}
+//			}
+//		}
+//		else {
+//			x += width/2 - w/2;
+//			y += height + hOffset + h/2;
+//			boolean done = false;
+//			while (!done) {
+//				done = true;
+//				List<Shape> shapes = getFlowElementChildren(containerShape);
+//				for (Shape s : shapes) {
+//					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
+//						x += 100;
+//						done = false;
+//						break;
+//					}
+//				}
+//			}
+//		}
+//		moveContext.setX(x - xOffset);
+//		moveContext.setY(y - yOffset);
+//		moveContext.setSourceContainer( oldShape.getContainer() );
+//		moveContext.setTargetContainer( oldShape.getContainer() );
+//		
+//		if (moveFeature.canMoveShape(moveContext))
+//			moveFeature.moveShape(moveContext);
+//		
+//		return newShape;
+//	}
 
 	private void generateModel(Object bo) {
 		// TODO Auto-generated method stub
@@ -202,7 +407,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return false;
 	}
 
-	
 	private int numberOfCheckedVariants(Activity varpoint) {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> incoming = varpoint.getIncoming();

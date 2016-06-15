@@ -12,7 +12,12 @@
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.core.features;
 
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
+import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
+import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,6 +30,7 @@ import org.eclipse.graphiti.mm.algorithms.AbstractText;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.util.IColorConstant;
 
 public abstract class AbstractUpdateBaseElementFeature extends AbstractUpdateFeature {
 
@@ -86,6 +92,17 @@ public abstract class AbstractUpdateBaseElementFeature extends AbstractUpdateFea
 					text.setValue(value);
 					return true;
 				}
+			}
+			
+			ContainerShape containerShape = (ContainerShape)context.getPictogramElement();
+			Shape shape = containerShape.getChildren().get(0);
+			
+			Activity variant = (Activity)getBusinessObjectForPictogramElement(context.getPictogramElement());
+			BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
+			if (variant!=null && variant.isCheck()) {
+				ShapeStyle ss = new ShapeStyle();
+				ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+				StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 			}
 		}
 		return false;

@@ -98,7 +98,6 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 		if (variant!=null && !variant.isCheck()) {
 			ShapeStyle ss = new ShapeStyle();
 			ss.setDefaultColors(DEFAULT_COLOR);
-//			ss.setTextColor(IColorConstant.BLUE);
 			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 		}
 		

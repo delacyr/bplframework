@@ -77,6 +77,7 @@ import org.eclipse.graphiti.features.context.impl.LayoutContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.MmFactory;
 import org.eclipse.graphiti.mm.Property;
+import org.eclipse.graphiti.mm.PropertyContainer;
 import org.eclipse.graphiti.mm.algorithms.AbstractText;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
@@ -1155,5 +1156,16 @@ public class FeatureSupport {
 			}
 		}
 		return null;
+	}
+	
+	public static String getPropertyValue(PropertyContainer propertyContainer, String key) {
+		return Graphiti.getPeService().getPropertyValue(propertyContainer, key);
+	}
+	
+	public static void setPropertyValue(PropertyContainer propertyContainer, String key, String value) {
+		while (Graphiti.getPeService().getPropertyValue(propertyContainer, key)!=null)
+			Graphiti.getPeService().removeProperty(propertyContainer, key);
+		if (value!=null)
+			Graphiti.getPeService().setPropertyValue(propertyContainer, key, value);
 	}
 }

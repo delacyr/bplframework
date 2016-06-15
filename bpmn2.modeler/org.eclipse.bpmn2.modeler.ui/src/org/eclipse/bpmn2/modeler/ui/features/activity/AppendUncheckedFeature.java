@@ -8,6 +8,7 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
+import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
@@ -102,15 +103,16 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		if (variant!=null && variant.isCheck()) {
 			ShapeStyle ss = new ShapeStyle();
 			ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
-//			ss.setTextColor(IColorConstant.BLUE);
 			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 			
-			UpdateContext updateContext = new UpdateContext(shape);
-			IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
-			if ( updateFeature.updateNeeded(updateContext).toBoolean() )
-				updateFeature.update(updateContext);
+//			UpdateContext updateContext = new UpdateContext(shape);
+//			IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+//			if ( updateFeature.updateNeeded(updateContext).toBoolean() )
+//				updateFeature.update(updateContext);
 		}
 	}
+	
+	
 
 
 	public void checkVariabilityType(PictogramElement pe){

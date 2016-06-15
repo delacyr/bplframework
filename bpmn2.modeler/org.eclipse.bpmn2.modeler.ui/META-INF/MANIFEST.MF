@@ -38,7 +38,8 @@ Require-Bundle: org.eclipse.ui.ide,
  de.ovgu.featureide.core.ahead;bundle-version="2.7.1",
  de.ovgu.featureide.fm.core;bundle-version="2.7.1",
  de.ovgu.featureide.fm.ui;bundle-version="2.7.1",
- de.ovgu.featureide.ui;bundle-version="2.7.1"
+ de.ovgu.featureide.ui;bundle-version="2.7.1",
+ org.eclipse.graphiti.mm
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.bpmn2.modeler.ui;
