@@ -65,7 +65,7 @@ public class TaskFeatureContainer extends AbstractTaskFeatureContainer {
 				Shape shape = containerShape.getChildren().get(0);
 				BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
 				Activity variant = (Activity)baseElement;
-				if (variant!=null && variant.isCheck()) {
+				if (variant!=null && variant.isVariant() && variant.isCheck()) {
 					ShapeStyle ss = new ShapeStyle();
 					ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
 					StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
