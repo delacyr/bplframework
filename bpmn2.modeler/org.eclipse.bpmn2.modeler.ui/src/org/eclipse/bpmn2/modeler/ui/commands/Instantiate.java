@@ -2,6 +2,7 @@ package org.eclipse.bpmn2.modeler.ui.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
@@ -238,7 +239,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		// TODO Auto-generated method stub
 		IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
 		ILayoutService layoutService = Graphiti.getLayoutService();
-		boolean horz = preferences.isHorizontalDefault();
+//		boolean horz = preferences.isHorizontalDefault();
+		boolean horz = true;
 
 		ILocation loc = layoutService.getLocationRelativeToDiagram(srcShape);
 		int x = loc.getX();
@@ -571,76 +573,83 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //							return null;
 						}
 					}
-					else{ //duas ou mais variantes selecionadas
+					else{ //duas ou mais variantes selecionadas		
+						sweepVariants(activity);
 						List<SequenceFlow> sequenceFlow = null;
 						List<Shape> shapeTask = new ArrayList<Shape>();
+						TreeMap<Integer, ContainerShape> shapeSeqTask = new TreeMap<Integer, ContainerShape>();
 						ContainerShape srcShape = null;
 						ContainerShape dstShape = null;
-//						if (bo instanceof FlowNode){
-							//getting outgoing elements
-							sequenceFlow = activity.getIncoming(); //pega fluxos entrando
-							FlowNode fn = (FlowNode)sequenceFlow.get(0).getSourceRef(); //pega o source do primeiro fluxo entrado
-							BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-							Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
-							srcShape = getContainerShape(fn,diagram);
-							shapeTask.add(srcShape);
-							//for each outgoing element
-//							for (SequenceFlow a: sequenceFlow){
-//							SequenceFlow a = sequenceFlow.get(0);
-								//if it is activity
-//								if (a.getTargetRef() instanceof Activity){
-//									Activity activity = (Activity)a.getTargetRef();
-									List<SequenceFlow> incoming = activity.getIncoming();
-									Activity task = null;
-									for (int i=0;i<incoming.size();i++){
-										SequenceFlow b = incoming.get(i);
-										if (b.getSourceRef() instanceof Activity){
-											task = (Activity)b.getSourceRef();
-											if (task.isVariant() && task.isCheck()){
-												FlowNode fn2 = (FlowNode)task;
-												dstShape = getContainerShape(fn2,diagram);
-												shapeTask.add(dstShape);
-												disqualifyTask(task);
-												copyDataVariant(task,task);
-											}
-										}
+						//getting incoming elements
+						sequenceFlow = activity.getIncoming(); //pega fluxos entrando
+						FlowNode fn = (FlowNode)sequenceFlow.get(0).getSourceRef(); //pega o source do primeiro fluxo entrado
+						BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+						Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
+						srcShape = getContainerShape(fn,diagram);
+						shapeTask.add(srcShape);
+//						Armazenando o shape e um valor recognizable as first shape
+						shapeSeqTask.put(0, srcShape);
+						List<SequenceFlow> incoming = activity.getIncoming();
+						Activity task = null;
+						Integer seq=0;
+						for (int i=0;i<incoming.size();i++){
+							SequenceFlow b = incoming.get(i);
+							if (b.getSourceRef() instanceof Activity){
+								task = (Activity)b.getSourceRef();
+								if (task.isVariant() && task.isCheck()){
+									FlowNode fn2 = (FlowNode)task;
+									dstShape = getContainerShape(fn2,diagram);
+									shapeTask.add(dstShape);
+//									Armazenando o shape e um valor da sequencia
+									shapeSeqTask.put(task.getSeq(), dstShape);
+									if (task.getSeq() > seq && task.getSeq()<100){
+										seq = task.getSeq();
+										next = task;
 									}
-									
-									next = task;
-									
-									List<SequenceFlow> outgoing = activity.getOutgoing();
-									for (int i=0;i<outgoing.size();i++){
-										SequenceFlow b = outgoing.get(i);
-//										next = b.getTargetRef();
-										FlowNode fn2 = (FlowNode)b.getTargetRef();
-										dstShape = getContainerShape(fn2,diagram);
-										shapeTask.add(dstShape);
-									}
-									deleteNode(activity);
-//								}
-//							}
-//						}
+									disqualifyTask(task); //jogar cpyData dentro dessa funcao
+//									copyDataVariant(task,task);
+								}
 								
-						preferences = Bpmn2Preferences.getInstance((EObject)activity);
-						srcShape = (ContainerShape) shapeTask.get(0);
-						shapeTask.remove(srcShape);
-						while (!shapeTask.isEmpty()){
-							dstShape = (ContainerShape) shapeTask.get(0);
+							}
+						}
+						
+						List<SequenceFlow> outgoing = activity.getOutgoing();
+						for (int i=0;i<outgoing.size();i++){
+							SequenceFlow b = outgoing.get(i);
+							FlowNode fn2 = (FlowNode)b.getTargetRef();
+							dstShape = getContainerShape(fn2,diagram);
+							shapeTask.add(dstShape);
+//							Armazenando o shape e um valor recognizable as last shape
+							shapeSeqTask.put(100, dstShape);
+						}
+
+//						preferences = Bpmn2Preferences.getInstance((EObject)activity);
+						deleteNode(activity);
+
+//						srcShape = (ContainerShape) shapeTask.get(0);
+						srcShape = shapeSeqTask.get(0);
+						shapeSeqTask.remove(0);
+//						shapeTask.remove(srcShape);
+//						while (!shapeTask.isEmpty()){
+						for (Integer i: shapeSeqTask.keySet()){
+//							dstShape = (ContainerShape) shapeTask.get(0);
+							dstShape = shapeSeqTask.get(i);
 							
 							IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
-//										if user made a selection, then create the new shape...
-//										ContainerShape newShape = createNewShape(oldShape, createFeature, createContext);
+//							if user made a selection, then create the new shape...
+//							ContainerShape newShape = createNewShape(oldShape, createFeature, createContext);
+							
 							moveShape(srcShape, dstShape);
-//									    ...and connect this shape to the new one with a SequenceFlow...
+//							...and connect this shape to the new one with a SequenceFlow...
 							createNewConnection(srcShape, dstShape);
 							
-//							 			.. then reroute the connection
-//										FeatureSupport.updateConnections(fp, dstShape);
+//				 			.. then reroute the connection
+//							FeatureSupport.updateConnections(fp, dstShape);
 							
 							fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().setPictogramElementForSelection(dstShape);		
 							
 							srcShape = dstShape;
-							shapeTask.remove(dstShape);
+//							shapeTask.remove(dstShape);
 						}
 							
 						return next;
