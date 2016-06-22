@@ -10,7 +10,6 @@ import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowElementsContainer;
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
@@ -25,21 +24,13 @@ import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.core.utils.Tuple;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.bpmn2.modeler.ui.features.gateway.ExclusiveGatewayFeatureContainer.CreateExclusiveGatewayFeature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.datatypes.IDimension;
@@ -48,7 +39,6 @@ import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
-import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
@@ -127,7 +117,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //			}
 //			
 			/*Instanciação do TMPN*/
-			generateModel(bo);
+//			generateModel(bo);
 //			
 //			boolean pass = false;
 //			if (!pass){
@@ -163,78 +153,92 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		}
 		types.clear();
 		
-//		List<SequenceFlow> sequenceFlow = null;
-//		List<Shape> shapeTask = new ArrayList<Shape>();
-//		ContainerShape srcShape = null;
-//		ContainerShape dstShape = null;
-//		if (bo instanceof FlowNode){
-//			//getting outgoing elements
-//			sequenceFlow = ((FlowNode) bo).getOutgoing();
-//			FlowNode fn = (FlowNode)bo;
-//			srcShape = getContainerShape(fn,diagram);
-//			shapeTask.add(srcShape);
-//			//for each outgoing element
-////			for (SequenceFlow a: sequenceFlow){
-//			SequenceFlow a = sequenceFlow.get(0);
-//				//if it is activity
-//				if (a.getTargetRef() instanceof Activity){
-//					Activity activity = (Activity)a.getTargetRef();
-//					List<SequenceFlow> incoming = activity.getIncoming();
-//					for (int i=0;i<incoming.size();i++){
-//						SequenceFlow b = incoming.get(i);
-//						if (b.getSourceRef() instanceof Activity){
-//							final Activity variant = (Activity)b.getSourceRef();
-//							if (variant.isVariant() && variant.isCheck()){
-//								FlowNode fn2 = (FlowNode)variant;
-//								dstShape = getContainerShape(fn2,diagram);
-//								shapeTask.add(dstShape);
-//								disqualifyTask(variant);
-//							}
-//						}
-//					}
-//					
-//					List<SequenceFlow> outgoing = activity.getOutgoing();
-//					for (int i=0;i<outgoing.size();i++){
-//						SequenceFlow b = outgoing.get(i);
-//						FlowNode fn2 = (FlowNode)b.getTargetRef();
-//						dstShape = getContainerShape(fn2,diagram);
-//						shapeTask.add(dstShape);
-//					}
-//					deleteNode(activity);
-//				}
-////			}
-//		}
-////		
-////		CreateContext createContext = prepareCreateContext(srcShape);
-////		
-//		preferences = Bpmn2Preferences.getInstance((EObject)bo);
-//
-//		srcShape = (ContainerShape) shapeTask.get(0);
+		List<SequenceFlow> sequenceFlow = null;
+		List<Shape> shapeTask = new ArrayList<Shape>();
+		ContainerShape srcShape = null;
+		ContainerShape dstShape = null;
+		if (bo instanceof FlowNode){
+			//getting outgoing elements
+			sequenceFlow = ((FlowNode) bo).getOutgoing();
+			FlowNode fn = (FlowNode)bo;
+			srcShape = getContainerShape(fn,diagram);
+			shapeTask.add(srcShape);
+			//for each outgoing element
+//			for (SequenceFlow a: sequenceFlow){
+			SequenceFlow a = sequenceFlow.get(0);
+				//if it is activity
+				if (a.getTargetRef() instanceof Activity){
+					Activity activity = (Activity)a.getTargetRef();
+					List<SequenceFlow> incoming = activity.getIncoming();
+					for (int i=0;i<incoming.size();i++){
+						SequenceFlow b = incoming.get(i);
+						if (b.getSourceRef() instanceof Activity){
+							final Activity variant = (Activity)b.getSourceRef();
+							if (variant.isVariant() && variant.isCheck()){
+								FlowNode fn2 = (FlowNode)variant;
+								dstShape = getContainerShape(fn2,diagram);
+								shapeTask.add(dstShape);
+								disqualifyTask(variant);
+							}
+						}
+					}
+					
+					List<SequenceFlow> outgoing = activity.getOutgoing();
+					for (int i=0;i<outgoing.size();i++){
+						SequenceFlow b = outgoing.get(i);
+						FlowNode fn2 = (FlowNode)b.getTargetRef();
+						dstShape = getContainerShape(fn2,diagram);
+						shapeTask.add(dstShape);
+					}
+					deleteNode(activity);
+				}
+//			}
+		}
+	
+		preferences = Bpmn2Preferences.getInstance((EObject)bo);
+
+		srcShape = (ContainerShape) shapeTask.get(1);
 //		shapeTask.remove(srcShape);
 //		while (!shapeTask.isEmpty()){
 //			dstShape = (ContainerShape) shapeTask.get(0);
 //			
-//			IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
-////			if user made a selection, then create the new shape...
-////			ContainerShape newShape = createNewShape(oldShape, createFeature, createContext);
+			IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+//			if user made a selection, then create the new shape...
+//			ICreateFeature createFeature = selectNewShape();
+			final ICreateFeature cf = new CreateExclusiveGatewayFeature(fp);
+			final CreateContext cc = new CreateContext();
+			cc.setX(-1);
+			cc.setY(-1);
+			cc.setTargetContainer(diagram);
+			
+			final ShapeEditor shape = new ShapeEditor();
+			final ContainerShape newShape;
+			final ContainerShape srcShape0 = srcShape;
+			
+			TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+			editingDomain1.getCommandStack().execute(new RecordingCommand(editingDomain1) {
+				@Override
+				protected void doExecute() {
+					// TODO Auto-generated method stub
+					shape.createNewShape(srcShape0, cf, cc);
+				}
+			});
+			
+			newShape = shape.getNewShape();
 //			moveShape(srcShape, dstShape);
-////		    ...and connect this shape to the new one with a SequenceFlow...
-//			createNewConnection(srcShape, dstShape);
-//			
-//// 			.. then reroute the connection
-////			FeatureSupport.updateConnections(fp, dstShape);
-//			
-//			fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().setPictogramElementForSelection(dstShape);		
-//			
+//		    ...and connect this shape to the new one with a SequenceFlow...
+			createNewConnection(srcShape, newShape);
+// 			.. then reroute the connection
+//			FeatureSupport.updateConnections(fp, dstShape);
+			
+			fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().setPictogramElementForSelection(dstShape);		
+			
 //			srcShape = dstShape;
 //			shapeTask.remove(dstShape);
 //		}
-		
-
-
 		return null;
 	}
-
+	
 	private void moveShape(ContainerShape srcShape, ContainerShape dstShape) {
 		// TODO Auto-generated method stub
 		IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
@@ -362,16 +366,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		});
 	}
 	
-//	private CreateContext prepareCreateContext(ContainerShape container) {
-//		CreateContext cc = new CreateContext();
-//		
-//		cc.setTargetContainer(container);
-//		
-//		// set the IMPORT flag so that the new shape's location is not adjusted during creation
-//		cc.putProperty(DIImport.IMPORT_PROPERTY, Boolean.TRUE);
-//		return cc;
-//	}
-	
 	protected Connection createNewConnection(ContainerShape oldShape, ContainerShape newShape) {
 		Tuple<FixPointAnchor, FixPointAnchor> anchors = AnchorUtil.getSourceAndTargetBoundaryAnchors(oldShape, newShape, null);
 
@@ -413,93 +407,101 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return connection;
 	}
 	
-//	protected ContainerShape createNewShape(ContainerShape oldShape, ICreateFeature createFeature, CreateContext createContext) {
-//		ILayoutService layoutService = Graphiti.getLayoutService();
-//		boolean horz = preferences.isHorizontalDefault();
-//
-//		ILocation loc = layoutService.getLocationRelativeToDiagram(oldShape);
-//		int x = loc.getX();
-//		int y = loc.getY();
-//		int xOffset = 0;
-//		int yOffset = 0;
-//		GraphicsAlgorithm ga = oldShape.getGraphicsAlgorithm();
-//		int width = ga.getWidth();
-//		int height = ga.getHeight();
-//		
-//		FlowElement newObject;
-//		ContainerShape newShape;
-//		createContext.setX(0);
-//		createContext.setY(0);
-//		Object[] created = createFeature.create(createContext);
-//		
-//		newObject = (FlowElement) created[0];
-//		newShape = (ContainerShape) created[1];
-//		
-//		ContainerShape containerShape = oldShape.getContainer();
-//		if (containerShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
-//			// we are adding a new shape to a container (e.g a SubProcess)
-//			// so we need to adjust the location to be relative to the
-//			// container instead of the diagram
-//			loc = layoutService.getLocationRelativeToDiagram(containerShape);
-//			xOffset = loc.getX();
-//			yOffset = loc.getY();
-//		}
-//		
-//		BaseElement oldObject = BusinessObjectUtil.getFirstElementOfType(oldShape, BaseElement.class);
-//		if (oldObject instanceof Lane) {
-//			((Lane)oldObject).getFlowNodeRefs().add((FlowNode)newObject);
-//		}
-//		
-//		// move the new shape so that it does not collide with an existing shape
-//		MoveShapeContext moveContext = new MoveShapeContext(newShape);//new AreaContext(), newObject);
-//		DefaultMoveShapeFeature moveFeature = (DefaultMoveShapeFeature)getFeatureProvider().getMoveShapeFeature(moveContext);
-//		IDimension size = GraphicsUtil.calculateSize(newShape);
-//		int wOffset = 50;
-//		int hOffset = 50;
-//		int w = size.getWidth();
-//		int h = size.getHeight();
-//		if (horz) {
-//			x += width + wOffset + w/2;
-//			y += height/2 - h/2;
-//			boolean done = false;
-//			while (!done) {
-//				done = true;
-//				List<Shape> shapes = getFlowElementChildren(containerShape);
-//				for (Shape s : shapes) {
-//					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
-//						y += 100;
-//						done = false;
-//						break;
-//					}
-//				}
-//			}
-//		}
-//		else {
-//			x += width/2 - w/2;
-//			y += height + hOffset + h/2;
-//			boolean done = false;
-//			while (!done) {
-//				done = true;
-//				List<Shape> shapes = getFlowElementChildren(containerShape);
-//				for (Shape s : shapes) {
-//					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
-//						x += 100;
-//						done = false;
-//						break;
-//					}
-//				}
-//			}
-//		}
-//		moveContext.setX(x - xOffset);
-//		moveContext.setY(y - yOffset);
-//		moveContext.setSourceContainer( oldShape.getContainer() );
-//		moveContext.setTargetContainer( oldShape.getContainer() );
-//		
-//		if (moveFeature.canMoveShape(moveContext))
-//			moveFeature.moveShape(moveContext);
-//		
-//		return newShape;
-//	}
+	protected ContainerShape createNewShape(ContainerShape oldShape, final ICreateFeature createFeature, final CreateContext createContext) {
+		ILayoutService layoutService = Graphiti.getLayoutService();
+		IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+		boolean horz = preferences.isHorizontalDefault();
+
+		ILocation loc = layoutService.getLocationRelativeToDiagram(oldShape);
+		int x = loc.getX();
+		int y = loc.getY();
+		int xOffset = 0;
+		int yOffset = 0;
+		GraphicsAlgorithm ga = oldShape.getGraphicsAlgorithm();
+		int width = ga.getWidth();
+		int height = ga.getHeight();
+		
+		final FlowElement newObject;
+		final ContainerShape newShape;
+		createContext.setX(0);
+		createContext.setY(0);
+	
+		Object[] created = createFeature.create(createContext);
+		newObject = (FlowElement) created[0];
+		newShape = (ContainerShape) created[1];		
+		
+		ContainerShape containerShape = oldShape.getContainer();
+		if (containerShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
+			// we are adding a new shape to a container (e.g a SubProcess)
+			// so we need to adjust the location to be relative to the
+			// container instead of the diagram
+			loc = layoutService.getLocationRelativeToDiagram(containerShape);
+			xOffset = loc.getX();
+			yOffset = loc.getY();
+		}
+		
+		BaseElement oldObject = BusinessObjectUtil.getFirstElementOfType(oldShape, BaseElement.class);
+		if (oldObject instanceof Lane) {
+			((Lane)oldObject).getFlowNodeRefs().add((FlowNode)newObject);
+		}
+		
+		// move the new shape so that it does not collide with an existing shape
+		final MoveShapeContext moveContext = new MoveShapeContext(newShape);//new AreaContext(), newObject);
+		final DefaultMoveShapeFeature moveFeature = (DefaultMoveShapeFeature)fp.getMoveShapeFeature(moveContext);
+		IDimension size = GraphicsUtil.calculateSize(newShape);
+		int wOffset = 50;
+		int hOffset = 50;
+		int w = size.getWidth();
+		int h = size.getHeight();
+		if (horz) {
+			x += width + wOffset + w/2;
+			y += height/2 - h/2;
+			boolean done = false;
+			while (!done) {
+				done = true;
+				List<Shape> shapes = getFlowElementChildren(containerShape);
+				for (Shape s : shapes) {
+					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
+						y += 100;
+						done = false;
+						break;
+					}
+				}
+			}
+		}
+		else {
+			x += width/2 - w/2;
+			y += height + hOffset + h/2;
+			boolean done = false;
+			while (!done) {
+				done = true;
+				List<Shape> shapes = getFlowElementChildren(containerShape);
+				for (Shape s : shapes) {
+					if (GraphicsUtil.intersects(s, x-w/2, y-h/2, w, h)) {
+						x += 100;
+						done = false;
+						break;
+					}
+				}
+			}
+		}
+		moveContext.setX(x - xOffset);
+		moveContext.setY(y - yOffset);
+		moveContext.setSourceContainer( oldShape.getContainer() );
+		moveContext.setTargetContainer( oldShape.getContainer() );
+		
+		if (moveFeature.canMoveShape(moveContext)){
+			TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				@Override
+				protected void doExecute() {
+					moveFeature.moveShape(moveContext);
+				}
+			});
+		}
+		
+		return newShape;
+	}
 
 	private void generateModel(Object bo) {
 		// TODO Auto-generated method stub
@@ -609,7 +611,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 									disqualifyTask(task); //jogar cpyData dentro dessa funcao
 //									copyDataVariant(task,task);
 								}
-								
 							}
 						}
 						
