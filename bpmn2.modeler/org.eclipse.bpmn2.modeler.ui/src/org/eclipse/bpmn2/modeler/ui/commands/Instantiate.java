@@ -2,7 +2,6 @@ package org.eclipse.bpmn2.modeler.ui.commands;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
@@ -15,7 +14,6 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
-import org.eclipse.bpmn2.modeler.core.di.DIImport;
 import org.eclipse.bpmn2.modeler.core.model.Bpmn2ModelerFactory;
 import org.eclipse.bpmn2.modeler.core.preferences.Bpmn2Preferences;
 import org.eclipse.bpmn2.modeler.core.utils.AnchorUtil;
@@ -24,7 +22,6 @@ import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.core.utils.Tuple;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
-import org.eclipse.bpmn2.modeler.ui.features.gateway.ExclusiveGatewayFeatureContainer.CreateExclusiveGatewayFeature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -67,8 +64,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-//		MessageDialog.openInformation(HandlerUtil.getActiveWorkbenchWindow(event).getShell(), "Info", "Info for you");
-		
+	
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
@@ -117,7 +113,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //			}
 //			
 			/*Instanciação do TMPN*/
-//			generateModel(bo);
+			generateModel(bo);
 //			
 //			boolean pass = false;
 //			if (!pass){
@@ -153,89 +149,88 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		}
 		types.clear();
 		
-		List<SequenceFlow> sequenceFlow = null;
-		List<Shape> shapeTask = new ArrayList<Shape>();
-		ContainerShape srcShape = null;
-		ContainerShape dstShape = null;
-		if (bo instanceof FlowNode){
-			//getting outgoing elements
-			sequenceFlow = ((FlowNode) bo).getOutgoing();
-			FlowNode fn = (FlowNode)bo;
-			srcShape = getContainerShape(fn,diagram);
-			shapeTask.add(srcShape);
-			//for each outgoing element
-//			for (SequenceFlow a: sequenceFlow){
-			SequenceFlow a = sequenceFlow.get(0);
-				//if it is activity
-				if (a.getTargetRef() instanceof Activity){
-					Activity activity = (Activity)a.getTargetRef();
-					List<SequenceFlow> incoming = activity.getIncoming();
-					for (int i=0;i<incoming.size();i++){
-						SequenceFlow b = incoming.get(i);
-						if (b.getSourceRef() instanceof Activity){
-							final Activity variant = (Activity)b.getSourceRef();
-							if (variant.isVariant() && variant.isCheck()){
-								FlowNode fn2 = (FlowNode)variant;
-								dstShape = getContainerShape(fn2,diagram);
-								shapeTask.add(dstShape);
-								disqualifyTask(variant);
-							}
-						}
-					}
-					
-					List<SequenceFlow> outgoing = activity.getOutgoing();
-					for (int i=0;i<outgoing.size();i++){
-						SequenceFlow b = outgoing.get(i);
-						FlowNode fn2 = (FlowNode)b.getTargetRef();
-						dstShape = getContainerShape(fn2,diagram);
-						shapeTask.add(dstShape);
-					}
-					deleteNode(activity);
-				}
-//			}
-		}
-	
-		preferences = Bpmn2Preferences.getInstance((EObject)bo);
-
-		srcShape = (ContainerShape) shapeTask.get(1);
-//		shapeTask.remove(srcShape);
-//		while (!shapeTask.isEmpty()){
-//			dstShape = (ContainerShape) shapeTask.get(0);
-//			
-			IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
-//			if user made a selection, then create the new shape...
-//			ICreateFeature createFeature = selectNewShape();
-			final ICreateFeature cf = new CreateExclusiveGatewayFeature(fp);
-			final CreateContext cc = new CreateContext();
-			cc.setX(-1);
-			cc.setY(-1);
-			cc.setTargetContainer(diagram);
-			
-			final ShapeEditor shape = new ShapeEditor();
-			final ContainerShape newShape;
-			final ContainerShape srcShape0 = srcShape;
-			
-			TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
-			editingDomain1.getCommandStack().execute(new RecordingCommand(editingDomain1) {
-				@Override
-				protected void doExecute() {
-					// TODO Auto-generated method stub
-					shape.createNewShape(srcShape0, cf, cc);
-				}
-			});
-			
-			newShape = shape.getNewShape();
-//			moveShape(srcShape, dstShape);
-//		    ...and connect this shape to the new one with a SequenceFlow...
-			createNewConnection(srcShape, newShape);
-// 			.. then reroute the connection
-//			FeatureSupport.updateConnections(fp, dstShape);
-			
-			fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().setPictogramElementForSelection(dstShape);		
-			
-//			srcShape = dstShape;
-//			shapeTask.remove(dstShape);
+//		List<SequenceFlow> sequenceFlow = null;
+//		List<Shape> shapeTask = new ArrayList<Shape>();
+//		ContainerShape srcShape = null;
+//		ContainerShape dstShape = null;
+//		int mapSeq[] = new int[100];
+//		if (bo instanceof FlowNode){
+//			//getting outgoing elements
+//			sequenceFlow = ((FlowNode) bo).getOutgoing();
+//			FlowNode fn = (FlowNode)bo;
+//			srcShape = getContainerShape(fn,diagram);
+//			shapeTask.add(srcShape);
+//			//for each outgoing element
+////			for (SequenceFlow a: sequenceFlow){
+//			SequenceFlow a = sequenceFlow.get(0);
+//				//if it is activity
+//				if (a.getTargetRef() instanceof Activity){
+//					Activity activity = (Activity)a.getTargetRef();
+//					List<SequenceFlow> incoming = activity.getIncoming();
+//					for (int i=0;i<incoming.size();i++){
+//						SequenceFlow b = incoming.get(i);
+//						if (b.getSourceRef() instanceof Activity){
+//							final Activity variant = (Activity)b.getSourceRef();
+//							if (variant.isVariant() && variant.isCheck()){
+//								FlowNode fn2 = (FlowNode)variant;
+//								dstShape = getContainerShape(fn2,diagram);
+//								shapeTask.add(dstShape);
+//
+//								int pos = variant.getSeq();
+//								int value = mapSeq[pos]+1;
+//								mapSeq[pos] = value;
+////								mapSeq[variant.getSeq()] = mapSeq[variant.getSeq()]++;
+//								
+//								disqualifyTask(variant);
+//							}
+//						}
+//					}
+//					
+//					List<SequenceFlow> outgoing = activity.getOutgoing();
+//					for (int i=0;i<outgoing.size();i++){
+//						SequenceFlow b = outgoing.get(i);
+//						FlowNode fn2 = (FlowNode)b.getTargetRef();
+//						dstShape = getContainerShape(fn2,diagram);
+//						shapeTask.add(dstShape);
+//					}
+//					deleteNode(activity);
+//				}
+////			}
 //		}
+	
+//		preferences = Bpmn2Preferences.getInstance((EObject)bo);
+//
+//		srcShape = (ContainerShape) shapeTask.get(1);
+////		shapeTask.remove(srcShape);
+////		while (!shapeTask.isEmpty()){
+////			dstShape = (ContainerShape) shapeTask.get(0);
+//			
+//			final ShapeEditor gateway = new ShapeEditor();
+//			final ICreateFeature cf = gateway.getICreateFeature(2);
+//			final CreateContext cc = gateway.getICreateContext();
+//			final ContainerShape newShape;
+//			final ContainerShape srcShape0 = srcShape;
+//			
+//			TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+//			editingDomain1.getCommandStack().execute(new RecordingCommand(editingDomain1) {
+//				@Override
+//				protected void doExecute() {
+//					// TODO Auto-generated method stub
+//					gateway.createNewShape(srcShape0, cf, cc);
+//				}
+//			});
+//			
+//			newShape = gateway.getNewShape();
+////			moveShape(srcShape, dstShape);
+////		    ...and connect this shape to the new one with a SequenceFlow...
+//			createNewConnection(srcShape, newShape);
+//			createNewConnection(newShape, srcShape);
+//// 			.. then reroute the connection
+////			FeatureSupport.updateConnections(fp, dstShape);	
+//			
+////			srcShape = dstShape;
+////			shapeTask.remove(dstShape);
+////		}
 		return null;
 	}
 	
@@ -256,13 +251,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		int height = ga.getHeight();
 		
 		FlowElement dstObject = null;
-//		ContainerShape newShape;
-//		createContext.setX(0);
-//		createContext.setY(0);
-//		Object[] created = createFeature.create(createContext);
-//		
-//		newObject = (FlowElement) created[0];
-//		newShape = (ContainerShape) created[1];
 		
 		ContainerShape containerShape = srcShape.getContainer();
 		if (containerShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
@@ -508,7 +496,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		List<SequenceFlow> sequenceFlow = null;
 		Object next = null;
 		if (bo instanceof StartEvent){
-			System.out.println("GM - Start Event");
 			//getting outgoing elements
 			sequenceFlow = ((StartEvent) bo).getOutgoing();
 			//for each outgoing element
@@ -516,7 +503,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				//if it is activity
 				if (a.getTargetRef() instanceof Activity){
 					Activity activity = (Activity)a.getTargetRef();
-//					System.out.println("Activity");
 					//if it is varpoint
 					if (activity.isVarPoint()){
 //						if (checkVarpoints(activity))
@@ -531,30 +517,26 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		}
 		
 		if (bo instanceof Activity){
-			System.out.println("GM - Activity");
-			
-//			if (checkVarpoints((Activity)bo)){
 			//getting outgoing elements
-				sequenceFlow = ((Activity) bo).getOutgoing();
-				//for each outgoing element
-				for (SequenceFlow a: sequenceFlow){
-					//if it is activity
-					if (a.getTargetRef() instanceof Activity){
-						Activity activity = (Activity)a.getTargetRef();
-						//if it is varpoint
-						if (activity.isVarPoint()){
-							next = sweepVarpoints(activity);
+			sequenceFlow = ((Activity) bo).getOutgoing();
+			//for each outgoing element
+			for (SequenceFlow a: sequenceFlow){
+				//if it is activity
+				if (a.getTargetRef() instanceof Activity){
+					Activity activity = (Activity)a.getTargetRef();
+					//if it is varpoint
+					if (activity.isVarPoint()){
+						next = sweepVarpoints(activity);
 							if (next!=null)
 								generateModel(next);
 							else
 								generateModel((Object)activity);
-						}
-					}
-					if (a.getTargetRef() instanceof EndEvent){
-						System.out.println("GM - End Event ;)");
 					}
 				}
-//			}
+				if (a.getTargetRef() instanceof EndEvent){
+					System.out.println("GM - End Event ;)");
+				}
+			}
 		}
 	}
 
@@ -578,8 +560,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 					else{ //duas ou mais variantes selecionadas		
 						sweepVariants(activity);
 						List<SequenceFlow> sequenceFlow = null;
-						List<Shape> shapeTask = new ArrayList<Shape>();
-						TreeMap<Integer, ContainerShape> shapeSeqTask = new TreeMap<Integer, ContainerShape>();
+						SuperContainer superShape = null;
+						List<ContainerShape> cShape = new ArrayList<ContainerShape>();
+						ArrayList<List<SuperContainer>> group = new ArrayList<List<SuperContainer>>();
+						while(group.size() < 100) group.add(new ArrayList<SuperContainer>());
 						ContainerShape srcShape = null;
 						ContainerShape dstShape = null;
 						//getting incoming elements
@@ -588,9 +572,14 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 						Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
 						srcShape = getContainerShape(fn,diagram);
-						shapeTask.add(srcShape);
 //						Armazenando o shape e um valor recognizable as first shape
-						shapeSeqTask.put(0, srcShape);
+						cShape.add(srcShape);
+						
+						superShape = new SuperContainer(srcShape,0,"none");
+						List<SuperContainer> temp = new ArrayList<SuperContainer>(group.get(0));
+						temp.add(superShape);
+						group.set(0, new ArrayList<SuperContainer>(temp));
+						
 						List<SequenceFlow> incoming = activity.getIncoming();
 						Activity task = null;
 						Integer seq=0;
@@ -601,17 +590,32 @@ public class Instantiate extends AbstractHandler implements IHandler {
 								if (task.isVariant() && task.isCheck()){
 									FlowNode fn2 = (FlowNode)task;
 									dstShape = getContainerShape(fn2,diagram);
-									shapeTask.add(dstShape);
-//									Armazenando o shape e um valor da sequencia
-									shapeSeqTask.put(task.getSeq(), dstShape);
+									
+//									Armazenando o shape, um valor da sequencia e o gateway
+									cShape.add(dstShape);
+
+									superShape = new SuperContainer(dstShape,task.getSeq(),task.getGateway());
+									temp = new ArrayList<SuperContainer>(group.get(task.getSeq()));
+									temp.add(superShape);
+									group.set(task.getSeq(), new ArrayList<SuperContainer>(temp));
+
 									if (task.getSeq() > seq && task.getSeq()<100){
 										seq = task.getSeq();
 										next = task;
 									}
+									
 									disqualifyTask(task); //jogar cpyData dentro dessa funcao
 //									copyDataVariant(task,task);
 								}
 							}
+						}
+						
+//						Limpando indices vazios
+						int max = group.size();
+						for (int i=max-1; i>=0;i--){
+							List<SuperContainer> mem = group.get(i);
+							if (mem.size() == 0)
+								group.remove(i);
 						}
 						
 						List<SequenceFlow> outgoing = activity.getOutgoing();
@@ -619,39 +623,62 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							SequenceFlow b = outgoing.get(i);
 							FlowNode fn2 = (FlowNode)b.getTargetRef();
 							dstShape = getContainerShape(fn2,diagram);
-							shapeTask.add(dstShape);
+							
 //							Armazenando o shape e um valor recognizable as last shape
-							shapeSeqTask.put(100, dstShape);
+							cShape.add(dstShape);
+							
+							superShape = new SuperContainer(dstShape,99,"none");
+							temp = new ArrayList<SuperContainer>();
+							temp.add(superShape);
+							group.add(new ArrayList<SuperContainer>(temp));
 						}
 
+
+								
 //						preferences = Bpmn2Preferences.getInstance((EObject)activity);
 						deleteNode(activity);
-
-//						srcShape = (ContainerShape) shapeTask.get(0);
-						srcShape = shapeSeqTask.get(0);
-						shapeSeqTask.remove(0);
-//						shapeTask.remove(srcShape);
-//						while (!shapeTask.isEmpty()){
-						for (Integer i: shapeSeqTask.keySet()){
-//							dstShape = (ContainerShape) shapeTask.get(0);
-							dstShape = shapeSeqTask.get(i);
-							
-							IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
-//							if user made a selection, then create the new shape...
-//							ContainerShape newShape = createNewShape(oldShape, createFeature, createContext);
-							
-							moveShape(srcShape, dstShape);
-//							...and connect this shape to the new one with a SequenceFlow...
-							createNewConnection(srcShape, dstShape);
-							
-//				 			.. then reroute the connection
-//							FeatureSupport.updateConnections(fp, dstShape);
-							
-							fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().setPictogramElementForSelection(dstShape);		
-							
-							srcShape = dstShape;
-//							shapeTask.remove(dstShape);
+		
+						srcShape = group.get(0).get(0).getContainerShape();
+						group.remove(0);
+						for (int i=0;i<group.size();i++){
+							List<SuperContainer> shapes = group.get(i);
+							ContainerShape shape = null;
+							if (shapes.size() == 1){
+//								Somente 1 variante com essa sequencia
+								dstShape = shapes.get(i).getContainerShape();
+								moveShape(srcShape, dstShape);
+								createNewConnection(srcShape, dstShape);						
+								srcShape = dstShape;
+							}
+//							Lista com mais de 1 variante com mesma sequência
+							else{
+								ShapeEditor gateway = createGateway(srcShape, shapes.get(0).getGateway());										
+								createNewConnection(srcShape, gateway.getShape());
+								
+								for (int j=0;j<shapes.size();j++){
+									shape = shapes.get(j).getContainerShape();
+									createNewConnection(gateway.getShape(), shape);
+								}
+								
+								ShapeEditor gateway2 = createGateway(shape, shapes.get(0).getGateway());
+								
+								for (int j=0;j<shapes.size();j++){
+									shape = shapes.get(j).getContainerShape();
+									createNewConnection(shape, gateway2.getShape());
+									srcShape = shape;
+								}
+								next = gateway2.getObject();
+							}
 						}
+											
+//						srcShape = cShape.get(0);
+//						cShape.remove(0);
+//						for (ContainerShape cs: cShape) {
+//							dstShape = cs;
+//							moveShape(srcShape, dstShape);
+//							createNewConnection(srcShape, dstShape);						
+//							srcShape = dstShape;
+//						}
 							
 						return next;
 					}
@@ -704,6 +731,38 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 		}
 		return next;
+	}
+
+	protected ShapeEditor createGateway(ContainerShape srcShape, String type) {
+		final ShapeEditor gateway = new ShapeEditor();
+		final ICreateFeature cf;
+		final CreateContext cc = gateway.getICreateContext();
+		final ContainerShape srcShape0 = srcShape;
+		
+		switch (type) {
+		case "##AND":
+			cf = gateway.getICreateFeature(1);
+			break;
+		case "##OR":
+			cf = gateway.getICreateFeature(2);
+			break;
+		case "##XOR":
+			cf = gateway.getICreateFeature(3);
+			break;
+		default:
+			cf = gateway.getICreateFeature(1);
+			break;
+		}
+		
+		TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+		editingDomain1.getCommandStack().execute(new RecordingCommand(editingDomain1) {
+			@Override
+			protected void doExecute() {
+				// TODO Auto-generated method stub
+				gateway.createNewShape(srcShape0, cf, cc);
+			}
+		});
+		return gateway;
 	}
 
 	private int numberOfCheckedVariants(Activity varpoint) {

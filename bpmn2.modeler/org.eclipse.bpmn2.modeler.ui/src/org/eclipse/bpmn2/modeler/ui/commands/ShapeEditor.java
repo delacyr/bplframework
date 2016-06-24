@@ -10,6 +10,9 @@ import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.bpmn2.modeler.ui.features.gateway.ExclusiveGatewayFeatureContainer.CreateExclusiveGatewayFeature;
+import org.eclipse.bpmn2.modeler.ui.features.gateway.InclusiveGatewayFeatureContainer.CreateInclusiveGatewayFeature;
+import org.eclipse.bpmn2.modeler.ui.features.gateway.ParallelGatewayFeatureContainer.CreateParallelGatewayFeature;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.datatypes.ILocation;
 import org.eclipse.graphiti.features.ICreateFeature;
@@ -24,7 +27,8 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILayoutService;
 
 public class ShapeEditor {
-	ContainerShape shape;
+	private ContainerShape shape;
+	private FlowNode object;
 	
 	public void createNewShape(ContainerShape oldShape, ICreateFeature createFeature, CreateContext createContext){
 		ILayoutService layoutService = Graphiti.getLayoutService();
@@ -41,14 +45,16 @@ public class ShapeEditor {
 		int width = ga.getWidth();
 		int height = ga.getHeight();
 		
-		final FlowElement newObject;
+		final FlowNode newObject;
 		final ContainerShape newShape;
 		createContext.setX(0);
 		createContext.setY(0);
 	
 		Object[] created = createFeature.create(createContext);
-		newObject = (FlowElement) created[0];
+		newObject = (FlowNode) created[0];
 		newShape = (ContainerShape) created[1];		
+		
+		newObject.setName(null);
 		
 		ContainerShape containerShape = oldShape.getContainer();
 		if (containerShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
@@ -115,10 +121,45 @@ public class ShapeEditor {
 		}
 		
 		shape = newShape;
+		object = newObject;
 	}
 	
-	public ContainerShape getNewShape(){
+	public ContainerShape getShape(){
 		return shape;
+	}
+	
+	public FlowNode getObject() {
+		return object;
+	}
+	
+	public ICreateFeature getICreateFeature(int type){
+		IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+		ICreateFeature cf = null;
+
+		switch (type) {
+		case 1:
+			cf = new CreateExclusiveGatewayFeature(fp);
+			break;
+		case 2:
+			cf = new CreateInclusiveGatewayFeature(fp);
+			break;
+		case 3:
+			cf = new CreateParallelGatewayFeature(fp);
+			break;
+
+		default:
+			break;
+		}
+		
+		return cf;
+	}
+	
+	public CreateContext getICreateContext(){
+		CreateContext cc = new CreateContext();
+		cc.setX(-1);
+		cc.setY(-1);
+		cc.setTargetContainer(BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+		return cc;
 	}
 	
 	protected List<Shape> getFlowElementChildren(ContainerShape containerShape) {
