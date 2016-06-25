@@ -138,13 +138,13 @@ public class ShapeEditor {
 
 		switch (type) {
 		case 1:
-			cf = new CreateExclusiveGatewayFeature(fp);
+			cf = new CreateParallelGatewayFeature(fp);
 			break;
 		case 2:
 			cf = new CreateInclusiveGatewayFeature(fp);
 			break;
 		case 3:
-			cf = new CreateParallelGatewayFeature(fp);
+			cf = new CreateExclusiveGatewayFeature(fp);
 			break;
 
 		default:

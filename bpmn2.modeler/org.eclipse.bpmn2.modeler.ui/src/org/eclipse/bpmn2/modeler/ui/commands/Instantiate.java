@@ -26,6 +26,13 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -69,6 +76,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
 		List<EObject> elements = element.eContents();
+//		Percorrer a lista de elementos e começar pelo StartEventImpl
 		BPMNShape bpmnShape = (BPMNShape)elements.get(0);
 
 		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
@@ -97,7 +105,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				instantiatedFolder.create(true, true, progressMonitor);
 //			} catch (CoreException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+////				e.printStackTrace();
 //			}
 //	
 //			IFile instantiated_file = editor.getModelFile();
@@ -111,10 +119,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-//			
+			
 			/*Instanciação do TMPN*/
 			generateModel(bo);
-//			
+			
 //			boolean pass = false;
 //			if (!pass){
 //				editor.doSave(progressMonitor);
@@ -148,89 +156,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			
 		}
 		types.clear();
-		
-//		List<SequenceFlow> sequenceFlow = null;
-//		List<Shape> shapeTask = new ArrayList<Shape>();
-//		ContainerShape srcShape = null;
-//		ContainerShape dstShape = null;
-//		int mapSeq[] = new int[100];
-//		if (bo instanceof FlowNode){
-//			//getting outgoing elements
-//			sequenceFlow = ((FlowNode) bo).getOutgoing();
-//			FlowNode fn = (FlowNode)bo;
-//			srcShape = getContainerShape(fn,diagram);
-//			shapeTask.add(srcShape);
-//			//for each outgoing element
-////			for (SequenceFlow a: sequenceFlow){
-//			SequenceFlow a = sequenceFlow.get(0);
-//				//if it is activity
-//				if (a.getTargetRef() instanceof Activity){
-//					Activity activity = (Activity)a.getTargetRef();
-//					List<SequenceFlow> incoming = activity.getIncoming();
-//					for (int i=0;i<incoming.size();i++){
-//						SequenceFlow b = incoming.get(i);
-//						if (b.getSourceRef() instanceof Activity){
-//							final Activity variant = (Activity)b.getSourceRef();
-//							if (variant.isVariant() && variant.isCheck()){
-//								FlowNode fn2 = (FlowNode)variant;
-//								dstShape = getContainerShape(fn2,diagram);
-//								shapeTask.add(dstShape);
-//
-//								int pos = variant.getSeq();
-//								int value = mapSeq[pos]+1;
-//								mapSeq[pos] = value;
-////								mapSeq[variant.getSeq()] = mapSeq[variant.getSeq()]++;
-//								
-//								disqualifyTask(variant);
-//							}
-//						}
-//					}
-//					
-//					List<SequenceFlow> outgoing = activity.getOutgoing();
-//					for (int i=0;i<outgoing.size();i++){
-//						SequenceFlow b = outgoing.get(i);
-//						FlowNode fn2 = (FlowNode)b.getTargetRef();
-//						dstShape = getContainerShape(fn2,diagram);
-//						shapeTask.add(dstShape);
-//					}
-//					deleteNode(activity);
-//				}
-////			}
-//		}
-	
-//		preferences = Bpmn2Preferences.getInstance((EObject)bo);
-//
-//		srcShape = (ContainerShape) shapeTask.get(1);
-////		shapeTask.remove(srcShape);
-////		while (!shapeTask.isEmpty()){
-////			dstShape = (ContainerShape) shapeTask.get(0);
-//			
-//			final ShapeEditor gateway = new ShapeEditor();
-//			final ICreateFeature cf = gateway.getICreateFeature(2);
-//			final CreateContext cc = gateway.getICreateContext();
-//			final ContainerShape newShape;
-//			final ContainerShape srcShape0 = srcShape;
-//			
-//			TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
-//			editingDomain1.getCommandStack().execute(new RecordingCommand(editingDomain1) {
-//				@Override
-//				protected void doExecute() {
-//					// TODO Auto-generated method stub
-//					gateway.createNewShape(srcShape0, cf, cc);
-//				}
-//			});
-//			
-//			newShape = gateway.getNewShape();
-////			moveShape(srcShape, dstShape);
-////		    ...and connect this shape to the new one with a SequenceFlow...
-//			createNewConnection(srcShape, newShape);
-//			createNewConnection(newShape, srcShape);
-//// 			.. then reroute the connection
-////			FeatureSupport.updateConnections(fp, dstShape);	
-//			
-////			srcShape = dstShape;
-////			shapeTask.remove(dstShape);
-////		}
+
 		return null;
 	}
 	
@@ -349,6 +275,27 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				task.setVariant(false);
 				task.setCheck(false);
 				task.setVarPoint(false);
+				
+				String str = null;
+				if (task.getInstanceName() != null){
+					String name = task.getInstanceName();
+					int indice = name.indexOf("<<");
+					if (indice > 0){
+						str = name.substring(0, indice);
+						task.setName(str);
+					}else{
+						task.setName(name);
+					}
+				}else{
+					String name = task.getName();
+					int indice = name.indexOf("<<");
+					if (indice > 0){
+						str = name.substring(0, indice);
+						task.setName(str);
+					}else{
+						task.setName(name);
+					}
+				}
 			}
 
 		});
@@ -495,30 +442,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> sequenceFlow = null;
 		Object next = null;
-		if (bo instanceof StartEvent){
-			//getting outgoing elements
-			sequenceFlow = ((StartEvent) bo).getOutgoing();
-			//for each outgoing element
-			for (SequenceFlow a: sequenceFlow){
-				//if it is activity
-				if (a.getTargetRef() instanceof Activity){
-					Activity activity = (Activity)a.getTargetRef();
-					//if it is varpoint
-					if (activity.isVarPoint()){
-//						if (checkVarpoints(activity))
-							next = sweepVarpoints(activity);
-							if (next!=null)
-								generateModel(next);
-							else
-								generateModel((Object)activity);
-					}
-				}
-			}
-		}
 		
-		if (bo instanceof Activity){
+		if (bo instanceof FlowNode){
 			//getting outgoing elements
-			sequenceFlow = ((Activity) bo).getOutgoing();
+			sequenceFlow = ((FlowNode) bo).getOutgoing();
 			//for each outgoing element
 			for (SequenceFlow a: sequenceFlow){
 				//if it is activity
@@ -532,9 +459,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							else
 								generateModel((Object)activity);
 					}
-				}
-				if (a.getTargetRef() instanceof EndEvent){
-					System.out.println("GM - End Event ;)");
 				}
 			}
 		}
@@ -561,20 +485,27 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						sweepVariants(activity);
 						List<SequenceFlow> sequenceFlow = null;
 						SuperContainer superShape = null;
-						List<ContainerShape> cShape = new ArrayList<ContainerShape>();
 						ArrayList<List<SuperContainer>> group = new ArrayList<List<SuperContainer>>();
 						while(group.size() < 100) group.add(new ArrayList<SuperContainer>());
 						ContainerShape srcShape = null;
 						ContainerShape dstShape = null;
+						
 						//getting incoming elements
 						sequenceFlow = activity.getIncoming(); //pega fluxos entrando
-						FlowNode fn = (FlowNode)sequenceFlow.get(0).getSourceRef(); //pega o source do primeiro fluxo entrado
+						FlowNode fn = null;
+						for (SequenceFlow sFlow : sequenceFlow) {
+							fn = (FlowNode)sFlow.getSourceRef(); //pega o source do primeiro fluxo entrado
+							if (fn instanceof Activity){
+								Activity a = (Activity)fn;
+								if (!a.isVarPoint() && !a.isVariant()) break;
+							}
+							else break;
+						}
 						BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 						Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
 						srcShape = getContainerShape(fn,diagram);
-//						Armazenando o shape e um valor recognizable as first shape
-						cShape.add(srcShape);
 						
+//						Armazenando o shape e um valor recognizable as first shape
 						superShape = new SuperContainer(srcShape,0,"none");
 						List<SuperContainer> temp = new ArrayList<SuperContainer>(group.get(0));
 						temp.add(superShape);
@@ -592,8 +523,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 									dstShape = getContainerShape(fn2,diagram);
 									
 //									Armazenando o shape, um valor da sequencia e o gateway
-									cShape.add(dstShape);
-
 									superShape = new SuperContainer(dstShape,task.getSeq(),task.getGateway());
 									temp = new ArrayList<SuperContainer>(group.get(task.getSeq()));
 									temp.add(superShape);
@@ -625,8 +554,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							dstShape = getContainerShape(fn2,diagram);
 							
 //							Armazenando o shape e um valor recognizable as last shape
-							cShape.add(dstShape);
-							
 							superShape = new SuperContainer(dstShape,99,"none");
 							temp = new ArrayList<SuperContainer>();
 							temp.add(superShape);
@@ -644,14 +571,22 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							List<SuperContainer> shapes = group.get(i);
 							ContainerShape shape = null;
 							if (shapes.size() == 1){
-//								Somente 1 variante com essa sequencia
-								dstShape = shapes.get(i).getContainerShape();
-								moveShape(srcShape, dstShape);
-								createNewConnection(srcShape, dstShape);						
-								srcShape = dstShape;
+								if (i != group.size()-1){
+	//								Somente 1 variante com essa sequencia
+									dstShape = shapes.get(0).getContainerShape();
+									moveShape(srcShape, dstShape);
+									createNewConnection(srcShape, dstShape);						
+									srcShape = dstShape;
+								}
+								else{
+//									Última instância quando ligamos o último gateway ao próximo dstShape
+									dstShape = shapes.get(0).getContainerShape();
+									moveShape(srcShape, dstShape);
+									createNewConnection(srcShape, dstShape);
+								}
 							}
 //							Lista com mais de 1 variante com mesma sequência
-							else{
+							if (shapes.size() > 1){
 								ShapeEditor gateway = createGateway(srcShape, shapes.get(0).getGateway());										
 								createNewConnection(srcShape, gateway.getShape());
 								
@@ -665,8 +600,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 								for (int j=0;j<shapes.size();j++){
 									shape = shapes.get(j).getContainerShape();
 									createNewConnection(shape, gateway2.getShape());
-									srcShape = shape;
-								}
+								}			
+								
+								srcShape = gateway2.getShape();
 								next = gateway2.getObject();
 							}
 						}
@@ -926,7 +862,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		List<SequenceFlow> sequenceFlow = null;
 		
 		if (bo instanceof StartEvent){
-			System.out.println("Start Event");
 			//getting outgoing elements
 			sequenceFlow = ((StartEvent) bo).getOutgoing();
 			//for each outgoing element
@@ -946,9 +881,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		}
 		
 		if (bo instanceof Activity){
-			System.out.println("Activity");
-			
-//			if (checkVarpoints((Activity)bo)){
 			//getting outgoing elements
 				sequenceFlow = ((Activity) bo).getOutgoing();
 				//for each outgoing element
@@ -965,11 +897,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //							}
 						}
 					}
-					if (a.getTargetRef() instanceof EndEvent){
-						System.out.println("End Event ;)");
-					}
 				}
-//			}
 		}
 	}
 
