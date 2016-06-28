@@ -76,14 +76,22 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
 		List<EObject> elements = element.eContents();
-//		Percorrer a lista de elementos e começar pelo StartEventImpl
-		BPMNShape bpmnShape = (BPMNShape)elements.get(0);
-
+		List<Object> startEvents = new ArrayList<Object>();
 		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
-		PictogramElement pe = BusinessObjectUtil.getPictogramElementFromDiagram(diagram, bpmnShape);
-		Object bo = BusinessObjectUtil.getBusinessObjectForPictogramElement(pe);
+//		Percorrer a lista de elementos e começar pelo StartEventImpl
+		for (EObject ob: elements){
+			if (ob instanceof BPMNShape){
+				PictogramElement pe = BusinessObjectUtil.getPictogramElementFromDiagram(diagram, (BPMNShape)ob);
+				Object bo = BusinessObjectUtil.getBusinessObjectForPictogramElement(pe);
+				if (bo instanceof StartEvent){
+					startEvents.add(bo);
+					ValidateDiagram(bo);
+				}
+			}
+		}
+
 		
-		ValidateDiagram(bo);
+//		ValidateDiagram(bo);
 		
 //		editor.doSave(null);
 		
@@ -121,7 +129,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //			}
 			
 			/*Instanciação do TMPN*/
-			generateModel(bo);
+//			for (int i=0; i<startEvents.size();i++)
+				generateModel(startEvents.get(0));
 			
 //			boolean pass = false;
 //			if (!pass){
@@ -478,143 +487,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							deleteNode(variant);
 							copyDataVariant(activity,variant);
 							updateContext(activity);
-//							return null;
 						}
 					}
 					else{ //duas ou mais variantes selecionadas		
-						sweepVariants(activity);
-						List<SequenceFlow> sequenceFlow = null;
-						SuperContainer superShape = null;
-						ArrayList<List<SuperContainer>> group = new ArrayList<List<SuperContainer>>();
-						while(group.size() < 100) group.add(new ArrayList<SuperContainer>());
-						ContainerShape srcShape = null;
-						ContainerShape dstShape = null;
-						
-						//getting incoming elements
-						sequenceFlow = activity.getIncoming(); //pega fluxos entrando
-						FlowNode fn = null;
-						for (SequenceFlow sFlow : sequenceFlow) {
-							fn = (FlowNode)sFlow.getSourceRef(); //pega o source do primeiro fluxo entrado
-							if (fn instanceof Activity){
-								Activity a = (Activity)fn;
-								if (!a.isVarPoint() && !a.isVariant()) break;
-							}
-							else break;
-						}
-						BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-						Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
-						srcShape = getContainerShape(fn,diagram);
-						
-//						Armazenando o shape e um valor recognizable as first shape
-						superShape = new SuperContainer(srcShape,0,"none");
-						List<SuperContainer> temp = new ArrayList<SuperContainer>(group.get(0));
-						temp.add(superShape);
-						group.set(0, new ArrayList<SuperContainer>(temp));
-						
-						List<SequenceFlow> incoming = activity.getIncoming();
-						Activity task = null;
-						Integer seq=0;
-						for (int i=0;i<incoming.size();i++){
-							SequenceFlow b = incoming.get(i);
-							if (b.getSourceRef() instanceof Activity){
-								task = (Activity)b.getSourceRef();
-								if (task.isVariant() && task.isCheck()){
-									FlowNode fn2 = (FlowNode)task;
-									dstShape = getContainerShape(fn2,diagram);
-									
-//									Armazenando o shape, um valor da sequencia e o gateway
-									superShape = new SuperContainer(dstShape,task.getSeq(),task.getGateway());
-									temp = new ArrayList<SuperContainer>(group.get(task.getSeq()));
-									temp.add(superShape);
-									group.set(task.getSeq(), new ArrayList<SuperContainer>(temp));
-
-									if (task.getSeq() > seq && task.getSeq()<100){
-										seq = task.getSeq();
-										next = task;
-									}
-									
-									disqualifyTask(task); //jogar cpyData dentro dessa funcao
-//									copyDataVariant(task,task);
-								}
-							}
-						}
-						
-//						Limpando indices vazios
-						int max = group.size();
-						for (int i=max-1; i>=0;i--){
-							List<SuperContainer> mem = group.get(i);
-							if (mem.size() == 0)
-								group.remove(i);
-						}
-						
-						List<SequenceFlow> outgoing = activity.getOutgoing();
-						for (int i=0;i<outgoing.size();i++){
-							SequenceFlow b = outgoing.get(i);
-							FlowNode fn2 = (FlowNode)b.getTargetRef();
-							dstShape = getContainerShape(fn2,diagram);
-							
-//							Armazenando o shape e um valor recognizable as last shape
-							superShape = new SuperContainer(dstShape,99,"none");
-							temp = new ArrayList<SuperContainer>();
-							temp.add(superShape);
-							group.add(new ArrayList<SuperContainer>(temp));
-						}
-
-
-								
-//						preferences = Bpmn2Preferences.getInstance((EObject)activity);
-						deleteNode(activity);
-		
-						srcShape = group.get(0).get(0).getContainerShape();
-						group.remove(0);
-						for (int i=0;i<group.size();i++){
-							List<SuperContainer> shapes = group.get(i);
-							ContainerShape shape = null;
-							if (shapes.size() == 1){
-								if (i != group.size()-1){
-	//								Somente 1 variante com essa sequencia
-									dstShape = shapes.get(0).getContainerShape();
-									moveShape(srcShape, dstShape);
-									createNewConnection(srcShape, dstShape);						
-									srcShape = dstShape;
-								}
-								else{
-//									Última instância quando ligamos o último gateway ao próximo dstShape
-									dstShape = shapes.get(0).getContainerShape();
-									moveShape(srcShape, dstShape);
-									createNewConnection(srcShape, dstShape);
-								}
-							}
-//							Lista com mais de 1 variante com mesma sequência
-							if (shapes.size() > 1){
-								ShapeEditor gateway = createGateway(srcShape, shapes.get(0).getGateway());										
-								createNewConnection(srcShape, gateway.getShape());
-								
-								for (int j=0;j<shapes.size();j++){
-									shape = shapes.get(j).getContainerShape();
-									createNewConnection(gateway.getShape(), shape);
-								}
-								
-								ShapeEditor gateway2 = createGateway(shape, shapes.get(0).getGateway());
-								
-								for (int j=0;j<shapes.size();j++){
-									shape = shapes.get(j).getContainerShape();
-									createNewConnection(shape, gateway2.getShape());
-								}			
-								
-								srcShape = gateway2.getShape();
-								next = gateway2.getObject();
-							}
-						}
-											
-//						srcShape = cShape.get(0);
-//						cShape.remove(0);
-//						for (ContainerShape cs: cShape) {
-//							dstShape = cs;
-//							moveShape(srcShape, dstShape);
-//							createNewConnection(srcShape, dstShape);						
-//							srcShape = dstShape;
-//						}
+						next = generateOrVarpoint(activity, next);
 							
 						return next;
 					}
@@ -626,46 +502,227 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							deleteNode(variant);
 							copyDataVariant(activity,variant);
 							updateContext(activity);
-//							return true;
 						}
 					}
-//					return false;
 				}
 			}
 			//if is Optional, must have selected variants
 			if (activity.getFeatureType().equals("##optional")){
-				if (activity.getVarPointType().equals("##OR")){
- 
-					
+				int count = numberOfCheckedVariants(activity);
+				if (count > 0){ //ao menos uma variante selecionada
+					if (activity.getVarPointType().equals("##OR")){
+						if (numberOfCheckedVariants(activity) == 1){ //somente uma variante selecionada
+							if (sweepVariants(activity)){ //exclui variantes não selecionadas
+								variant = getCheckedVariant(activity); //pega a variant selecionada
+								deleteNode(variant);
+								copyDataVariant(activity,variant);
+								updateContext(activity);
+							}
+						}
+						else{ //duas ou mais variantes selecionadas		
+							next = generateOrVarpoint(activity, next);
+								
+							return next;
+						}
+						
+					}
+					if (activity.getVarPointType().equals("##XOR")){ //uma variante
+						if (activity.isSolved()){ //se o varpoint isSolved, true
+							if (sweepVariants(activity)){ //exclui variantes não selecionadas
+								variant = getCheckedVariant(activity); //pega a variant selecionada
+								deleteNode(variant);
+								copyDataVariant(activity,variant);
+								updateContext(activity);
+							}
+						}
+					}
 				}
-				if (activity.getVarPointType().equals("##XOR")){
-					if (sweepVariants(activity));
-//						return true;
-
-//					return false;
+				else{ //nenhuma variante selecionada
+					ContainerShape sourceShape,targetShape;
+					FlowNode source = null,target = null;
+					if (sweepVariants(activity)){ //exclui variantes
+						List<SequenceFlow> incoming = activity.getIncoming();
+						for (int i=0;i<incoming.size();i++){
+							SequenceFlow b = incoming.get(i);
+							if (b.getSourceRef() instanceof FlowNode){
+								source = (FlowNode)b.getSourceRef();
+								next = source;
+							}
+						}
+						
+						List<SequenceFlow> outgoing = activity.getOutgoing();
+						for (int i=0;i<outgoing.size();i++){
+							SequenceFlow b = outgoing.get(i);
+							if (b.getTargetRef() instanceof FlowNode){
+								target = (FlowNode)b.getTargetRef();
+							}
+						}
+						
+						deleteNode(activity);
+						sourceShape = getContainerShape(source,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+						targetShape = getContainerShape(target,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+						createNewConnection(sourceShape, targetShape);
+						
+					}
 				}
 			}
 		}
 		else{ //varpoint ##none
 			if (activity.getVarPointType().equals("##OR")){ //uma ou mais variantes
- 
+				if (numberOfCheckedVariants(activity) == 1){ //somente uma variante selecionada
+					if (sweepVariants(activity)){ //exclui variantes não selecionadas
+						variant = getCheckedVariant(activity); //pega a variant selecionada
+						deleteNode(variant);
+						copyDataVariant(activity,variant);
+						updateContext(activity);
+					}
+				}
+				else{ //duas ou mais variantes selecionadas		
+					next = generateOrVarpoint(activity, next);
+						
+					return next;
+				}
 			}
 			if (activity.getVarPointType().equals("##XOR")){ //uma variante
 				//check feature type
-//				System.out.println(activity.getFeatureType()+"##XOR");
-				
 				if (activity.isSolved()){ //se o varpoint isSolved, true
 					if (sweepVariants(activity)){ //exclui variantes não selecionadas
 						variant = getCheckedVariant(activity); //pega a variant selecionada
 						deleteNode(variant);
 						copyDataVariant(activity,variant);
 						updateContext(activity);
-//						return true;
 					}
 				}
-//					return false;
 			}
 		}
+		return next;
+	}
+
+	protected Object generateOrVarpoint(final Activity activity, Object next) {
+		sweepVariants(activity);
+		List<SequenceFlow> sequenceFlow = null;
+		SuperContainer superShape = null;
+		ArrayList<List<SuperContainer>> group = new ArrayList<List<SuperContainer>>();
+		while(group.size() < 100) group.add(new ArrayList<SuperContainer>());
+		ContainerShape srcShape = null;
+		ContainerShape dstShape = null;
+		
+		//getting incoming elements
+		sequenceFlow = activity.getIncoming(); //pega fluxos entrando
+		FlowNode fn = null;
+		for (SequenceFlow sFlow : sequenceFlow) {
+			fn = (FlowNode)sFlow.getSourceRef(); //pega o source do primeiro fluxo entrado
+			if (fn instanceof Activity){
+				Activity a = (Activity)fn;
+				if (!a.isVarPoint() && !a.isVariant()) break;
+			}
+			else break;
+		}
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
+		srcShape = getContainerShape(fn,diagram);
+		
+//						Armazenando o shape e um valor recognizable as first shape
+		superShape = new SuperContainer(srcShape,0,"none");
+		List<SuperContainer> temp = new ArrayList<SuperContainer>(group.get(0));
+		temp.add(superShape);
+		group.set(0, new ArrayList<SuperContainer>(temp));
+		
+		List<SequenceFlow> incoming = activity.getIncoming();
+		Activity task = null;
+		Integer seq=0;
+		for (int i=0;i<incoming.size();i++){
+			SequenceFlow b = incoming.get(i);
+			if (b.getSourceRef() instanceof Activity){
+				task = (Activity)b.getSourceRef();
+				if (task.isVariant() && task.isCheck()){
+					FlowNode fn2 = (FlowNode)task;
+					dstShape = getContainerShape(fn2,diagram);
+					
+//									Armazenando o shape, um valor da sequencia e o gateway
+					superShape = new SuperContainer(dstShape,task.getSeq(),task.getGateway());
+					temp = new ArrayList<SuperContainer>(group.get(task.getSeq()));
+					temp.add(superShape);
+					group.set(task.getSeq(), new ArrayList<SuperContainer>(temp));
+
+					if (task.getSeq() > seq && task.getSeq()<100){
+						seq = task.getSeq();
+						next = task;
+					}
+					
+					disqualifyTask(task); //jogar cpyData dentro dessa funcao
+//									copyDataVariant(task,task);
+				}
+			}
+		}
+		
+//						Limpando indices vazios
+		int max = group.size();
+		for (int i=max-1; i>=0;i--){
+			List<SuperContainer> mem = group.get(i);
+			if (mem.size() == 0)
+				group.remove(i);
+		}
+		
+		List<SequenceFlow> outgoing = activity.getOutgoing();
+		for (int i=0;i<outgoing.size();i++){
+			SequenceFlow b = outgoing.get(i);
+			FlowNode fn2 = (FlowNode)b.getTargetRef();
+			dstShape = getContainerShape(fn2,diagram);
+			
+//							Armazenando o shape e um valor recognizable as last shape
+			superShape = new SuperContainer(dstShape,99,"none");
+			temp = new ArrayList<SuperContainer>();
+			temp.add(superShape);
+			group.add(new ArrayList<SuperContainer>(temp));
+		}
+				
+//						preferences = Bpmn2Preferences.getInstance((EObject)activity);
+			deleteNode(activity);
+
+
+			srcShape = group.get(0).get(0).getContainerShape();
+			group.remove(0);
+			for (int i=0;i<group.size();i++){
+				List<SuperContainer> shapes = group.get(i);
+				ContainerShape shape = null;
+				if (shapes.size() == 1){
+					if (i != group.size()-1){
+	//								Somente 1 variante com essa sequencia
+						dstShape = shapes.get(0).getContainerShape();
+						moveShape(srcShape, dstShape);
+						createNewConnection(srcShape, dstShape);						
+						srcShape = dstShape;
+					}
+					else{
+	//									Última instância quando ligamos o último gateway ao próximo dstShape
+						dstShape = shapes.get(0).getContainerShape();
+						moveShape(srcShape, dstShape);
+						createNewConnection(srcShape, dstShape);
+					}
+				}
+	//							Lista com mais de 1 variante com mesma sequência
+				if (shapes.size() > 1){
+					ShapeEditor gateway = createGateway(srcShape, shapes.get(0).getGateway());										
+					createNewConnection(srcShape, gateway.getShape());
+					
+					for (int j=0;j<shapes.size();j++){
+						shape = shapes.get(j).getContainerShape();
+						createNewConnection(gateway.getShape(), shape);
+					}
+					
+					ShapeEditor gateway2 = createGateway(shape, shapes.get(0).getGateway());
+					
+					for (int j=0;j<shapes.size();j++){
+						shape = shapes.get(j).getContainerShape();
+						createNewConnection(shape, gateway2.getShape());
+					}			
+					
+					srcShape = gateway2.getShape();
+					next = gateway2.getObject();
+				}
+			}
+		
 		return next;
 	}
 
@@ -826,7 +883,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return false;
 	}
 
-	protected void deleteNode(Activity activity) {
+	protected boolean deleteNode(Activity activity) {
 		Diagram diagram = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram();
 		final IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();					
 		FlowNode fn = (FlowNode)activity;
@@ -844,6 +901,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 
 		});
+		return true;
 	}
 
 	private ContainerShape getContainerShape(FlowNode fn, Diagram diagram) {
