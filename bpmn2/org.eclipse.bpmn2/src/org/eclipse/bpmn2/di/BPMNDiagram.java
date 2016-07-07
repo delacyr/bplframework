@@ -26,11 +26,13 @@ import org.eclipse.dd.di.Diagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getPlane <em>Plane</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getLabelStyle <em>Label Style</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getPhase <em>Phase</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram()
  * @model extendedMetaData="name='BPMNDiagram' kind='elementOnly'"
@@ -80,5 +82,58 @@ public interface BPMNDiagram extends Diagram {
      * @generated
      */
     List<BPMNLabelStyle> getLabelStyle();
+
+    /**
+     * Returns the value of the '<em><b>Version</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Version</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Version</em>' attribute.
+     * @see #setVersion(int)
+     * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram_Version()
+     * @model
+     * @generated
+     */
+    int getVersion();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Version</em>' attribute.
+     * @see #getVersion()
+     * @generated
+     */
+    void setVersion(int value);
+
+    /**
+     * Returns the value of the '<em><b>Phase</b></em>' attribute.
+     * The default value is <code>""</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Phase</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Phase</em>' attribute.
+     * @see #setPhase(String)
+     * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram_Phase()
+     * @model default=""
+     * @generated
+     */
+    String getPhase();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.di.BPMNDiagram#getPhase <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Phase</em>' attribute.
+     * @see #getPhase()
+     * @generated
+     */
+    void setPhase(String value);
 
 } // BPMNDiagram

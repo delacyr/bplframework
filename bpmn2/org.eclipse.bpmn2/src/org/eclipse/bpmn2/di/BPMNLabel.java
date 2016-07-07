@@ -24,10 +24,10 @@ import org.eclipse.dd.di.Label;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNLabel#getLabelStyle <em>Label Style</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNLabel()
  * @model extendedMetaData="name='BPMNLabel' kind='elementOnly'"

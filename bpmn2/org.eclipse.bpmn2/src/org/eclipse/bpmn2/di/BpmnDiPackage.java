@@ -253,13 +253,31 @@ public interface BpmnDiPackage extends EPackage {
     int BPMN_DIAGRAM__LABEL_STYLE = DiPackage.DIAGRAM_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Version</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPMN_DIAGRAM__VERSION = DiPackage.DIAGRAM_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Phase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPMN_DIAGRAM__PHASE = DiPackage.DIAGRAM_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>BPMN Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 2;
+    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.
@@ -959,6 +977,28 @@ public interface BpmnDiPackage extends EPackage {
     EReference getBPMNDiagram_LabelStyle();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Version</em>'.
+     * @see org.eclipse.bpmn2.di.BPMNDiagram#getVersion()
+     * @see #getBPMNDiagram()
+     * @generated
+     */
+    EAttribute getBPMNDiagram_Version();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.di.BPMNDiagram#getPhase <em>Phase</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Phase</em>'.
+     * @see org.eclipse.bpmn2.di.BPMNDiagram#getPhase()
+     * @see #getBPMNDiagram()
+     * @generated
+     */
+    EAttribute getBPMNDiagram_Phase();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.di.BPMNEdge <em>BPMN Edge</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1334,6 +1374,22 @@ public interface BpmnDiPackage extends EPackage {
          * @generated
          */
         EReference BPMN_DIAGRAM__LABEL_STYLE = eINSTANCE.getBPMNDiagram_LabelStyle();
+
+        /**
+         * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPMN_DIAGRAM__VERSION = eINSTANCE.getBPMNDiagram_Version();
+
+        /**
+         * The meta object literal for the '<em><b>Phase</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPMN_DIAGRAM__PHASE = eINSTANCE.getBPMNDiagram_Phase();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.

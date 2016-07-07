@@ -25,10 +25,10 @@ import org.eclipse.dd.di.Style;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNLabelStyle#getFont <em>Font</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNLabelStyle()
  * @model extendedMetaData="name='BPMNLabelStyle' kind='elementOnly'"

@@ -25,6 +25,7 @@ import org.eclipse.dd.di.LabeledShape;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNShape#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNShape#getBpmnElement <em>Bpmn Element</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.dd.di.LabeledShape;
  *   <li>{@link org.eclipse.bpmn2.di.BPMNShape#isIsMessageVisible <em>Is Message Visible</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNShape#getParticipantBandKind <em>Participant Band Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNShape()
  * @model extendedMetaData="name='BPMNShape' kind='elementOnly'"

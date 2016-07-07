@@ -26,6 +26,7 @@ import org.eclipse.dd.di.LabeledEdge;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNEdge#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNEdge#getBpmnElement <em>Bpmn Element</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.dd.di.LabeledEdge;
  *   <li>{@link org.eclipse.bpmn2.di.BPMNEdge#getSourceElement <em>Source Element</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNEdge#getTargetElement <em>Target Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNEdge()
  * @model extendedMetaData="name='BPMNEdge' kind='elementOnly'"

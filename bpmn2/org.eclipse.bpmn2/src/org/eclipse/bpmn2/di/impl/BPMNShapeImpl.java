@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNShapeImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNShapeImpl#getBpmnElement <em>Bpmn Element</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNShapeImpl#isIsMessageVisible <em>Is Message Visible</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNShapeImpl#getParticipantBandKind <em>Participant Band Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

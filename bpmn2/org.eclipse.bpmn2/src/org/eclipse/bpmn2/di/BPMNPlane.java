@@ -25,10 +25,10 @@ import org.eclipse.dd.di.Plane;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNPlane#getBpmnElement <em>Bpmn Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNPlane()
  * @model extendedMetaData="name='BPMNPlane' kind='elementOnly'"

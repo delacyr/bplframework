@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.bpmn2.di.DocumentRoot#getBPMNPlane <em>BPMN Plane</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.DocumentRoot#getBPMNShape <em>BPMN Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getDocumentRoot()
  * @model extendedMetaData="name='' kind='mixed'"

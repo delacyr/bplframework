@@ -39,11 +39,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getPlane <em>Plane</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getLabelStyle <em>Label Style</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getPhase <em>Phase</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -67,6 +69,46 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * @ordered
      */
     protected EList<BPMNLabelStyle> labelStyle;
+
+    /**
+     * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getVersion()
+     * @generated
+     * @ordered
+     */
+    protected static final int VERSION_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getVersion()
+     * @generated
+     * @ordered
+     */
+    protected int version = VERSION_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getPhase() <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPhase()
+     * @generated
+     * @ordered
+     */
+    protected static final String PHASE_EDEFAULT = "";
+
+    /**
+     * The cached value of the '{@link #getPhase() <em>Phase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPhase()
+     * @generated
+     * @ordered
+     */
+    protected String phase = PHASE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -155,6 +197,50 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
+    public int getVersion() {
+        return version;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setVersion(int newVersion) {
+        int oldVersion = version;
+        version = newVersion;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    BpmnDiPackage.BPMN_DIAGRAM__VERSION, oldVersion, version));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getPhase() {
+        return phase;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPhase(String newPhase) {
+        String oldPhase = phase;
+        phase = newPhase;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    BpmnDiPackage.BPMN_DIAGRAM__PHASE, oldPhase, phase));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -179,6 +265,10 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             return getPlane();
         case BpmnDiPackage.BPMN_DIAGRAM__LABEL_STYLE:
             return getLabelStyle();
+        case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
+            return getVersion();
+        case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
+            return getPhase();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -199,6 +289,12 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             getLabelStyle().clear();
             getLabelStyle().addAll((Collection<? extends BPMNLabelStyle>) newValue);
             return;
+        case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
+            setVersion((Integer) newValue);
+            return;
+        case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
+            setPhase((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -217,6 +313,12 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         case BpmnDiPackage.BPMN_DIAGRAM__LABEL_STYLE:
             getLabelStyle().clear();
             return;
+        case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
+            setVersion(VERSION_EDEFAULT);
+            return;
+        case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
+            setPhase(PHASE_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -233,8 +335,31 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             return plane != null;
         case BpmnDiPackage.BPMN_DIAGRAM__LABEL_STYLE:
             return labelStyle != null && !labelStyle.isEmpty();
+        case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
+            return version != VERSION_EDEFAULT;
+        case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
+            return PHASE_EDEFAULT == null ? phase != null : !PHASE_EDEFAULT.equals(phase);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy())
+            return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (version: ");
+        result.append(version);
+        result.append(", phase: ");
+        result.append(phase);
+        result.append(')');
+        return result.toString();
     }
 
     @Override

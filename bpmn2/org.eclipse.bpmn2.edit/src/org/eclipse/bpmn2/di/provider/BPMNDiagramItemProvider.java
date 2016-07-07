@@ -27,12 +27,14 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -65,8 +67,42 @@ public class BPMNDiagramItemProvider extends DiagramItemProvider implements
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addVersionPropertyDescriptor(object);
+            addPhasePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Version feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addVersionPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_BPMNDiagram_version_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_BPMNDiagram_version_feature",
+                        "_UI_BPMNDiagram_type"), BpmnDiPackage.Literals.BPMN_DIAGRAM__VERSION,
+                true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Phase feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPhasePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_BPMNDiagram_phase_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_BPMNDiagram_phase_feature",
+                        "_UI_BPMNDiagram_type"), BpmnDiPackage.Literals.BPMN_DIAGRAM__PHASE, true,
+                false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -140,6 +176,11 @@ public class BPMNDiagramItemProvider extends DiagramItemProvider implements
         updateChildren(notification);
 
         switch (notification.getFeatureID(BPMNDiagram.class)) {
+        case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
+        case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
+                    false, true));
+            return;
         case BpmnDiPackage.BPMN_DIAGRAM__PLANE:
         case BpmnDiPackage.BPMN_DIAGRAM__LABEL_STYLE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),

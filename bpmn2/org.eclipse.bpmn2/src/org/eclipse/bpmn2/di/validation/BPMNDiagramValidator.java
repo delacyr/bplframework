@@ -21,4 +21,8 @@ public interface BPMNDiagramValidator {
     boolean validatePlane(BPMNPlane value);
 
     boolean validateLabelStyle(List<BPMNLabelStyle> value);
+
+    boolean validateVersion(int value);
+
+    boolean validatePhase(String value);
 }

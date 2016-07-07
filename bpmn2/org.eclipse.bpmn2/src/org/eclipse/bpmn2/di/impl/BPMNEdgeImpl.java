@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl#getBpmnElement <em>Bpmn Element</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl#getSourceElement <em>Source Element</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl#getTargetElement <em>Target Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

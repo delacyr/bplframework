@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.bpmn2.di.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -55,7 +56,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.di.impl.DocumentRootImpl#getBPMNPlane <em>BPMN Plane</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.DocumentRootImpl#getBPMNShape <em>BPMN Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
