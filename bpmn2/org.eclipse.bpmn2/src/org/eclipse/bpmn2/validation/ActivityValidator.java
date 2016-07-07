@@ -86,6 +86,8 @@ public interface ActivityValidator {
 
     boolean validateSpecsName(String value);
 
+    boolean validateCondition(String value);
+
     boolean validateHideInstanceName(boolean value);
 
     boolean validateShowInstanceName(boolean value);

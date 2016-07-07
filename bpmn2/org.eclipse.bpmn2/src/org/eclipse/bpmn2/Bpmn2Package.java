@@ -1982,13 +1982,22 @@ public interface Bpmn2Package extends EPackage {
     int ACTIVITY__SPECS_NAME = FLOW_NODE_FEATURE_COUNT + 24;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__CONDITION = FLOW_NODE_FEATURE_COUNT + 25;
+
+    /**
      * The number of structural features of the '<em>Activity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 25;
+    int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 26;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.SubProcessImpl <em>Sub Process</em>}' class.
@@ -2332,6 +2341,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SUB_PROCESS__SPECS_NAME = ACTIVITY__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUB_PROCESS__CONDITION = ACTIVITY__CONDITION;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -2720,6 +2738,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int AD_HOC_SUB_PROCESS__SPECS_NAME = SUB_PROCESS__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AD_HOC_SUB_PROCESS__CONDITION = SUB_PROCESS__CONDITION;
 
     /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
@@ -4026,6 +4053,15 @@ public interface Bpmn2Package extends EPackage {
     int TASK__SPECS_NAME = ACTIVITY__SPECS_NAME;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TASK__CONDITION = ACTIVITY__CONDITION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4394,6 +4430,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int BUSINESS_RULE_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_RULE_TASK__CONDITION = TASK__CONDITION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -4773,6 +4818,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int CALL_ACTIVITY__SPECS_NAME = ACTIVITY__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_ACTIVITY__CONDITION = ACTIVITY__CONDITION;
 
     /**
      * The feature id for the '<em><b>Called Element Ref</b></em>' reference.
@@ -14532,6 +14586,15 @@ public interface Bpmn2Package extends EPackage {
     int MANUAL_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANUAL_TASK__CONDITION = TASK__CONDITION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16773,6 +16836,15 @@ public interface Bpmn2Package extends EPackage {
     int RECEIVE_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RECEIVE_TASK__CONDITION = TASK__CONDITION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -17671,6 +17743,15 @@ public interface Bpmn2Package extends EPackage {
     int SCRIPT_TASK__SPECS_NAME = TASK__SPECS_NAME;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCRIPT_TASK__CONDITION = TASK__CONDITION;
+
+    /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -18057,6 +18138,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SEND_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEND_TASK__CONDITION = TASK__CONDITION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -18599,6 +18689,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int SERVICE_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE_TASK__CONDITION = TASK__CONDITION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -20006,6 +20105,15 @@ public interface Bpmn2Package extends EPackage {
     int TRANSACTION__SPECS_NAME = SUB_PROCESS__SPECS_NAME;
 
     /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TRANSACTION__CONDITION = SUB_PROCESS__CONDITION;
+
+    /**
      * The feature id for the '<em><b>Lane Sets</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -20410,6 +20518,15 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int USER_TASK__SPECS_NAME = TASK__SPECS_NAME;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_TASK__CONDITION = TASK__CONDITION;
 
     /**
      * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference list.
@@ -22723,6 +22840,17 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      */
     EAttribute getActivity_SpecsName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#getCondition <em>Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Condition</em>'.
+     * @see org.eclipse.bpmn2.Activity#getCondition()
+     * @see #getActivity()
+     * @generated
+     */
+    EAttribute getActivity_Condition();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.Activity#isShowInstanceName <em>Show Instance Name</em>}'.
@@ -29262,6 +29390,14 @@ public interface Bpmn2Package extends EPackage {
          * @generated
          */
         EAttribute ACTIVITY__SPECS_NAME = eINSTANCE.getActivity_SpecsName();
+
+        /**
+         * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTIVITY__CONDITION = eINSTANCE.getActivity_Condition();
 
         /**
          * The meta object literal for the '<em><b>Show Instance Name</b></em>' attribute feature.

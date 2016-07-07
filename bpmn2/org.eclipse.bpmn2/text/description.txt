@@ -181,6 +181,7 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Attribute showInstanceName : EBoolean
     Attribute instanceName : EString
     Attribute specsName : EString
+    Attribute condition : EString
 
   Class AdHocSubProcess -> SubProcess
     Reference completionCondition : Expression<<1..1>>

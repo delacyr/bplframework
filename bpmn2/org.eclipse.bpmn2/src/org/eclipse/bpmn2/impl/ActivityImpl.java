@@ -72,6 +72,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#isShowInstanceName <em>Show Instance Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getInstanceName <em>Instance Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getSpecsName <em>Specs Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ActivityImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
  * @generated
@@ -476,6 +477,26 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * @ordered
      */
     protected String specsName = SPECS_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCondition()
+     * @generated
+     * @ordered
+     */
+    protected static final String CONDITION_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCondition()
+     * @generated
+     * @ordered
+     */
+    protected String condition = CONDITION_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -1113,6 +1134,28 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getCondition() {
+        return condition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCondition(String newCondition) {
+        String oldCondition = condition;
+        condition = newCondition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Bpmn2Package.ACTIVITY__CONDITION,
+                    oldCondition, condition));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public boolean isShowInstanceName() {
         return showInstanceName;
     }
@@ -1237,6 +1280,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
             return getInstanceName();
         case Bpmn2Package.ACTIVITY__SPECS_NAME:
             return getSpecsName();
+        case Bpmn2Package.ACTIVITY__CONDITION:
+            return getCondition();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1332,6 +1377,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__SPECS_NAME:
             setSpecsName((String) newValue);
             return;
+        case Bpmn2Package.ACTIVITY__CONDITION:
+            setCondition((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -1419,6 +1467,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__SPECS_NAME:
             setSpecsName(SPECS_NAME_EDEFAULT);
             return;
+        case Bpmn2Package.ACTIVITY__CONDITION:
+            setCondition(CONDITION_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -1486,6 +1537,9 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         case Bpmn2Package.ACTIVITY__SPECS_NAME:
             return SPECS_NAME_EDEFAULT == null ? specsName != null : !SPECS_NAME_EDEFAULT
                     .equals(specsName);
+        case Bpmn2Package.ACTIVITY__CONDITION:
+            return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT
+                    .equals(condition);
         }
         return super.eIsSet(featureID);
     }
@@ -1531,6 +1585,8 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
         result.append(instanceName);
         result.append(", specsName: ");
         result.append(specsName);
+        result.append(", condition: ");
+        result.append(condition);
         result.append(')');
         return result.toString();
     }

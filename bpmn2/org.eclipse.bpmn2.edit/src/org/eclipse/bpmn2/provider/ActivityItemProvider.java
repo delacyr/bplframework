@@ -81,6 +81,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
             addShowInstanceNamePropertyDescriptor(object);
             addInstanceNamePropertyDescriptor(object);
             addSpecsNamePropertyDescriptor(object);
+            addConditionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -348,6 +349,22 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
     }
 
     /**
+     * This adds a property descriptor for the Condition feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addConditionPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_Activity_condition_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_Activity_condition_feature",
+                        "_UI_Activity_type"), Bpmn2Package.Literals.ACTIVITY__CONDITION, true,
+                false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
+
+    /**
      * This adds a property descriptor for the Show Instance Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -441,6 +458,7 @@ public class ActivityItemProvider extends FlowNodeItemProvider implements
         case Bpmn2Package.ACTIVITY__SHOW_INSTANCE_NAME:
         case Bpmn2Package.ACTIVITY__INSTANCE_NAME:
         case Bpmn2Package.ACTIVITY__SPECS_NAME:
+        case Bpmn2Package.ACTIVITY__CONDITION:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

@@ -50,6 +50,7 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.Activity#isShowInstanceName <em>Show Instance Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getInstanceName <em>Instance Name</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.Activity#getSpecsName <em>Specs Name</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.Activity#getCondition <em>Condition</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getActivity()
@@ -658,6 +659,32 @@ public interface Activity extends FlowNode {
      * @generated
      */
     void setSpecsName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Condition</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Condition</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Condition</em>' attribute.
+     * @see #setCondition(String)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getActivity_Condition()
+     * @model
+     * @generated
+     */
+    String getCondition();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.Activity#getCondition <em>Condition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Condition</em>' attribute.
+     * @see #getCondition()
+     * @generated
+     */
+    void setCondition(String value);
 
     /**
      * Returns the value of the '<em><b>Show Instance Name</b></em>' attribute.

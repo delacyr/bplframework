@@ -4,6 +4,8 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.bpmn2.modeler.ui.property.tasks.messages"; //$NON-NLS-1$
+
+	
 	
 	public static String ActivityDetailComposite_Loop_Characteristics_Label;
 	public static String ActivityDetailComposite_Map_Incoming_Message;
@@ -78,6 +80,7 @@ public class Messages extends NLS {
 	public static String InstantiationDetailComposite_Instance_Name_Description;
 	public static String InstantiationDetailComposite_Unchecked_Variant;
 	public static String InstantiationDetailComposite_Gateway_Change;
+	public static String InstantiationDetailComposite_Condition_Description;
 	
 	static {
 		// initialize resource bundle

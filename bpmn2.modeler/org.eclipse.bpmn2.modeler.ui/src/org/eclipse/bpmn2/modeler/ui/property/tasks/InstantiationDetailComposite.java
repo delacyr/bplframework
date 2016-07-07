@@ -60,6 +60,7 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	protected TextObjectEditor instanceElementName;
 	protected GatewayObjectEditor gateway;
 	protected SequenceObjectEditor seqList;
+	protected TextObjectEditor condition;
 
 	public InstantiationDetailComposite(Composite parent, int style) {
 		super(parent, style);
@@ -79,7 +80,8 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 				String[] properties = new String[] { "instanceName",
 													"showInstanceName",
 													"gateway", //BPMN* //$NON-NLS-1$
-												 "seq", //BPMN*
+												 "seq",
+												"condition" //BPMN*
 				};
 
 				@Override
@@ -104,6 +106,7 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		instanceElementName = null;
 		gateway = null;
 		seqList = null;
+		condition = null;
 	}
 
 	public void createBindings(EObject be) {
@@ -112,10 +115,24 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		createWidgetsShowInstanceName(be);		
 		createWidgetsseqList(be);
 		createWidgetsGateway(be);	
+		createWidgetsCondition(be);
 		
 		seqList.setVisible((Boolean)isOrVarpoint());
 		gateway.setVisible((Boolean)hasSameSequence());
-		
+		condition.setVisible((Boolean)isORorXOR());
+	}
+
+	private Boolean isORorXOR() {
+		// TODO Auto-generated method stub
+		Activity variant = null;
+		if (businessObject instanceof Activity){
+			variant = (Activity)businessObject;
+			if ((variant.getGateway().equals("##XOR")) || (variant.getGateway().equals("##OR"))){
+				if (gateway.isVisible())
+					return true;
+			}
+		}
+		return false;
 	}
 
 	private Boolean isOrVarpoint() {
@@ -292,14 +309,25 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			}
 			
 			@Override
-			public boolean setValue(Object result) {
-				Activity variant = null;
+			public boolean setValue(final Object result) {
+				
 				if (businessObject instanceof Activity){
+					Activity variant = null;
 					variant = (Activity)businessObject;
 					if (variant.isVariant() && variant.isCheck()){
-						if (ModelUtil.isStringWrapper(result)) {
-							result = ModelUtil.getStringWrapperValue(result);
-						}
+						TransactionalEditingDomain editingDomain = getDiagramEditor().getEditingDomain();
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+							@Override
+							protected void doExecute() {
+								Activity variant2 = null;
+								variant2 = (Activity)businessObject;
+								variant2.setSeq((int)result);
+//								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
+//								sequence.eSet(sequence, (int)result);
+							}
+						});
+						getAttributesParent().layout();
+						redrawParent();
 						return super.setValue(result);
 					}
 					MessageDialog.openWarning(null, "Warning", Messages.InstantiationDetailComposite_Unchecked_Variant);
@@ -315,12 +343,12 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	private void createWidgetsGateway(EObject be) {
 		EStructuralFeature feature = getFeature(be, "gateway");
 		gateway = new GatewayObjectEditor(this, be, feature){
-			@Override
-			public void setVisible(boolean visible) {
-//				if (!visible)
-//					setValue(null);
-				super.setVisible(visible);
-			}
+//			@Override
+//			public void setVisible(boolean visible) {
+////				if (!visible)
+////					setValue(null);
+//				super.setVisible(visible);
+//			}
 			
 			@Override
 			public void notifyChanged(Notification notification) {
@@ -356,9 +384,12 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 										}
 									}
 								}
-							}					
+							}		
+							redrawParent();
 						}
+						
 					});	
+					
 
 			}
 			
@@ -366,16 +397,23 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			public boolean setValue(Object result) {
 				
 //				if (result != null)
-					if (MessageDialog.openConfirm(null, Messages.InstantiationDetailComposite_Instance_Name_Title, Messages.InstantiationDetailComposite_Gateway_Change)){
-						if (ModelUtil.isStringWrapper(result)) {
-							result = ModelUtil.getStringWrapperValue(result);
-						}
+				if (MessageDialog.openConfirm(null, Messages.InstantiationDetailComposite_Instance_Name_Title, Messages.InstantiationDetailComposite_Gateway_Change)){
+					if (ModelUtil.isStringWrapper(result)) {
+						result = ModelUtil.getStringWrapperValue(result);
+					}
 					return super.setValue(result);
 				}
 				return false;
 			}
 		};
 		gateway.createControl(getAttributesParent(), "Gateway");
+	}
+	
+	private void createWidgetsCondition(EObject be) {
+		// TODO Auto-generated method stub
+		EStructuralFeature cond = getFeature(be, "condition");
+		condition = new TextObjectEditor(this, be, cond);
+		condition.createControl(getAttributesParent(), "Condition");
 	}
 	
 	private boolean hasSameSequence(){
@@ -414,8 +452,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	private void redrawParent() {
 //		changeElementName();
 		updateName();
-		gateway.setVisible((Boolean)hasSameSequence());
 		seqList.setVisible((Boolean)isOrVarpoint());
+		gateway.setVisible((Boolean)hasSameSequence());
+		condition.setVisible((Boolean)isORorXOR());
 //		if (!(Boolean)variant.getValue()){
 //			featureIdEditor.setVisible((Boolean)varPoint.getValue());
 //			buttonComposite.setVisible((Boolean)varPoint.getValue());

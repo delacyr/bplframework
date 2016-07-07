@@ -2706,6 +2706,15 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getActivity_Condition() {
+        return (EAttribute) getActivity().getEStructuralFeatures().get(25);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getActivity_ShowInstanceName() {
         return (EAttribute) getActivity().getEStructuralFeatures().get(22);
     }
