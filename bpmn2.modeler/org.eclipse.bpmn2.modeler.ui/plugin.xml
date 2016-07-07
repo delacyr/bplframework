@@ -1549,7 +1549,13 @@
            name="Instantiate">
      </command>
      <command
+           defaultHandler="org.eclipse.bpmn2.modeler.ui.commands.Save"
+           id="org.eclipse.bpmn2.modeler.ui.command.Save"
+           name="Save">
+     </command>
+     <command
            defaultHandler="org.eclipse.bpmn2.modeler.ui.commands.Instantiate"
+           description="Some actions for Instantiations"
            id="referenceToMenuId"
            name="referenceToMenuId">
      </command>
@@ -1619,6 +1625,12 @@
     <toolbar
           id="org.eclipse.bpmn2.modeler.ui.toolbar1">
        <command
+             commandId="org.eclipse.bpmn2.modeler.ui.command.Save"
+             icon="icons/16/save.png"
+             label="Save"
+             style="push">
+       </command>
+       <command
              commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
              icon="icons/16/instantiate.png"
              label="Instantiate"
@@ -1644,12 +1656,14 @@
        allPopups="false"
        locationURI="menu:referenceToMenuId">
     <command
-          commandId="referenceToMenuId"
-          label="Validate"
+          commandId="org.eclipse.bpmn2.modeler.ui.command.Save"
+          icon="icons/16/save.png"
+          label="Save"
           style="push">
     </command>
     <command
           commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
+          icon="icons/16/instantiate.png"
           label="Instantiate"
           style="push">
     </command>

@@ -1,5 +1,6 @@
 package org.eclipse.bpmn2.modeler.ui.commands;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,10 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -51,6 +56,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILayoutService;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ui.dialogs.ListDialog;
@@ -68,7 +75,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
 		List<EObject> elements = element.eContents();
-		List<Object> startEvents = new ArrayList<Object>();
+		final List<Object> startEvents = new ArrayList<Object>();
 		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
 //		Percorrer a lista de elementos e começar pelo StartEventImpl
 		for (EObject ob: elements){
@@ -121,10 +128,31 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //			}
 			
 			/*Instanciação do TMPN*/
-			for (int i=0; i<startEvents.size();i++)
-				generateModel(startEvents.get(i));
+//			for (int i=0; i<startEvents.size();i++)
+//				generateModel(startEvents.get(i));
+//			
+//			alignShapes(startEvents.get(0));
 			
-			alignShapes(startEvents.get(0));
+			ProgressMonitorDialog dialog = new ProgressMonitorDialog(null); 
+			try {
+				dialog.run(true, false, new IRunnableWithProgress(){
+				    public void run(IProgressMonitor monitor) {
+				        monitor.beginTask("Please wait a moment. Instantiating...", IProgressMonitor.UNKNOWN); 
+				        // execute the task ...
+		    			for (int i=0; i<startEvents.size();i++)
+		    				generateModel(startEvents.get(i));
+		    			alignShapes(startEvents.get(0));
+				        
+				        monitor.done();
+				    }
+				});
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 //			boolean pass = false;
 //			if (!pass){
@@ -159,6 +187,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			
 		}
 		types.clear();
+		
+
 
 		return null;
 	}
