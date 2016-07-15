@@ -20,11 +20,14 @@ import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNPlane;
 import org.eclipse.bpmn2.modeler.help.IHelpContexts;
 import org.eclipse.bpmn2.modeler.ui.Bpmn2DiagramEditorInput;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
@@ -84,15 +87,17 @@ public class BPMN2DiagramWizard extends Wizard implements INewWizard {
 					IPath path = container.getFullPath().append(fileName);
 					URI uri = URI.createPlatformResourceURI(path.toString(), true);
 					BPMN2DiagramCreator.createDiagram(uri, page1.getDiagramType(), targetNamespace);
-//					Bpmn2DiagramEditorInput editorInput = BPMN2DiagramCreator.createDiagram(uri, page1.getDiagramType(), targetNamespace);
-//					BPMNDiagram bpmnDiagram = editorInput.getBpmnDiagram();
-//					BPMNPlane plane = bpmnDiagram.getPlane();
-//					BaseElement be = plane.getBpmnElement();
-//					VrProcess vrProcess = null;
-//					if (be instanceof VrProcess){
-//						vrProcess = (VrProcess)be;
-//						vrProcess.setPhase("creation");
-//					}
+
+					
+					BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+					final BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
+					TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+					editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+						@Override
+						protected void doExecute() {
+							bpmnDiagram.setPhase("EDN");
+						}
+					});
 					
 				} catch (CoreException e) {
 					throw new InvocationTargetException(e);

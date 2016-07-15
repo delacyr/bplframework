@@ -1188,6 +1188,8 @@ public class BPMN2Editor extends DiagramEditor implements
 		// System.out.println("done in "+(System.currentTimeMillis()-start)+" ms");
 		Resource resource = getResourceSet().getResource(modelUri, false);
 		BPMN2ProjectValidator.validateOnSave(resource, monitor);
+		
+		System.out.println("It's here!");
 	}
 
 	@Override

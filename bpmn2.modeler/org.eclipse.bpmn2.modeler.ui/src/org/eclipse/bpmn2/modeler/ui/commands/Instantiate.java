@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowElementsContainer;
 import org.eclipse.bpmn2.FlowNode;
@@ -26,10 +27,13 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -39,12 +43,14 @@ import org.eclipse.graphiti.datatypes.ILocation;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.context.impl.DeleteContext;
 import org.eclipse.graphiti.features.context.impl.MoveShapeContext;
+import org.eclipse.graphiti.features.context.impl.ResizeShapeContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
@@ -76,6 +82,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		DiagramElement element = bpmnDiagram.getRootElement();
 		List<EObject> elements = element.eContents();
 		final List<Object> startEvents = new ArrayList<Object>();
+		final List<Object> lanes = new ArrayList<Object>();
 		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
 //		Percorrer a lista de elementos e começar pelo StartEventImpl
 		for (EObject ob: elements){
@@ -85,6 +92,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				if (bo instanceof StartEvent){
 					startEvents.add(bo);
 					ValidateDiagram(bo);
+				}
+				if (bo instanceof Lane){
+					lanes.add(bo);
 				}
 			}
 		}
@@ -104,7 +114,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			dialog.open();
 		}
 		else{
-//			/*Copia o modelo configurado para a pasta Instantiated*/
+////			/*Copia o modelo configurado para a pasta Instantiated*/
 //			IProgressMonitor progressMonitor = new NullProgressMonitor();
 //			IProject project = editor.getProject();
 //			IFolder instantiatedFolder = project.getFolder("Instantiated");
@@ -126,33 +136,36 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-			
-			/*Instanciação do TMPN*/
-//			for (int i=0; i<startEvents.size();i++)
-//				generateModel(startEvents.get(i));
 //			
-//			alignShapes(startEvents.get(0));
+			/*Instanciação do TMPN*/
+			for (int i=0; i<startEvents.size();i++)
+				generateModel(startEvents.get(i));
 			
-			ProgressMonitorDialog dialog = new ProgressMonitorDialog(null); 
-			try {
-				dialog.run(true, false, new IRunnableWithProgress(){
-				    public void run(IProgressMonitor monitor) {
-				        monitor.beginTask("Please wait a moment. Instantiating...", IProgressMonitor.UNKNOWN); 
-				        // execute the task ...
-		    			for (int i=0; i<startEvents.size();i++)
-		    				generateModel(startEvents.get(i));
-		    			alignShapes(startEvents.get(0));
-				        
-				        monitor.done();
-				    }
-				});
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			alignShapes(startEvents.get(0));
+			
+			resizeLanes(elements, diagram);
+//			
+//			ProgressMonitorDialog dialog = new ProgressMonitorDialog(null); 
+//			try {
+//				dialog.run(true, false, new IRunnableWithProgress(){
+//				    public void run(IProgressMonitor monitor) {
+//				        monitor.beginTask("Please wait a moment. Instantiating...", IProgressMonitor.UNKNOWN); 
+//				        // execute the task ...
+//		    			for (int i=0; i<startEvents.size();i++){
+//		    				generateModel(startEvents.get(i));
+//		    				alignShapes(startEvents.get(i));
+//		    			}
+//				        
+//				        monitor.done();
+//				    }
+//				});
+//			} catch (InvocationTargetException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 //			boolean pass = false;
 //			if (!pass){
@@ -184,15 +197,67 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_BPDFolder.toString(), true);
 //				BPMN2Editor.openEditor(modelURI);
 //			}
-			
+//			
 		}
 		types.clear();
-		
-
 
 		return null;
 	}
+
+
+	protected void resizeLanes(List<EObject> elements, Diagram diagram) {
+		//			FlowNode lane = (FlowNode)lanes.get(0);
+		//			EObject eob = null;
+					int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
+					ILayoutService layoutService = Graphiti.getLayoutService();
+					ContainerShape elementShape = null;
+					for (EObject ob: elements){
+						if (ob instanceof BPMNShape){
+		
+							elementShape = getContainerShapefromEObject(ob, diagram);
+		//					Instruções de localização do shape
+							ILocation loc = layoutService.getLocationRelativeToDiagram(elementShape);
+							
+							int x = loc.getX();
+							int y = loc.getY();
+							
+							maxX = (x > maxX) ? x : maxX;
+							maxY = (y > maxY) ? y : maxY;
+							
+							minX = (x < minX) ? x : minX;
+							minY = (y < minY) ? y : minY;			
+						}
+					}
+					
+					ContainerShape laneShape = elementShape.getContainer();
+					if (laneShape!=BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram()) {
+						ILocation loc = layoutService.getLocationRelativeToDiagram(laneShape);
+						int x = loc.getX();
+						int y = loc.getY();
+						
+		//				GraphicsAlgorithm ga = laneShape.getGraphicsAlgorithm();
+		//				int width = ga.getWidth();
+		//				int height = ga.getHeight();
+								
+						final ResizeShapeContext resizeContext = new ResizeShapeContext(laneShape);
+						resizeContext.setLocation(x, y);
+						resizeContext.setHeight(maxY-minY+150);
+						resizeContext.setWidth(maxX-minX+150);
+						
+						TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+							
+							@Override
+							protected void doExecute() {
+								IResizeShapeFeature resizeShapeFeature = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider().getResizeShapeFeature(resizeContext);
+								resizeShapeFeature.resizeShape(resizeContext);
+								
+							}
+						});
+					}
+	}
 	
+
 	private void alignShapes(Object bo) {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> sequenceFlow = null;
@@ -530,9 +595,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						next = sweepVarpoints(activity);
 							if (next!=null)
 								generateModel(next);
-							else
-								generateModel((Object)activity);
+//							else
+//								generateModel((Object)activity);
 					}
+					generateModel((Object)activity);
 				}
 			}
 		}
@@ -974,6 +1040,17 @@ public class Instantiate extends AbstractHandler implements IHandler {
 	}
 
 	private ContainerShape getContainerShape(FlowNode fn, Diagram diagram) {
+		// TODO Auto-generated method stub
+		for (Object o : Graphiti.getPeService().getLinkedPictogramElements(new EObject[] {fn}, diagram)) {
+			if (o instanceof ContainerShape && !FeatureSupport.isLabelShape((ContainerShape)o)) {
+				// this is the FlowNode shape
+				return (ContainerShape)o;
+			}
+		}
+		return null;
+	}
+	
+	private ContainerShape getContainerShapefromEObject(EObject fn, Diagram diagram) {
 		// TODO Auto-generated method stub
 		for (Object o : Graphiti.getPeService().getLinkedPictogramElements(new EObject[] {fn}, diagram)) {
 			if (o instanceof ContainerShape && !FeatureSupport.isLabelShape((ContainerShape)o)) {
