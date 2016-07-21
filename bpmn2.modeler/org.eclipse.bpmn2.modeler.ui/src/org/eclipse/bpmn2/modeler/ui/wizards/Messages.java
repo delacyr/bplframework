@@ -38,6 +38,9 @@ public class Messages extends NLS {
 	
 	public static String BPMN2DiagramWizardPage1_VrProcess_Diagram_Description;		//BPMN*code
 	public static String BPMN2DiagramWizardPage2_VrProcess_Diagram;					//BPMN*code
+	public static String BPMN2DiagramWizardPage2_lblFeatureModel_text;
+	public static String BPMN2DiagramWizardPage2_text_1_text;
+	public static String BPMN2DiagramWizardPage2_btnNewButton_text;
 
 	static {
 		// initialize resource bundle

@@ -20,12 +20,14 @@ import java.util.List;
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractBpmn2PropertySection;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractPropertiesProvider;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.BooleanObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.property.editors.FeatureIdObjectEditor;
 import org.eclipse.bpmn2.modeler.ui.property.editors.VarPointTypeObjectEditor;
 import org.eclipse.core.resources.IFile;
@@ -124,16 +126,20 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 		IProject project = bpmnfile.getProject();
 		Boolean pass;
 		featureModel = new FeatureModel();
-		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
+//		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
+		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
 		try {
 			pass=false;
 			new XmlFeatureModelReader(featureModel).readFromFile(file);
+//			new XmlFeatureModelReader(featureModel).readFromString(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
 			
-		} catch (FileNotFoundException f ) {
+		} 
+		catch (FileNotFoundException f ) {
 			pass=true;
 			MessageDialog.openError(null,"Error","N�o � possivel encontrar o Feature Model, verifique a exist�ncia do arquivo "+name+".xml"+" na pasta /FeatureModel");
 			
-		} catch (UnsupportedModelException e){
+		} 
+		catch (UnsupportedModelException e){
 			pass=true;
 		}
 		

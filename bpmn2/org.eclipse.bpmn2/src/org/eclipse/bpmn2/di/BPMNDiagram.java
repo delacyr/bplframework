@@ -32,6 +32,7 @@ import org.eclipse.dd.di.Diagram;
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getLabelStyle <em>Label Style</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getPhase <em>Phase</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getFeatureModel <em>Feature Model</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram()
@@ -92,12 +93,12 @@ public interface BPMNDiagram extends Diagram {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Version</em>' attribute.
-     * @see #setVersion(int)
+     * @see #setVersion(long)
      * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram_Version()
      * @model
      * @generated
      */
-    int getVersion();
+    long getVersion();
 
     /**
      * Sets the value of the '{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}' attribute.
@@ -107,7 +108,7 @@ public interface BPMNDiagram extends Diagram {
      * @see #getVersion()
      * @generated
      */
-    void setVersion(int value);
+    void setVersion(long value);
 
     /**
      * Returns the value of the '<em><b>Phase</b></em>' attribute.
@@ -135,5 +136,31 @@ public interface BPMNDiagram extends Diagram {
      * @generated
      */
     void setPhase(String value);
+
+    /**
+     * Returns the value of the '<em><b>Feature Model</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Feature Model</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Feature Model</em>' attribute.
+     * @see #setFeatureModel(String)
+     * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram_FeatureModel()
+     * @model
+     * @generated
+     */
+    String getFeatureModel();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.di.BPMNDiagram#getFeatureModel <em>Feature Model</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Feature Model</em>' attribute.
+     * @see #getFeatureModel()
+     * @generated
+     */
+    void setFeatureModel(String value);
 
 } // BPMNDiagram

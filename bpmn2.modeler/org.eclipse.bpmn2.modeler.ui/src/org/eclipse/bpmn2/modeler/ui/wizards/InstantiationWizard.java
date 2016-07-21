@@ -41,32 +41,38 @@ public class InstantiationWizard extends Wizard implements INewWizard{
 				e.printStackTrace();
 			}
 	
-			IFile bpmt_file = page.bpmt_file;
-			IPath path_instantiatingFolder = project.getFolder("Instantiating").getFullPath();
-			path_instantiatingFolder = path_instantiatingFolder.append(bpmt_file.getName());
+			Object[] elements = page.getCheckedElements();
 			
-			try {
-				bpmt_file.copy(path_instantiatingFolder, true, progressMonitor);
+			for (Object element: elements){
+				if (element instanceof IFile){
+					IFile file = (IFile) element;
+					IPath path_instantiatingFolder = project.getFolder("Instantiating").getFullPath();
+					path_instantiatingFolder = path_instantiatingFolder.append(file.getName());
 					
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			org.eclipse.emf.common.util.URI modelURI;
-			modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_instantiatingFolder.toString(), true);
-			BPMN2Editor.openEditor(modelURI);
-			
-			BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-			final BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
-			TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
-			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
-				@Override
-				protected void doExecute() {
-					bpmnDiagram.setPhase("EPN");
+					try {
+						file.copy(path_instantiatingFolder, true, progressMonitor);
+							
+					} catch (CoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					org.eclipse.emf.common.util.URI modelURI;
+					modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_instantiatingFolder.toString(), true);
+					BPMN2Editor.openEditor(modelURI);
+					
+					BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+					final BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();
+					TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+					editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+						@Override
+						protected void doExecute() {
+							bpmnDiagram.setPhase("EPN");
+						}
+					});
 				}
-			});
-			
+			}
+				
 		return true;
 	}
 

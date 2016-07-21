@@ -855,8 +855,9 @@ Package di <http://www.omg.org/spec/BPMN/20100524/DI-XMI>
   Class BPMNDiagram -> Diagram
     Reference plane : BPMNPlane<<1..1>>
     Reference labelStyle : BPMNLabelStyle<<0..*>>
-    Attribute version : EInt
+    Attribute version : ELong
     Attribute phase : EString
+    Attribute featureModel : EString
 
   Class BPMNEdge -> LabeledEdge
     Reference label : BPMNLabel

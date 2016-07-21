@@ -22,7 +22,11 @@ public interface BPMNDiagramValidator {
 
     boolean validateLabelStyle(List<BPMNLabelStyle> value);
 
+    boolean validateVersion(long value);
+
     boolean validateVersion(int value);
 
     boolean validatePhase(String value);
+
+    boolean validateFeatureModel(String value);
 }

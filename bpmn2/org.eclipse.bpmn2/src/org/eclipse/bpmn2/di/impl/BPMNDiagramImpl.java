@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getLabelStyle <em>Label Style</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getPhase <em>Phase</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getFeatureModel <em>Feature Model</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,7 +79,7 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * @generated
      * @ordered
      */
-    protected static final int VERSION_EDEFAULT = 0;
+    protected static final long VERSION_EDEFAULT = 0L;
 
     /**
      * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -88,7 +89,7 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * @generated
      * @ordered
      */
-    protected int version = VERSION_EDEFAULT;
+    protected long version = VERSION_EDEFAULT;
 
     /**
      * The default value of the '{@link #getPhase() <em>Phase</em>}' attribute.
@@ -109,6 +110,26 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * @ordered
      */
     protected String phase = PHASE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getFeatureModel() <em>Feature Model</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFeatureModel()
+     * @generated
+     * @ordered
+     */
+    protected static final String FEATURE_MODEL_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getFeatureModel() <em>Feature Model</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFeatureModel()
+     * @generated
+     * @ordered
+     */
+    protected String featureModel = FEATURE_MODEL_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -197,7 +218,7 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getVersion() {
+    public long getVersion() {
         return version;
     }
 
@@ -206,8 +227,8 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVersion(int newVersion) {
-        int oldVersion = version;
+    public void setVersion(long newVersion) {
+        long oldVersion = version;
         version = newVersion;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
@@ -234,6 +255,28 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
                     BpmnDiPackage.BPMN_DIAGRAM__PHASE, oldPhase, phase));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getFeatureModel() {
+        return featureModel;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFeatureModel(String newFeatureModel) {
+        String oldFeatureModel = featureModel;
+        featureModel = newFeatureModel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL, oldFeatureModel, featureModel));
     }
 
     /**
@@ -269,6 +312,8 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             return getVersion();
         case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
             return getPhase();
+        case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
+            return getFeatureModel();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -290,10 +335,13 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             getLabelStyle().addAll((Collection<? extends BPMNLabelStyle>) newValue);
             return;
         case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
-            setVersion((Integer) newValue);
+            setVersion((Long) newValue);
             return;
         case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
             setPhase((String) newValue);
+            return;
+        case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
+            setFeatureModel((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -319,6 +367,9 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
             setPhase(PHASE_EDEFAULT);
             return;
+        case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
+            setFeatureModel(FEATURE_MODEL_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -339,6 +390,9 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             return version != VERSION_EDEFAULT;
         case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
             return PHASE_EDEFAULT == null ? phase != null : !PHASE_EDEFAULT.equals(phase);
+        case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
+            return FEATURE_MODEL_EDEFAULT == null ? featureModel != null : !FEATURE_MODEL_EDEFAULT
+                    .equals(featureModel);
         }
         return super.eIsSet(featureID);
     }
@@ -358,6 +412,8 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         result.append(version);
         result.append(", phase: ");
         result.append(phase);
+        result.append(", featureModel: ");
+        result.append(featureModel);
         result.append(')');
         return result.toString();
     }

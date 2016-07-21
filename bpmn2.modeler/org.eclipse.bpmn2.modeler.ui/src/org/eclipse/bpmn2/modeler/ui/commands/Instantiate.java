@@ -266,11 +266,17 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		FlowNode objectSrcShape = null, objectDstShape = null;
 		Diagram diagram = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram();
 		
-		
 		if (bo instanceof FlowNode){
 			
 			objectSrcShape = (FlowNode)bo;
 			srcShape = getContainerShape(objectSrcShape, diagram);
+			
+//			recuperar os objetos de dados para reposicioná-los
+			if (objectSrcShape instanceof Activity){
+				Activity src = (Activity)objectSrcShape;
+				src.getDataInputAssociations();
+				src.getDataOutputAssociations();
+			}
 			
 			sequenceFlow = ((FlowNode) bo).getOutgoing();
 			List<ContainerShape> dstShapes = new ArrayList<ContainerShape>();
@@ -300,8 +306,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		int yOffset = 0;
 		GraphicsAlgorithm ga = srcShape.getGraphicsAlgorithm();
 		int width = ga.getWidth();
-		int height = ga.getHeight();
-		
+		int height = ga.getHeight();		
 		
 //		Entender este trecho melhor
 		FlowElement dstObject = null;
@@ -1065,9 +1070,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> sequenceFlow = null;
 		
-		if (bo instanceof StartEvent){
+		if (bo instanceof FlowNode){
 			//getting outgoing elements
-			sequenceFlow = ((StartEvent) bo).getOutgoing();
+			sequenceFlow = ((FlowNode) bo).getOutgoing();
 			//for each outgoing element
 			for (SequenceFlow a: sequenceFlow){
 				//if it is activity
@@ -1084,25 +1089,25 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 		}
 		
-		if (bo instanceof Activity){
-			//getting outgoing elements
-				sequenceFlow = ((Activity) bo).getOutgoing();
-				//for each outgoing element
-				for (SequenceFlow a: sequenceFlow){
-					//if it is activity
-					if (a.getTargetRef() instanceof Activity){
-						Activity activity = (Activity)a.getTargetRef();
-						//if it is varpoint
-						if (activity.isVarPoint()){
-//							if (checkVarpoints(activity)){
-								checkVarpoints(activity);
-//								System.out.println(activity.getFeatureType());
-								ValidateDiagram((Object)activity);
-//							}
-						}
-					}
-				}
-		}
+//		if (bo instanceof Activity){
+//			//getting outgoing elements
+//				sequenceFlow = ((Activity) bo).getOutgoing();
+//				//for each outgoing element
+//				for (SequenceFlow a: sequenceFlow){
+//					//if it is activity
+//					if (a.getTargetRef() instanceof Activity){
+//						Activity activity = (Activity)a.getTargetRef();
+//						//if it is varpoint
+//						if (activity.isVarPoint()){
+////							if (checkVarpoints(activity)){
+//								checkVarpoints(activity);
+////								System.out.println(activity.getFeatureType());
+//								ValidateDiagram((Object)activity);
+////							}
+//						}
+//					}
+//				}
+//		}
 	}
 
 	protected boolean checkVarpoints(Activity activity) {
@@ -1217,6 +1222,11 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		for (SequenceFlow b: incoming){
 			if (b.getSourceRef() instanceof Activity){
 				Activity activity = (Activity)b.getSourceRef();
+				String s = activity.getFeatureType();
+				if (s != null)
+					if (activity.getFeatureType().equals("##mandatory") && !activity.isCheck()){
+						return false;
+					}
 				if (activity.isVariant() && activity.isCheck() && (activity.getSeq()!=0)){
 					cont++;
 				}

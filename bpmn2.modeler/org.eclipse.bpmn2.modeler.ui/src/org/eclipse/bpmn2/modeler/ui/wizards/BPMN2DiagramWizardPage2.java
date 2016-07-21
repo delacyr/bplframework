@@ -15,7 +15,10 @@ package org.eclipse.bpmn2.modeler.ui.wizards;
 import org.eclipse.bpmn2.modeler.core.preferences.Bpmn2Preferences;
 import org.eclipse.bpmn2.modeler.core.runtime.TargetRuntime;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil.Bpmn2DiagramType;
+import org.eclipse.core.internal.resources.File;
+import org.eclipse.core.internal.resources.Resource;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,6 +44,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 public class BPMN2DiagramWizardPage2 extends WizardPage {
 	private Text containerText;
@@ -51,6 +57,9 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 	private ISelection selection;
 
 	private IResource diagramContainer;
+	private Label lblFeatureModel;
+	private Text featureModelLocation;
+	private Button btnNewButton;
 
 	/**
 	 * Constructor for SampleNewWizardPage.
@@ -78,8 +87,7 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 		label.setText(Messages.BPMN2DiagramWizardPage2_Location_Label);
 
 		containerText = new Text(container, SWT.BORDER | SWT.SINGLE);
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		containerText.setLayoutData(gd);
+		containerText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		containerText.setEditable(false);
 		containerText.addModifyListener(new ModifyListener() {
 			@Override
@@ -119,6 +127,38 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				dialogChanged(false);
+			}
+		});
+		
+		lblFeatureModel = new Label(container, SWT.NONE);
+		lblFeatureModel.setText(Messages.BPMN2DiagramWizardPage2_lblFeatureModel_text);
+		
+		featureModelLocation = new Text(container, SWT.BORDER);
+		featureModelLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		btnNewButton = new Button(container, SWT.NONE);
+		btnNewButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnNewButton.setText(Messages.BPMN2DiagramWizardPage2_btnNewButton_text);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				handleBrowseModelFeature();
+			}
+
+			private void handleBrowseModelFeature() {
+				// TODO Auto-generated method stub
+				
+				ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider());
+				dialog.setTitle("Tree Selection");
+				dialog.setMessage("Select a the elements from the tree:");
+				dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
+				if (dialog.open() == Window.OK) {
+					Object[] result = dialog.getResult();
+					if (result.length == 1) {
+						selection = new TreeSelection(new TreePath(result));
+						featureModelLocation.setText(((IFile) result[0]).getLocation().toString());
+					}
+				}
 			}
 		});
 		
@@ -380,5 +420,10 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 
 	public String getTargetNamespace() {
 		return targetNamespaceText.getText();
+	}
+
+	public String getFeatureModelLocation() {
+		// TODO Auto-generated method stub
+		return featureModelLocation.getText();
 	}
 }

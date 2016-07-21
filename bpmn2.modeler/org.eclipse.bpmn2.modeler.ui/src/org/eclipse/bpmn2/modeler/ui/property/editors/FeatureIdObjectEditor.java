@@ -21,6 +21,7 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ComboObjectEditor;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -131,7 +132,8 @@ public class FeatureIdObjectEditor extends ComboObjectEditor {
 		IProject project = bpmnfile.getProject();
 
 		FeatureModel featureModel = new FeatureModel();
-		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
+//		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
+		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
 		try {
 			new XmlFeatureModelReader(featureModel).readFromFile(file);
 			for (String f : featureModel.getFeatureNames()) {

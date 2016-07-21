@@ -344,6 +344,15 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getBPMNDiagram_FeatureModel() {
+        return (EAttribute) bpmnDiagramEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBPMNEdge() {
         return bpmnEdgeEClass;
     }
@@ -591,6 +600,7 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
         createEReference(bpmnDiagramEClass, BPMN_DIAGRAM__LABEL_STYLE);
         createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__VERSION);
         createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__PHASE);
+        createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__FEATURE_MODEL);
 
         bpmnEdgeEClass = createEClass(BPMN_EDGE);
         createEReference(bpmnEdgeEClass, BPMN_EDGE__LABEL);
@@ -710,12 +720,15 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
                 null, 0, -1, BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
                 IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
                 !IS_ORDERED);
-        initEAttribute(getBPMNDiagram_Version(), ecorePackage.getEInt(), "version", null, 0, 1,
+        initEAttribute(getBPMNDiagram_Version(), ecorePackage.getELong(), "version", null, 0, 1,
                 BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
                 !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMNDiagram_Phase(), ecorePackage.getEString(), "phase", "", 0, 1,
                 BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
                 !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMNDiagram_FeatureModel(), ecorePackage.getEString(), "featureModel",
+                null, 0, 1, BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+                !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(bpmnEdgeEClass, BPMNEdge.class, "BPMNEdge", !IS_ABSTRACT, !IS_INTERFACE,
                 IS_GENERATED_INSTANCE_CLASS);

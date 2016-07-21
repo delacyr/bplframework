@@ -271,13 +271,22 @@ public interface BpmnDiPackage extends EPackage {
     int BPMN_DIAGRAM__PHASE = DiPackage.DIAGRAM_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Feature Model</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPMN_DIAGRAM__FEATURE_MODEL = DiPackage.DIAGRAM_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>BPMN Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 4;
+    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.
@@ -999,6 +1008,17 @@ public interface BpmnDiPackage extends EPackage {
     EAttribute getBPMNDiagram_Phase();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.di.BPMNDiagram#getFeatureModel <em>Feature Model</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Feature Model</em>'.
+     * @see org.eclipse.bpmn2.di.BPMNDiagram#getFeatureModel()
+     * @see #getBPMNDiagram()
+     * @generated
+     */
+    EAttribute getBPMNDiagram_FeatureModel();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.di.BPMNEdge <em>BPMN Edge</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1390,6 +1410,14 @@ public interface BpmnDiPackage extends EPackage {
          * @generated
          */
         EAttribute BPMN_DIAGRAM__PHASE = eINSTANCE.getBPMNDiagram_Phase();
+
+        /**
+         * The meta object literal for the '<em><b>Feature Model</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPMN_DIAGRAM__FEATURE_MODEL = eINSTANCE.getBPMNDiagram_FeatureModel();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.

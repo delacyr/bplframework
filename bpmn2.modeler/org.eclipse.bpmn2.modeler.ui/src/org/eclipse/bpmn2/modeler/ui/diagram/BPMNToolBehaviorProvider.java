@@ -874,4 +874,11 @@ public class BPMNToolBehaviorProvider extends DefaultToolBehaviorProvider implem
 	public Object getToolTip(GraphicsAlgorithm ga) {
 		return FeatureSupport.getToolTip(ga);
 	}
+	
+	@Override
+	public boolean isShowFlyoutPalette() {	
+		if (!BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN"))
+			return true;
+		return false;
+	}
 }
