@@ -62,9 +62,9 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		PictogramElement[] pes = context.getPictogramElements();
 		
 		/*Feature exclusiva da instanciação*/
-		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-		IFile file = editor.getModelFile();
-		if (file.getParent().getName().equals("Instantiating")){
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
+//			IFile file = editor.getModelFile();
+//			if (file.getParent().getName().equals("Instantiating")){
 			
 			if (pes != null && pes.length == 1) {
 				PictogramElement pe = pes[0];

@@ -20,6 +20,7 @@ import org.eclipse.bpmn2.modeler.core.features.MultiUpdateFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.MoveActivityFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityCompensateMarkerFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityLoopAndMultiInstanceMarkerFeature;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.features.event.AppendEventFeature;
 import org.eclipse.bpmn2.modeler.ui.features.gateway.AppendGatewayFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
@@ -50,60 +51,6 @@ public abstract class AbstractActivityFeatureContainer extends BaseElementFeatur
 			}
 			
 			
-			
-//			@Override
-//			public boolean update(IUpdateContext context) {		
-//				// update layout
-//				// .... to some graphic stuff... 
-//				
-//				ContainerShape containerShape = (ContainerShape)context.getPictogramElement();
-//				Shape shape = containerShape.getChildren().get(0);
-//				
-//				Activity variant = (Activity)getBusinessObjectForPictogramElement(context.getPictogramElement());
-//				BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
-//				if (variant!=null && variant.isCheck()) {
-//					ShapeStyle ss = new ShapeStyle();
-//					ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
-//					StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
-//				}
-//				
-//				String myState = null;
-//				// finally update pictorgrammElement state (IMPORTANT!)
-//				FeatureSupport.setPropertyValue((ContainerShape)context.getPictogramElement(), "evaluate.property", myState);
-//				return true;
-//			}
-		
-
-//			@Override
-//			public IReason updateNeeded(IUpdateContext context) {
-//				IReason reason = super.updateNeeded(context);
-//				if (reason.toBoolean())
-//					return reason;
-//				
-//				// test state stored in the pictorgramElement...
-//				PictogramElement pe = context.getPictogramElement();
-//				String myState = FeatureSupport.getPropertyValue(pe, "evaluate.property");
-//				if (myState==null || myState.isEmpty())
-//					myState = "false";
-//				
-//				// compare the pictogram state with current BusinessObject
-// 				Activity variant = (Activity) getBusinessObjectForPictogramElement(pe);
-// 				Boolean newState;
-// 				if (!variant.isCheck())
-// 					newState = false;
-// 				else
-// 					newState = true;
-//
-// 				// update is needed if the property has changed....
-// 				if (Boolean.parseBoolean(myState) != newState){
-// 					// indicate a reason to update the shape
-// 					return Reason.createTrueReason("evaluate.property changed");
-// 				}
-// 				
-// 				// otherwise no reason to update the element now.
-// 				return Reason.createFalseReason("");
-//			}
-			
 		};
 		multiUpdate.addUpdateFeature(nameUpdateFeature);
 		return multiUpdate;
@@ -124,22 +71,16 @@ public abstract class AbstractActivityFeatureContainer extends BaseElementFeatur
 		return new DeleteActivityFeature(fp);
 	}
 
-//	@Override
-//	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
-//		ICustomFeature[] superFeatures = super.getCustomFeatures(fp);
-//		ICustomFeature[] thisFeatures = new ICustomFeature[4 + superFeatures.length];
-//		int i;
-//		for (i=0; i<superFeatures.length; ++i)
-//			thisFeatures[i] = superFeatures[i];
-//		thisFeatures[i++] = new AppendActivityFeature(fp);
-//		thisFeatures[i++] = new AppendGatewayFeature(fp);
-//		thisFeatures[i++] = new AppendEventFeature(fp);
-//		thisFeatures[i++] = new MorphActivityFeature(fp);
-//		return thisFeatures;
-//	}
-
 	@Override
 	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
+		
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
+			ICustomFeature[] thisFeatures = new ICustomFeature[2];
+			thisFeatures[0] = new AppendCheckedFeature(fp);
+			thisFeatures[1] = new AppendUncheckedFeature(fp);
+			return thisFeatures;
+		}
+		
 		ICustomFeature[] superFeatures = super.getCustomFeatures(fp);
 		ICustomFeature[] thisFeatures = new ICustomFeature[6 + superFeatures.length];
 		int i;

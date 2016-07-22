@@ -3,6 +3,7 @@ package org.eclipse.bpmn2.modeler.ui.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -34,6 +35,15 @@ public class FileTreeContentProvider implements ITreeContentProvider {
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		
+		if (parentElement instanceof IWorkspaceRoot) {
+			IWorkspaceRoot projects = (IWorkspaceRoot) parentElement;
+            try {
+                return projects.members();
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
+        }
+		
 		if (parentElement instanceof IProject) {
             IProject projects = (IProject) parentElement;
             try {
@@ -55,6 +65,10 @@ public class FileTreeContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object getParent(Object element) {
+		if (element instanceof IWorkspaceRoot) {
+			IWorkspaceRoot workspace = (IWorkspaceRoot) element;
+            return workspace.getParent();
+        }
 		if (element instanceof IProject) {
             IProject projects = (IProject) element;
             return projects.getParent();
@@ -72,6 +86,15 @@ public class FileTreeContentProvider implements ITreeContentProvider {
 
 	@Override
 	public boolean hasChildren(Object element) {
+		if (element instanceof IWorkspaceRoot) {
+			IWorkspaceRoot workspace = (IWorkspaceRoot) element;
+            try {
+                return workspace.members().length > 0;
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
+        }
+		
         if (element instanceof IProject) {
             IProject projects = (IProject) element;
             try {

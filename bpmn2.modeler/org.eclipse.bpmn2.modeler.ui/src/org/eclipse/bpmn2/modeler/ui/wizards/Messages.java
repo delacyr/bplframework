@@ -41,7 +41,8 @@ public class Messages extends NLS {
 	public static String BPMN2DiagramWizardPage2_lblFeatureModel_text;
 	public static String BPMN2DiagramWizardPage2_text_1_text;
 	public static String BPMN2DiagramWizardPage2_btnNewButton_text;
-
+	public static String BPMN2DiagramWizardPage2_Error_No_FeatureModel;
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

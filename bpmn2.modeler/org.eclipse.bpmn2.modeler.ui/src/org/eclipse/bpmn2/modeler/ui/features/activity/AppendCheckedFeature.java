@@ -55,9 +55,9 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 	public boolean canExecute(ICustomContext context) {
 		
 		/*Feature exclusiva da instanciação*/
-		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
-		IFile file = editor.getModelFile();
-		if (file.getParent().getName().equals("Instantiating")){
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
+//		IFile file = editor.getModelFile();
+//		if (file.getParent().getName().equals("Instantiating")){
 
 			PictogramElement[] pes = context.getPictogramElements();
 			if (pes != null && pes.length == 1) {

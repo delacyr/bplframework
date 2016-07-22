@@ -720,9 +720,10 @@ public class BPMNToolBehaviorProvider extends DefaultToolBehaviorProvider implem
 		button.setDescription(description);
 
 		// 3.d. add context button, button only if it contains at least one feature
-		if (button.getDragAndDropFeatures().size() > 0) {
-			data.getDomainSpecificContextButtons().add(button);
-		}
+		if (!BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN"))
+			if (button.getDragAndDropFeatures().size() > 0) {
+				data.getDomainSpecificContextButtons().add(button);
+			}
 
 		return data;
 	}

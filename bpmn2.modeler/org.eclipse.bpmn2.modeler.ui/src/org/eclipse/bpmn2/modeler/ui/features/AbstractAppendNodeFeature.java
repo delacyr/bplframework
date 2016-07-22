@@ -36,6 +36,7 @@ import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.core.utils.Tuple;
 import org.eclipse.bpmn2.modeler.ui.diagram.BPMNToolBehaviorProvider;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -126,6 +127,10 @@ public abstract class AbstractAppendNodeFeature<T extends FlowNode> extends Abst
 
 	@Override
 	public boolean canExecute(ICustomContext context) {
+		
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN"))
+			return false;
+		
 		CreateContext createContext = prepareCreateContext(context);
 		if (createContext==null)
 			return false;

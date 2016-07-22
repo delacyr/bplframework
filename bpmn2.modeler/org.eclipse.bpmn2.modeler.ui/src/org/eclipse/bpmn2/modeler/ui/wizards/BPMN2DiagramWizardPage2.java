@@ -15,8 +15,6 @@ package org.eclipse.bpmn2.modeler.ui.wizards;
 import org.eclipse.bpmn2.modeler.core.preferences.Bpmn2Preferences;
 import org.eclipse.bpmn2.modeler.core.runtime.TargetRuntime;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil.Bpmn2DiagramType;
-import org.eclipse.core.internal.resources.File;
-import org.eclipse.core.internal.resources.Resource;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -135,6 +133,16 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 		
 		featureModelLocation = new Text(container, SWT.BORDER);
 		featureModelLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		featureModelLocation.setEditable(false);
+		featureModelLocation.addModifyListener(new ModifyListener(){
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				dialogChanged(false);
+			}
+			
+		});
 		
 		btnNewButton = new Button(container, SWT.NONE);
 		btnNewButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -149,9 +157,9 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 				// TODO Auto-generated method stub
 				
 				ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider());
-				dialog.setTitle("Tree Selection");
-				dialog.setMessage("Select a the elements from the tree:");
-				dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
+				dialog.setTitle("Feature Model");
+				dialog.setMessage("Select a feature model:");
+				dialog.setInput(getFileContainer().getProject().getFolder("FeatureModel"));
 				if (dialog.open() == Window.OK) {
 					Object[] result = dialog.getResult();
 					if (result.length == 1) {
@@ -321,7 +329,7 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 				}
 
 			}
-			if (validateFileName() && validateTargetNamespace()) {
+			if (validateFileName() && validateTargetNamespace() && validateFeatureModelLocation()) {
 				updateStatus(null);
 				complete = true;
 			}
@@ -394,11 +402,19 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 		return true;
 	}
 	
+	private boolean validateFeatureModelLocation(){
+		if (getFeatureModelLocation().equals("")){
+			setErrorMessage(Messages.BPMN2DiagramWizardPage2_Error_No_FeatureModel);
+			return false;
+		}
+		return true;
+	}
 	@Override
 	public boolean isPageComplete() {
 		return validateContainer() &&
 				validateFileName() &&
-				validateTargetNamespace();
+				validateTargetNamespace() &&
+				validateFeatureModelLocation();
 	}
 
 	private void updateStatus(String message) {

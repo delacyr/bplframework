@@ -1036,7 +1036,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				// TODO Auto-generated method stub
 				DeleteContext deleteContext = new DeleteContext(variant);
 				IDeleteFeature deleteFeature = fp.getDeleteFeature(deleteContext);
-				if (deleteFeature.canDelete(deleteContext))
+//				if (deleteFeature.canDelete(deleteContext))
 					deleteFeature.delete(deleteContext);
 			}
 
