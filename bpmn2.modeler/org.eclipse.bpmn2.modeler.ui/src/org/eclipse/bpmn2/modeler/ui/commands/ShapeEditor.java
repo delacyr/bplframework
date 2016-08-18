@@ -1,3 +1,7 @@
+/**
+ * @author delacyr
+ *
+ */
 package org.eclipse.bpmn2.modeler.ui.commands;
 
 import java.util.ArrayList;

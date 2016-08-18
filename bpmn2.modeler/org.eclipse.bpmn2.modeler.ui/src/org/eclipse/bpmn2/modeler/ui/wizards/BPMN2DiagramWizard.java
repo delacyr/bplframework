@@ -19,6 +19,7 @@ import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.VrProcess;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNPlane;
+import org.eclipse.bpmn2.modeler.core.utils.ModelUtil.Bpmn2DiagramType;
 import org.eclipse.bpmn2.modeler.help.IHelpContexts;
 import org.eclipse.bpmn2.modeler.ui.Bpmn2DiagramEditorInput;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
@@ -80,7 +81,7 @@ public class BPMN2DiagramWizard extends Wizard implements INewWizard {
 		final String fileName = page2.getFileName();
 		final IResource container = page2.getDiagramContainer();
 		final String targetNamespace = page2.getTargetNamespace();
-		final String featureModelLocation = page2.getFeatureModelLocation();
+//		final String featureModelLocation = page2.getFeatureModelLocation();
 
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			@Override
@@ -97,9 +98,12 @@ public class BPMN2DiagramWizard extends Wizard implements INewWizard {
 					editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 						@Override
 						protected void doExecute() {
-							bpmnDiagram.setPhase("EDN");
-							bpmnDiagram.setFeatureModel(featureModelLocation);
-							bpmnDiagram.setVersion((int) (new Date().getTime()));
+							if (page1.getDiagramType() == Bpmn2DiagramType.VRPROCESS){
+								bpmnDiagram.setPhase("EDN");
+//								bpmnDiagram.setFeatureModel(featureModelLocation);
+//								bpmnDiagram.setVersion((int) (new Date().getTime()));
+								bpmnDiagram.setLocation(container.getFullPath().toString());
+							}
 						}
 					});
 					

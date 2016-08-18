@@ -545,6 +545,8 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Reference ioSpecification : InputOutputSpecification
     Reference dataInputAssociations : DataInputAssociation<<0..*>>
     Reference dataOutputAssociations : DataOutputAssociation<<0..*>>
+    Attribute check : EBoolean
+    Attribute solved : EBoolean
 
   Class ItemDefinition -> RootElement
     Attribute isCollection : EBoolean
@@ -858,6 +860,7 @@ Package di <http://www.omg.org/spec/BPMN/20100524/DI-XMI>
     Attribute version : ELong
     Attribute phase : EString
     Attribute featureModel : EString
+    Attribute location : EString
 
   Class BPMNEdge -> LabeledEdge
     Reference label : BPMNLabel

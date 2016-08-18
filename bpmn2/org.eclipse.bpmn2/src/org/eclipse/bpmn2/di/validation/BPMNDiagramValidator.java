@@ -29,4 +29,6 @@ public interface BPMNDiagramValidator {
     boolean validatePhase(String value);
 
     boolean validateFeatureModel(String value);
+
+    boolean validateLocation(String value);
 }

@@ -161,6 +161,7 @@ import org.eclipse.bpmn2.modeler.ui.wizards.BPMN2DiagramCreator;
 import org.eclipse.bpmn2.modeler.ui.wizards.FileService;
 import org.eclipse.bpmn2.util.Bpmn2ResourceImpl;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -211,6 +212,7 @@ import org.eclipse.graphiti.ui.editor.DiagramBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 import org.eclipse.graphiti.ui.internal.editor.GFPaletteRoot;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -1174,22 +1176,45 @@ public class BPMN2Editor extends DiagramEditor implements
 		this.bpmnDiagram = bpmnDiagram;
 		modelEnablements = null;
 	}
-
+		
+//	BPL2.0 - 10/08/16
+	
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		// long start = System.currentTimeMillis();
-		try {
-			saveInProgress = true;
-			// System.out.print("Saving...");
-			super.doSave(monitor);
-		} finally {
-			saveInProgress = false;
-		}
+//		try {
+			if (bpmnDiagram.getPhase().equals("EDN")){
+				MessageDialog dialog = new MessageDialog(
+				      null, "Saving BPL-Framework file...", null, "If you did some meaningful action that changed something relevant at this model, it may lose traceability with their instances.",
+				      MessageDialog.WARNING,
+				      new String[] {"Ok"},
+				      0); // yes is the default
+				   int result = dialog.open();
+//				   if (result == 0){
+//					   saveInProgress = true;
+//						// System.out.print("Saving...");
+//						super.doSave(monitor);
+//				   }
+//				   if (result == 1){
+//					   Path path = new Path(bpmnDiagram.getLocation());
+//					   IFile file = ResourcesPlugin.getWorkspace().getRoot().getFolder(path).getFile(bpmnDiagram.getName());
+//					   IFile file = 
+//					   System.out.println("Saving a new version...");
+//				   }
+			}
+//			}else{
+				saveInProgress = true;
+				// System.out.print("Saving...");
+				super.doSave(monitor);
+//			}
+			      
+			
+//		} finally {
+//			saveInProgress = false;
+//		}
 		// System.out.println("done in "+(System.currentTimeMillis()-start)+" ms");
 		Resource resource = getResourceSet().getResource(modelUri, false);
 		BPMN2ProjectValidator.validateOnSave(resource, monitor);
-		
-		System.out.println("It's here!");
 	}
 
 	@Override

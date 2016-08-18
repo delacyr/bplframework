@@ -54,6 +54,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#isCheck <em>Check</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#isSolved <em>Solved</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl#getDataObjectRef <em>Data Object Ref</em>}</li>
  * </ul>
  *
@@ -219,6 +221,46 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
      * @ordered
      */
     protected EList<DataOutputAssociation> dataOutputAssociations;
+
+    /**
+     * The default value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean CHECK_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected boolean check = CHECK_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SOLVED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected boolean solved = SOLVED_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getDataObjectRef() <em>Data Object Ref</em>}' reference.
@@ -595,6 +637,50 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isCheck() {
+        return check;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCheck(boolean newCheck) {
+        boolean oldCheck = check;
+        check = newCheck;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK, oldCheck, check));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSolved() {
+        return solved;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSolved(boolean newSolved) {
+        boolean oldSolved = solved;
+        solved = newSolved;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED, oldSolved, solved));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public DataObject getDataObjectRef() {
         return dataObjectRef;
     }
@@ -668,6 +754,10 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
             return getDataInputAssociations();
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             return getDataOutputAssociations();
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK:
+            return isCheck();
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED:
+            return isSolved();
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OBJECT_REF:
             return getDataObjectRef();
         }
@@ -720,6 +810,12 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
             getDataOutputAssociations().addAll(
                     (Collection<? extends DataOutputAssociation>) newValue);
             return;
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK:
+            setCheck((Boolean) newValue);
+            return;
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED:
+            setSolved((Boolean) newValue);
+            return;
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OBJECT_REF:
             setDataObjectRef((DataObject) newValue);
             return;
@@ -768,6 +864,12 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             getDataOutputAssociations().clear();
             return;
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK:
+            setCheck(CHECK_EDEFAULT);
+            return;
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED:
+            setSolved(SOLVED_EDEFAULT);
+            return;
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OBJECT_REF:
             setDataObjectRef((DataObject) null);
             return;
@@ -808,6 +910,10 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
             return dataInputAssociations != null && !dataInputAssociations.isEmpty();
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
             return dataOutputAssociations != null && !dataOutputAssociations.isEmpty();
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK:
+            return check != CHECK_EDEFAULT;
+        case Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED:
+            return solved != SOLVED_EDEFAULT;
         case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OBJECT_REF:
             return dataObjectRef != null;
         }
@@ -845,6 +951,10 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_INPUT_ASSOCIATIONS;
             case Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS:
                 return Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
+            case Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK:
+                return Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK;
+            case Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED:
+                return Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED;
             default:
                 return -1;
             }
@@ -883,6 +993,10 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
                 return Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_INPUT_ASSOCIATIONS;
             case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
                 return Bpmn2Package.DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS;
+            case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+                return Bpmn2Package.DATA_OBJECT_REFERENCE__CHECK;
+            case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
+                return Bpmn2Package.DATA_OBJECT_REFERENCE__SOLVED;
             default:
                 return -1;
             }
@@ -911,6 +1025,10 @@ public class DataObjectReferenceImpl extends FlowElementImpl implements DataObje
         result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
+        result.append(", check: ");
+        result.append(check);
+        result.append(", solved: ");
+        result.append(solved);
         result.append(')');
         return result.toString();
     }

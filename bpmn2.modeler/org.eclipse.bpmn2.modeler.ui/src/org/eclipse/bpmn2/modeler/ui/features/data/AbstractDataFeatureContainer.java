@@ -24,7 +24,10 @@ import org.eclipse.bpmn2.modeler.core.features.label.UpdateLabelFeature;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.features.AbstractDefaultDeleteFeature;
+import org.eclipse.bpmn2.modeler.ui.features.AppendCheckedFeature;
+import org.eclipse.bpmn2.modeler.ui.features.AppendUncheckedFeature;
 import org.eclipse.bpmn2.modeler.ui.features.LayoutBaseElementTextFeature;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -38,6 +41,7 @@ import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.impl.DeleteContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -108,5 +112,19 @@ public abstract class AbstractDataFeatureContainer extends BaseElementFeatureCon
 				super.delete(context);
 			}
 		};
+	}
+	
+//	BPL2.0
+	@Override
+	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
+		
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
+			ICustomFeature[] thisFeatures = new ICustomFeature[2];
+			thisFeatures[0] = new AppendCheckedFeature(fp);
+			thisFeatures[1] = new AppendUncheckedFeature(fp);
+			return thisFeatures;
+		}
+		return null;
+		
 	}
 }

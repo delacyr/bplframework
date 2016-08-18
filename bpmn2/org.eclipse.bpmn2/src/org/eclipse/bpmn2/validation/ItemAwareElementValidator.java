@@ -51,5 +51,9 @@ public interface ItemAwareElementValidator {
 
     boolean validateDataOutputAssociations(List<DataOutputAssociation> value);
 
+    boolean validateCheck(boolean value);
+
+    boolean validateSolved(boolean value);
+
     boolean validateSequential(String value);
 }

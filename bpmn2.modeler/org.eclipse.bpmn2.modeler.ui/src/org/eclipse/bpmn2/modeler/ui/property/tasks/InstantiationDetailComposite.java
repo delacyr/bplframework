@@ -8,7 +8,7 @@
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
  *
- * @author Marcelo Figueiredo Terenciani
+ * @author Delacyr Almeida Monteiro Ferreira
  ******************************************************************************/
 
 package org.eclipse.bpmn2.modeler.ui.property.tasks;
@@ -17,6 +17,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractBpmn2PropertySection;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
@@ -25,8 +27,13 @@ import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.BooleanObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextAndButtonObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextObjectEditor;
+import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
+import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.ErrorUtils;
+import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
+import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.property.editors.GatewayObjectEditor;
 import org.eclipse.bpmn2.modeler.ui.property.editors.SequenceObjectEditor;
 import org.eclipse.emf.common.notify.Notification;
@@ -34,6 +41,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
@@ -117,9 +131,10 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 		createWidgetsGateway(be);	
 		createWidgetsCondition(be);
 		
-		seqList.setVisible((Boolean)isOrVarpoint());
-		gateway.setVisible((Boolean)hasSameSequence());
-		condition.setVisible((Boolean)isORorXOR());
+//		seqList.setVisible((Boolean)isOrVarpoint());
+//		gateway.setVisible((Boolean)hasSameSequence());
+////		condition.setVisible((Boolean)isORorXOR());
+//		condition.setVisible((Boolean)hasSameSequence());
 	}
 
 	private Boolean isORorXOR() {
@@ -304,10 +319,21 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			
 			@Override
 			public void notifyChanged(Notification notification) {
-				super.notifyChanged(notification);
+				super.notifyChanged(notification);		
 				redrawParent();
 			}
 			
+			private ContainerShape getContainerShape(FlowNode fn, Diagram diagram) {
+				// TODO Auto-generated method stub
+				for (Object o : Graphiti.getPeService().getLinkedPictogramElements(new EObject[] {fn}, diagram)) {
+					if (o instanceof ContainerShape && !FeatureSupport.isLabelShape((ContainerShape)o)) {
+						// this is the FlowNode shape
+						return (ContainerShape)o;
+					}
+				}
+				return null;
+			}
+
 			@Override
 			public boolean setValue(final Object result) {
 				
@@ -315,6 +341,21 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 					Activity variant = null;
 					variant = (Activity)businessObject;
 					if (variant.isVariant() && variant.isCheck()){
+						
+						Diagram diagram = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram();
+						ContainerShape containerShape = getContainerShape((FlowNode)businessObject, diagram);
+						final Shape shape = containerShape.getChildren().get(0);
+						final BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
+						final ShapeStyle ss = new ShapeStyle();
+						ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+//						TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+//						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+//							@Override
+//							protected void doExecute() {
+//								StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+//							}
+//						});
+						
 						TransactionalEditingDomain editingDomain = getDiagramEditor().getEditingDomain();
 						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 							@Override
@@ -324,10 +365,11 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 								variant2.setSeq((int)result);
 //								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
 //								sequence.eSet(sequence, (int)result);
+								StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+								
 							}
 						});
-						getAttributesParent().layout();
-						redrawParent();
+						
 						return super.setValue(result);
 					}
 					MessageDialog.openWarning(null, "Warning", Messages.InstantiationDetailComposite_Unchecked_Variant);
@@ -337,7 +379,6 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 			}
 		};
 		seqList.createControl(getAttributesParent(), "Sequence");
-		
 	}
 
 	private void createWidgetsGateway(EObject be) {
@@ -387,10 +428,7 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 							}		
 							redrawParent();
 						}
-						
 					});	
-					
-
 			}
 			
 			@Override
@@ -452,9 +490,10 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 	private void redrawParent() {
 //		changeElementName();
 		updateName();
-		seqList.setVisible((Boolean)isOrVarpoint());
-		gateway.setVisible((Boolean)hasSameSequence());
-		condition.setVisible((Boolean)isORorXOR());
+//		seqList.setVisible((Boolean)isOrVarpoint());
+//		gateway.setVisible((Boolean)hasSameSequence());
+////		condition.setVisible((Boolean)isORorXOR());
+//		condition.setVisible((Boolean)hasSameSequence());
 //		if (!(Boolean)variant.getValue()){
 //			featureIdEditor.setVisible((Boolean)varPoint.getValue());
 //			buttonComposite.setVisible((Boolean)varPoint.getValue());

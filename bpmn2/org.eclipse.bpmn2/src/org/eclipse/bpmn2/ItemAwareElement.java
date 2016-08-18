@@ -36,6 +36,8 @@ import java.util.List;
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#getDataOutputAssociations <em>Data Output Associations</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#isCheck <em>Check</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.ItemAwareElement#isSolved <em>Solved</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement()
@@ -321,5 +323,59 @@ public interface ItemAwareElement extends BaseElement {
      * @generated
      */
     List<DataOutputAssociation> getDataOutputAssociations();
+
+    /**
+     * Returns the value of the '<em><b>Check</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Check</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Check</em>' attribute.
+     * @see #setCheck(boolean)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_Check()
+     * @model default="false" ordered="false"
+     * @generated
+     */
+    boolean isCheck();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#isCheck <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Check</em>' attribute.
+     * @see #isCheck()
+     * @generated
+     */
+    void setCheck(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Solved</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Solved</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Solved</em>' attribute.
+     * @see #setSolved(boolean)
+     * @see org.eclipse.bpmn2.Bpmn2Package#getItemAwareElement_Solved()
+     * @model default="false" ordered="false"
+     * @generated
+     */
+    boolean isSolved();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.ItemAwareElement#isSolved <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Solved</em>' attribute.
+     * @see #isSolved()
+     * @generated
+     */
+    void setSolved(boolean value);
 
 } // ItemAwareElement

@@ -70,6 +70,8 @@ public class ItemAwareElementItemProvider extends BaseElementItemProvider implem
             addVariantPropertyDescriptor(object);
             addFeatureTypePropertyDescriptor(object);
             addFeatureIdPropertyDescriptor(object);
+            addCheckPropertyDescriptor(object);
+            addSolvedPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -179,6 +181,40 @@ public class ItemAwareElementItemProvider extends BaseElementItemProvider implem
     }
 
     /**
+     * This adds a property descriptor for the Check feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addCheckPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_ItemAwareElement_check_feature"),
+                getString("_UI_PropertyDescriptor_description",
+                        "_UI_ItemAwareElement_check_feature", "_UI_ItemAwareElement_type"),
+                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__CHECK, true, false, false,
+                ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Solved feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSolvedPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_ItemAwareElement_solved_feature"),
+                getString("_UI_PropertyDescriptor_description",
+                        "_UI_ItemAwareElement_solved_feature", "_UI_ItemAwareElement_type"),
+                Bpmn2Package.Literals.ITEM_AWARE_ELEMENT__SOLVED, true, false, false,
+                ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -260,6 +296,8 @@ public class ItemAwareElementItemProvider extends BaseElementItemProvider implem
         case Bpmn2Package.ITEM_AWARE_ELEMENT__VARIANT:
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_TYPE:
         case Bpmn2Package.ITEM_AWARE_ELEMENT__FEATURE_ID:
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

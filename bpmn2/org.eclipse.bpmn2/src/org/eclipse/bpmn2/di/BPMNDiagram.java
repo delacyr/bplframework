@@ -33,6 +33,7 @@ import org.eclipse.dd.di.Diagram;
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getPhase <em>Phase</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getFeatureModel <em>Feature Model</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.BPMNDiagram#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram()
@@ -162,5 +163,31 @@ public interface BPMNDiagram extends Diagram {
      * @generated
      */
     void setFeatureModel(String value);
+
+    /**
+     * Returns the value of the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Location</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Location</em>' attribute.
+     * @see #setLocation(String)
+     * @see org.eclipse.bpmn2.di.BpmnDiPackage#getBPMNDiagram_Location()
+     * @model
+     * @generated
+     */
+    String getLocation();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.bpmn2.di.BPMNDiagram#getLocation <em>Location</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Location</em>' attribute.
+     * @see #getLocation()
+     * @generated
+     */
+    void setLocation(String value);
 
 } // BPMNDiagram

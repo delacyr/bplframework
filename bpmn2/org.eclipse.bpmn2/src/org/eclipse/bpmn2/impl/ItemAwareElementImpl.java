@@ -52,6 +52,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getIoSpecification <em>Io Specification</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataInputAssociations <em>Data Input Associations</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#getDataOutputAssociations <em>Data Output Associations</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#isCheck <em>Check</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.impl.ItemAwareElementImpl#isSolved <em>Solved</em>}</li>
  * </ul>
  *
  * @generated
@@ -216,6 +218,46 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * @ordered
      */
     protected EList<DataOutputAssociation> dataOutputAssociations;
+
+    /**
+     * The default value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean CHECK_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isCheck() <em>Check</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isCheck()
+     * @generated
+     * @ordered
+     */
+    protected boolean check = CHECK_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SOLVED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isSolved() <em>Solved</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSolved()
+     * @generated
+     * @ordered
+     */
+    protected boolean solved = SOLVED_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -581,6 +623,50 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isCheck() {
+        return check;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCheck(boolean newCheck) {
+        boolean oldCheck = check;
+        check = newCheck;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK, oldCheck, check));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSolved() {
+        return solved;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSolved(boolean newSolved) {
+        boolean oldSolved = solved;
+        solved = newSolved;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED, oldSolved, solved));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -631,6 +717,10 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             return getDataInputAssociations();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             return getDataOutputAssociations();
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+            return isCheck();
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
+            return isSolved();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -681,6 +771,12 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             getDataOutputAssociations().addAll(
                     (Collection<? extends DataOutputAssociation>) newValue);
             return;
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+            setCheck((Boolean) newValue);
+            return;
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
+            setSolved((Boolean) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -726,6 +822,12 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             getDataOutputAssociations().clear();
             return;
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+            setCheck(CHECK_EDEFAULT);
+            return;
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
+            setSolved(SOLVED_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -763,6 +865,10 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
             return dataInputAssociations != null && !dataInputAssociations.isEmpty();
         case Bpmn2Package.ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS:
             return dataOutputAssociations != null && !dataOutputAssociations.isEmpty();
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__CHECK:
+            return check != CHECK_EDEFAULT;
+        case Bpmn2Package.ITEM_AWARE_ELEMENT__SOLVED:
+            return solved != SOLVED_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -788,6 +894,10 @@ public class ItemAwareElementImpl extends BaseElementImpl implements ItemAwareEl
         result.append(featureType);
         result.append(", featureId: ");
         result.append(featureId);
+        result.append(", check: ");
+        result.append(check);
+        result.append(", solved: ");
+        result.append(solved);
         result.append(')');
         return result.toString();
     }

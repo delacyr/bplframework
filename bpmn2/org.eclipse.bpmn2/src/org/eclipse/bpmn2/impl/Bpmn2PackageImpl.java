@@ -5568,6 +5568,24 @@ public class Bpmn2PackageImpl extends EPackageImpl implements Bpmn2Package {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getItemAwareElement_Check() {
+        return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getItemAwareElement_Solved() {
+        return (EAttribute) getItemAwareElement().getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getItemDefinition() {
         if (itemDefinitionEClass == null) {
             itemDefinitionEClass = (EClass) EPackage.Registry.INSTANCE

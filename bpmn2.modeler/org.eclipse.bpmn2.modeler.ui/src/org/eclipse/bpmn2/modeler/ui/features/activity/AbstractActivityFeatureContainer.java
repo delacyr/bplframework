@@ -21,6 +21,8 @@ import org.eclipse.bpmn2.modeler.core.features.activity.MoveActivityFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityCompensateMarkerFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.UpdateActivityLoopAndMultiInstanceMarkerFeature;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.bpmn2.modeler.ui.features.AppendCheckedFeature;
+import org.eclipse.bpmn2.modeler.ui.features.AppendUncheckedFeature;
 import org.eclipse.bpmn2.modeler.ui.features.event.AppendEventFeature;
 import org.eclipse.bpmn2.modeler.ui.features.gateway.AppendGatewayFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
@@ -71,6 +73,7 @@ public abstract class AbstractActivityFeatureContainer extends BaseElementFeatur
 		return new DeleteActivityFeature(fp);
 	}
 
+//	BPL2.0
 	@Override
 	public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
 		

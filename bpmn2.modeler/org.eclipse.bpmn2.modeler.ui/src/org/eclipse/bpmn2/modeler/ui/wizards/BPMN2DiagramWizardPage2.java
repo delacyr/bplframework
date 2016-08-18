@@ -128,47 +128,56 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 			}
 		});
 		
-		lblFeatureModel = new Label(container, SWT.NONE);
-		lblFeatureModel.setText(Messages.BPMN2DiagramWizardPage2_lblFeatureModel_text);
 		
-		featureModelLocation = new Text(container, SWT.BORDER);
-		featureModelLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		featureModelLocation.setEditable(false);
-		featureModelLocation.addModifyListener(new ModifyListener(){
-
-			@Override
-			public void modifyText(ModifyEvent e) {
-				// TODO Auto-generated method stub
-				dialogChanged(false);
-			}
 			
-		});
 		
-		btnNewButton = new Button(container, SWT.NONE);
-		btnNewButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnNewButton.setText(Messages.BPMN2DiagramWizardPage2_btnNewButton_text);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				handleBrowseModelFeature();
-			}
-
-			private void handleBrowseModelFeature() {
-				// TODO Auto-generated method stub
-				
-				ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider());
-				dialog.setTitle("Feature Model");
-				dialog.setMessage("Select a feature model:");
-				dialog.setInput(getFileContainer().getProject().getFolder("FeatureModel"));
-				if (dialog.open() == Window.OK) {
-					Object[] result = dialog.getResult();
-					if (result.length == 1) {
-						selection = new TreeSelection(new TreePath(result));
-						featureModelLocation.setText(((IFile) result[0]).getLocation().toString());
-					}
-				}
-			}
-		});
+//			lblFeatureModel = new Label(container, SWT.NONE);
+//			lblFeatureModel.setText(Messages.BPMN2DiagramWizardPage2_lblFeatureModel_text);
+//			
+//			featureModelLocation = new Text(container, SWT.BORDER);
+//			featureModelLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+//			featureModelLocation.setEditable(false);
+//			featureModelLocation.addModifyListener(new ModifyListener(){
+//	
+//				@Override
+//				public void modifyText(ModifyEvent e) {
+//					// TODO Auto-generated method stub
+//					dialogChanged(false);
+//				}
+//				
+//			});
+//			
+//		
+//			btnNewButton = new Button(container, SWT.NONE);
+//			btnNewButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+//			btnNewButton.setText(Messages.BPMN2DiagramWizardPage2_btnNewButton_text);
+//			btnNewButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				handleBrowseModelFeature();
+//			}
+//
+//			private void handleBrowseModelFeature() {
+//				// TODO Auto-generated method stub
+//				
+//				ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider());
+//				dialog.setTitle("Feature Model");
+//				dialog.setMessage("Select a feature model:");
+//				dialog.setInput(getFileContainer().getProject().getFolder("FeatureModel"));
+//				if (dialog.open() == Window.OK) {
+//					Object[] result = dialog.getResult();
+//					if (result.length == 1) {
+////						selection = new TreeSelection(new TreePath(result));
+//						featureModelLocation.setText(((IFile) result[0]).getLocation().toString());
+//					}
+//				}
+//			}
+//			});
+//			
+//			if (getDiagramType() != Bpmn2DiagramType.VRPROCESS){	
+//				btnNewButton.setEnabled(false);
+//			}
+		
 		
 		updatePageDescription();
 		updateFilename();
@@ -329,10 +338,18 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 				}
 
 			}
-			if (validateFileName() && validateTargetNamespace() && validateFeatureModelLocation()) {
-				updateStatus(null);
-				complete = true;
-			}
+//			if (getDiagramType() == Bpmn2DiagramType.VRPROCESS){
+//				if (validateFileName() && validateTargetNamespace() && validateFeatureModelLocation()) {
+//					updateStatus(null);
+//					complete = true;
+//				}
+//			}
+//			else{			
+				if (validateFileName() && validateTargetNamespace()) {
+					updateStatus(null);
+					complete = true;
+				}
+//			}
 		}
 		setPageComplete(complete);
 	}
@@ -403,7 +420,7 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 	}
 	
 	private boolean validateFeatureModelLocation(){
-		if (getFeatureModelLocation().equals("")){
+		if (getFeatureModelLocation().equals("") && getDiagramType() == Bpmn2DiagramType.VRPROCESS){
 			setErrorMessage(Messages.BPMN2DiagramWizardPage2_Error_No_FeatureModel);
 			return false;
 		}
@@ -413,8 +430,8 @@ public class BPMN2DiagramWizardPage2 extends WizardPage {
 	public boolean isPageComplete() {
 		return validateContainer() &&
 				validateFileName() &&
-				validateTargetNamespace() &&
-				validateFeatureModelLocation();
+				validateTargetNamespace(); //&&
+//				validateFeatureModelLocation();
 	}
 
 	private void updateStatus(String message) {

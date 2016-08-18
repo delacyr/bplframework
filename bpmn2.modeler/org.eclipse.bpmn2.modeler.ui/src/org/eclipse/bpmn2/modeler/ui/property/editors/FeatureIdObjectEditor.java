@@ -133,7 +133,8 @@ public class FeatureIdObjectEditor extends ComboObjectEditor {
 
 		FeatureModel featureModel = new FeatureModel();
 //		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
-		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
+//		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
+		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+project.getName()+"_FM"+".xml");
 		try {
 			new XmlFeatureModelReader(featureModel).readFromFile(file);
 			for (String f : featureModel.getFeatureNames()) {

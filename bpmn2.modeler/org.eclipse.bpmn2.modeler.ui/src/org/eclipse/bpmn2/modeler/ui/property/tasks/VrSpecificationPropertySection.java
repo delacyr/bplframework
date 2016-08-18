@@ -42,6 +42,7 @@ public class VrSpecificationPropertySection extends DefaultPropertySection imple
 	public AbstractDetailComposite createSectionRoot(Composite parent, int style) {
 		return new VrSpecificationDetailComposite(parent,style);
 	}
+//	BPL2.0
 	@Override
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
 //		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
@@ -55,7 +56,8 @@ public class VrSpecificationPropertySection extends DefaultPropertySection imple
 //			if (!phase.equals("instantiation"))
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 		IFile file = editor.getModelFile();
-		if (file.getParent().getName().equals("BusinessProcessModelTemplate")){
+//		if (file.getParent().getParent().getName().equals("BusinessProcessModelTemplate")){
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EDN")){
 				if (super.appliesTo(part, selection)) {
 					EObject object = getBusinessObjectForSelection(selection);
 					return object!=null;

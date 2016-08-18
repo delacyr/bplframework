@@ -43,7 +43,8 @@ public class InstantiationPropertySection extends DefaultPropertySection impleme
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 		IFile file = editor.getModelFile();
-		if (file.getParent().getName().equals("Instantiating")){
+//		if (file.getParent().getName().equals("Instantiating")){
+		if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
 			if (super.appliesTo(part, selection)) {
 				EObject object = getBusinessObjectForSelection(selection);
 	//			Activity element = null;

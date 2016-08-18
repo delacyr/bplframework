@@ -117,7 +117,7 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 		variant = null;
 		featureIdEditor = null;
 	}
-
+//	BPL2.0
 	public void createBindings(EObject be) {
 		String name = ModelUtil.getDiagramEditor(be).getPartName();
 		String root = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
@@ -126,21 +126,26 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 		IProject project = bpmnfile.getProject();
 		Boolean pass;
 		featureModel = new FeatureModel();
+		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+project.getName()+"_FM"+".xml");
 //		File file = new File(root+"/"+project.getName()+"/FeatureModel/"+name+".xml");
-		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
+//		File file = new File(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
 		try {
-			pass=false;
+			pass=true;
 			new XmlFeatureModelReader(featureModel).readFromFile(file);
 //			new XmlFeatureModelReader(featureModel).readFromString(BPMN2Editor.getActiveEditor().getBpmnDiagram().getFeatureModel());
-			
+	
+
 		} 
 		catch (FileNotFoundException f ) {
-			pass=true;
-			MessageDialog.openError(null,"Error","N�o � possivel encontrar o Feature Model, verifique a exist�ncia do arquivo "+name+".xml"+" na pasta /FeatureModel");
+			pass=false;
+//			MessageDialog.openError(null,"Error","N�o � possivel encontrar o Feature Model, verifique a exist�ncia do arquivo "+name+".xml"+" na pasta /FeatureModel");
+			MessageDialog.openError(null, "Error", "Please, check if there is a FeatureModel/"+project.getName()+"_FM"+".xml");
+			
+
 			
 		} 
 		catch (UnsupportedModelException e){
-			pass=true;
+			pass=false;
 		}
 		
 		
@@ -150,7 +155,7 @@ public class VrSpecificationDetailComposite extends AbstractDetailComposite {
 		createWidgetsFeatureId(be);
 		createWidgetButons(be);
 		
-		if (pass){
+		if (!pass){
 			variant.setVisible(false);
 			label.setVisible(false);
 			varPoint.setVisible(false);

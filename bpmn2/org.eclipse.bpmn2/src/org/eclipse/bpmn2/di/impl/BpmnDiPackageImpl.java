@@ -353,6 +353,15 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getBPMNDiagram_Location() {
+        return (EAttribute) bpmnDiagramEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBPMNEdge() {
         return bpmnEdgeEClass;
     }
@@ -601,6 +610,7 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
         createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__VERSION);
         createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__PHASE);
         createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__FEATURE_MODEL);
+        createEAttribute(bpmnDiagramEClass, BPMN_DIAGRAM__LOCATION);
 
         bpmnEdgeEClass = createEClass(BPMN_EDGE);
         createEReference(bpmnEdgeEClass, BPMN_EDGE__LABEL);
@@ -729,6 +739,9 @@ public class BpmnDiPackageImpl extends EPackageImpl implements BpmnDiPackage {
         initEAttribute(getBPMNDiagram_FeatureModel(), ecorePackage.getEString(), "featureModel",
                 null, 0, 1, BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
                 !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMNDiagram_Location(), ecorePackage.getEString(), "location", null, 0,
+                1, BPMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+                !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(bpmnEdgeEClass, BPMNEdge.class, "BPMNEdge", !IS_ABSTRACT, !IS_INTERFACE,
                 IS_GENERATED_INSTANCE_CLASS);

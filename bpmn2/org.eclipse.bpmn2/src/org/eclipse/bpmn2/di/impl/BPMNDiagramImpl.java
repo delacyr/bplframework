@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getPhase <em>Phase</em>}</li>
  *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getFeatureModel <em>Feature Model</em>}</li>
+ *   <li>{@link org.eclipse.bpmn2.di.impl.BPMNDiagramImpl#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @generated
@@ -130,6 +131,26 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * @ordered
      */
     protected String featureModel = FEATURE_MODEL_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLocation()
+     * @generated
+     * @ordered
+     */
+    protected static final String LOCATION_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLocation()
+     * @generated
+     * @ordered
+     */
+    protected String location = LOCATION_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -284,6 +305,28 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLocation(String newLocation) {
+        String oldLocation = location;
+        location = newLocation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET,
+                    BpmnDiPackage.BPMN_DIAGRAM__LOCATION, oldLocation, location));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
             NotificationChain msgs) {
@@ -314,6 +357,8 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
             return getPhase();
         case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
             return getFeatureModel();
+        case BpmnDiPackage.BPMN_DIAGRAM__LOCATION:
+            return getLocation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -343,6 +388,9 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
             setFeatureModel((String) newValue);
             return;
+        case BpmnDiPackage.BPMN_DIAGRAM__LOCATION:
+            setLocation((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -370,6 +418,9 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
             setFeatureModel(FEATURE_MODEL_EDEFAULT);
             return;
+        case BpmnDiPackage.BPMN_DIAGRAM__LOCATION:
+            setLocation(LOCATION_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -393,6 +444,9 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
             return FEATURE_MODEL_EDEFAULT == null ? featureModel != null : !FEATURE_MODEL_EDEFAULT
                     .equals(featureModel);
+        case BpmnDiPackage.BPMN_DIAGRAM__LOCATION:
+            return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT
+                    .equals(location);
         }
         return super.eIsSet(featureID);
     }
@@ -414,6 +468,8 @@ public class BPMNDiagramImpl extends DiagramImpl implements BPMNDiagram {
         result.append(phase);
         result.append(", featureModel: ");
         result.append(featureModel);
+        result.append(", location: ");
+        result.append(location);
         result.append(')');
         return result.toString();
     }

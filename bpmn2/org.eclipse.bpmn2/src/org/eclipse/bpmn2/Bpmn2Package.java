@@ -7935,13 +7935,31 @@ public interface Bpmn2Package extends EPackage {
     int ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS = BASE_ELEMENT_FEATURE_COUNT + 10;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_AWARE_ELEMENT__CHECK = BASE_ELEMENT_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_AWARE_ELEMENT__SOLVED = BASE_ELEMENT_FEATURE_COUNT + 12;
+
+    /**
      * The number of structural features of the '<em>Item Aware Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ITEM_AWARE_ELEMENT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 11;
+    int ITEM_AWARE_ELEMENT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 13;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataInputImpl <em>Data Input</em>}' class.
@@ -8096,6 +8114,24 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_INPUT__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_INPUT__CHECK = ITEM_AWARE_ELEMENT__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_INPUT__SOLVED = ITEM_AWARE_ELEMENT__SOLVED;
 
     /**
      * The feature id for the '<em><b>Input Set With Optional</b></em>' reference list.
@@ -8451,13 +8487,31 @@ public interface Bpmn2Package extends EPackage {
     int DATA_OBJECT__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OBJECT__CHECK = FLOW_ELEMENT_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OBJECT__SOLVED = FLOW_ELEMENT_FEATURE_COUNT + 12;
+
+    /**
      * The feature id for the '<em><b>Is Collection</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_OBJECT__IS_COLLECTION = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_OBJECT__IS_COLLECTION = FLOW_ELEMENT_FEATURE_COUNT + 13;
 
     /**
      * The number of structural features of the '<em>Data Object</em>' class.
@@ -8466,7 +8520,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
+    int DATA_OBJECT_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 14;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataObjectReferenceImpl <em>Data Object Reference</em>}' class.
@@ -8659,13 +8713,31 @@ public interface Bpmn2Package extends EPackage {
     int DATA_OBJECT_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OBJECT_REFERENCE__CHECK = FLOW_ELEMENT_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OBJECT_REFERENCE__SOLVED = FLOW_ELEMENT_FEATURE_COUNT + 12;
+
+    /**
      * The feature id for the '<em><b>Data Object Ref</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE__DATA_OBJECT_REF = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_OBJECT_REFERENCE__DATA_OBJECT_REF = FLOW_ELEMENT_FEATURE_COUNT + 13;
 
     /**
      * The number of structural features of the '<em>Data Object Reference</em>' class.
@@ -8674,7 +8746,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_OBJECT_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
+    int DATA_OBJECT_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 14;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DataOutputImpl <em>Data Output</em>}' class.
@@ -8829,6 +8901,24 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int DATA_OUTPUT__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OUTPUT__CHECK = ITEM_AWARE_ELEMENT__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_OUTPUT__SOLVED = ITEM_AWARE_ELEMENT__SOLVED;
 
     /**
      * The feature id for the '<em><b>Output Set With Optional</b></em>' reference list.
@@ -9221,6 +9311,24 @@ public interface Bpmn2Package extends EPackage {
     int DATA_STORE__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_STORE__CHECK = ITEM_AWARE_ELEMENT__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_STORE__SOLVED = ITEM_AWARE_ELEMENT__SOLVED;
+
+    /**
      * The feature id for the '<em><b>Capacity</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9447,13 +9555,31 @@ public interface Bpmn2Package extends EPackage {
     int DATA_STORE_REFERENCE__DATA_OUTPUT_ASSOCIATIONS = FLOW_ELEMENT_FEATURE_COUNT + 10;
 
     /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_STORE_REFERENCE__CHECK = FLOW_ELEMENT_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_STORE_REFERENCE__SOLVED = FLOW_ELEMENT_FEATURE_COUNT + 12;
+
+    /**
      * The feature id for the '<em><b>Data Store Ref</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE__DATA_STORE_REF = FLOW_ELEMENT_FEATURE_COUNT + 11;
+    int DATA_STORE_REFERENCE__DATA_STORE_REF = FLOW_ELEMENT_FEATURE_COUNT + 13;
 
     /**
      * The number of structural features of the '<em>Data Store Reference</em>' class.
@@ -9462,7 +9588,7 @@ public interface Bpmn2Package extends EPackage {
      * @generated
      * @ordered
      */
-    int DATA_STORE_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 12;
+    int DATA_STORE_REFERENCE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 14;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.impl.DefinitionsImpl <em>Definitions</em>}' class.
@@ -16473,6 +16599,24 @@ public interface Bpmn2Package extends EPackage {
      * @ordered
      */
     int PROPERTY__DATA_OUTPUT_ASSOCIATIONS = ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS;
+
+    /**
+     * The feature id for the '<em><b>Check</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__CHECK = ITEM_AWARE_ELEMENT__CHECK;
+
+    /**
+     * The feature id for the '<em><b>Solved</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__SOLVED = ITEM_AWARE_ELEMENT__SOLVED;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -25837,6 +25981,28 @@ public interface Bpmn2Package extends EPackage {
     EReference getItemAwareElement_DataOutputAssociations();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#isCheck <em>Check</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Check</em>'.
+     * @see org.eclipse.bpmn2.ItemAwareElement#isCheck()
+     * @see #getItemAwareElement()
+     * @generated
+     */
+    EAttribute getItemAwareElement_Check();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.ItemAwareElement#isSolved <em>Solved</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Solved</em>'.
+     * @see org.eclipse.bpmn2.ItemAwareElement#isSolved()
+     * @see #getItemAwareElement()
+     * @generated
+     */
+    EAttribute getItemAwareElement_Solved();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.ItemDefinition <em>Item Definition</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -31879,6 +32045,22 @@ public interface Bpmn2Package extends EPackage {
          */
         EReference ITEM_AWARE_ELEMENT__DATA_OUTPUT_ASSOCIATIONS = eINSTANCE
                 .getItemAwareElement_DataOutputAssociations();
+
+        /**
+         * The meta object literal for the '<em><b>Check</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ITEM_AWARE_ELEMENT__CHECK = eINSTANCE.getItemAwareElement_Check();
+
+        /**
+         * The meta object literal for the '<em><b>Solved</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ITEM_AWARE_ELEMENT__SOLVED = eINSTANCE.getItemAwareElement_Solved();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.impl.ItemDefinitionImpl <em>Item Definition</em>}' class.

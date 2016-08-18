@@ -12,9 +12,12 @@
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.ui.features.activity.task;
 
+import java.util.List;
+
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.Bpmn2Package;
+import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.Task;
 import org.eclipse.bpmn2.impl.TaskImpl;
 import org.eclipse.bpmn2.modeler.core.features.activity.task.AbstractCreateTaskFeature;
@@ -47,7 +50,7 @@ public class TaskFeatureContainer extends AbstractTaskFeatureContainer {
 	public ICreateFeature getCreateFeature(IFeatureProvider fp) {
 		return new CreateTaskFeature(fp);
 	}
-
+//	BPL2.0
 	@Override
 	public IAddFeature getAddFeature(IFeatureProvider fp) {
 		return new AddTaskFeature<Task>(fp){
@@ -65,15 +68,39 @@ public class TaskFeatureContainer extends AbstractTaskFeatureContainer {
 				Shape shape = containerShape.getChildren().get(0);
 				BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
 				Activity variant = (Activity)baseElement;
-				if (variant!=null && variant.isVariant() && variant.isCheck()) {
-					ShapeStyle ss = new ShapeStyle();
-					ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
-					StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+//				if (variant!=null && variant.isVariant() && variant.isCheck()) {
+				if (variant!=null && variant.isCheck()) {	
+//					if (variant.isVariant() && variant.getSeq() == 0){
+						
+						List<SequenceFlow> outgoing = variant.getOutgoing();
+						for (SequenceFlow sf: outgoing){
+							if (sf.getTargetRef() instanceof Activity)
+								if (((Activity)sf.getTargetRef()).isVarPoint())
+									if (((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
+										if (variant.isVariant() && variant.getSeq() == 0){
+											ShapeStyle ss = new ShapeStyle();
+											ss.setDefaultColors(IColorConstant.YELLOW);
+											StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+										}else{
+											ShapeStyle ss = new ShapeStyle();
+											ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+											StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+										}
+									}
+									else{
+										ShapeStyle ss = new ShapeStyle();
+										ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+										StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+									}
+						}
+//					}
+				
 				}
 				/*Feature exclusiva da instanciação*/
 				BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 				IFile file = editor.getModelFile();
-				if (file.getParent().getName().equals("Instantiating") || file.getParent().getName().equals("Instantiated")){
+				if (file.getParent().getName().equals("Instantiating") || file.getParent().getName().equals("Instantiated") || file.getParent().getParent().getName().equals("Instantiating") || file.getParent().getParent().getName().equals("Instantiated")){
+//				if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
 					if (!variant.isVarPoint() && !variant.isVariant()){
 						ShapeStyle ss = new ShapeStyle();
 						ss.setDefaultColors(IColorConstant.LIGHT_GREEN);

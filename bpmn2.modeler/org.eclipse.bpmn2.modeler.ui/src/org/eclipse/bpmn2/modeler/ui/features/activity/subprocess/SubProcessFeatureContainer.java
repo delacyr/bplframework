@@ -12,22 +12,39 @@
  ******************************************************************************/
 package org.eclipse.bpmn2.modeler.ui.features.activity.subprocess;
 
+import java.util.List;
+
+import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.AdHocSubProcess;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.Bpmn2Package;
+import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.SubChoreography;
 import org.eclipse.bpmn2.SubProcess;
+import org.eclipse.bpmn2.Task;
 import org.eclipse.bpmn2.Transaction;
 import org.eclipse.bpmn2.modeler.core.features.MultiUpdateFeature;
 import org.eclipse.bpmn2.modeler.core.features.activity.AbstractCreateExpandableFlowNodeFeature;
 import org.eclipse.bpmn2.modeler.core.model.Bpmn2ModelerFactory;
+import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
+import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
+import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.algorithms.MultiText;
+import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.util.IColorConstant;
 
 public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatureContainer {
 
@@ -44,10 +61,65 @@ public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatur
 	public ICreateFeature getCreateFeature(IFeatureProvider fp) {
 		return new CreateSubProcessFeature(fp);
 	}
-
+//	BPL2.0
 	@Override
 	public IAddFeature getAddFeature(IFeatureProvider fp) {
-		return new AddExpandableActivityFeature<SubProcess>(fp);
+		return new AddExpandableActivityFeature<SubProcess>(fp){
+			@Override
+			protected void decorateShape(IAddContext context, ContainerShape containerShape, SubProcess businessObject) {
+				Shape textShape = peService.createShape(containerShape, false);
+				MultiText text = gaService.createDefaultMultiText(getDiagram(), textShape, businessObject.getName());
+				gaService.setLocationAndSize(text, 0, 0, context.getWidth(), context.getHeight());
+				StyleUtil.applyStyle(text, businessObject);
+				text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+				text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+//				text.setFont(gaService.manageFont(getDiagram(), GaServiceImpl.DEFAULT_FONT, 8, false, true));
+				link(textShape, businessObject);
+				
+				Shape shape = containerShape.getChildren().get(0);
+				BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
+				Activity variant = (Activity)baseElement;
+//				if (variant!=null && variant.isVariant() && variant.isCheck()) {
+				if (variant!=null && variant.isCheck()) {	
+//					if (variant.isVariant() && variant.getSeq() == 0){
+						
+						List<SequenceFlow> outgoing = variant.getOutgoing();
+						for (SequenceFlow sf: outgoing){
+							if (sf.getTargetRef() instanceof Activity)
+								if (((Activity)sf.getTargetRef()).isVarPoint())
+									if (((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
+										if (variant.isVariant() && variant.getSeq() == 0){
+											ShapeStyle ss = new ShapeStyle();
+											ss.setDefaultColors(IColorConstant.YELLOW);
+											StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+										}else{
+											ShapeStyle ss = new ShapeStyle();
+											ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+											StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+										}
+									}
+									else{
+										ShapeStyle ss = new ShapeStyle();
+										ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+										StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+									}
+						}
+//					}
+				
+				}
+				/*Feature exclusiva da instanciação*/
+				BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+				IFile file = editor.getModelFile();
+				if (file.getParent().getName().equals("Instantiating") || file.getParent().getName().equals("Instantiated") || file.getParent().getParent().getName().equals("Instantiating") || file.getParent().getParent().getName().equals("Instantiated")){
+//				if (BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN")){
+					if (!variant.isVarPoint() && !variant.isVariant()){
+						ShapeStyle ss = new ShapeStyle();
+						ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+						StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+					}
+				}
+			}
+		};
 	}
 
 	@Override

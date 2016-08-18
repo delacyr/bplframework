@@ -70,6 +70,7 @@ public class BPMNDiagramItemProvider extends DiagramItemProvider implements
             addVersionPropertyDescriptor(object);
             addPhasePropertyDescriptor(object);
             addFeatureModelPropertyDescriptor(object);
+            addLocationPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -121,6 +122,22 @@ public class BPMNDiagramItemProvider extends DiagramItemProvider implements
                         "_UI_BPMNDiagram_featureModel_feature", "_UI_BPMNDiagram_type"),
                 BpmnDiPackage.Literals.BPMN_DIAGRAM__FEATURE_MODEL, true, false, false,
                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Location feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addLocationPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                getResourceLocator(),
+                getString("_UI_BPMNDiagram_location_feature"),
+                getString("_UI_PropertyDescriptor_description", "_UI_BPMNDiagram_location_feature",
+                        "_UI_BPMNDiagram_type"), BpmnDiPackage.Literals.BPMN_DIAGRAM__LOCATION,
+                true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -197,6 +214,7 @@ public class BPMNDiagramItemProvider extends DiagramItemProvider implements
         case BpmnDiPackage.BPMN_DIAGRAM__VERSION:
         case BpmnDiPackage.BPMN_DIAGRAM__PHASE:
         case BpmnDiPackage.BPMN_DIAGRAM__FEATURE_MODEL:
+        case BpmnDiPackage.BPMN_DIAGRAM__LOCATION:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(),
                     false, true));
             return;

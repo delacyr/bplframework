@@ -46,11 +46,21 @@ public class InstantiationWizard extends Wizard implements INewWizard{
 			for (Object element: elements){
 				if (element instanceof IFile){
 					IFile file = (IFile) element;
-					IPath path_instantiatingFolder = project.getFolder("Instantiating").getFullPath();
-					path_instantiatingFolder = path_instantiatingFolder.append(file.getName());
+							
+					IFolder instantiatingSubFolder = instantiatingFolder.getFolder(file.getParent().getName());
 					
 					try {
-						file.copy(path_instantiatingFolder, true, progressMonitor);
+						instantiatingSubFolder.create(true, true, progressMonitor);
+					} catch (CoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					IPath path_instantiatingSubFolder = instantiatingSubFolder.getFullPath();
+					path_instantiatingSubFolder = path_instantiatingSubFolder.append(file.getName());
+					
+					try {
+						file.copy(path_instantiatingSubFolder, true, progressMonitor);
 							
 					} catch (CoreException e) {
 						// TODO Auto-generated catch block
@@ -58,7 +68,7 @@ public class InstantiationWizard extends Wizard implements INewWizard{
 					}
 					
 					org.eclipse.emf.common.util.URI modelURI;
-					modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_instantiatingFolder.toString(), true);
+					modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_instantiatingSubFolder.toString(), true);
 					BPMN2Editor.openEditor(modelURI);
 					
 					BPMN2Editor editor = BPMN2Editor.getActiveEditor();

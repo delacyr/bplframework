@@ -280,13 +280,22 @@ public interface BpmnDiPackage extends EPackage {
     int BPMN_DIAGRAM__FEATURE_MODEL = DiPackage.DIAGRAM_FEATURE_COUNT + 4;
 
     /**
+     * The feature id for the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPMN_DIAGRAM__LOCATION = DiPackage.DIAGRAM_FEATURE_COUNT + 5;
+
+    /**
      * The number of structural features of the '<em>BPMN Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 5;
+    int BPMN_DIAGRAM_FEATURE_COUNT = DiPackage.DIAGRAM_FEATURE_COUNT + 6;
 
     /**
      * The meta object id for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.
@@ -1019,6 +1028,17 @@ public interface BpmnDiPackage extends EPackage {
     EAttribute getBPMNDiagram_FeatureModel();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.bpmn2.di.BPMNDiagram#getLocation <em>Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Location</em>'.
+     * @see org.eclipse.bpmn2.di.BPMNDiagram#getLocation()
+     * @see #getBPMNDiagram()
+     * @generated
+     */
+    EAttribute getBPMNDiagram_Location();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.bpmn2.di.BPMNEdge <em>BPMN Edge</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1418,6 +1438,14 @@ public interface BpmnDiPackage extends EPackage {
          * @generated
          */
         EAttribute BPMN_DIAGRAM__FEATURE_MODEL = eINSTANCE.getBPMNDiagram_FeatureModel();
+
+        /**
+         * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPMN_DIAGRAM__LOCATION = eINSTANCE.getBPMNDiagram_Location();
 
         /**
          * The meta object literal for the '{@link org.eclipse.bpmn2.di.impl.BPMNEdgeImpl <em>BPMN Edge</em>}' class.
