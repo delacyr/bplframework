@@ -8,10 +8,13 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataObject;
+import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
 import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
@@ -131,19 +134,49 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 				}
 			}
 			if (bo instanceof ItemAwareElement){
+				
 				ItemAwareElement element = (ItemAwareElement)bo;
-				List<DataInputAssociation> DIA = element.getDataInputAssociations();
-				for (DataInputAssociation d: DIA){
-					if (d.getTargetRef().isVariant()){
-						return true;
+				
+				EObject object = element.eContainer();
+				
+				if (object instanceof InputOutputSpecification){
+					InputOutputSpecification IOS = (InputOutputSpecification)object;
+					List<DataInput> dataInputs = IOS.getDataInputs();
+					for (DataInput di: dataInputs){
+						List<DataOutputAssociation> doas = di.getDataOutputAssociations();
+						for (DataOutputAssociation DOA: doas){
+							if (DOA.getTargetRef() == element){
+								return true;
+							}
+						}
 					}
 				}
-				List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
-				for (DataOutputAssociation d: DOA){
-					if (d.getTargetRef().isVariant()){
-						return true;
+				
+				if (object instanceof InputOutputSpecification){
+					InputOutputSpecification IOS = (InputOutputSpecification)object;
+					List<DataOutput> dataOutputs = IOS.getDataOutputs();
+					for (DataOutput dos: dataOutputs){
+						List<DataOutputAssociation> doas = dos.getDataOutputAssociations();
+						for (DataOutputAssociation DOA: doas){
+							if (DOA.getTargetRef() == element){
+								return true;
+							}
+						}
 					}
 				}
+				
+//				List<DataInputAssociation> DIA = element.getDataInputAssociations();
+//				for (DataInputAssociation d: DIA){
+//					if (d.getSourceRef().get(0).isVariant()){
+//						return true;
+//					}
+//				}
+//				List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
+//				for (DataOutputAssociation d: DOA){
+//					if (d.getTargetRef().isVariant()){
+//						return true;
+//					}
+//				}
 			}
 			
 			return false;
@@ -321,9 +354,18 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 				List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
 				for (DataOutputAssociation d: DOA){
 					if (d.getTargetRef().getVarPointType().equals("##XOR")){
-						element.setCheck(true);
-						d.getTargetRef().setSolved(true);
+						if (d.getTargetRef().isSolved()){
+							MessageDialog.openWarning(null, "Warning", "A variant was already selected!");
+						}
+						else{
+							element.setCheck(true);
+							d.getTargetRef().setSolved(true);
+						}
 					}
+					if (d.getTargetRef().getVarPointType().equals("##OR")){
+						element.setCheck(true);
+					}
+					break;
 				}
 			}
 		}

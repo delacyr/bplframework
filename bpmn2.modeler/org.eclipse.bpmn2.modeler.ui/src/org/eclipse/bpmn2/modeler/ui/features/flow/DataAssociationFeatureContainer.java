@@ -459,7 +459,7 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 					InputOutputSpecification ioSpec = (InputOutputSpecification)element.eContainer();
 					// BPMN*coment: Condition add for when a DataOutput is instance of DataObject
 					// BPMN*code: 2014-09-12
-					if (ioSpec.eContainer() instanceof DataObject){
+					if (ioSpec.eContainer() instanceof ItemAwareElement){ //was DataObject
 						ItemAwareElement itemAE = (ItemAwareElement)ioSpec.eContainer();
 						dia = itemAE.getDataInputAssociations();
 					}else{
@@ -650,12 +650,15 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				}
 				
 				
-				if (dataOutputAssoc!=null)
+				if (dataOutputAssoc!=null){
 					dataOutputAssoc.setTargetRef((ItemAwareElement) target);
+				}
 
 				dataAssoc = dataOutputAssoc;
 			}
 			else if (source instanceof ItemAwareElement)
+//			#BPL2.0
+//			if (source instanceof ItemAwareElement)
 			{
 				// Source is the DataObject.
 				DataInputAssociation dataInputAssoc = null;
@@ -711,6 +714,7 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				if (dataInputAssoc!=null) {
 					dataInputAssoc.getSourceRef().clear();
 					dataInputAssoc.getSourceRef().add((ItemAwareElement) source);
+					
 				}
 				dataAssoc = dataInputAssoc;
 			}
@@ -828,6 +832,8 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 	}
 	//BPMN*code
 	public static Boolean isItemAE(EObject be){
+		
+		
 		Definitions definitions = ModelUtil.getDefinitions(be);
 		TreeIterator<EObject> iter = definitions.eAllContents();
 		while (iter.hasNext()) {

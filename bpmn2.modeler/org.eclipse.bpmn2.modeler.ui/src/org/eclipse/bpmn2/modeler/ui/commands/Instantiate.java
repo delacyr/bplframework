@@ -9,13 +9,16 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.DataInputAssociation;
+import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
 import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowElementsContainer;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Gateway;
+import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.SequenceFlow;
@@ -635,6 +638,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		String s = activity.getFeatureType();
 		if (s != null){
 			if ((activity.getFeatureType().equals("##mandatory"))){ //mandatory or none
+				
 				if (!hasVariant(activity) && activity.isSolved()){ //quando varpoint não tem variantes
 					copyDataVariant(activity,activity);
 					return next;
@@ -668,6 +672,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 			//if is Optional, must have selected variants
 			if (activity.getFeatureType().equals("##optional")){
+				
+				SweepDataObjects(activity);
 				
 				if (!hasVariant(activity) && activity.isSolved()){ //quando varpoint não tem variantes
 					copyDataVariant(activity,activity);
@@ -767,6 +773,83 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 		}
 		return next;
+	}
+
+
+	private void SweepDataObjects(Activity activity) {
+		// TODO Auto-generated method stub
+		List<DataInputAssociation> dataInput = activity.getDataInputAssociations();
+		List<DataOutputAssociation> dataOutput = activity.getDataOutputAssociations();
+		
+		for (DataInputAssociation dia: dataInput){
+			List<ItemAwareElement> dataInputs = hasDataInputVariants(dia.getSourceRef().get(0));
+			if (!dataInputs.isEmpty()){
+				
+//				há datainput variante
+				for (ItemAwareElement di: dataInputs){
+//					di.getDataOutputAssociations().get(0).setTargetRef(activity);
+				}
+			}
+			
+		}
+		
+//		if (!dataInput.isEmpty()){
+//			int tam = dataInput.size();
+//			for (int j=0; j<tam;j++){
+//				deleteNode(dataInput.get(j).getTargetRef());
+//				tam = dataInput.size();
+//			}
+//		}
+//		
+//		if (!dataOutput.isEmpty()){
+//			int tam = dataOutput.size();
+//			for (int j=0; j<tam;j++){
+//				deleteNode(dataOutput.get(j).getTargetRef());
+//				tam = dataOutput.size();
+//			}
+//		}
+		
+	}
+
+
+	private List<ItemAwareElement> hasDataInputVariants(ItemAwareElement itemAwareElement) {
+		// TODO Auto-generated method stub
+		
+		List<ItemAwareElement> dataInput = new ArrayList<ItemAwareElement>();
+		EObject object = itemAwareElement.eContainer();
+		
+		if (object instanceof InputOutputSpecification){
+			InputOutputSpecification IOS = (InputOutputSpecification)object;
+			List<DataInput> dataInputs = IOS.getDataInputs();
+			for (DataInput di: dataInputs){
+				List<DataOutputAssociation> doas = di.getDataOutputAssociations();
+				for (DataOutputAssociation DOA: doas){
+					if (DOA.getTargetRef() == itemAwareElement){
+						if (di.isCheck()){
+							dataInput.add(di);
+						}
+						else{
+							deleteNode(di);
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+//		if (object instanceof InputOutputSpecification){
+//			InputOutputSpecification IOS = (InputOutputSpecification)object;
+//			List<DataOutput> dataOutputs = IOS.getDataOutputs();
+//			for (DataOutput dos: dataOutputs){
+//				List<DataOutputAssociation> doas = dos.getDataOutputAssociations();
+//				for (DataOutputAssociation DOA: doas){
+//					if (DOA.getTargetRef() == itemAwareElement){
+//						return true;
+//					}
+//				}
+//			}
+//		}
+		return dataInput;
 	}
 
 

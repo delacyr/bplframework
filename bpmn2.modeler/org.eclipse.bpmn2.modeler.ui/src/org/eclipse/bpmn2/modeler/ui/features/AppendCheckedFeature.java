@@ -13,6 +13,7 @@ import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataObject;
 import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
+import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
@@ -22,6 +23,7 @@ import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.features.activity.Messages;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -126,19 +128,47 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 			
 			ItemAwareElement element = (ItemAwareElement)bo;
 
-			List<DataInputAssociation> DIA = element.getDataInputAssociations();
-			for (DataInputAssociation d: DIA){
-				if (d.getTargetRef().isVariant()){
-					return true;
+			EObject object = element.eContainer();
+			
+			if (object instanceof InputOutputSpecification){
+				InputOutputSpecification IOS = (InputOutputSpecification)object;
+				List<DataInput> dataInputs = IOS.getDataInputs();
+				for (DataInput di: dataInputs){
+					List<DataOutputAssociation> doas = di.getDataOutputAssociations();
+					for (DataOutputAssociation DOA: doas){
+						if (DOA.getTargetRef() == element){
+							return true;
+						}
+					}
 				}
 			}
-
-			List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
-			for (DataOutputAssociation d: DOA){
-				if (d.getTargetRef().isVariant()){
-					return true;
+			
+			if (object instanceof InputOutputSpecification){
+				InputOutputSpecification IOS = (InputOutputSpecification)object;
+				List<DataOutput> dataOutputs = IOS.getDataOutputs();
+				for (DataOutput dos: dataOutputs){
+					List<DataOutputAssociation> doas = dos.getDataOutputAssociations();
+					for (DataOutputAssociation DOA: doas){
+						if (DOA.getTargetRef() == element){
+							return true;
+						}
+					}
 				}
 			}
+			
+//			List<DataInputAssociation> DIA = element.getDataInputAssociations();
+//			for (DataInputAssociation d: DIA){
+//				if (d.getTargetRef().isVariant()){
+//					return true;
+//				}
+//			}
+//
+//			List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
+//			for (DataOutputAssociation d: DOA){
+//				if (d.getTargetRef().isVariant()){
+//					return true;
+//				}
+//			}
 		}
 		
 		return false;
@@ -228,6 +258,10 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 						element.setCheck(false);
 						d.getTargetRef().setSolved(false);
 					}
+					if (d.getTargetRef().getVarPointType().equals("##OR")){
+						element.setCheck(false);
+					}
+					break;
 				}
 			}
 		}

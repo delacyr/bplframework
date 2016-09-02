@@ -7,6 +7,7 @@ package org.eclipse.bpmn2.validation;
 import java.util.List;
 
 import org.eclipse.bpmn2.Assignment;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.ItemAwareElement;
 
@@ -20,6 +21,8 @@ public interface DataAssociationValidator {
     boolean validate();
 
     boolean validateSourceRef(List<ItemAwareElement> value);
+
+    boolean validateTargetRef(BaseElement value);
 
     boolean validateTargetRef(ItemAwareElement value);
 
