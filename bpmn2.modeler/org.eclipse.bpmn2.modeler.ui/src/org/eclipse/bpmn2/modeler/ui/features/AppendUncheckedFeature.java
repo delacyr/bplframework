@@ -208,9 +208,9 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 					List<SequenceFlow> outgoing = variant.getOutgoing();
 					for (SequenceFlow sf: outgoing){
 						if (sf.getTargetRef() instanceof Activity)
-							if (((Activity)sf.getTargetRef()).isVarPoint()){
+							if (((Activity)sf.getTargetRef()).isVarPoint() && ((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
 								parent = (Activity)sf.getTargetRef();
-								if (numberOfCheckedVariantsWoSeq(parent) > 1){ //se marcar variante e tiver outra marcada
+								if (numberOfCheckedVariantsWoSeq(parent) >= 1){ //se marcar variante e tiver outra marcada
 //									if (parent.getVarPointType().equals("##OR")){
 										setAllWoSeqYellow(parent);
 										ShapeStyle ss = new ShapeStyle();
@@ -222,6 +222,10 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 									ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
 									StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 								}
+							}else{
+								ShapeStyle ss = new ShapeStyle();
+								ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+								StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 							}
 					}
 				}else{			

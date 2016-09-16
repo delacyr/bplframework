@@ -1433,7 +1433,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			SequenceFlow b = outgoing.get(i);
 			FlowNode fn2 = (FlowNode)b.getTargetRef();
 			
-			SweepDataObjects((Activity)fn2); //trata os objetos de dados
+			if (fn2 instanceof Activity){
+				SweepDataObjects((Activity)fn2); //trata os objetos de dados
+			}
 			
 			dstShape = getContainerShape(fn2,diagram);
 			

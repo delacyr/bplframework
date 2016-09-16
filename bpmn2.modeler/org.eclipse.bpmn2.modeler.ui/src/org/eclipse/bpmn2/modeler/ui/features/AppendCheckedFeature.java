@@ -13,11 +13,13 @@ import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataObject;
 import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
+import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.modeler.core.preferences.ShapeStyle;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
+import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.StyleUtil;
 import org.eclipse.bpmn2.modeler.ui.ImageProvider;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
@@ -29,8 +31,10 @@ import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -194,9 +198,19 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 		if (bo instanceof Activity){
 			Activity variant = (Activity)bo;
 			if (variant!=null && !variant.isCheck()) {
-			ShapeStyle ss = new ShapeStyle();
-			ss.setDefaultColors(DEFAULT_COLOR);
-			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+				ShapeStyle ss = new ShapeStyle();
+				ss.setDefaultColors(DEFAULT_COLOR);
+				StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+				
+				List<SequenceFlow> outgoing = variant.getOutgoing();
+				for (SequenceFlow sf: outgoing){
+					if (sf.getTargetRef() instanceof Activity)
+						if (((Activity)sf.getTargetRef()).isVarPoint()){
+							Activity parent = (Activity)sf.getTargetRef();
+							setOnlySeqGreen(parent);
+							break;
+						}						
+				}
 			}
 		}
 		if (bo instanceof ItemAwareElement){
@@ -207,6 +221,44 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 				StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 			}
 		}
+	}
+	
+	private void setOnlySeqGreen(Activity varpoint) {
+		// TODO Auto-generated method stub
+		Diagram diagram = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram();
+		List<SequenceFlow> incoming = varpoint.getIncoming();
+		int count = 0;
+		Activity activity = null;
+		Activity activity_green = null;
+		for (int i=0;i<incoming.size();i++){
+			SequenceFlow b = incoming.get(i);
+			if (b.getSourceRef() instanceof Activity){
+				activity = (Activity)b.getSourceRef();
+				if (activity.isVariant() && activity.isCheck() && activity.getSeq() == 0){
+					activity_green = activity;
+					count++;
+				}
+			}
+		}
+		if (count == 1){
+			ContainerShape containerShape = getContainerShape((FlowNode)activity_green, diagram);
+			Shape shape = containerShape.getChildren().get(0);
+			BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);
+			ShapeStyle ss = new ShapeStyle();
+			ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+			StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+		}
+	}
+	
+	private ContainerShape getContainerShape(FlowNode fn, Diagram diagram) {
+		// TODO Auto-generated method stub
+		for (Object o : Graphiti.getPeService().getLinkedPictogramElements(new EObject[] {fn}, diagram)) {
+			if (o instanceof ContainerShape && !FeatureSupport.isLabelShape((ContainerShape)o)) {
+				// this is the FlowNode shape
+				return (ContainerShape)o;
+			}
+		}
+		return null;
 	}
 	
 	public void checkVariabilityType(PictogramElement pe){
