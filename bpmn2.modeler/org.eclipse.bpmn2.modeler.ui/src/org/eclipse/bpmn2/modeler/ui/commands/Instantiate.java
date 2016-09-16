@@ -9,6 +9,9 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
+import org.eclipse.bpmn2.Bpmn2Factory;
+import org.eclipse.bpmn2.Bpmn2Package;
+import org.eclipse.bpmn2.DataAssociation;
 import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataOutput;
@@ -19,10 +22,15 @@ import org.eclipse.bpmn2.FlowElementsContainer;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.InputOutputSpecification;
+import org.eclipse.bpmn2.InputSet;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.Lane;
+import org.eclipse.bpmn2.OutputSet;
+import org.eclipse.bpmn2.Relationship;
+import org.eclipse.bpmn2.RelationshipDirection;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
+import org.eclipse.bpmn2.ThrowEvent;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
 import org.eclipse.bpmn2.modeler.core.model.Bpmn2ModelerFactory;
@@ -31,14 +39,19 @@ import org.eclipse.bpmn2.modeler.core.utils.AnchorUtil;
 import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.FeatureSupport;
 import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
+import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.core.utils.Tuple;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+//import org.eclipse.bpmn2.modeler.ui.features.flow.Messages;
+import org.eclipse.bpmn2.modeler.ui.features.flow.DataAssociationFeatureContainer.CreateDataAssociationFeature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.datatypes.IDimension;
@@ -57,6 +70,7 @@ import org.eclipse.graphiti.features.context.impl.ResizeShapeContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
+import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -64,9 +78,14 @@ import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.ILayoutService;
+import org.eclipse.graphiti.services.IPeService;
+import org.eclipse.graphiti.ui.internal.util.ui.PopupMenu;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ListDialog;
 
 public class Instantiate extends AbstractHandler implements IHandler {
@@ -210,7 +229,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return null;
 	}
 
-
 	protected void resizeLanes(EObject lane, List<EObject> elements, Diagram diagram) {
 		//			FlowNode lane = (FlowNode)lanes.get(0);
 		//			EObject eob = null;
@@ -276,7 +294,6 @@ public class Instantiate extends AbstractHandler implements IHandler {
 					}
 	}
 	
-
 	private void alignShapes(Object bo) {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> sequenceFlow = null;
@@ -621,6 +638,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //							else
 //								generateModel((Object)activity);
 					}
+					SweepDataObjects(activity);
 					generateModel((Object)activity);
 				}else{ 
 					if (!(a.getTargetRef() instanceof EndEvent)){
@@ -638,6 +656,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		String s = activity.getFeatureType();
 		if (s != null){
 			if ((activity.getFeatureType().equals("##mandatory"))){ //mandatory or none
+				
+				SweepDataObjects(activity);
 				
 				if (!hasVariant(activity) && activity.isSolved()){ //quando varpoint não tem variantes
 					copyDataVariant(activity,activity);
@@ -733,7 +753,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 							}
 						}
 						
-						deleteNode(activity);
+						deleteObject(activity);
 						sourceShape = getContainerShape(source,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
 						targetShape = getContainerShape(target,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
 						createNewConnection(sourceShape, targetShape, "");
@@ -743,6 +763,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 		}
 		else{ //varpoint ##none
+			
+			SweepDataObjects(activity);
+			
 			if (!hasVariant(activity) && activity.isSolved()){ //quando varpoint não tem variantes
 				copyDataVariant(activity,activity);
 				return next;
@@ -775,84 +798,511 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return next;
 	}
 
-
-	private void SweepDataObjects(Activity activity) {
+	private void SweepDataObjects(final Activity activity) {
 		// TODO Auto-generated method stub
-		List<DataInputAssociation> dataInput = activity.getDataInputAssociations();
-		List<DataOutputAssociation> dataOutput = activity.getDataOutputAssociations();
+		List<DataInputAssociation> dataInputAssociations = activity.getDataInputAssociations();
+		List<DataOutputAssociation> dataOutputAssociations = activity.getDataOutputAssociations();
 		
-		for (DataInputAssociation dia: dataInput){
-			List<ItemAwareElement> dataInputs = hasDataInputVariants(dia.getSourceRef().get(0));
-			if (!dataInputs.isEmpty()){
-				
-//				há datainput variante
-				for (ItemAwareElement di: dataInputs){
-//					di.getDataOutputAssociations().get(0).setTargetRef(activity);
-				}
-			}
-			
-		}
-		
-//		if (!dataInput.isEmpty()){
-//			int tam = dataInput.size();
-//			for (int j=0; j<tam;j++){
-//				deleteNode(dataInput.get(j).getTargetRef());
-//				tam = dataInput.size();
-//			}
-//		}
-//		
-//		if (!dataOutput.isEmpty()){
-//			int tam = dataOutput.size();
-//			for (int j=0; j<tam;j++){
-//				deleteNode(dataOutput.get(j).getTargetRef());
-//				tam = dataOutput.size();
-//			}
-//		}
-		
-	}
-
-
-	private List<ItemAwareElement> hasDataInputVariants(ItemAwareElement itemAwareElement) {
-		// TODO Auto-generated method stub
-		
-		List<ItemAwareElement> dataInput = new ArrayList<ItemAwareElement>();
-		EObject object = itemAwareElement.eContainer();
-		
-		if (object instanceof InputOutputSpecification){
-			InputOutputSpecification IOS = (InputOutputSpecification)object;
-			List<DataInput> dataInputs = IOS.getDataInputs();
-			for (DataInput di: dataInputs){
-				List<DataOutputAssociation> doas = di.getDataOutputAssociations();
-				for (DataOutputAssociation DOA: doas){
-					if (DOA.getTargetRef() == itemAwareElement){
-						if (di.isCheck()){
-							dataInput.add(di);
+//		for (DataInputAssociation dia: dataInput){
+		if (!dataInputAssociations.isEmpty()){
+			DataInputAssociation dia = null;
+			List<ItemAwareElement> dataInputs = new ArrayList<ItemAwareElement>();
+			int tam = dataInputAssociations.size();
+			for (int i=0; i<tam; i++){
+				dia = dataInputAssociations.get(i);
+				if (dia.getSourceRef() != null && !dia.getSourceRef().isEmpty()){
+					
+					if (((ItemAwareElement)dia.getSourceRef().get(0)).isVarPoint()){ //if is varpoint
+						
+						dataInputs.addAll(hasDataVariants(dia.getSourceRef().get(0))); //catch them all variants
+						
+						if (!dataInputs.isEmpty()){ //if has variants
+							deleteObject(dia.getSourceRef().get(0)); //Delete DataObject Varpoint
+							tam = dataInputAssociations.size();
+							i--;
+						}else{
+							if (((ItemAwareElement)dia.getSourceRef().get(0)).isCheck()){ //is checked
+								disqualifyDO((ItemAwareElement)dia.getSourceRef().get(0));
+							}else{												
+								deleteObject(dia.getSourceRef().get(0)); //delete non checked varpoint
+								tam = dataInputAssociations.size();
+								i--;
+							}
 						}
-						else{
-							deleteNode(di);
+					}else{ //data object comunalidade
+						if (activity.isVarPoint() && !activity.isSolved()){
+							deleteObject(dia.getSourceRef().get(0));
+							tam = dataInputAssociations.size();
+							i--;
 						}
-						break;
 					}
 				}
 			}
+
+		//	lets create dataAssociations between task and itemawareelements
+			if (dataInputs!=null && !dataInputs.isEmpty()){
+		
+				for (final ItemAwareElement di: dataInputs){
+		//			DataAssociation dataAssoc = null;
+					BaseElement source = di;
+					BaseElement target = activity;
+					InputOutputSpecification ioSpec = null;
+					InputSet inputSet = null;
+					
+					disqualifyDO(di); //di isn't a variant anymore
+					
+					DataInputAssociation dataInputAssoc = null;
+	//				if (target instanceof Activity) {
+					
+					// if the target is an Activity, create an ioSpecification if it doesn't have one yet
+					Activity activity_target = (Activity) target;
+					ioSpec = activity_target.getIoSpecification();
+					if (ioSpec==null) {
+						ioSpec = (InputOutputSpecification) Bpmn2ModelerFactory.createFeature(activity_target, "ioSpecification"); //$NON-NLS-1$
+					}
+					if (ioSpec.getInputSets().size()==0) {
+						inputSet = Bpmn2ModelerFactory.create(InputSet.class);
+						ioSpec.getInputSets().add(inputSet);
+					}
+					else {
+						// add to first input set we find
+						// TODO: support input set selection if there are more than one
+						inputSet = ioSpec.getInputSets().get(0);
+					}
+					
+		//					dataInputAssoc = CONNECTION
+					dataInputAssoc = selectInput(source, target, ioSpec.getDataInputs(), activity_target.getDataInputAssociations(), inputSet);
+					
+					
+					final IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+					ContainerShape sourceCS = getContainerShapefromEObject(di,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+					ContainerShape targetCS = getContainerShapefromEObject(activity,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+		
+					Tuple<FixPointAnchor, FixPointAnchor> anchors = AnchorUtil.getSourceAndTargetBoundaryAnchors(sourceCS, targetCS, null);
+		
+					final CreateConnectionContext context = new CreateConnectionContext();
+					context.setSourcePictogramElement(sourceCS);
+					context.setTargetPictogramElement(targetCS);
+					context.setSourceAnchor(anchors.getFirst());
+					context.setTargetAnchor(anchors.getSecond());
+					
+					ILayoutService layoutService = Graphiti.getLayoutService();
+					ILocation locSource = layoutService.getLocationRelativeToDiagram(sourceCS);
+					ILocation locTarget = layoutService.getLocationRelativeToDiagram(targetCS);
+					context.setSourceLocation(locSource);
+					context.setTargetLocation(locTarget);
+					
+					final BaseElement businessObject = (BaseElement)dataInputAssoc;
+					
+					if (businessObject!=null){
+						
+						TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+							@Override
+							protected void doExecute() {
+								Connection connection = null;
+								AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
+								addContext.setNewObject(businessObject);
+						
+								IPeService peService = Graphiti.getPeService();
+								IGaService gaService = Graphiti.getGaService();
+								ILocation loc, shapeLoc;
+								
+								// the CreateConnectionContext contains the source and target locations - the actual
+								// mouse locations where the connection was started and ended. These locations must
+								// be passed to the AddConnectionContext so they can be added (as String properties)
+								// to the Connection once it is created. These String properties are then decoded in
+								// AnchorUtil.getSourceAndTargetBoundaryAnchors() to create Ad Hoc anchors if necessary.
+								loc = context.getSourceLocation();
+								if (loc==null)
+									loc = peService.getLocationRelativeToDiagram(context.getSourceAnchor());
+								shapeLoc = peService.getLocationRelativeToDiagram((Shape)context.getSourceAnchor().getParent());
+								Point p = gaService.createPoint(
+										loc.getX() - shapeLoc.getX(),
+										loc.getY() - shapeLoc.getY());
+								addContext.putProperty(AnchorUtil.CONNECTION_SOURCE_LOCATION, p);
+								
+								loc = context.getTargetLocation();
+								if (loc==null)
+									loc = peService.getLocationRelativeToDiagram(context.getTargetAnchor());
+								shapeLoc = peService.getLocationRelativeToDiagram((Shape)context.getTargetAnchor().getParent());
+								p = gaService.createPoint(
+										loc.getX() - shapeLoc.getX(),
+										loc.getY() - shapeLoc.getY());
+								addContext.putProperty(AnchorUtil.CONNECTION_TARGET_LOCATION, p);
+								addContext.putProperty(AnchorUtil.CONNECTION_CREATED, Boolean.TRUE);
+						
+								connection = (Connection) fp.addIfPossible(addContext);
+								ModelUtil.setID(businessObject);
+						
+								FeatureSupport.updateConnection(fp, connection);
+							}
+		
+						});
+					}
+		
+				}
+			}
+		}
+			
+		if (!dataOutputAssociations.isEmpty()){
+			DataOutputAssociation doa = null;
+			List<ItemAwareElement> dataOutputs = new ArrayList<ItemAwareElement>();
+			int tamOutput = dataOutputAssociations.size();
+			for (int i=0; i<tamOutput; i++){
+				doa = dataOutputAssociations.get(i);
+				if (doa.getTargetRef() != null){
+					
+					if (((ItemAwareElement)doa.getTargetRef()).isVarPoint()){ //if is varpoint
+						
+						dataOutputs.addAll(hasDataVariants(doa.getTargetRef()));
+						
+						if (!dataOutputs.isEmpty()){
+							deleteObject(doa.getTargetRef()); //Delete DataObject Varpoint
+							tamOutput = dataOutputAssociations.size();
+							i--;
+						}else{
+							if (((ItemAwareElement)doa.getTargetRef()).isCheck()){ //is checked
+								disqualifyDO((ItemAwareElement)doa.getTargetRef());
+							}else{												
+								deleteObject(doa.getTargetRef()); //delete non checked varpoint
+								tamOutput = dataOutputAssociations.size();
+								i--;
+							}
+						}
+					}else{ //data object comunalidade
+						if (activity.isVarPoint() && !activity.isSolved()){
+							deleteObject(doa.getTargetRef());
+							tamOutput = dataOutputAssociations.size();
+							i--;
+						}
+					}
+				}
+			}
+				
+		//	há datainput variante
+			if (dataOutputs!=null && !dataOutputs.isEmpty()){
+		
+				for (final ItemAwareElement dOut: dataOutputs){
+		//			DataAssociation dataAssoc = null;
+					BaseElement source = activity;
+					BaseElement target = dOut;
+					InputOutputSpecification ioSpec = null;
+					OutputSet outputSet = null;
+					
+					disqualifyDO(dOut); //di isn't a variant anymore
+					
+					DataOutputAssociation dataOutputAssoc = null;
+	//				
+					
+					// if the target is an Activity, create an ioSpecification if it doesn't have one yet
+					Activity activity_source = (Activity) source;
+					ioSpec = activity_source.getIoSpecification();
+					if (ioSpec==null) {
+						ioSpec = (InputOutputSpecification) Bpmn2ModelerFactory.createFeature(activity_source, "ioSpecification"); //$NON-NLS-1$
+					}
+					if (ioSpec.getOutputSets().size()==0) {
+						outputSet = Bpmn2ModelerFactory.create(OutputSet.class);
+						ioSpec.getOutputSets().add(outputSet);
+					}
+					else {
+						// add to first input set we find
+						// TODO: support input set selection if there are more than one
+						outputSet = ioSpec.getOutputSets().get(0);
+					}
+					
+		//					dataOutputAssoc = CONNECTION
+					dataOutputAssoc = selectOutput(source, target, ioSpec.getDataOutputs(), activity_source.getDataOutputAssociations(), outputSet);
+					
+					
+					final IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();
+					ContainerShape targetCS = getContainerShapefromEObject(dOut,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+					ContainerShape sourceCS = getContainerShapefromEObject(activity,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
+		
+					Tuple<FixPointAnchor, FixPointAnchor> anchors = AnchorUtil.getSourceAndTargetBoundaryAnchors(sourceCS, targetCS, null);
+		
+					final CreateConnectionContext contextOutput = new CreateConnectionContext();
+					contextOutput.setSourcePictogramElement(sourceCS);
+					contextOutput.setTargetPictogramElement(targetCS);
+					contextOutput.setSourceAnchor(anchors.getFirst());
+					contextOutput.setTargetAnchor(anchors.getSecond());
+					
+					ILayoutService layoutService = Graphiti.getLayoutService();
+					ILocation locSource = layoutService.getLocationRelativeToDiagram(sourceCS);
+					ILocation locTarget = layoutService.getLocationRelativeToDiagram(targetCS);
+					contextOutput.setSourceLocation(locSource);
+					contextOutput.setTargetLocation(locTarget);
+					
+					final BaseElement businessObject = (BaseElement)dataOutputAssoc;
+					
+					if (businessObject!=null){
+						
+						TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+							@Override
+							protected void doExecute() {
+								Connection connection = null;
+								AddConnectionContext addContext = new AddConnectionContext(contextOutput.getSourceAnchor(), contextOutput.getTargetAnchor());
+								addContext.setNewObject(businessObject);
+						
+								IPeService peService = Graphiti.getPeService();
+								IGaService gaService = Graphiti.getGaService();
+								ILocation loc, shapeLoc;
+								
+								// the CreateConnectionContext contains the source and target locations - the actual
+								// mouse locations where the connection was started and ended. These locations must
+								// be passed to the AddConnectionContext so they can be added (as String properties)
+								// to the Connection once it is created. These String properties are then decoded in
+								// AnchorUtil.getSourceAndTargetBoundaryAnchors() to create Ad Hoc anchors if necessary.
+								loc = contextOutput.getSourceLocation();
+								if (loc==null)
+									loc = peService.getLocationRelativeToDiagram(contextOutput.getSourceAnchor());
+								shapeLoc = peService.getLocationRelativeToDiagram((Shape)contextOutput.getSourceAnchor().getParent());
+								Point p = gaService.createPoint(
+										loc.getX() - shapeLoc.getX(),
+										loc.getY() - shapeLoc.getY());
+								addContext.putProperty(AnchorUtil.CONNECTION_SOURCE_LOCATION, p);
+								
+								loc = contextOutput.getTargetLocation();
+								if (loc==null)
+									loc = peService.getLocationRelativeToDiagram(contextOutput.getTargetAnchor());
+								shapeLoc = peService.getLocationRelativeToDiagram((Shape)contextOutput.getTargetAnchor().getParent());
+								p = gaService.createPoint(
+										loc.getX() - shapeLoc.getX(),
+										loc.getY() - shapeLoc.getY());
+								addContext.putProperty(AnchorUtil.CONNECTION_TARGET_LOCATION, p);
+								addContext.putProperty(AnchorUtil.CONNECTION_CREATED, Boolean.TRUE);
+						
+								connection = (Connection) fp.addIfPossible(addContext);
+								ModelUtil.setID(businessObject);
+						
+								FeatureSupport.updateConnection(fp, connection);
+							}
+		
+						});
+					}
+		
+				}
+			}
 		}
 		
-//		if (object instanceof InputOutputSpecification){
-//			InputOutputSpecification IOS = (InputOutputSpecification)object;
-//			List<DataOutput> dataOutputs = IOS.getDataOutputs();
-//			for (DataOutput dos: dataOutputs){
-//				List<DataOutputAssociation> doas = dos.getDataOutputAssociations();
-//				for (DataOutputAssociation DOA: doas){
-//					if (DOA.getTargetRef() == itemAwareElement){
-//						return true;
-//					}
-//				}
-//			}
-//		}
-		return dataInput;
 	}
 
+	private DataOutputAssociation selectOutput(final BaseElement source,
+			final BaseElement target, final List<DataOutput> dataOutputs,
+			List<DataOutputAssociation> dataOutputAssociations,
+			final OutputSet outputSet) {
+		// TODO Auto-generated method stub
+		final List<DataOutputAssociation> DOA = new ArrayList<DataOutputAssociation>();
+		
+		TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				// TODO Auto-generated method stub
+				EObject object = null;
+				EStructuralFeature objectFeature = null;
+				EStructuralFeature sourceFeature = null;
 
+				object = ((Activity)source).getIoSpecification();
+				objectFeature = Bpmn2Package.eINSTANCE.getInputOutputSpecification_DataOutputs();
+				sourceFeature = Bpmn2Package.eINSTANCE.getActivity_DataOutputAssociations();
+
+				DataOutput dataOutput = null;
+				dataOutput = Bpmn2Factory.eINSTANCE.createDataOutput();
+				
+				DataOutputAssociation dataOutputAssoc = null;
+				dataOutput = Bpmn2ModelerFactory.createFeature(object, objectFeature, DataOutput.class);
+				dataOutputs.add(dataOutput);
+				outputSet.getDataOutputRefs().add(dataOutput);
+				dataOutputAssoc = (DataOutputAssociation) Bpmn2ModelerFactory.createFeature(source, sourceFeature);
+				dataOutputAssoc.getSourceRef().add(dataOutput);
+				
+				dataOutputAssoc.setTargetRef((ItemAwareElement) target);
+				
+				DOA.add(dataOutputAssoc);
+
+			}
+
+		});
+		
+		return DOA.get(0);
+	}
+
+	private DataInputAssociation selectInput(final BaseElement source,
+			final BaseElement target, final List<DataInput> dataInputs,
+			final List<DataInputAssociation> dataInputAssociations, final InputSet inputSet) {
+		// TODO Auto-generated method stub
+		
+		final List<DataInputAssociation> DIA = new ArrayList<DataInputAssociation>();
+		
+		TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				// TODO Auto-generated method stub
+				EObject object = null;
+				EStructuralFeature objectFeature = null;
+				EStructuralFeature targetFeature = null;
+
+				object = ((Activity)target).getIoSpecification();
+				objectFeature = Bpmn2Package.eINSTANCE.getInputOutputSpecification_DataInputs();
+				targetFeature = Bpmn2Package.eINSTANCE.getActivity_DataInputAssociations();
+
+				DataInput dataInput = null;
+				dataInput = Bpmn2Factory.eINSTANCE.createDataInput();
+				
+				DataInputAssociation dataInputAssoc = null;
+				dataInput = Bpmn2ModelerFactory.createFeature(object, objectFeature, DataInput.class);
+				dataInputs.add(dataInput);
+				inputSet.getDataInputRefs().add(dataInput);
+				dataInputAssoc = (DataInputAssociation) Bpmn2ModelerFactory.createFeature(target, targetFeature);
+				dataInputAssoc.setTargetRef(dataInput);
+				
+				dataInputAssoc.getSourceRef().clear();
+				dataInputAssoc.getSourceRef().add((ItemAwareElement) source);
+				
+				DIA.add(dataInputAssoc);
+
+			}
+
+		});
+		
+		return DIA.get(0);
+	}
+
+	private List<ItemAwareElement> hasDataVariants(BaseElement itemAwareElement) {
+		// TODO Auto-generated method stub
+		
+		if (itemAwareElement instanceof DataInput){
+		
+			List<ItemAwareElement> dataInput = new ArrayList<ItemAwareElement>();
+			EObject object = ((ItemAwareElement)itemAwareElement).eContainer();
+			
+			if (object instanceof InputOutputSpecification){
+				InputOutputSpecification IOS = (InputOutputSpecification)object;
+				List<DataInput> dataInputs = IOS.getDataInputs();
+				
+				int tam = dataInputs.size();
+				for (int i=0; i<tam; i++){
+					List<DataOutputAssociation> doas = dataInputs.get(i).getDataOutputAssociations();
+					for (DataOutputAssociation DOA: doas){
+						if (DOA.getTargetRef() == itemAwareElement){
+							if (dataInputs.get(i).isCheck()){
+								dataInput.add(dataInputs.get(i));
+							}
+							else{
+								deleteObject(dataInputs.get(i));
+								tam = dataInputs.size();
+								i--;
+							}
+							break;
+						}
+					}
+				}
+				
+				return dataInput;
+			}
+		}else if (itemAwareElement instanceof DataOutput){
+			
+			List<ItemAwareElement> dataOutput = new ArrayList<ItemAwareElement>();
+			EObject object = ((ItemAwareElement)itemAwareElement).eContainer();
+			
+			if (object instanceof InputOutputSpecification){
+				InputOutputSpecification IOS = (InputOutputSpecification)object;
+				List<DataOutput> dataOutputs = IOS.getDataOutputs();
+				
+				int tam = dataOutputs.size();
+				for (int i=0; i<tam; i++){
+					List<DataOutputAssociation> doas = dataOutputs.get(i).getDataOutputAssociations();
+					for (DataOutputAssociation DOA: doas){
+						if (DOA.getTargetRef() == itemAwareElement){
+							if (dataOutputs.get(i).isCheck()){
+								dataOutput.add(dataOutputs.get(i));
+							}
+							else{
+								deleteObject(dataOutputs.get(i));
+								tam = dataOutputs.size();
+								i--;
+							}
+							break;
+						}
+					}
+				}
+				
+				return dataOutput;
+			}
+		}
+		
+		return null;
+	}
+
+	protected void disqualifyDO(final ItemAwareElement IAE) {
+		TransactionalEditingDomain editingDomain = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				// TODO Auto-generated method stub
+				IAE.setVariant(false);
+				IAE.setCheck(false);
+				IAE.setVarPoint(false);
+				
+				String name = null;
+				if (IAE instanceof DataInput){
+					name = ((DataInput)IAE).getName();
+				}
+				if (IAE instanceof DataOutput){
+					name = ((DataOutput)IAE).getName();
+				}
+				String str = null;
+				if (name != null){
+//					String name = task.getInstanceName();
+					int indice = name.indexOf("<<");
+					if (indice > 0){
+						str = name.substring(0, indice);
+//						task.setName(str);
+						if (IAE instanceof DataInput){
+							((DataInput)IAE).setName(str);
+						}
+						if (IAE instanceof DataOutput){
+							((DataOutput)IAE).setName(str);
+						}
+					}else{
+//						task.setName(name);
+						if (IAE instanceof DataInput){
+							((DataInput)IAE).setName(name);
+						}
+						if (IAE instanceof DataOutput){
+							((DataOutput)IAE).setName(name);
+						}
+					}
+				}else{
+//					String name = task.getName();
+					int indice = name.indexOf("<<");
+					if (indice > 0){
+						str = name.substring(0, indice);
+//						task.setName(str);
+						if (IAE instanceof DataInput){
+							((DataInput)IAE).setName(str);
+						}
+						if (IAE instanceof DataOutput){
+							((DataOutput)IAE).setName(str);
+						}
+					}else{
+//						task.setName(name);
+						if (IAE instanceof DataInput){
+							((DataInput)IAE).setName(name);
+						}
+						if (IAE instanceof DataOutput){
+							((DataOutput)IAE).setName(name);
+						}
+					}
+				}
+			}
+
+		});
+	}
+	
 	public Object generateSingleVariant(final Activity activity) {
 		ContainerShape sourceShape,targetShape, midShape;
 		FlowNode source = null,target = null, mid = null;
@@ -881,8 +1331,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			}
 			
 			mid = getCheckedVariant(activity);
+			SweepDataObjects((Activity)mid);
 			
-			deleteNode(activity);
+			deleteObject(activity);
 			copyDataVariant((Activity)mid,(Activity)mid);
 			sourceShape = getContainerShape(source,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
 			targetShape = getContainerShape(target,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
@@ -906,7 +1357,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 	}
 
 	protected Object generateOrVarpoint(final Activity activity, Object next) {
-		sweepVariants(activity);
+		
+		sweepVariants(activity); //limpa as variantes não selecionadas
+		
 		List<SequenceFlow> sequenceFlow = null;
 		SuperContainer superShape = null;
 		ArrayList<List<SuperContainer>> group = new ArrayList<List<SuperContainer>>();
@@ -945,6 +1398,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				if (task.isVariant() && task.isCheck()){
 				if (task.isCheck()){
 					FlowNode fn2 = (FlowNode)task;
+					
+					SweepDataObjects((Activity)fn2); //trata os objetos de dados
+					
 					dstShape = getContainerShape(fn2,diagram);
 					
 //					Armazenando o shape, um valor da sequencia e o gateway
@@ -976,6 +1432,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		for (int i=0;i<outgoing.size();i++){
 			SequenceFlow b = outgoing.get(i);
 			FlowNode fn2 = (FlowNode)b.getTargetRef();
+			
+			SweepDataObjects((Activity)fn2); //trata os objetos de dados
+			
 			dstShape = getContainerShape(fn2,diagram);
 			
 //			Armazenando o shape e um valor recognizable as last shape
@@ -1033,7 +1492,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				}
 			}
 			
-			deleteNode(activity);
+			deleteObject(activity);
 		
 		return next;
 	}
@@ -1169,7 +1628,13 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				System.out.println(b.getName()+" <- sequenceFlow.");
 				if (b.getSourceRef() instanceof Activity){
 					Activity activity = (Activity)b.getSourceRef();
+					
+					
+					
 					if (activity.isVariant() && !activity.isCheck()){
+						
+						SweepDataObjects(activity);
+						
 //						System.out.println(activity.getName()+" to delete.");
 //						iterar sobre os dados de entrada e saida e ir deletando todos, deletar a activity por ultimo
 						List<DataInputAssociation> dataInput = activity.getDataInputAssociations();
@@ -1178,8 +1643,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						if (!dataInput.isEmpty()){
 							int tam = dataInput.size();
 							for (int j=0; j<tam;j++){
-								deleteNode(dataInput.get(j).getTargetRef());
+								deleteObject(dataInput.get(j).getSourceRef().get(0));
 								tam = dataInput.size();
+								j--;
 							}
 //							for (DataInputAssociation DI: dataInput){
 ////								DI.getSourceRef();
@@ -1191,8 +1657,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						if (!dataOutput.isEmpty()){
 							int tam = dataOutput.size();
 							for (int j=0; j<tam;j++){
-								deleteNode(dataOutput.get(j).getTargetRef());
+								deleteObject(dataOutput.get(j).getTargetRef());
 								tam = dataOutput.size();
+								j--;
 							}
 //							for (DataOutputAssociation DO: dataOutput){
 ////								DO.getSourceRef();
@@ -1200,7 +1667,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //							}
 						}
 						
-						deleteNode(activity);
+						deleteObject(activity);
 					}
 				}
 			}
@@ -1224,7 +1691,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return false;
 	}
 
-	protected boolean deleteNode(EObject fn) { //se nao der certo, volta pro FlowNode
+	protected boolean deleteObject(EObject fn) { //se nao der certo, volta pro FlowNode
 		Diagram diagram = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram();
 		final IFeatureProvider fp = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider();					
 //		FlowNode fn = (FlowNode)activity;
@@ -1267,6 +1734,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		return null;
 	}
 
+
 	private void ValidateDiagram(Object bo) {
 		// TODO Auto-generated method stub
 		List<SequenceFlow> sequenceFlow = null;
@@ -1287,6 +1755,8 @@ public class Instantiate extends AbstractHandler implements IHandler {
 	//						if (checkVarpoints(activity))
 								checkVarpoints(activity);
 								ValidateDiagram((Object)activity);
+						}else{
+							checkDataObjects(activity);
 						}
 					}else if (!(a.getTargetRef() instanceof EndEvent)){
 						ValidateDiagram((Object)a.getTargetRef());
@@ -1315,24 +1785,200 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //		}
 	}
 
+	private boolean checkDataObjects(Activity activity) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		List<DataInputAssociation> dataInputAssociations = activity.getDataInputAssociations();
+		List<DataOutputAssociation> dataOutputAssociations = activity.getDataOutputAssociations();
+		
+//		for (DataInputAssociation dia: dataInput){
+		if (!dataInputAssociations.isEmpty()){
+			DataInputAssociation dia = null;
+			List<ItemAwareElement> dataInputs = new ArrayList<ItemAwareElement>();
+			int tam = dataInputAssociations.size();
+			for (int i=0; i<tam; i++){
+				dia = dataInputAssociations.get(i);
+				if (dia.getSourceRef() != null && !dia.getSourceRef().isEmpty()){
+					
+					ItemAwareElement IAE = (ItemAwareElement)dia.getSourceRef().get(0);
+					
+					if (IAE.isVarPoint()){ //if is varpoint
+						
+						if (IAE.getFeatureType()!=null){
+							
+							if (IAE.getFeatureType().equals("##mandatory") && !IAE.isSolved()){
+								types.add(((DataInput)IAE).getName());
+								return false;
+							}
+						}
+						
+//						dataInputs.addAll(hasDataVariants(dia.getSourceRef().get(0))); //catch them all variants
+						
+//						if (!dataInputs.isEmpty()){ //if has variants
+//							deleteObject(dia.getSourceRef().get(0)); //Delete DataObject Varpoint
+//							tam = dataInputAssociations.size();
+//							i--;
+//						}else{
+//							if (((ItemAwareElement)dia.getSourceRef().get(0)).isCheck()){ //is checked
+//								disqualifyDO((ItemAwareElement)dia.getSourceRef().get(0));
+//							}else{												
+//								deleteObject(dia.getSourceRef().get(0)); //delete non checked varpoint
+//							}
+//						}
+					}
+				}
+			}
+		}
+		
+		if (!dataOutputAssociations.isEmpty()){
+			DataOutputAssociation doa = null;
+			List<ItemAwareElement> dataOutputs = new ArrayList<ItemAwareElement>();
+			int tamOutput = dataOutputAssociations.size();
+			for (int i=0; i<tamOutput; i++){
+				doa = dataOutputAssociations.get(i);
+				if (doa.getTargetRef() != null){
+					
+					ItemAwareElement IAE = (ItemAwareElement)doa.getTargetRef();
+					
+					if (IAE.isVarPoint()){ //if is varpoint
+						
+						if (IAE.getFeatureType()!=null){
+							
+							if (IAE.getFeatureType().equals("##mandatory") && !IAE.isSolved()){
+								types.add(((DataOutput)IAE).getName());
+								return false;
+							}
+						}
+						
+//						dataOutputs.addAll(hasDataVariants(doa.getTargetRef()));
+//						
+//						if (!dataOutputs.isEmpty()){
+//							deleteObject(doa.getTargetRef()); //Delete DataObject Varpoint
+//							tamOutput = dataOutputAssociations.size();
+//							i--;
+//						}else{
+//							if (((ItemAwareElement)doa.getTargetRef()).isCheck()){ //is checked
+//								disqualifyDO((ItemAwareElement)doa.getTargetRef());
+//							}else{												
+//								deleteObject(doa.getTargetRef()); //delete non checked varpoint
+//							}
+//						}
+					}
+				}
+			}
+		}
+		return true;				
+	}
+
+//	verificar variants de objetos
+//	if (itemAwareElement instanceof DataInput){
+//		
+//		List<ItemAwareElement> dataInput = new ArrayList<ItemAwareElement>();
+//		EObject object = ((ItemAwareElement)itemAwareElement).eContainer();
+//		
+//		if (object instanceof InputOutputSpecification){
+//			InputOutputSpecification IOS = (InputOutputSpecification)object;
+//			List<DataInput> dataInputs = IOS.getDataInputs();
+//			
+//			int tam = dataInputs.size();
+//			for (int i=0; i<tam; i++){
+//				List<DataOutputAssociation> doas = dataInputs.get(i).getDataOutputAssociations();
+//				for (DataOutputAssociation DOA: doas){
+//					if (DOA.getTargetRef() == itemAwareElement){
+//						if (dataInputs.get(i).isCheck()){
+//							dataInput.add(dataInputs.get(i));
+//						}
+//						else{
+//							deleteObject(dataInputs.get(i));
+//							tam = dataInputs.size();
+//							i--;
+//						}
+//						break;
+//					}
+//				}
+//			}
+//			
+//			return dataInput;
+//		}
+//	}else if (itemAwareElement instanceof DataOutput){
+//		
+//		List<ItemAwareElement> dataOutput = new ArrayList<ItemAwareElement>();
+//		EObject object = ((ItemAwareElement)itemAwareElement).eContainer();
+//		
+//		if (object instanceof InputOutputSpecification){
+//			InputOutputSpecification IOS = (InputOutputSpecification)object;
+//			List<DataOutput> dataOutputs = IOS.getDataOutputs();
+//			
+//			int tam = dataOutputs.size();
+//			for (int i=0; i<tam; i++){
+//				List<DataOutputAssociation> doas = dataOutputs.get(i).getDataOutputAssociations();
+//				for (DataOutputAssociation DOA: doas){
+//					if (DOA.getTargetRef() == itemAwareElement){
+//						if (dataOutputs.get(i).isCheck()){
+//							dataOutput.add(dataOutputs.get(i));
+//						}
+//						else{
+//							deleteObject(dataOutputs.get(i));
+//							tam = dataOutputs.size();
+//							i--;
+//						}
+//						break;
+//					}
+//				}
+//			}
+//			
+//			return dataOutput;
+//		}
+//	}
+	
 	protected boolean checkVarpoints(Activity activity) {
-//		System.out.println(activity.getFeatureType());
 		//if is Mandatory, must have selected variants
 		String s = activity.getFeatureType();
 		if (s != null){
 			if ((activity.getFeatureType().equals("##mandatory"))){ //mandatory or none
-				if (activity.getVarPointType().equals("##OR")){ //uma ou mais variantes
-					//check feature type
-//					System.out.println(activity.getFeatureType()+"##OR");
-					//maybe has variants
-//					if (checkVariants(activity)){ //buscar por ao menos uma variante selecionada
-//						return true;
-//					}
-					if (hasVariant(activity)){
-						if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
-							types.add(activity.getName());
-							return false;
+				if (activity.getVarPointType() != null){
+					if (activity.getVarPointType().equals("##OR")){ //uma ou mais variantes
+						if (hasVariant(activity)){
+							if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
+								types.add(activity.getName());
+								return false;
+							}
+							if (numberOfCheckedVariants(activity) > 1){
+								if (checkVariants(activity)){ //se variantes possuem sequencia
+									return true;
+								}
+								else{
+									types.add(activity.getName());
+									return false;
+								}
+							}
 						}
+						return true;
+					}
+					if (activity.getVarPointType().equals("##XOR")){ //uma variante
+						if (activity.isSolved()) //se o varpoint isSolved, true
+							return true;
+						types.add(activity.getName());
+	//					System.out.println("VarPoint não resolvida!");
+						return false;
+					}
+					if (!activity.isCheck()){
+						types.add(activity.getName());
+						return false;
+					}
+				}else{ //se for null e tiver variantes
+					if (hasVariant(activity)){
+						types.add(activity.getName());
+						return false;
+					}else{ //varpoint sem variantes
+						return true;
+					}
+				}
+			}
+			//if is Optional, must have selected variants
+			if (activity.getFeatureType().equals("##optional")){
+				if (activity.getVarPointType() != null){
+					if (activity.getVarPointType().equals("##OR")){
 						if (numberOfCheckedVariants(activity) > 1){
 							if (checkVariants(activity)){ //se variantes possuem sequencia
 								return true;
@@ -1342,97 +1988,69 @@ public class Instantiate extends AbstractHandler implements IHandler {
 								return false;
 							}
 						}
-					}
-//					types.add(activity.getName());
-//					System.out.println("VarPoint não resolvida!");
-					return true;
-				}
-				if (activity.getVarPointType().equals("##XOR")){ //uma variante
-					//check feature type
-//					System.out.println(activity.getFeatureType()+"##XOR");
-					
-					if (activity.isSolved()) //se o varpoint isSolved, true
 						return true;
-					types.add(activity.getName());
-//					System.out.println("VarPoint não resolvida!");
-					return false;
-				}
-				if (!activity.isCheck()){
-					types.add(activity.getName());
-					return false;
-				}
-			}
-			//if is Optional, must have selected variants
-			if (activity.getFeatureType().equals("##optional")){
-				if (activity.getVarPointType().equals("##OR")){
-					//check feature type
-//					System.out.println(activity.getFeatureType()+"##OR");
-					//maybe has variants
-	//				checkVariants(activity);
-					if (numberOfCheckedVariants(activity) > 1){
-						if (checkVariants(activity)){ //se variantes possuem sequencia
-							return true;
-						}
-						else{
-							types.add(activity.getName());
-							return false;
-						}
+						
 					}
-					return true;
-					
-				}
-				if (activity.getVarPointType().equals("##XOR")){
-					//check feature type
-//					System.out.println(activity.getFeatureType()+"##XOR");
-	//				checkVariants(activity);
-					return true;
+					if (activity.getVarPointType().equals("##XOR")){
+						return true;
+					}
+				}else{ //se for null e tiver variantes
+					if (hasVariant(activity)){
+						types.add(activity.getName());
+						return false;
+					}else{ //varpoint sem variantes
+						return true;
+					}
 				}
 				return true;
 			}
 		}
 		else{ //varpoint ##none
-			if (activity.getVarPointType().equals("##OR")){ //uma ou mais variantes
-				//check feature type
-//				System.out.println(activity.getFeatureType()+"##OR");
-				//maybe has variants
-				if (hasVariant(activity)){
-					if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
+			if (activity.getVarPointType() != null){
+					if (activity.getVarPointType().equals("##OR")){ //uma ou mais variantes
+						//maybe has variants
+						if (hasVariant(activity)){
+							if (numberOfCheckedVariants(activity) == 0){ //varpoint não resolvida
+								types.add(activity.getName());
+								return false;
+							}
+							if (numberOfCheckedVariants(activity) > 1){
+								if (checkVariants(activity)){ //se variantes possuem sequencia
+									return true;
+								}
+								else{
+									types.add(activity.getName());
+									return false;
+								}
+							}
+						}else{
+							if (!activity.isCheck()){
+								types.add(activity.getName());
+								return false;
+							}
+						}
+					}
+				
+					if (activity.getVarPointType().equals("##XOR")){ //uma variante
+						
+						if (activity.isSolved()) //se o varpoint isSolved, true
+							return true;
 						types.add(activity.getName());
 						return false;
 					}
-					if (numberOfCheckedVariants(activity) > 1){
-						if (checkVariants(activity)){ //se variantes possuem sequencia
-							return true;
-						}
-						else{
-							types.add(activity.getName());
-							return false;
-						}
-					}
-				}else{
 					if (!activity.isCheck()){
 						types.add(activity.getName());
 						return false;
 					}
-				}
-//				System.out.println("VarPoint não resolvida!");
+			
+		}else{ //se for null e tiver variantes
+			if (hasVariant(activity)){
+				types.add(activity.getName());
+				return false;
+			}else{ //varpoint sem variantes
 				return true;
-				
 			}
-			if (activity.getVarPointType().equals("##XOR")){ //uma variante
-				//check feature type
-//				System.out.println(activity.getFeatureType()+"##XOR");
-				
-				if (activity.isSolved()) //se o varpoint isSolved, true
-					return true;
-				types.add(activity.getName());
-//				System.out.println("VarPoint não resolvida!");
-				return false;
-			}
-			if (!activity.isCheck()){
-				types.add(activity.getName());
-				return false;
-			}
+		}
 		}
 		return false;
 	}

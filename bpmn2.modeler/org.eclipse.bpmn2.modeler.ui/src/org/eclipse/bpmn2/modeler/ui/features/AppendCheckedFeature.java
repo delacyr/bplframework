@@ -254,11 +254,11 @@ public class AppendCheckedFeature extends AbstractCustomFeature{
 			}else{
 				List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
 				for (DataOutputAssociation d: DOA){
-					if (d.getTargetRef().getVarPointType().equals("##XOR")){
+					if (((ItemAwareElement)d.getTargetRef()).getVarPointType().equals("##XOR")){
 						element.setCheck(false);
-						d.getTargetRef().setSolved(false);
+						((ItemAwareElement)d.getTargetRef()).setSolved(false);
 					}
-					if (d.getTargetRef().getVarPointType().equals("##OR")){
+					if (((ItemAwareElement)d.getTargetRef()).getVarPointType().equals("##OR")){
 						element.setCheck(false);
 					}
 					break;

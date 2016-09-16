@@ -285,7 +285,7 @@ public class DataAssociationPropertiesAdapter extends ExtendedPropertiesAdapter<
 					association.getSourceRef().set(0,value);
 			}
 			if (association.getTargetRef()!=null) {
-				ItemAwareElement targetRef = association.getTargetRef();
+				ItemAwareElement targetRef = (ItemAwareElement) association.getTargetRef();
 				if (value!=null)
 					targetRef.setItemSubjectRef(value.getItemSubjectRef());
 				else
@@ -304,7 +304,7 @@ public class DataAssociationPropertiesAdapter extends ExtendedPropertiesAdapter<
 			updateConnectionIfNeeded(association, value);
 			association.setTargetRef(value);
 			if (!association.getSourceRef().isEmpty()) {
-				ItemAwareElement sourceRef = association.getSourceRef().get(0);
+				ItemAwareElement sourceRef = (ItemAwareElement) association.getSourceRef().get(0);
 				if (value!=null)
 					sourceRef.setItemSubjectRef(value.getItemSubjectRef());
 				else

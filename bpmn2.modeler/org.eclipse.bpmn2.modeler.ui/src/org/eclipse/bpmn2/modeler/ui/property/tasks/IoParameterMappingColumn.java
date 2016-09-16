@@ -197,10 +197,10 @@ public class IoParameterMappingColumn extends TableColumn {
 	protected ItemAwareElement getSourceElement(DataAssociation da) {
 		if (da instanceof DataOutputAssociation) {
 			if (da.getSourceRef().size()==1)
-				return da.getSourceRef().get(0);
+				return (ItemAwareElement) da.getSourceRef().get(0);
 		}
 		else if (da instanceof DataInputAssociation) {
-			return da.getTargetRef();
+			return (ItemAwareElement) da.getTargetRef();
 		}
 		return null;
 	}
@@ -208,10 +208,10 @@ public class IoParameterMappingColumn extends TableColumn {
 	protected ItemAwareElement getTargetElement(DataAssociation da) {
 		if (da instanceof DataInputAssociation) {
 			if (da.getSourceRef().size()==1)
-				return da.getSourceRef().get(0);
+				return (ItemAwareElement) da.getSourceRef().get(0);
 		}
 		else if (da instanceof DataOutputAssociation) {
-			return da.getTargetRef();
+			return (ItemAwareElement) da.getTargetRef();
 		}
 		return null;
 	}

@@ -39,7 +39,7 @@ import java.util.List;
 public interface DataAssociation extends BaseElement {
     /**
      * Returns the value of the '<em><b>Source Ref</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.bpmn2.ItemAwareElement}.
+     * The list contents are of type {@link org.eclipse.bpmn2.BaseElement}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Source Ref</em>' reference list isn't clear,
@@ -52,7 +52,7 @@ public interface DataAssociation extends BaseElement {
      *        extendedMetaData="kind='element' name='sourceRef' namespace='http://www.omg.org/spec/BPMN/20100524/MODEL'"
      * @generated
      */
-    List<ItemAwareElement> getSourceRef();
+    List<BaseElement> getSourceRef();
 
     /**
      * Returns the value of the '<em><b>Target Ref</b></em>' reference.
@@ -63,13 +63,13 @@ public interface DataAssociation extends BaseElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Target Ref</em>' reference.
-     * @see #setTargetRef(ItemAwareElement)
+     * @see #setTargetRef(BaseElement)
      * @see org.eclipse.bpmn2.Bpmn2Package#getDataAssociation_TargetRef()
      * @model resolveProxies="false" required="true" ordered="false"
      *        extendedMetaData="kind='element' name='targetRef' namespace='http://www.omg.org/spec/BPMN/20100524/MODEL'"
      * @generated
      */
-    ItemAwareElement getTargetRef();
+    BaseElement getTargetRef();
 
     /**
      * Sets the value of the '{@link org.eclipse.bpmn2.DataAssociation#getTargetRef <em>Target Ref</em>}' reference.
@@ -79,7 +79,7 @@ public interface DataAssociation extends BaseElement {
      * @see #getTargetRef()
      * @generated
      */
-    void setTargetRef(ItemAwareElement value);
+    void setTargetRef(BaseElement value);
 
     /**
      * Returns the value of the '<em><b>Transformation</b></em>' containment reference.

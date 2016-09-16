@@ -329,8 +329,8 @@ Package bpmn2 <http://www.omg.org/spec/BPMN/20100524/MODEL-XMI>
     Reference correlationKeyRef : CorrelationKey<<1..1>>
 
   Class DataAssociation -> BaseElement
-    Reference sourceRef : ItemAwareElement<<0..*>>
-    Reference targetRef : ItemAwareElement<<1..1>>
+    Reference sourceRef : BaseElement<<0..*>>
+    Reference targetRef : BaseElement<<1..1>>
     Reference transformation : FormalExpression
     Reference assignment : Assignment<<0..*>>
     Attribute name : EString

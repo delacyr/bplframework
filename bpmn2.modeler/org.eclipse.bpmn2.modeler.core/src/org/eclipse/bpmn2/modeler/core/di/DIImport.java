@@ -774,8 +774,9 @@ public class DIImport {
 			te = elements.get(target);
 		} else if (bpmnElement instanceof DataAssociation) {
 			// Data Association allows connections for multiple starting points, we don't support it yet
-			List<ItemAwareElement> sourceRef = ((DataAssociation) bpmnElement).getSourceRef();
-			ItemAwareElement targetRef = ((DataAssociation) bpmnElement).getTargetRef();
+			List<? extends BaseElement> sourceRef2 = ((DataAssociation) bpmnElement).getSourceRef();
+			List<? extends ItemAwareElement> sourceRef = (List<? extends ItemAwareElement>) sourceRef2;
+			ItemAwareElement targetRef = (ItemAwareElement)((DataAssociation) bpmnElement).getTargetRef();
 			if (sourceRef != null && sourceRef.size()>0) {
 				source = sourceRef.get(0);
 			}

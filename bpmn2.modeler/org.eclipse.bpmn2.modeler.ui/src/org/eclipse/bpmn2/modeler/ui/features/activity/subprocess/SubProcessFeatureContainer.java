@@ -82,11 +82,12 @@ public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatur
 //				if (variant!=null && variant.isVariant() && variant.isCheck()) {
 				if (variant!=null && variant.isCheck()) {	
 //					if (variant.isVariant() && variant.getSeq() == 0){
-						
+						boolean pass = false;
 						List<SequenceFlow> outgoing = variant.getOutgoing();
 						for (SequenceFlow sf: outgoing){
-							if (sf.getTargetRef() instanceof Activity)
-								if (((Activity)sf.getTargetRef()).isVarPoint())
+							if (sf.getTargetRef() instanceof Activity){
+								pass = true;
+								if (((Activity)sf.getTargetRef()).isVarPoint()){
 									if (((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
 										if (variant.isVariant() && variant.getSeq() == 0){
 											ShapeStyle ss = new ShapeStyle();
@@ -103,6 +104,18 @@ public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatur
 										ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
 										StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 									}
+								}else{
+									ShapeStyle ss = new ShapeStyle();
+									ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+									StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
+								}
+							}
+						}
+						
+						if (!pass){
+							ShapeStyle ss = new ShapeStyle();
+							ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
+							StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 						}
 //					}
 				

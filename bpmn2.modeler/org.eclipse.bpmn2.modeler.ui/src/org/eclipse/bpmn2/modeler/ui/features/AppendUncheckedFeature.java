@@ -353,16 +353,16 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 			}else{
 				List<DataOutputAssociation> DOA = element.getDataOutputAssociations();
 				for (DataOutputAssociation d: DOA){
-					if (d.getTargetRef().getVarPointType().equals("##XOR")){
-						if (d.getTargetRef().isSolved()){
+					if (((ItemAwareElement)d.getTargetRef()).getVarPointType().equals("##XOR")){
+						if (((ItemAwareElement)d.getTargetRef()).isSolved()){
 							MessageDialog.openWarning(null, "Warning", "A variant was already selected!");
 						}
 						else{
 							element.setCheck(true);
-							d.getTargetRef().setSolved(true);
+							((ItemAwareElement)d.getTargetRef()).setSolved(true);
 						}
 					}
-					if (d.getTargetRef().getVarPointType().equals("##OR")){
+					if (((ItemAwareElement)d.getTargetRef()).getVarPointType().equals("##OR")){
 						element.setCheck(true);
 					}
 					break;

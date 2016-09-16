@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Assignment;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.CatchEvent;
 import org.eclipse.bpmn2.DataAssociation;
 import org.eclipse.bpmn2.DataInput;
@@ -281,7 +282,9 @@ public class DataAssociationDetailComposite extends ItemAwareElementDetailCompos
 				}
 				else
 				{
-					for (ItemAwareElement e : a.getSourceRef()) {
+					List<? extends BaseElement> b = a.getSourceRef();
+					List<? extends ItemAwareElement> c = (List<? extends ItemAwareElement>) b;
+					for (ItemAwareElement e : c) {
 						if (e == be) {
 							association = a;
 							break;
@@ -833,9 +836,9 @@ public class DataAssociationDetailComposite extends ItemAwareElementDetailCompos
 						// set the "To" element in the assignment as the Input/Output Parameter
 						ItemAwareElement toElement = null;
 						if (isInput)
-							toElement = association.getTargetRef();
+							toElement = (ItemAwareElement) association.getTargetRef();
 						else
-							toElement = association.getSourceRef().size()>0 ? association.getSourceRef().get(0) : null;
+							toElement = (ItemAwareElement) (association.getSourceRef().size()>0 ? association.getSourceRef().get(0) : null);
 						if (toElement!=null) {
 							FormalExpression toExpression = createModelObject(FormalExpression.class);
 							toExpression.setBody(toElement.getId());

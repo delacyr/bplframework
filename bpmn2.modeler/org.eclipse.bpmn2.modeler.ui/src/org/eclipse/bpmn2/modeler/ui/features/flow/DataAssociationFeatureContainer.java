@@ -170,7 +170,6 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 			if (!(source instanceof DataOutput))
 				return true;
 		}
-		
 		return false;
 	}
 
@@ -192,7 +191,9 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				else {
 					DataOutputAssociation doa = BusinessObjectUtil.getFirstElementOfType(c, DataOutputAssociation.class);
 					if (doa!=null) {
-						for (ItemAwareElement d : newAssociation.getSourceRef()) {
+						List<? extends BaseElement> b = newAssociation.getSourceRef();
+						List<? extends ItemAwareElement> b2 = (List<? extends ItemAwareElement>) b;
+						for (ItemAwareElement d : b2) {
 							if (doa.getSourceRef().contains(d)) {
 								deleted.add(c);
 								break;
@@ -245,6 +246,7 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 	}
 	
 	private static DataInputAssociation selectInput(BaseElement target, List<DataInput> dataInputs, List<DataInputAssociation> dataInputAssociations, InputSet inputSet) {
+
 		EObject object = null;
 		EStructuralFeature objectFeature = null;
 		EStructuralFeature targetFeature = null;
@@ -657,8 +659,6 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				dataAssoc = dataOutputAssoc;
 			}
 			else if (source instanceof ItemAwareElement)
-//			#BPL2.0
-//			if (source instanceof ItemAwareElement)
 			{
 				// Source is the DataObject.
 				DataInputAssociation dataInputAssoc = null;
@@ -713,8 +713,7 @@ public class DataAssociationFeatureContainer extends BaseElementConnectionFeatur
 				
 				if (dataInputAssoc!=null) {
 					dataInputAssoc.getSourceRef().clear();
-					dataInputAssoc.getSourceRef().add((ItemAwareElement) source);
-					
+					dataInputAssoc.getSourceRef().add((ItemAwareElement) source);			
 				}
 				dataAssoc = dataInputAssoc;
 			}

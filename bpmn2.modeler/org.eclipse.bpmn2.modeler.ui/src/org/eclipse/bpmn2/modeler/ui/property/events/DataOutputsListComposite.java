@@ -13,6 +13,7 @@ package org.eclipse.bpmn2.modeler.ui.property.events;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.CatchEvent;
 import org.eclipse.bpmn2.DataOutput;
 import org.eclipse.bpmn2.DataOutputAssociation;
@@ -103,7 +104,9 @@ public class DataOutputsListComposite extends DefaultListComposite {
 		List<DataOutputAssociation> dataOutputAssociations = catchEvent.getDataOutputAssociation();
 		List<DataOutputAssociation> removed = new ArrayList<DataOutputAssociation>();
 		for (DataOutputAssociation doa : dataOutputAssociations) {
-			for (ItemAwareElement e : doa.getSourceRef()) {
+			List<? extends BaseElement> b = doa.getSourceRef();
+			List<? extends ItemAwareElement> b2 = (List<? extends ItemAwareElement>) b;
+			for (ItemAwareElement e : b2) {
 				if (e == item)
 					removed.add(doa);
 			}

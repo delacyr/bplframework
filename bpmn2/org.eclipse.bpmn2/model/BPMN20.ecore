@@ -2309,7 +2309,7 @@
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRef" ordered="false"
-        upperBound="-1" eType="#//ItemAwareElement" resolveProxies="false">
+        upperBound="-1" eType="#//BaseElement" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="sourceRef"/>
@@ -2317,7 +2317,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetRef" ordered="false"
-        lowerBound="1" eType="#//ItemAwareElement" resolveProxies="false">
+        lowerBound="1" eType="#//BaseElement" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="targetRef"/>

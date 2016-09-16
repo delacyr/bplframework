@@ -59,7 +59,7 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
      * @generated
      * @ordered
      */
-    protected EList<ItemAwareElement> sourceRef;
+    protected EList<BaseElement> sourceRef;
 
     /**
      * The cached value of the '{@link #getTargetRef() <em>Target Ref</em>}' reference.
@@ -69,7 +69,7 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
      * @generated
      * @ordered
      */
-    protected ItemAwareElement targetRef;
+    protected BaseElement targetRef;
 
     /**
      * The cached value of the '{@link #getTransformation() <em>Transformation</em>}' containment reference.
@@ -135,9 +135,9 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
      * <!-- end-user-doc -->
      * @generated
      */
-    public List<ItemAwareElement> getSourceRef() {
+    public List<BaseElement> getSourceRef() {
         if (sourceRef == null) {
-            sourceRef = new EObjectEList<ItemAwareElement>(ItemAwareElement.class, this,
+            sourceRef = new EObjectEList<BaseElement>(BaseElement.class, this,
                     Bpmn2Package.DATA_ASSOCIATION__SOURCE_REF);
         }
         return sourceRef;
@@ -148,7 +148,7 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
      * <!-- end-user-doc -->
      * @generated
      */
-    public ItemAwareElement getTargetRef() {
+    public BaseElement getTargetRef() {
         return targetRef;
     }
 
@@ -157,8 +157,8 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTargetRef(ItemAwareElement newTargetRef) {
-        ItemAwareElement oldTargetRef = targetRef;
+    public void setTargetRef(BaseElement newTargetRef) {
+        BaseElement oldTargetRef = targetRef;
         targetRef = newTargetRef;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,
@@ -305,10 +305,10 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
         switch (featureID) {
         case Bpmn2Package.DATA_ASSOCIATION__SOURCE_REF:
             getSourceRef().clear();
-            getSourceRef().addAll((Collection<? extends ItemAwareElement>) newValue);
+            getSourceRef().addAll((Collection<? extends BaseElement>) newValue);
             return;
         case Bpmn2Package.DATA_ASSOCIATION__TARGET_REF:
-            setTargetRef((ItemAwareElement) newValue);
+            setTargetRef((BaseElement) newValue);
             return;
         case Bpmn2Package.DATA_ASSOCIATION__TRANSFORMATION:
             setTransformation((FormalExpression) newValue);
@@ -336,7 +336,7 @@ public class DataAssociationImpl extends BaseElementImpl implements DataAssociat
             getSourceRef().clear();
             return;
         case Bpmn2Package.DATA_ASSOCIATION__TARGET_REF:
-            setTargetRef((ItemAwareElement) null);
+            setTargetRef((BaseElement) null);
             return;
         case Bpmn2Package.DATA_ASSOCIATION__TRANSFORMATION:
             setTransformation((FormalExpression) null);
