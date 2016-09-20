@@ -16,6 +16,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.JavaElement;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -80,6 +82,9 @@ public class InstantiationWizard extends Wizard implements INewWizard{
 							bpmnDiagram.setPhase("EPN");
 						}
 					});
+					
+					editor.doSave(null);
+					
 				}
 			}
 				

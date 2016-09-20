@@ -4,6 +4,7 @@
  */
 package org.eclipse.bpmn2.modeler.ui.commands;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Bpmn2Package;
-import org.eclipse.bpmn2.DataAssociation;
 import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.DataOutput;
@@ -20,17 +20,13 @@ import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowElementsContainer;
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
 import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.OutputSet;
-import org.eclipse.bpmn2.Relationship;
-import org.eclipse.bpmn2.RelationshipDirection;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
-import org.eclipse.bpmn2.ThrowEvent;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
 import org.eclipse.bpmn2.modeler.core.model.Bpmn2ModelerFactory;
@@ -42,16 +38,20 @@ import org.eclipse.bpmn2.modeler.core.utils.GraphicsUtil;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.core.utils.Tuple;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
-//import org.eclipse.bpmn2.modeler.ui.features.flow.Messages;
-import org.eclipse.bpmn2.modeler.ui.features.flow.DataAssociationFeatureContainer.CreateDataAssociationFeature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.datatypes.IDimension;
@@ -81,12 +81,12 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.ILayoutService;
 import org.eclipse.graphiti.services.IPeService;
-import org.eclipse.graphiti.ui.internal.util.ui.PopupMenu;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ListDialog;
+//import org.eclipse.bpmn2.modeler.ui.features.flow.Messages;
 
 public class Instantiate extends AbstractHandler implements IHandler {
 
@@ -100,10 +100,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
 		BPMNDiagram bpmnDiagram = editor.getBpmnDiagram();		
 		DiagramElement element = bpmnDiagram.getRootElement();
-		List<EObject> elements = element.eContents();
+		final List<EObject> elements = element.eContents();
 		final List<Object> startEvents = new ArrayList<Object>();
 		final List<Object> lanes = new ArrayList<Object>();
-		Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
+		final Diagram diagram = editor.getDiagramTypeProvider().getDiagram();
 //		Percorrer a lista de elementos e começar pelo StartEventImpl
 		for (EObject ob: elements){
 			if (ob instanceof BPMNShape){
@@ -122,7 +122,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		
 //		ValidateDiagram(bo);
 		
-//		editor.doSave(null);
+		editor.doSave(null);
 		
 		if (!types.isEmpty()){
 			ListDialog dialog = new ListDialog(null);
@@ -134,52 +134,90 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			dialog.open();
 		}
 		else{
-////			/*Copia o modelo configurado para a pasta Instantiated*/
-//			IProgressMonitor progressMonitor = new NullProgressMonitor();
-//			IProject project = editor.getProject();
-//			IFolder instantiatedFolder = project.getFolder("Instantiated");
-//			try {
-//				instantiatedFolder.create(true, true, progressMonitor);
-//			} catch (CoreException e) {
-//				// TODO Auto-generated catch block
-////				e.printStackTrace();
-//			}
-//	
-//			IFile instantiated_file = editor.getModelFile();
-//			IPath path_instantiatedFolder = project.getFolder("Instantiated").getFullPath();
-//			path_instantiatedFolder = path_instantiatedFolder.append(instantiated_file.getName());
-//			
-//			try {
-//				instantiated_file.copy(path_instantiatedFolder, true, progressMonitor);
-//					
-//			} catch (CoreException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
+//			/*Copia o modelo configurado para a pasta Instantiated*/
+			IProgressMonitor progressMonitor = new NullProgressMonitor();
+			IProject project = editor.getProject();
+			IFile instantiated_file = editor.getModelFile();
+			
+			IFolder instantiatedFolder = project.getFolder("Instantiated");
+			try {
+				instantiatedFolder.create(true, true, progressMonitor);
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if (!instantiated_file.getParent().getName().equals("Instantiating")){ //se estiver na raiz
+				
+				IFolder instantiatedSubFolder = project.getFolder("Instantiated").getFolder(instantiated_file.getParent().getName());
+				try {
+					instantiatedSubFolder.create(true, true, progressMonitor);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				IPath path_instantiatedFolder = project.getFolder("Instantiated").getFolder(instantiated_file.getParent().getName()).getFullPath();
+				path_instantiatedFolder = path_instantiatedFolder.append(instantiated_file.getName());
+				
+				try {
+					instantiated_file.copy(path_instantiatedFolder, true, progressMonitor);
+						
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				IFolder instantiatedSubFolder = project.getFolder("Instantiated");
+				try {
+					instantiatedSubFolder.create(true, true, progressMonitor);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				IPath path_instantiatedFolder = project.getFolder("Instantiated").getFullPath();
+				path_instantiatedFolder = path_instantiatedFolder.append(instantiated_file.getName());
+				
+				try {
+					instantiated_file.copy(path_instantiatedFolder, true, progressMonitor);
+						
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
 			/*Instanciação do TMPN*/
 			for (int i=0; i<startEvents.size();i++)
 				generateModel(startEvents.get(i));
 			
 			alignShapes(startEvents.get(0));
 			
-			if (!lanes.isEmpty()){
-				for (int i=0; i<lanes.size(); i++){
-					resizeLanes((EObject)lanes.get(i), elements, diagram);
-				}
-			}
+//			if (!lanes.isEmpty()){
+//				for (int i=0; i<lanes.size(); i++){
+//					resizeLanes((EObject)lanes.get(i), elements, diagram);
+//				}
+//			}
 				
-//			
+			
 //			ProgressMonitorDialog dialog = new ProgressMonitorDialog(null); 
 //			try {
 //				dialog.run(true, false, new IRunnableWithProgress(){
 //				    public void run(IProgressMonitor monitor) {
 //				        monitor.beginTask("Please wait a moment. Instantiating...", IProgressMonitor.UNKNOWN); 
 //				        // execute the task ...
-//		    			for (int i=0; i<startEvents.size();i++){
-//		    				generateModel(startEvents.get(i));
-//		    				alignShapes(startEvents.get(i));
-//		    			}
+//				        for (int i=0; i<startEvents.size();i++)
+//							generateModel(startEvents.get(i));
+//						
+//						alignShapes(startEvents.get(0));
+//						
+//						if (!lanes.isEmpty()){
+//							for (int i=0; i<lanes.size(); i++){
+//								resizeLanes((EObject)lanes.get(i), elements, diagram);
+//							}
+//						}
 //				        
 //				        monitor.done();
 //				    }
@@ -192,37 +230,45 @@ public class Instantiate extends AbstractHandler implements IHandler {
 //				e.printStackTrace();
 //			}
 			
-//			boolean pass = false;
-//			if (!pass){
-//				editor.doSave(progressMonitor);
-//				pass = true;
-//			}
-//			
-//			if (pass){
-//				/*Copia o modelo instanciado para a pasta de PDOs*/
-//				IPath path_BPDFolder = project.getFolder("BusinessProcessDiagram").getFullPath();
-//				path_BPDFolder = path_BPDFolder.append(instantiated_file.getName());
-//				try {
-//					instantiated_file.copy(path_BPDFolder, true, progressMonitor);
-//						
-//				} catch (CoreException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				
-//				/*Exclui o modelo temporário da pasta Instantiating*/
-//				try {
-//					instantiated_file.delete(true, progressMonitor);
-//				} catch (CoreException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}	
-//				
-//				org.eclipse.emf.common.util.URI modelURI;
-//				modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_BPDFolder.toString(), true);
-//				BPMN2Editor.openEditor(modelURI);
-//			}
-//			
+			boolean pass = false;
+			if (!pass){
+				editor.doSave(progressMonitor);
+				pass = true;
+			}
+			
+			if (pass){
+				/*Copia o modelo instanciado para a pasta de PDOs*/
+				IFolder BPDFolder = project.getFolder("BusinessProcessDiagram").getFolder(instantiated_file.getParent().getName());
+				try {
+					BPDFolder.create(true, true, progressMonitor);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				IPath path_BPDFolder = project.getFolder("BusinessProcessDiagram").getFolder(instantiated_file.getParent().getName()).getFullPath();
+				path_BPDFolder = path_BPDFolder.append(instantiated_file.getName());
+				try {
+					instantiated_file.copy(path_BPDFolder, true, progressMonitor);
+						
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				/*Exclui o modelo temporário da pasta Instantiating*/
+				try {
+					instantiated_file.delete(true, progressMonitor);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				
+				org.eclipse.emf.common.util.URI modelURI;
+				modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_BPDFolder.toString(), true);
+				BPMN2Editor.openEditor(modelURI);
+			}
+			
 		}
 		types.clear();
 
@@ -273,7 +319,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			//				int height = ga.getHeight();
 									
 							final ResizeShapeContext resizeContext = new ResizeShapeContext(laneShape);
-							resizeContext.setLocation(x, y);
+							resizeContext.setLocation(x, (maxY-minY)/2);
 							resizeContext.setHeight(maxY-minY+150);
 							resizeContext.setWidth(maxX-minX+150);
 							

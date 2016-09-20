@@ -44,13 +44,15 @@ import org.eclipse.graphiti.mm.algorithms.MultiText;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatureContainer {
 
 	public static final String TRIGGERED_BY_EVENT = "triggered-by-event-key"; //$NON-NLS-1$
 	public static final String IS_EXPANDED = "is-expanded-key"; //$NON-NLS-1$
-
+	public static IColorConstant DEFAULT_COLOR = new ColorConstant(212, 231, 248);
+	
 	@Override
 	public boolean canApplyTo(Object o) {
 		return super.canApplyTo(o) && o instanceof SubProcess &&
@@ -89,7 +91,7 @@ public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatur
 								pass = true;
 								if (((Activity)sf.getTargetRef()).isVarPoint()){
 									if (((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
-										if (variant.isVariant() && variant.getSeq() == 0){
+										if (variant.isVariant() && variant.getSeq() == 0 && (numberOfCheckedVariantsWoSeq((Activity)sf.getTargetRef()) > 1)){
 											ShapeStyle ss = new ShapeStyle();
 											ss.setDefaultColors(IColorConstant.YELLOW);
 											StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
@@ -130,7 +132,27 @@ public class SubProcessFeatureContainer extends AbstractExpandableActivityFeatur
 						ss.setDefaultColors(IColorConstant.LIGHT_GREEN);
 						StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 					}
+				}else{
+					ShapeStyle ss = new ShapeStyle();
+					ss.setDefaultColors(DEFAULT_COLOR);
+					StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
 				}
+			}
+			
+			private int numberOfCheckedVariantsWoSeq(Activity varpoint) {
+				// TODO Auto-generated method stub
+				List<SequenceFlow> incoming = varpoint.getIncoming();
+				int count = 0;
+				for (int i=0;i<incoming.size();i++){
+					SequenceFlow b = incoming.get(i);
+					if (b.getSourceRef() instanceof Activity){
+						Activity activity = (Activity)b.getSourceRef();
+						if (activity.isVariant() && activity.isCheck() && activity.getSeq() == 0){
+							count++;
+						}
+					}
+				}
+				return count;
 			}
 		};
 	}

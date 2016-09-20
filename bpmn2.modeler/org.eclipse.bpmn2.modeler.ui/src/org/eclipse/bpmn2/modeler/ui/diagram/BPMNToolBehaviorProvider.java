@@ -50,6 +50,7 @@ import org.eclipse.bpmn2.modeler.ui.features.activity.task.CustomElementFeatureC
 import org.eclipse.bpmn2.modeler.ui.features.activity.task.CustomShapeFeatureContainer;
 import org.eclipse.bpmn2.modeler.ui.features.choreography.ChoreographySelectionBehavior;
 import org.eclipse.bpmn2.modeler.ui.features.choreography.ChoreographyUtil;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -878,6 +879,10 @@ public class BPMNToolBehaviorProvider extends DefaultToolBehaviorProvider implem
 	
 	@Override
 	public boolean isShowFlyoutPalette() {	
+		BPMN2Editor editor = BPMN2Editor.getActiveEditor();
+		IFile file = editor.getModelFile();
+		if (file.getParent().getName().equals("Instantiating") || file.getParent().getName().equals("Instantiated") || file.getParent().getParent().getName().equals("Instantiating") || file.getParent().getParent().getName().equals("Instantiated"))
+			return false;
 		if (!BPMN2Editor.getActiveEditor().getBpmnDiagram().getPhase().equals("EPN"))
 			return true;
 		return false;

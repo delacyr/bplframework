@@ -210,7 +210,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 						if (sf.getTargetRef() instanceof Activity)
 							if (((Activity)sf.getTargetRef()).isVarPoint() && ((Activity)sf.getTargetRef()).getVarPointType().equals("##OR")){
 								parent = (Activity)sf.getTargetRef();
-								if (numberOfCheckedVariantsWoSeq(parent) >= 1){ //se marcar variante e tiver outra marcada
+								if (numberOfCheckedVariantsWoSeq(parent) > 1){ //se marcar variante e tiver outra marcada
 //									if (parent.getVarPointType().equals("##OR")){
 										setAllWoSeqYellow(parent);
 										ShapeStyle ss = new ShapeStyle();
