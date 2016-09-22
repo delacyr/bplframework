@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='1'>
-  <unit id='org.eclipse.bpmn2.edit' version='1.0.0.201509132214'>
-    <update id='org.eclipse.bpmn2.edit' range='[0.0.0,1.0.0.201509132214)' severity='0'/>
+  <unit id='org.eclipse.bpmn2.edit' version='1.0.0.201609211721'>
+    <update id='org.eclipse.bpmn2.edit' range='[0.0.0,1.0.0.201609211721)' severity='0'/>
     <properties size='8'>
       <property name='df_LT.pluginName' value='BPMN2 Edit Support'/>
       <property name='df_LT.providerName' value='Eclipse Modeling Project'/>
@@ -13,8 +13,8 @@
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>
     </properties>
     <provides size='8'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.edit' version='1.0.0.201509132214'/>
-      <provided namespace='osgi.bundle' name='org.eclipse.bpmn2.edit' version='1.0.0.201509132214'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.edit' version='1.0.0.201609211721'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.bpmn2.edit' version='1.0.0.201609211721'/>
       <provided namespace='java.package' name='org.eclipse.bpmn2.di.provider' version='1.0.0'/>
       <provided namespace='java.package' name='org.eclipse.bpmn2.provider' version='1.0.0'/>
       <provided namespace='java.package' name='org.eclipse.dd.dc.provider' version='1.0.0'/>
@@ -25,16 +25,16 @@
     <requires size='3'>
       <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='[3.4.0,4.0.0)'/>
       <required namespace='osgi.bundle' name='org.eclipse.bpmn2' range='1.0.0'/>
-      <required namespace='osgi.bundle' name='org.eclipse.emf.edit' range='[2.4.0,3.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.emf.edit' range='0.0.0'/>
     </requires>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.edit' version='1.0.0.201509132214'/>
+      <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.edit' version='1.0.0.201609211721'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-SymbolicName: org.eclipse.bpmn2.edit;singleton:=true&#xA;Bundle-Version: 1.0.0.201509132214&#xA;
+          Bundle-SymbolicName: org.eclipse.bpmn2.edit;singleton:=true&#xA;Bundle-Version: 1.0.0.201609211721&#xA;
         </instruction>
       </instructions>
     </touchpointData>

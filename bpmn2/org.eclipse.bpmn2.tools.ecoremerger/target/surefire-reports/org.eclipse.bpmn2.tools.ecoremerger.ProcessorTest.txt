@@ -1,0 +1,5 @@
+-------------------------------------------------------------------------------
+Test set: org.eclipse.bpmn2.tools.ecoremerger.ProcessorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 sec - in org.eclipse.bpmn2.tools.ecoremerger.ProcessorTest
+loadAll(org.eclipse.bpmn2.tools.ecoremerger.ProcessorTest)  Time elapsed: 0.002 sec

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='org.eclipse.update.feature' id='org.eclipse.bpmn2.feature' version='1.0.0.201509132214'>
+  <artifact classifier='org.eclipse.update.feature' id='org.eclipse.bpmn2.feature' version='1.0.0.201609211721'>
     <properties size='6'>
-      <property name='artifact.size' value='26120'/>
-      <property name='download.size' value='26120'/>
+      <property name='artifact.size' value='26122'/>
+      <property name='download.size' value='26122'/>
       <property name='maven-groupId' value='org.eclipse.bpmn2'/>
       <property name='maven-artifactId' value='org.eclipse.bpmn2.feature'/>
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>

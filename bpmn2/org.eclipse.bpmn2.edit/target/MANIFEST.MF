@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.bpmn2.edit;singleton:=true
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)
- ",org.eclipse.bpmn2;visibility:=reexport;bundle-version="1.0.0",org.e
- clipse.emf.edit;visibility:=reexport;bundle-version="[2.4.0,3.0.0)"
+ ",org.eclipse.bpmn2;bundle-version="1.0.0";visibility:=reexport,org.e
+ clipse.emf.edit;visibility:=reexport
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
@@ -11,7 +11,7 @@ Export-Package: org.eclipse.bpmn2.di.provider;version="1.0.0",org.ecli
  pse.bpmn2.provider;version="1.0.0",org.eclipse.dd.dc.provider;version
  ="1.0.0",org.eclipse.dd.di.provider;version="1.0.0"
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201509132214
+Bundle-Version: 1.0.0.201609211721
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.bpmn2.provider.Bpmn2EditPlugin$Implement
