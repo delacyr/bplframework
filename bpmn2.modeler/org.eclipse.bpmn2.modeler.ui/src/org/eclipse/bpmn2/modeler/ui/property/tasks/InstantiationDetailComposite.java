@@ -362,7 +362,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 							protected void doExecute() {
 								Activity variant2 = null;
 								variant2 = (Activity)businessObject;
-								variant2.setSeq((int)result);
+//								variant2.setSeq((int)result);
+//								BPL2.0 22/09
+								variant2.setSeq(((Integer)result).intValue());
 //								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
 //								sequence.eSet(sequence, (int)result);
 								StyleUtil.applyStyle(shape.getGraphicsAlgorithm(), baseElement, ss);
@@ -415,7 +417,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 												sibling = (Activity)b.getSourceRef();
 												if (sibling.isVariant() && !sibling.getId().equals(variant.getId())){
 													EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
-													int seq = (int)businessObject.eGet(sequence);
+//													int seq = (int)businessObject.eGet(sequence);
+//													BPL2.0 22/09
+													int seq = ((Integer)businessObject.eGet(sequence)).intValue();
 													if (sibling.getSeq() == seq){
 														sibling.setGateway(businessObject.eGet(feature).toString());
 													}
@@ -471,7 +475,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 							sibling = (Activity)b.getSourceRef();
 							if (sibling.isVariant() && sibling.isCheck() && !sibling.getId().equals(variant.getId())){
 								EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
-								int seq = (int)businessObject.eGet(sequence);
+//								int seq = (int)businessObject.eGet(sequence);
+//								BPL2.0 22/09
+								int seq = ((Integer)businessObject.eGet(sequence)).intValue();
 								if (sibling.getSeq() == seq){
 //									System.out.println(sibling.getName()+" has Same Sequence "+variant.getName());
 									return true;
@@ -533,7 +539,9 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 				EStructuralFeature specsName = businessObject.eClass().getEStructuralFeature("specsName");
 				EStructuralFeature sequence = businessObject.eClass().getEStructuralFeature("seq");
 				EStructuralFeature showInstanceName = businessObject.eClass().getEStructuralFeature("showInstanceName");
-				seq = (int)businessObject.eGet(sequence);
+//				seq = (int)businessObject.eGet(sequence);
+//				BPL2.0 22/09
+				seq = ((Integer)businessObject.eGet(sequence)).intValue();
 				specName = (String)businessObject.eGet(specsName);
 				if ((Boolean)businessObject.eGet(showInstanceName) == false){
 					if (name!=null && seq>0){

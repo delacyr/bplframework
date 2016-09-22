@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-  <unit id='org.eclipse.bpmn2.feature.feature.group' version='1.0.0.201609211721' singleton='false'>
-    <update id='org.eclipse.bpmn2.feature.feature.group' range='[0.0.0,1.0.0.201609211721)' severity='0'/>
+  <unit id='org.eclipse.bpmn2.feature.feature.group' version='1.0.0.201609221438' singleton='false'>
+    <update id='org.eclipse.bpmn2.feature.feature.group' range='[0.0.0,1.0.0.201609221438)' severity='0'/>
     <properties size='12'>
       <property name='org.eclipse.equinox.p2.name' value='%featureName'/>
       <property name='org.eclipse.equinox.p2.description' value='%description'/>
@@ -17,7 +17,7 @@
       <property name='df_LT.providerName' value='eclipse.org'/>
     </properties>
     <provides size='2'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.group' version='1.0.0.201609211721'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.group' version='1.0.0.201609221438'/>
       <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
     </provides>
     <requires size='14'>
@@ -31,10 +31,10 @@
       <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.xsd' range='0.0.0'/>
       <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2' range='[1.0.0,1.1.0)'/>
       <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.edit' range='[1.0.0,1.1.0)'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2' range='[1.0.0.201609211721,1.0.0.201609211721]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.edit' range='[1.0.0.201609211721,1.0.0.201609211721]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.editor' range='[1.0.0.201609211721,1.0.0.201609211721]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.jar' range='[1.0.0.201609211721,1.0.0.201609211721]'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2' range='[1.0.0.201609221438,1.0.0.201609221438]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.edit' range='[1.0.0.201609221438,1.0.0.201609221438]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.editor' range='[1.0.0.201609221438,1.0.0.201609221438]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.jar' range='[1.0.0.201609221438,1.0.0.201609221438]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -50,7 +50,7 @@
       %copyright
     </copyright>
   </unit>
-  <unit id='org.eclipse.bpmn2.feature.feature.jar' version='1.0.0.201609211721'>
+  <unit id='org.eclipse.bpmn2.feature.feature.jar' version='1.0.0.201609221438'>
     <properties size='11'>
       <property name='org.eclipse.equinox.p2.name' value='%featureName'/>
       <property name='org.eclipse.equinox.p2.description' value='%description'/>
@@ -65,15 +65,15 @@
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.jar' version='1.0.0.201609211721'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.bpmn2.feature.feature.jar' version='1.0.0.201609221438'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='org.eclipse.bpmn2.feature' version='1.0.0.201609211721'/>
+      <provided namespace='org.eclipse.update.feature' name='org.eclipse.bpmn2.feature' version='1.0.0.201609221438'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-      <artifact classifier='org.eclipse.update.feature' id='org.eclipse.bpmn2.feature' version='1.0.0.201609211721'/>
+      <artifact classifier='org.eclipse.update.feature' id='org.eclipse.bpmn2.feature' version='1.0.0.201609221438'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>

@@ -258,7 +258,7 @@ public class AppendUncheckedFeature extends AbstractCustomFeature{
 		for (SequenceFlow sFlow: SF){
 			if (sFlow.getSourceRef() instanceof Activity){
 				Activity activity = (Activity)sFlow.getSourceRef();
-				if (activity.isCheck() && activity.getSeq()==0){
+				if (activity.isVariant() && activity.isCheck() && activity.getSeq()==0){
 					ContainerShape containerShape = getContainerShape((FlowNode)activity, diagram);
 					Shape shape = containerShape.getChildren().get(0);
 					BaseElement baseElement = BusinessObjectUtil.getFirstBaseElement(containerShape);

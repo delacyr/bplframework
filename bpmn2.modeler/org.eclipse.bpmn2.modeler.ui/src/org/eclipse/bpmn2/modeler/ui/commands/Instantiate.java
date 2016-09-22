@@ -1551,19 +1551,29 @@ public class Instantiate extends AbstractHandler implements IHandler {
 		final CreateContext cc = gateway.getICreateContext();
 		final ContainerShape srcShape0 = srcShape;
 		
-		switch (type) {
-		case "##AND":
-			cf = gateway.getICreateFeature(1);
-			break;
-		case "##OR":
+//		switch (type) {
+//		case "##AND":
+//			cf = gateway.getICreateFeature(1);
+//			break;
+//		case "##OR":
+//			cf = gateway.getICreateFeature(2);
+//			break;
+//		case "##XOR":
+//			cf = gateway.getICreateFeature(3);
+//			break;
+//		default:
+//			cf = gateway.getICreateFeature(1);
+//			break;
+//		}
+		
+		if (type.equals("##OR")){
 			cf = gateway.getICreateFeature(2);
-			break;
-		case "##XOR":
-			cf = gateway.getICreateFeature(3);
-			break;
-		default:
-			cf = gateway.getICreateFeature(1);
-			break;
+		}else{
+			if (type.equals("##XOR")){
+				cf = gateway.getICreateFeature(3);
+			}else{
+				cf = gateway.getICreateFeature(1);
+			}
 		}
 		
 		TransactionalEditingDomain editingDomain1 = BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain();
