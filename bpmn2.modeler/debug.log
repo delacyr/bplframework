@@ -1,0 +1,395 @@
+Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T13:41:47-03:00)
+Maven home: /Users/delacyr/apache-maven-3.3.9
+Java version: 1.8.0_31, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre
+Default locale: pt_BR, platform encoding: UTF-8
+OS name: "mac os x", version: "10.11.6", arch: "x86_64", family: "mac"
+[DEBUG] Created new class realm maven.api
+[DEBUG] Importing foreign packages into class realm maven.api
+[DEBUG]   Imported: javax.enterprise.inject.* < plexus.core
+[DEBUG]   Imported: javax.enterprise.util.* < plexus.core
+[DEBUG]   Imported: javax.inject.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.artifact < plexus.core
+[DEBUG]   Imported: org.apache.maven.classrealm < plexus.core
+[DEBUG]   Imported: org.apache.maven.cli < plexus.core
+[DEBUG]   Imported: org.apache.maven.configuration < plexus.core
+[DEBUG]   Imported: org.apache.maven.exception < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution.scope < plexus.core
+[DEBUG]   Imported: org.apache.maven.lifecycle < plexus.core
+[DEBUG]   Imported: org.apache.maven.model < plexus.core
+[DEBUG]   Imported: org.apache.maven.monitor < plexus.core
+[DEBUG]   Imported: org.apache.maven.plugin < plexus.core
+[DEBUG]   Imported: org.apache.maven.profiles < plexus.core
+[DEBUG]   Imported: org.apache.maven.project < plexus.core
+[DEBUG]   Imported: org.apache.maven.reporting < plexus.core
+[DEBUG]   Imported: org.apache.maven.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.rtinfo < plexus.core
+[DEBUG]   Imported: org.apache.maven.settings < plexus.core
+[DEBUG]   Imported: org.apache.maven.toolchain < plexus.core
+[DEBUG]   Imported: org.apache.maven.usability < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.events < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.observers < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.resource < plexus.core
+[DEBUG]   Imported: org.codehaus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.* < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.component < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.configuration < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.container < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.context < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.logging < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.personality < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.* < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.artifact < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.collection < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.deployment < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.graph < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.installation < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.internal.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.metadata < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.repository < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.resolution < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.spi < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.transfer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.version < plexus.core
+[DEBUG]   Imported: org.slf4j.* < plexus.core
+[DEBUG]   Imported: org.slf4j.helpers.* < plexus.core
+[DEBUG]   Imported: org.slf4j.spi.* < plexus.core
+[DEBUG] Populating class realm maven.api
+[INFO] Error stacktraces are turned on.
+[DEBUG] Reading global settings from /Users/delacyr/apache-maven-3.3.9/conf/settings.xml
+[DEBUG] Reading user settings from /Users/delacyr/.m2/settings.xml
+[DEBUG] Reading global toolchains from /Users/delacyr/apache-maven-3.3.9/conf/toolchains.xml
+[DEBUG] Reading user toolchains from /Users/delacyr/.m2/toolchains.xml
+[DEBUG] Using local repository at /Users/delacyr/.m2/repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /Users/delacyr/.m2/repository
+[INFO] Scanning for projects...
+[DEBUG] Dependency collection stats: {ConflictMarker.analyzeTime=1, ConflictMarker.markTime=1, ConflictMarker.nodeCount=79, ConflictIdSorter.graphTime=1, ConflictIdSorter.topsortTime=1, ConflictIdSorter.conflictIdCount=38, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=14, ConflictResolver.conflictItemCount=78, DefaultDependencyCollector.collectTime=310, DefaultDependencyCollector.transformTime=22}
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:jar:0.22.0:
+[DEBUG]    org.eclipse.tycho:tycho-core:jar:0.22.0:compile
+[DEBUG]       org.apache.maven:maven-core:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-model:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-settings:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-settings-builder:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-repository-metadata:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-artifact:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-model-builder:jar:3.0:compile
+[DEBUG]          org.apache.maven:maven-aether-provider:jar:3.0:runtime
+[DEBUG]          org.sonatype.aether:aether-impl:jar:1.7:compile
+[DEBUG]             org.sonatype.aether:aether-spi:jar:1.7:compile
+[DEBUG]          org.sonatype.aether:aether-api:jar:1.7:compile
+[DEBUG]          org.sonatype.aether:aether-util:jar:1.7:compile
+[DEBUG]          org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2:compile
+[DEBUG]             org.sonatype.sisu:sisu-inject-bean:jar:1.4.2:compile
+[DEBUG]                org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7:compile
+[DEBUG]          org.codehaus.plexus:plexus-interpolation:jar:1.14:compile
+[DEBUG]          org.codehaus.plexus:plexus-classworlds:jar:2.2.3:compile
+[DEBUG]          org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3:compile
+[DEBUG]             org.sonatype.plexus:plexus-cipher:jar:1.7:compile
+[DEBUG]       org.apache.maven:maven-plugin-api:jar:3.0:compile
+[DEBUG]       org.codehaus.plexus:plexus-utils:jar:3.0.7:compile
+[DEBUG]       org.codehaus.plexus:plexus-archiver:jar:2.2:compile
+[DEBUG]          org.codehaus.plexus:plexus-io:jar:2.0.5:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.osgi.compatibility.state:jar:1.0.0.v20140403-1907:compile
+[DEBUG]       org.eclipse.tycho:sisu-equinox-embedder:jar:0.22.0:compile
+[DEBUG]          org.eclipse.tycho:org.eclipse.osgi:jar:3.10.0.v20140606-1445:compile
+[DEBUG]          org.eclipse.tycho:sisu-equinox-api:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:tycho-metadata-model:jar:0.22.0:compile
+[DEBUG]          de.pdark:decentxml:jar:1.3:compile
+[DEBUG]       org.eclipse.tycho:tycho-embedder-api:jar:0.22.0:compile
+[DEBUG]          org.eclipse.tycho:org.eclipse.tycho.embedder.shared:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.tycho.core.shared:jar:0.22.0:compile
+[DEBUG]    org.eclipse.tycho:tycho-p2-facade:jar:0.22.0:compile
+[DEBUG]       org.codehaus.plexus:plexus-component-annotations:jar:1.5.5:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.tycho.p2.resolver.shared:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.tycho.p2.tools.shared:jar:0.22.0:compile
+[DEBUG] Created new class realm extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0
+[DEBUG] Importing foreign packages into class realm extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:tycho-maven-plugin:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:tycho-core:jar:0.22.0
+[DEBUG]   Included: org.sonatype.aether:aether-util:jar:1.7
+[DEBUG]   Included: org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[DEBUG]   Included: org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.14
+[DEBUG]   Included: org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[DEBUG]   Included: org.sonatype.plexus:plexus-cipher:jar:1.7
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:3.0.7
+[DEBUG]   Included: org.codehaus.plexus:plexus-archiver:jar:2.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-io:jar:2.0.5
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.osgi.compatibility.state:jar:1.0.0.v20140403-1907
+[DEBUG]   Included: org.eclipse.tycho:sisu-equinox-embedder:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.osgi:jar:3.10.0.v20140606-1445
+[DEBUG]   Included: org.eclipse.tycho:sisu-equinox-api:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:tycho-metadata-model:jar:0.22.0
+[DEBUG]   Included: de.pdark:decentxml:jar:1.3
+[DEBUG]   Included: org.eclipse.tycho:tycho-embedder-api:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.tycho.embedder.shared:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.tycho.core.shared:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:tycho-p2-facade:jar:0.22.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-component-annotations:jar:1.5.5
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.tycho.p2.resolver.shared:jar:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.tycho.p2.tools.shared:jar:0.22.0
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:pom:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Created new class realm project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT
+[DEBUG] Populating class realm project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT
+[DEBUG] Looking up lifecyle mappings for packaging pom from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.help:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.ui:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.example:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.feature:eclipse-feature:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-feature from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.jboss.runtime.feature:eclipse-feature:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-feature from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.examples.feature:eclipse-feature:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-feature from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil:eclipse-plugin:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-plugin from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil.feature:eclipse-feature:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-feature from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] Extension realms for project org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.updatesite.feature:eclipse-update-site:1.0.2-SNAPSHOT: [ClassRealm[extension>org.eclipse.tycho:tycho-maven-plugin:0.22.0, parent: sun.misc.Launcher$AppClassLoader@55f96302]]
+[DEBUG] Looking up lifecyle mappings for packaging eclipse-update-site from ClassRealm[project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT, parent: ClassRealm[maven.api, parent: null]]
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.core/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.core/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.core/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.help:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.help/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.help:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.help/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.help:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.help/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.ui:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.ui/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.ui:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.ui/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.ui:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.ui/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.example:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.example/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.example:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.example/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.example:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.example/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.jboss.runtime.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.jboss.runtime.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.jboss.runtime.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.jboss.runtime.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.jboss.runtime.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.jboss.runtime.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.examples.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.examples.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.examples.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.examples.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.examples.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.examples.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-maven-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.updatesite.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.updatesite.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.updatesite.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.updatesite.feature/pom.xml
+[DEBUG] org.eclipse.tycho:tycho-packaging-plugin:0.22.0 configured in MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.updatesite.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.updatesite.feature/pom.xml
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.core/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+Debug options:
+    file:/Users/delacyr/git/bplframework/bpmn2.modeler/.options not found
+Time to load bundles: 343
+!SESSION 2016-09-29 19:26:05.040 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -eclipse.keyring /var/folders/91/lspnncy56m95drl1vn_1xx_c0000gn/T/tycho3878662311833392500secure_storage
+Command-line arguments:  -eclipse.keyring /var/folders/91/lspnncy56m95drl1vn_1xx_c0000gn/T/tycho3878662311833392500secure_storage -debug -consoleLog
+
+!ENTRY org.eclipse.core.net 1 0 2016-09-29 19:26:05.041
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+[DEBUG] Clearing proxy settings in OSGi runtime
+[DEBUG] Dependency collection stats: {ConflictMarker.analyzeTime=0, ConflictMarker.markTime=1, ConflictMarker.nodeCount=88, ConflictIdSorter.graphTime=0, ConflictIdSorter.topsortTime=0, ConflictIdSorter.conflictIdCount=42, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=3, ConflictResolver.conflictItemCount=87, DefaultDependencyCollector.collectTime=37, DefaultDependencyCollector.transformTime=4}
+[DEBUG] org.eclipse.tycho:tycho-p2-plugin:jar:0.22.0:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-model:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-artifact:jar:3.0:compile
+[DEBUG]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2:compile
+[DEBUG]          org.sonatype.sisu:sisu-inject-bean:jar:1.4.2:compile
+[DEBUG]             org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7:compile
+[DEBUG]    org.apache.maven:maven-core:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-settings:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-settings-builder:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-model-builder:jar:3.0:compile
+[DEBUG]       org.apache.maven:maven-aether-provider:jar:3.0:runtime
+[DEBUG]       org.sonatype.aether:aether-impl:jar:1.7:compile
+[DEBUG]          org.sonatype.aether:aether-spi:jar:1.7:compile
+[DEBUG]       org.sonatype.aether:aether-api:jar:1.7:compile
+[DEBUG]       org.sonatype.aether:aether-util:jar:1.7:compile
+[DEBUG]       org.codehaus.plexus:plexus-interpolation:jar:1.14:compile
+[DEBUG]       org.codehaus.plexus:plexus-utils:jar:3.0.7:compile
+[DEBUG]       org.codehaus.plexus:plexus-classworlds:jar:2.2.3:compile
+[DEBUG]       org.codehaus.plexus:plexus-component-annotations:jar:1.5.5:compile
+[DEBUG]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3:compile
+[DEBUG]          org.sonatype.plexus:plexus-cipher:jar:1.7:compile
+[DEBUG]    org.eclipse.tycho:sisu-equinox-launching:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:tycho-core:jar:0.22.0:compile
+[DEBUG]          org.codehaus.plexus:plexus-archiver:jar:2.2:compile
+[DEBUG]             org.codehaus.plexus:plexus-io:jar:2.0.5:compile
+[DEBUG]          org.eclipse.tycho:org.eclipse.osgi.compatibility.state:jar:1.0.0.v20140403-1907:compile
+[DEBUG]          org.eclipse.tycho:tycho-metadata-model:jar:0.22.0:compile
+[DEBUG]             de.pdark:decentxml:jar:1.3:compile
+[DEBUG]          org.eclipse.tycho:tycho-embedder-api:jar:0.22.0:compile
+[DEBUG]             org.eclipse.tycho:org.eclipse.tycho.embedder.shared:jar:0.22.0:compile
+[DEBUG]          org.eclipse.tycho:org.eclipse.tycho.core.shared:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:sisu-equinox-api:jar:0.22.0:compile
+[DEBUG]       org.apache.commons:commons-exec:jar:1.2:compile
+[DEBUG]    org.eclipse.tycho:tycho-p2-facade:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:sisu-equinox-embedder:jar:0.22.0:compile
+[DEBUG]          org.eclipse.tycho:org.eclipse.osgi:jar:3.10.0.v20140606-1445:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.tycho.p2.resolver.shared:jar:0.22.0:compile
+[DEBUG]       org.eclipse.tycho:org.eclipse.tycho.p2.tools.shared:jar:0.22.0:compile
+[DEBUG]    org.eclipse.tycho:tycho-artifactcomparator:jar:0.22.0:compile
+[DEBUG]       org.ow2.asm:asm-debug-all:jar:4.0:compile
+[DEBUG] Created new class realm plugin>org.eclipse.tycho:tycho-p2-plugin:0.22.0
+[DEBUG] Importing foreign packages into class realm plugin>org.eclipse.tycho:tycho-p2-plugin:0.22.0
+[DEBUG]   Imported:  < project>org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.parent:1.0.2-SNAPSHOT
+[DEBUG] Populating class realm plugin>org.eclipse.tycho:tycho-p2-plugin:0.22.0
+[DEBUG]   Included: org.eclipse.tycho:tycho-p2-plugin:jar:0.22.0
+[DEBUG]   Included: org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[DEBUG]   Included: org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[DEBUG]   Included: org.sonatype.aether:aether-util:jar:1.7
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.14
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:3.0.7
+[DEBUG]   Included: org.codehaus.plexus:plexus-component-annotations:jar:1.5.5
+[DEBUG]   Included: org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[DEBUG]   Included: org.sonatype.plexus:plexus-cipher:jar:1.7
+[DEBUG]   Included: org.eclipse.tycho:sisu-equinox-launching:jar:0.22.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-archiver:jar:2.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-io:jar:2.0.5
+[DEBUG]   Included: org.eclipse.tycho:org.eclipse.osgi.compatibility.state:jar:1.0.0.v20140403-1907
+[DEBUG]   Included: org.apache.commons:commons-exec:jar:1.2
+[DEBUG]   Included: org.eclipse.tycho:tycho-artifactcomparator:jar:0.22.0
+[DEBUG]   Included: org.ow2.asm:asm-debug-all:jar:4.0
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.help:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.help/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.ui:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.ui/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.runtime.example:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.runtime.example/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.feature/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.jboss.runtime.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.jboss.runtime.feature/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.examples.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.examples.feature/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.wsil.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.wsil.feature/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[DEBUG] target-platform-configuration for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.updatesite.feature:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.updatesite.feature/pom.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <resolver>p2</resolver>
+  <includePackedArtifacts>true</includePackedArtifacts>
+</configuration>
+[WARNING] No explicit target runtime environment configuration. Build is platform dependent.
+[INFO] Computing target platform for MavenProject: org.eclipse.bpmn2.modeler:org.eclipse.bpmn2.modeler.core:1.0.2-SNAPSHOT @ /Users/delacyr/git/bplframework/bpmn2.modeler/org.eclipse.bpmn2.modeler.core/pom.xml
+[ERROR] Internal error: java.lang.RuntimeException: Invalid repository URL: ${eclipse-site}: no protocol: ${eclipse-site} -> [Help 1]
+org.apache.maven.InternalErrorException: Internal error: java.lang.RuntimeException: Invalid repository URL: ${eclipse-site}
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:121)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+Caused by: java.lang.RuntimeException: Invalid repository URL: ${eclipse-site}
+	at org.eclipse.tycho.p2.resolver.P2DependencyResolver.addEntireP2RepositoryToTargetPlatform(P2DependencyResolver.java:306)
+	at org.eclipse.tycho.p2.resolver.P2DependencyResolver.computePreliminaryTargetPlatform(P2DependencyResolver.java:210)
+	at org.eclipse.tycho.core.resolver.DefaultTychoResolver.resolveProject(DefaultTychoResolver.java:109)
+	at org.eclipse.tycho.core.maven.TychoMavenLifecycleParticipant.afterProjectsRead(TychoMavenLifecycleParticipant.java:77)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:266)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+	... 11 more
+Caused by: java.net.MalformedURLException: no protocol: ${eclipse-site}
+	at java.net.URL.<init>(URL.java:586)
+	at java.net.URL.<init>(URL.java:483)
+	at java.net.URL.<init>(URL.java:432)
+	at org.eclipse.tycho.p2.resolver.P2DependencyResolver.addEntireP2RepositoryToTargetPlatform(P2DependencyResolver.java:300)
+	... 17 more
+[ERROR] 
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/InternalErrorException

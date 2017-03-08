@@ -259,10 +259,14 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				/*Exclui o modelo temporário da pasta Instantiating*/
 				try {
 					instantiated_file.delete(true, progressMonitor);
+					
 				} catch (CoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
+				
+				/*Apaga subpasta da pasta instantiating se estiver vazia*/
+//				IFolder InstantiatingFolder = project.getFolder("Instantiating").getFolder(instantiated_file.getParent().getName());
 				
 				org.eclipse.emf.common.util.URI modelURI;
 				modelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(path_BPDFolder.toString(), true);
@@ -802,7 +806,7 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						deleteObject(activity);
 						sourceShape = getContainerShape(source,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
 						targetShape = getContainerShape(target,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
-						createNewConnection(sourceShape, targetShape, "");
+						createNewConnection(sourceShape, targetShape, incoming.get(0).getName());
 						
 					}
 				}
@@ -2010,6 +2014,11 @@ public class Instantiate extends AbstractHandler implements IHandler {
 									return false;
 								}
 							}
+						}else{
+							if (!activity.isSolved()){
+								types.add(activity.getName());
+								return false;
+							}
 						}
 						return true;
 					}
@@ -2029,6 +2038,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						types.add(activity.getName());
 						return false;
 					}else{ //varpoint sem variantes
+						if (!activity.isSolved()){
+							types.add(activity.getName());
+							return false;
+						}
 						return true;
 					}
 				}
@@ -2042,6 +2055,11 @@ public class Instantiate extends AbstractHandler implements IHandler {
 								return true;
 							}
 							else{
+								types.add(activity.getName());
+								return false;
+							}
+						}else{
+							if (!activity.isSolved()){
 								types.add(activity.getName());
 								return false;
 							}
@@ -2106,6 +2124,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				types.add(activity.getName());
 				return false;
 			}else{ //varpoint sem variantes
+				if (!activity.isSolved()){
+					types.add(activity.getName());
+					return false;
+				}
 				return true;
 			}
 		}
@@ -2122,10 +2144,10 @@ public class Instantiate extends AbstractHandler implements IHandler {
 			if (b.getSourceRef() instanceof Activity){
 				Activity activity = (Activity)b.getSourceRef();
 				String s = activity.getFeatureType();
-				if (s != null)
+				/*if (s != null)
 					if (activity.getFeatureType().equals("##mandatory") && !activity.isCheck()){
 						return false;
-					}
+					}*/ //Alteração 2017
 				if (activity.isVariant() && activity.isCheck() && (activity.getSeq()!=0)){
 					cont++;
 				}

@@ -244,7 +244,8 @@ public class InstantiationDetailComposite extends AbstractDetailComposite {
 				Activity variant = null;
 				if (businessObject instanceof Activity){
 					variant = (Activity)businessObject;
-					if (variant.isVariant() && variant.isCheck()){
+					//if (variant.isVariant() && variant.isCheck()){
+					if (variant.isSolved() || variant.isCheck()){
 						InputDialog dialog = new InputDialog(null, Messages.InstantiationDetailComposite_Instance_Name_Title, Messages.InstantiationDetailComposite_Instance_Name_Description, getText(), null);
 							if (dialog.open() == Window.OK){
 								setValue(dialog.getValue());

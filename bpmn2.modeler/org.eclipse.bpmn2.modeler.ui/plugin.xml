@@ -1615,7 +1615,7 @@
           id="org.eclipse.bpmn2.modeler.ui.toolbar1">
        <command
              commandId="org.eclipse.bpmn2.modeler.ui.command.Instantiate"
-             icon="icons/16/instantiate.png"
+             icon="icons/16/instantiate2.png"
              label="Instantiate"
              style="push">
        </command>

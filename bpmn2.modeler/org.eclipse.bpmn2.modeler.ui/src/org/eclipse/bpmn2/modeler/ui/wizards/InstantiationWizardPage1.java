@@ -44,14 +44,13 @@ public class InstantiationWizardPage1 extends WizardPage{
 	public void createControl(Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
-		layout.numColumns = 3;
+		layout.numColumns = 2;
 		layout.verticalSpacing = 9;
 		composite.setLayout(layout);
-		Label label = new Label(composite, SWT.NULL);
-		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		label.setText("&Folder:");
+		new Label(composite, SWT.NONE);
 		folderName = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		GridData gd_folderName = new GridData(GridData.FILL_HORIZONTAL);
+		gd_folderName.grabExcessHorizontalSpace = false;
 		gd_folderName.verticalAlignment = SWT.CENTER;
 		folderName.setLayoutData(gd_folderName);
 		
@@ -63,19 +62,6 @@ public class InstantiationWizardPage1 extends WizardPage{
 		}
 		
 		removeFolderNameSegments();
-		
-		Button browseButton = new Button(composite, SWT.NONE);
-		browseButton.setText("     Browse...     ");
-		browseButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				String selectedPath = openDirectoryDialog();
-				if (selectedPath != null) {
-					folderName.setText(selectedPath);
-					removeFolderNameSegments();
-				}
-			}
-		});
-		new Label(composite, SWT.NONE);
 	    
 		//Checar se é um projeto válido!
 //		fileName.addModifyListener(new ModifyListener() {
@@ -94,15 +80,27 @@ public class InstantiationWizardPage1 extends WizardPage{
 					updateStatus("Select a valid BPL Project");
 			}
 		});
-		
 		new Label(composite, SWT.NONE);
+		
+		Button browseButton = new Button(composite, SWT.NONE);
+		browseButton.setText("     Browse...     ");
+		browseButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				String selectedPath = openDirectoryDialog();
+				if (selectedPath != null) {
+					folderName.setText(selectedPath);
+					removeFolderNameSegments();
+				}
+			}
+		});
 		new Label(composite, SWT.NONE);
 		final Label label2 = new Label(composite, SWT.NULL);
 		
 	    label2.setText("&Select a BPMT file:");
+		new Label(composite, SWT.NONE);
 		
 		GridData gridData = new GridData(GridData.FILL_VERTICAL);
-	    gridData.horizontalAlignment = SWT.CHECK;
+	    gridData.horizontalAlignment = SWT.FILL;
 	    gridData.widthHint = 334;
 		viewer = new CheckboxTreeViewer(composite);
 		ViewerFilter filterViewer = new ViewerFilter() {
@@ -167,7 +165,6 @@ public class InstantiationWizardPage1 extends WizardPage{
 //		Só liberar botão Next se for um projeto válido
 		setPageComplete(false);		
 		setControl(composite);
-		new Label(composite, SWT.NONE);
 	}
 	
 
