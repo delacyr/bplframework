@@ -1213,8 +1213,8 @@ public class BPMN2Editor extends DiagramEditor implements
 //			saveInProgress = false;
 //		}
 		// System.out.println("done in "+(System.currentTimeMillis()-start)+" ms");
-		Resource resource = getResourceSet().getResource(modelUri, false);
-		BPMN2ProjectValidator.validateOnSave(resource, monitor);
+		//Resource resource = getResourceSet().getResource(modelUri, false);
+		//BPMN2ProjectValidator.validateOnSave(resource, monitor);
 	}
 
 	@Override
