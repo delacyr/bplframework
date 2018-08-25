@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description>
+      BPL-Framework Metamodel
+   </description>
+   <feature url="features/org.eclipse.bpmn2.feature_1.0.0.201808250109.jar" id="org.eclipse.bpmn2.feature" version="1.0.0.201808250109">
+      <category name="BPL-Framework"/>
+   </feature>
+   <category-def name="BPL-Framework" label="BPL-Framework">
+      <description>
+         BPL-Framework
+      </description>
+   </category-def>
+</site>
