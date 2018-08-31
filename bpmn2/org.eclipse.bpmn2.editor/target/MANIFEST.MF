@@ -16,7 +16,7 @@ Export-Package: org.eclipse.bpmn2.di.presentation,org.eclipse.bpmn2.pr
  .dd.di.presentation,org.eclipse.bpmn2.presentation.actions;version="1
  .0.0"
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201808250109
+Bundle-Version: 1.0.0.201808310434
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.bpmn2.presentation.Bpmn2EditorPlugin$Imp

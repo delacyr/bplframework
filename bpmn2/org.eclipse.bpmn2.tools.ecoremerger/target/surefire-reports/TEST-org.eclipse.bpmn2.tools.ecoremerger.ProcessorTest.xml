@@ -65,7 +65,7 @@
     <property name="java.library.path" value="/Users/delacyr/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="osgi.bundlefile.limit" value="100"/>
-    <property name="eclipse.startTime" value="1535159413894"/>
+    <property name="eclipse.startTime" value="1535690078053"/>
     <property name="org.osgi.framework.os.version" value="10.13.6"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="gopherProxySet" value="false"/>
@@ -92,7 +92,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="org.osgi.framework.executionenvironment" value="OSGi/Minimum-1.0,OSGi/Minimum-1.1,OSGi/Minimum-1.2,JRE-1.1,J2SE-1.2,J2SE-1.3,J2SE-1.4,J2SE-1.5,JavaSE-1.6,JavaSE-1.7"/>
     <property name="osgi.configuration.area" value="file:/Users/delacyr/git/bplframework/bpmn2/org.eclipse.bpmn2.tools.ecoremerger/target/work/configuration/"/>
-    <property name="osgi.logfile" value="/Users/delacyr/git/bplframework/bpmn2/org.eclipse.bpmn2.tools.ecoremerger/target/work/configuration/1535159414176.log"/>
+    <property name="osgi.logfile" value="/Users/delacyr/git/bplframework/bpmn2/org.eclipse.bpmn2.tools.ecoremerger/target/work/configuration/1535690078250.log"/>
   </properties>
   <testcase name="loadAll" classname="org.eclipse.bpmn2.tools.ecoremerger.ProcessorTest" time="0.002"/>
 </testsuite>

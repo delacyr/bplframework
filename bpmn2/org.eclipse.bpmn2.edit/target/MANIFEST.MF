@@ -11,7 +11,7 @@ Export-Package: org.eclipse.bpmn2.di.provider;version="1.0.0",org.ecli
  pse.bpmn2.provider;version="1.0.0",org.eclipse.dd.dc.provider;version
  ="1.0.0",org.eclipse.dd.di.provider;version="1.0.0"
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201808250109
+Bundle-Version: 1.0.0.201808310434
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.bpmn2.provider.Bpmn2EditPlugin$Implement

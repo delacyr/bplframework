@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='2'>
-  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201808250109'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201808310434'>
     <properties size='5'>
       <property name='artifact.size' value='169652'/>
       <property name='download.size' value='169652'/>
@@ -10,13 +10,13 @@
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201808250109'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.bpmn2.editor' version='1.0.0.201808310434'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
       <property name='artifact.size' value='169652'/>
-      <property name='download.size' value='25728'/>
+      <property name='download.size' value='25729'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='1.0.0-SNAPSHOT'/>
       <property name='maven-artifactId' value='org.eclipse.bpmn2.editor'/>
