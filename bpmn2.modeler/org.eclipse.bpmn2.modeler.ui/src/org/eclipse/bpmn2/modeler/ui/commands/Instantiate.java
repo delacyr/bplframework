@@ -784,11 +784,13 @@ public class Instantiate extends AbstractHandler implements IHandler {
 				else{ //nenhuma variante selecionada
 					ContainerShape sourceShape,targetShape;
 					FlowNode source = null,target = null;
+					String description = "";
 					
 					if (sweepVariants(activity)){ //exclui variantes
 						List<SequenceFlow> incoming = activity.getIncoming();
 						for (int i=0;i<incoming.size();i++){
 							SequenceFlow b = incoming.get(i);
+							description = b.getName();
 							if (b.getSourceRef() instanceof FlowNode){
 								source = (FlowNode)b.getSourceRef();
 								next = source;
@@ -806,7 +808,9 @@ public class Instantiate extends AbstractHandler implements IHandler {
 						deleteObject(activity);
 						sourceShape = getContainerShape(source,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
 						targetShape = getContainerShape(target,BPMN2Editor.getActiveEditor().getDiagramTypeProvider().getDiagram());
-						createNewConnection(sourceShape, targetShape, incoming.get(0).getName());
+//						TODO incoming fica vazio depois de deletar activity (?) 
+//						createNewConnection(sourceShape, targetShape, incoming.get(0).getName());
+						createNewConnection(sourceShape, targetShape, description);
 						
 					}
 				}
